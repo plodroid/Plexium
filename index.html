@@ -73,7 +73,6 @@
       -webkit-backdrop-filter:blur(22px) saturate(1.08);
     }
 
-    /* nav */
     .nav-shell{position:fixed;inset:18px 0 auto;z-index:50;pointer-events:none}
     .nav{
       pointer-events:auto;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;
@@ -91,7 +90,6 @@
     .nav-cta{display:flex;align-items:center;gap:8px;padding:9px 14px!important;background:linear-gradient(180deg,#ee926e,#d86543)!important;color:#1c0d08!important;font-weight:700!important;box-shadow:0 10px 26px rgba(218,98,61,.20),inset 0 1px 0 rgba(255,255,255,.35)}
     .nav-cta:hover{transform:translateY(-1px);filter:brightness(1.04)}
 
-    /* hero */
     .hero{padding:172px 0 80px;text-align:center;position:relative}
     .status-pill{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border-radius:999px;color:#d8c8bd;font-size:12px;margin-bottom:24px}
     .status-dot{width:7px;height:7px;border-radius:50%;background:#e57b55;box-shadow:0 0 0 5px rgba(229,123,85,.095),0 0 26px rgba(229,123,85,.55)}
@@ -107,7 +105,6 @@
     .btn-ghost:hover{transform:translateY(-2px);background:rgba(255,255,255,.075);border-color:var(--line-hi)}
     .mini-note{margin-top:13px;color:var(--faint);font-size:12px}
 
-    /* actual screenshot stage */
     .browser-stage{margin:62px auto 0;position:relative;max-width:1110px;perspective:1400px}
     .browser-stage::before{content:"";position:absolute;left:13%;right:13%;bottom:-8%;height:24%;background:rgba(222,107,72,.17);filter:blur(58px);border-radius:50%;z-index:-1}
     .browser-frame{border-radius:24px;padding:10px;transform:rotateX(1.2deg) translateY(0);animation:stageFloat 7s ease-in-out infinite;will-change:transform}
@@ -122,7 +119,6 @@
     .section-lead{margin:16px 0 0;color:var(--muted);font-size:16px;line-height:1.7;max-width:650px}
     .section-head.split{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}
 
-    /* downloads */
     .download-wrap{border-radius:28px;padding:28px;overflow:hidden;position:relative}
     .download-wrap::before{content:"";position:absolute;right:-140px;top:-180px;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(226,117,80,.16),transparent 66%);pointer-events:none}
     .download-top{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:16px 6px 28px}
@@ -138,7 +134,6 @@
     .os-card.recommended::after{content:"Detected";position:absolute;top:15px;right:15px;color:#ffb396;font-size:9px;text-transform:uppercase;font-weight:800;letter-spacing:.08em;background:rgba(226,117,80,.11);border:1px solid rgba(226,117,80,.22);padding:5px 7px;border-radius:99px}
     .download-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--faint);font-size:11px;padding:18px 4px 0}
 
-    /* feature cards */
     .feature-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-auto-rows:minmax(210px,auto);gap:12px;margin-top:36px}
     .feature-card{border-radius:22px;padding:24px;position:relative;overflow:hidden;min-width:0;transition:.25s var(--ease)}
     .feature-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.16)}
@@ -152,21 +147,17 @@
     .key{margin-left:auto;font-size:10px;color:#796b62;border:1px solid var(--line);padding:3px 6px;border-radius:6px}
     .feature-card::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-90px;bottom:-120px;background:radial-gradient(circle,rgba(223,118,83,.08),transparent 67%);pointer-events:none}
 
-    /* release notes */
     .release-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:14px;margin-top:34px}
     .version-card{border-radius:22px;padding:24px;align-self:start;position:sticky;top:100px}
     .version-kicker{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;font-weight:750}.version-number{font-size:42px;font-weight:760;letter-spacing:-.055em;margin:7px 0 2px}.version-state{display:inline-flex;align-items:center;gap:7px;color:#f2a181;font-size:12px;margin-top:8px}.version-state i{width:6px;height:6px;border-radius:50%;background:#e87854;box-shadow:0 0 14px #e87854}.version-meta{display:grid;gap:11px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}.meta-row{display:flex;justify-content:space-between;gap:16px;font-size:12px}.meta-row span:first-child{color:var(--faint)}.meta-row span:last-child{color:#d8c9bf}
     .notes{border-radius:22px;overflow:hidden}.note-row{display:grid;grid-template-columns:114px 1fr;gap:24px;padding:22px 24px;border-bottom:1px solid var(--line)}.note-row:last-child{border-bottom:0}.note-tag{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e99472;margin-top:2px}.note-row h3{font-size:15px;margin:0 0 5px}.note-row p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
 
-    /* gallery */
     .gallery{margin-top:34px;display:grid;grid-template-columns:1fr .34fr;gap:12px}
     .shot{border-radius:22px;overflow:hidden;padding:9px;min-height:220px;position:relative}.shot img{width:100%;height:100%;object-fit:cover;border-radius:15px;border:1px solid rgba(255,255,255,.055)}
     .icon-wall{border-radius:22px;padding:18px;min-height:220px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.icon-tile{min-height:112px;border:1px solid rgba(255,255,255,.065);border-radius:16px;background:rgba(255,255,255,.028);display:grid;place-items:center;padding:16px;overflow:hidden;transition:transform .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease)}.icon-tile:hover{transform:translateY(-2px);background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.13)}.icon-tile img{width:min(92px,78%);max-height:92px;object-fit:contain;filter:drop-shadow(0 16px 30px rgba(0,0,0,.36))}.icon-tile.mark img{width:min(84px,72%)}
 
-    /* FAQ */
     .faq{margin-top:34px;border-radius:22px;overflow:hidden}.faq details{border-bottom:1px solid var(--line);padding:0 22px}.faq details:last-child{border-bottom:0}.faq summary{list-style:none;cursor:pointer;padding:20px 2px;font-size:14px;font-weight:650;display:flex;align-items:center;justify-content:space-between;gap:20px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--faint);font-size:20px;font-weight:350;transition:.25s var(--ease)}.faq details[open] summary::after{transform:rotate(45deg);color:var(--accent-2)}.faq p{margin:-3px 0 20px;color:var(--muted);font-size:13px;line-height:1.7;max-width:760px}
 
-    /* final cta */
     .final{padding:90px 0 110px}.final-card{border-radius:30px;min-height:330px;padding:50px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;position:relative;overflow:hidden}.final-card::before{content:"";position:absolute;width:570px;height:330px;bottom:-250px;left:50%;transform:translateX(-50%);border-radius:50%;background:rgba(223,118,83,.18);filter:blur(80px)}.final-icon{width:72px;margin-bottom:20px;filter:drop-shadow(0 16px 34px rgba(223,118,83,.2))}.final-card h2{font-size:clamp(36px,5vw,60px);position:relative}.final-card p{color:var(--muted);max-width:540px;line-height:1.6;position:relative}.final-card .hero-actions{position:relative}
 
     footer{padding:25px 0 38px;border-top:1px solid rgba(255,255,255,.065)}
@@ -362,19 +353,19 @@
   </footer>
 
   <script>
-    // smooth in-page links
+
     document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',e=>{
       const id=link.getAttribute('href'); const el=document.querySelector(id); if(!el)return;
       e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'});
     }));
 
-    // reveal on scroll
+
     const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
       if(entry.isIntersecting){entry.target.classList.add('in');io.unobserve(entry.target)}
     }),{threshold:.12,rootMargin:'0px 0px -30px'});
     document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=Math.min(i%4,3)*55+'ms';io.observe(el)});
 
-    // warm cursor aura; hidden on touch devices
+
     const aura=document.getElementById('cursorAura');
     if(matchMedia('(pointer:fine)').matches){
       let x=innerWidth/2,y=innerHeight/2,cx=x,cy=y;
@@ -383,7 +374,6 @@
       (function tick(){cx+=(x-cx)*.13;cy+=(y-cy)*.13;aura.style.transform=`translate3d(${cx-160}px,${cy-160}px,0)`;requestAnimationFrame(tick)})();
     }
 
-    // mark the most likely platform and point the hero button to its installer
     const ua=navigator.userAgent.toLowerCase();
     let os='windows';
     if(ua.includes('mac')) os='macos'; else if(ua.includes('linux')&&!ua.includes('android')) os='linux';
