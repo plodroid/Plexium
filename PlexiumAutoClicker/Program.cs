@@ -19,14 +19,14 @@ internal sealed class MainForm : Form
     private readonly System.Windows.Forms.Timer clickTimer = new();
     private readonly System.Windows.Forms.Timer statusTimer = new();
 
-    private NumericUpDown hours = null!, mins = null!, secs = null!, millis = null!, randomMs = null!, repeatCount = null!;
-    private NumericUpDown posX = null!, posY = null!, startDelaySeconds = null!, macroLoopCount = null!;
-    private ComboBox actionType = null!, clickType = null!;
+    private PlexNumberBox hours = null!, mins = null!, secs = null!, millis = null!, randomMs = null!, repeatCount = null!;
+    private PlexNumberBox posX = null!, posY = null!, startDelaySeconds = null!, macroLoopCount = null!;
+    private PlexComboBox actionType = null!, clickType = null!;
     private Button actionKey = null!, hotkeyButton = null!, startButton = null!, themeButton = null!, recordButton = null!, playButton = null!, clearButton = null!, pickPositionButton = null!;
     private Label stateLabel = null!, macroInfo = null!, speedLabel = null!, hotkeyHint = null!;
-    private TrackBar speedBar = null!;
-    private CheckBox randomizeCheck = null!, fixedPositionCheck = null!, startDelayCheck = null!, macroLoopCheck = null!;
-    private RadioButton repeatUntilStopped = null!, repeatTimes = null!;
+    private PlexSlider speedBar = null!;
+    private PlexCheckBox randomizeCheck = null!, fixedPositionCheck = null!, startDelayCheck = null!, macroLoopCheck = null!;
+    private PlexRadioButton repeatUntilStopped = null!, repeatTimes = null!;
 
     private bool darkMode = true, running, recording, playingMacro, capturingToggleKey, capturingSpamKey, pickingPosition;
     private Keys toggleKey = Keys.H, spamKey = Keys.P;
@@ -81,7 +81,7 @@ internal sealed class MainForm : Form
         AddMiniLabel(intervalCard, "Minutes", 108, 42); mins = NumberBox(intervalCard, 108, 64, 0, 59, 0, 76);
         AddMiniLabel(intervalCard, "Seconds", 198, 42); secs = NumberBox(intervalCard, 198, 64, 0, 59, 0, 76);
         AddMiniLabel(intervalCard, "Millis", 288, 42); millis = NumberBox(intervalCard, 288, 64, 1, 9999, 50, 64);
-        randomizeCheck = new CheckBox { Text = "Randomize interval", AutoSize = true, Location = new Point(18, 118) };
+        randomizeCheck = new PlexCheckBox { Text = "Randomize interval", AutoSize = true, Location = new Point(18, 118) };
         randomMs = NumberBox(intervalCard, 180, 113, 0, 5000, 0, 80); randomMs.Enabled = false;
         intervalCard.Controls.Add(new Label { Text = "± ms", AutoSize = true, Location = new Point(268, 119) });
         randomizeCheck.CheckedChanged += (_, _) => randomMs.Enabled = randomizeCheck.Checked;
@@ -93,15 +93,15 @@ internal sealed class MainForm : Form
         AddMiniLabel(inputCard, "Click type", 190, 42);
         clickType = MakeCombo(inputCard, 190, 64, 160, new[] { "Single", "Double" });
         actionType.SelectedIndexChanged += (_, _) => { selectedAction = (InputAction)actionType.SelectedIndex; actionKey.Enabled = selectedAction == InputAction.KeyPress; clickType.Enabled = selectedAction != InputAction.KeyPress; };
-        repeatUntilStopped = new RadioButton { Text = "Until stopped", AutoSize = true, Location = new Point(18, 116), Checked = true };
-        repeatTimes = new RadioButton { Text = "Repeat", AutoSize = true, Location = new Point(122, 116) };
+        repeatUntilStopped = new PlexRadioButton { Text = "Until stopped", AutoSize = true, Location = new Point(18, 116), Checked = true };
+        repeatTimes = new PlexRadioButton { Text = "Repeat", AutoSize = true, Location = new Point(122, 116) };
         repeatCount = NumberBox(inputCard, 188, 111, 1, 999999999, 100, 86); repeatCount.Enabled = false;
         inputCard.Controls.Add(new Label { Text = "times", AutoSize = true, Location = new Point(282, 117) });
         repeatTimes.CheckedChanged += (_, _) => repeatCount.Enabled = repeatTimes.Checked;
         inputCard.Controls.AddRange(new Control[] { repeatUntilStopped, repeatTimes });
 
         var cursorCard = Card("CURSOR & START", new Rectangle(28, 286, 370, 150));
-        fixedPositionCheck = new CheckBox { Text = "Fixed click position", AutoSize = true, Location = new Point(18, 42) };
+        fixedPositionCheck = new PlexCheckBox { Text = "Fixed click position", AutoSize = true, Location = new Point(18, 42) };
         cursorCard.Controls.Add(fixedPositionCheck);
         AddMiniLabel(cursorCard, "X", 18, 76); posX = NumberBox(cursorCard, 36, 70, -100000, 100000, 0, 78);
         AddMiniLabel(cursorCard, "Y", 124, 76); posY = NumberBox(cursorCard, 142, 70, -100000, 100000, 0, 78);
@@ -110,7 +110,7 @@ internal sealed class MainForm : Form
         var useCurrent = MakeButton("Current", new Rectangle(296, 68, 58, 28), true);
         useCurrent.Click += (_, _) => { posX.Value = Math.Clamp(Cursor.Position.X, (int)posX.Minimum, (int)posX.Maximum); posY.Value = Math.Clamp(Cursor.Position.Y, (int)posY.Minimum, (int)posY.Maximum); fixedPositionCheck.Checked = true; };
         cursorCard.Controls.AddRange(new Control[] { pickPositionButton, useCurrent });
-        startDelayCheck = new CheckBox { Text = "Start delay", AutoSize = true, Location = new Point(18, 111) };
+        startDelayCheck = new PlexCheckBox { Text = "Start delay", AutoSize = true, Location = new Point(18, 111) };
         startDelaySeconds = NumberBox(cursorCard, 112, 106, 0, 3600, 3, 72); startDelaySeconds.Enabled = false;
         cursorCard.Controls.Add(new Label { Text = "seconds", AutoSize = true, Location = new Point(192, 112) });
         startDelayCheck.CheckedChanged += (_, _) => startDelaySeconds.Enabled = startDelayCheck.Checked;
@@ -138,9 +138,9 @@ internal sealed class MainForm : Form
         macroCard.Controls.AddRange(new Control[] { recordButton, playButton, clearButton });
 
         speedLabel = new Label { Text = "Playback 1.00×", AutoSize = true, Location = new Point(365, 52) };
-        speedBar = new TrackBar { Location = new Point(468, 42), Size = new Size(170, 36), Minimum = 25, Maximum = 400, TickFrequency = 25, Value = 100 };
+        speedBar = new PlexSlider { Location = new Point(468, 47), Size = new Size(170, 26), Minimum = 25, Maximum = 400, Value = 100 };
         speedBar.ValueChanged += (_, _) => speedLabel.Text = $"Playback {speedBar.Value / 100.0:0.00}×";
-        macroLoopCheck = new CheckBox { Text = "Loop", AutoSize = true, Location = new Point(648, 52) };
+        macroLoopCheck = new PlexCheckBox { Text = "Loop", AutoSize = true, Location = new Point(648, 52) };
         macroLoopCount = NumberBox(macroCard, 696, 46, 1, 99999, 2, 50); macroLoopCount.Enabled = false;
         macroLoopCheck.CheckedChanged += (_, _) => macroLoopCount.Enabled = macroLoopCheck.Checked;
         macroInfo = new Label { Text = "No recording yet.", AutoSize = true, Location = new Point(18, 100) };
@@ -160,16 +160,16 @@ internal sealed class MainForm : Form
 
     private void AddMiniLabel(Control parent, string text, int x, int y) => parent.Controls.Add(new Label { Name = "Mini", Text = text, AutoSize = true, Font = new Font("Segoe UI", 8.5f), Location = new Point(x, y) });
 
-    private NumericUpDown NumberBox(Control parent, int x, int y, decimal min, decimal max, decimal value, int width)
+    private PlexNumberBox NumberBox(Control parent, int x, int y, decimal min, decimal max, decimal value, int width)
     {
-        var n = new NumericUpDown { Location = new Point(x, y), Size = new Size(width, 28), Minimum = min, Maximum = max, Value = Math.Clamp(value, min, max), TextAlign = HorizontalAlignment.Center, BorderStyle = BorderStyle.FixedSingle };
+        var n = new PlexNumberBox { Location = new Point(x, y), Size = new Size(width, 28), Minimum = min, Maximum = max, Value = Math.Clamp(value, min, max) };
         parent.Controls.Add(n); return n;
     }
 
-    private ComboBox MakeCombo(Control parent, int x, int y, int width, string[] values)
+    private PlexComboBox MakeCombo(Control parent, int x, int y, int width, string[] values)
     {
-        var c = new ComboBox { Location = new Point(x, y), Size = new Size(width, 28), DropDownStyle = ComboBoxStyle.DropDownList, FlatStyle = FlatStyle.Flat };
-        c.Items.AddRange(values); c.SelectedIndex = 0; parent.Controls.Add(c); return c;
+        var c = new PlexComboBox { Location = new Point(x, y), Size = new Size(width, 28) };
+        c.SetItems(values); c.SelectedIndex = 0; parent.Controls.Add(c); return c;
     }
 
     private Button MakeButton(string text, Rectangle bounds, bool outline)
@@ -193,8 +193,7 @@ internal sealed class MainForm : Form
         c.ForeColor = t.Text;
         if (c is RoundedPanel rp) { rp.BackColor = t.Surface; rp.BorderColor = t.Border; }
         else if (c is RoundedButton rb) { rb.BackColor = rb.Outline ? t.SurfaceHover : t.Accent; rb.ForeColor = rb.Outline ? t.Text : Color.White; rb.BorderColor = rb.Outline ? t.BorderStrong : t.Accent; rb.HoverColor = rb.Outline ? t.Input : t.AccentHover; }
-        else if (c is NumericUpDown or ComboBox) { c.BackColor = t.Input; c.ForeColor = t.Text; }
-        else if (c is TrackBar) { c.BackColor = t.Surface; c.ForeColor = t.Text; }
+        else if (c is IPlexThemed themed) themed.ApplyTheme(t);
         else if (c is Label l)
         {
             c.BackColor = Color.Transparent;
@@ -204,7 +203,6 @@ internal sealed class MainForm : Form
             else if (l.Name is "Mini" or "Subtitle" or "Footer") c.ForeColor = t.Muted;
             else c.ForeColor = t.Secondary;
         }
-        else if (c is CheckBox or RadioButton) { c.BackColor = Color.Transparent; c.ForeColor = t.Secondary; }
         foreach (Control child in c.Controls) ThemeControl(child, t);
     }
 
@@ -229,7 +227,7 @@ internal sealed class MainForm : Form
         if (startDelayCheck.Checked && startDelaySeconds.Value > 0)
         {
             startButton.Enabled = false;
-            for (int i = (int)startDelaySeconds.Value; i > 0; i--) { startButton.Text = $"{i}..."; await Task.Delay(1000); }
+            for (int i = (int)startDelaySeconds.Value; i > 0; i--) { startButton.Text = $"Starting in {i}…"; await Task.Delay(1000); }
             startButton.Enabled = true;
         }
         completedActions = 0; running = true; clickTimer.Interval = NextIntervalMs(); clickTimer.Start(); UpdateLabels();
@@ -248,12 +246,20 @@ internal sealed class MainForm : Form
     private void FireSelectedAction()
     {
         Point? restore = null;
-        if (fixedPositionCheck.Checked && selectedAction != InputAction.KeyPress) { restore = Cursor.Position; Native.SetCursorPos((int)posX.Value, (int)posY.Value); }
+        if (fixedPositionCheck.Checked && selectedAction != InputAction.KeyPress)
+        {
+            restore = Cursor.Position; Native.SetCursorPos((int)posX.Value, (int)posY.Value);
+        }
         int repeats = clickType.SelectedIndex == 1 && selectedAction != InputAction.KeyPress ? 2 : 1;
         for (int i = 0; i < repeats; i++)
         {
-            if (selectedAction == InputAction.KeyPress) { Native.SendKey(spamKey, true); Native.SendKey(spamKey, false); }
-            else Native.Click(selectedAction switch { InputAction.LeftClick => MouseButtons.Left, InputAction.RightClick => MouseButtons.Right, _ => MouseButtons.Middle });
+            switch (selectedAction)
+            {
+                case InputAction.LeftClick: Native.Click(MouseButtons.Left); break;
+                case InputAction.RightClick: Native.Click(MouseButtons.Right); break;
+                case InputAction.MiddleClick: Native.Click(MouseButtons.Middle); break;
+                case InputAction.KeyPress: Native.SendKey(spamKey, true); Native.SendKey(spamKey, false); break;
+            }
         }
         if (restore.HasValue) Native.SetCursorPos(restore.Value.X, restore.Value.Y);
     }
@@ -334,6 +340,73 @@ internal sealed class MainForm : Form
         else macroInfo.Text = "No recording yet.";
         playButton.Enabled = !recording && macro.Count > 0;
     }
+}
+
+internal interface IPlexThemed { void ApplyTheme(Theme t); }
+
+internal sealed class PlexNumberBox : UserControl, IPlexThemed
+{
+    private readonly TextBox box = new() { BorderStyle = BorderStyle.None, TextAlign = HorizontalAlignment.Center };
+    private readonly Button up = new() { Text = "▲", FlatStyle = FlatStyle.Flat, TabStop = false };
+    private readonly Button down = new() { Text = "▼", FlatStyle = FlatStyle.Flat, TabStop = false };
+    private decimal value;
+    private Theme theme = Theme.Dark;
+    public decimal Minimum { get; set; }
+    public decimal Maximum { get; set; } = 100;
+    public decimal Value { get => value; set { this.value = Math.Clamp(value, Minimum, Maximum); box.Text = this.value.ToString(); } }
+    public PlexNumberBox()
+    {
+        SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+        Height = 28; box.Font = new Font("Segoe UI", 9f); box.Location = new Point(6, 6); box.Height = 18;
+        up.FlatAppearance.BorderSize = down.FlatAppearance.BorderSize = 0;
+        Controls.AddRange(new Control[]{box,up,down});
+        box.TextChanged += (_,_) => { if(decimal.TryParse(box.Text, out var v)) value = Math.Clamp(v, Minimum, Maximum); };
+        box.Leave += (_,_) => Value = value;
+        up.Click += (_,_) => Value = Math.Min(Maximum, Value + 1); down.Click += (_,_) => Value = Math.Max(Minimum, Value - 1);
+        Resize += (_,_) => LayoutChildren();
+    }
+    private void LayoutChildren(){ box.Width=Math.Max(20,Width-30); up.SetBounds(Width-22,2,20,12); down.SetBounds(Width-22,14,20,12); }
+    public void ApplyTheme(Theme t){ theme=t; BackColor=t.Input; ForeColor=t.Text; box.BackColor=t.Input; box.ForeColor=t.Text; foreach(var b in new[]{up,down}){b.BackColor=t.SurfaceHover;b.ForeColor=t.Muted;} Invalidate(); }
+    protected override void OnPaint(PaintEventArgs e){ base.OnPaint(e); e.Graphics.SmoothingMode=SmoothingMode.AntiAlias; using var p=RoundedPanel.RoundRect(new Rectangle(0,0,Width-1,Height-1),7); using var pen=new Pen(Enabled?theme.BorderStrong:theme.Border); e.Graphics.DrawPath(pen,p); }
+}
+
+internal sealed class PlexComboBox : Control, IPlexThemed
+{
+    private string[] items = Array.Empty<string>(); private int selectedIndex=-1; private Theme theme=Theme.Dark;
+    public event EventHandler? SelectedIndexChanged;
+    public int SelectedIndex { get=>selectedIndex; set { selectedIndex=Math.Clamp(value,-1,items.Length-1); Invalidate(); SelectedIndexChanged?.Invoke(this,EventArgs.Empty);} }
+    public void SetItems(string[] values){items=values; Invalidate();}
+    public PlexComboBox(){ SetStyle(ControlStyles.UserPaint|ControlStyles.OptimizedDoubleBuffer,true); Cursor=Cursors.Hand; }
+    public void ApplyTheme(Theme t){theme=t; BackColor=t.Input; ForeColor=t.Text; Invalidate();}
+    protected override void OnClick(EventArgs e){ base.OnClick(e); if(!Enabled||items.Length==0)return; var menu=new ContextMenuStrip{ShowImageMargin=false,BackColor=theme.Surface,ForeColor=theme.Text}; for(int i=0;i<items.Length;i++){int j=i; var it=new ToolStripMenuItem(items[i]){BackColor=theme.Surface,ForeColor=theme.Text}; it.Click+=(_,_)=>SelectedIndex=j; menu.Items.Add(it);} menu.Show(this,new Point(0,Height)); }
+    protected override void OnPaint(PaintEventArgs e){ e.Graphics.SmoothingMode=SmoothingMode.AntiAlias; using var p=RoundedPanel.RoundRect(new Rectangle(0,0,Width-1,Height-1),7); using var b=new SolidBrush(theme.Input); using var pen=new Pen(theme.BorderStrong); e.Graphics.FillPath(b,p); e.Graphics.DrawPath(pen,p); var txt=selectedIndex>=0?items[selectedIndex]:"Select"; TextRenderer.DrawText(e.Graphics,txt,Font,new Rectangle(10,0,Width-34,Height),Enabled?theme.Text:theme.Muted,TextFormatFlags.VerticalCenter|TextFormatFlags.EndEllipsis); TextRenderer.DrawText(e.Graphics,"⌄",Font,new Rectangle(Width-28,0,20,Height),theme.Muted,TextFormatFlags.HorizontalCenter|TextFormatFlags.VerticalCenter); }
+}
+
+internal sealed class PlexCheckBox : CheckBox, IPlexThemed
+{
+    private Theme theme=Theme.Dark;
+    public PlexCheckBox(){ SetStyle(ControlStyles.UserPaint|ControlStyles.OptimizedDoubleBuffer,true); Padding=new Padding(22,0,0,0); Height=22; }
+    public void ApplyTheme(Theme t){theme=t; BackColor=Color.Transparent; ForeColor=t.Secondary; Invalidate();}
+    protected override void OnPaint(PaintEventArgs e){ e.Graphics.Clear(Parent?.BackColor??theme.Surface); e.Graphics.SmoothingMode=SmoothingMode.AntiAlias; var r=new Rectangle(1,3,15,15); using var p=RoundedPanel.RoundRect(r,4); using var b=new SolidBrush(Checked?theme.Accent:theme.Input); using var pen=new Pen(Checked?theme.Accent:theme.BorderStrong); e.Graphics.FillPath(b,p); e.Graphics.DrawPath(pen,p); if(Checked) TextRenderer.DrawText(e.Graphics,"✓",new Font(Font.FontFamily,8,FontStyle.Bold),r,Color.White,TextFormatFlags.HorizontalCenter|TextFormatFlags.VerticalCenter); TextRenderer.DrawText(e.Graphics,Text,Font,new Rectangle(22,0,Width-22,Height),theme.Secondary,TextFormatFlags.VerticalCenter); }
+}
+
+internal sealed class PlexRadioButton : RadioButton, IPlexThemed
+{
+    private Theme theme=Theme.Dark;
+    public PlexRadioButton(){ SetStyle(ControlStyles.UserPaint|ControlStyles.OptimizedDoubleBuffer,true); Padding=new Padding(22,0,0,0); Height=22; }
+    public void ApplyTheme(Theme t){theme=t; BackColor=Color.Transparent; ForeColor=t.Secondary; Invalidate();}
+    protected override void OnPaint(PaintEventArgs e){ e.Graphics.Clear(Parent?.BackColor??theme.Surface); e.Graphics.SmoothingMode=SmoothingMode.AntiAlias; var r=new Rectangle(1,3,15,15); using var pen=new Pen(Checked?theme.Accent:theme.BorderStrong,1.5f); e.Graphics.DrawEllipse(pen,r); if(Checked){using var b=new SolidBrush(theme.Accent); e.Graphics.FillEllipse(b,new Rectangle(5,7,7,7));} TextRenderer.DrawText(e.Graphics,Text,Font,new Rectangle(22,0,Width-22,Height),theme.Secondary,TextFormatFlags.VerticalCenter); }
+}
+
+internal sealed class PlexSlider : Control, IPlexThemed
+{
+    private Theme theme=Theme.Dark; private int value=100;
+    public int Minimum{get;set;}=0; public int Maximum{get;set;}=100; public int Value{get=>value;set{this.value=Math.Clamp(value,Minimum,Maximum);Invalidate();ValueChanged?.Invoke(this,EventArgs.Empty);}}
+    public event EventHandler? ValueChanged;
+    public PlexSlider(){SetStyle(ControlStyles.UserPaint|ControlStyles.OptimizedDoubleBuffer,true);Cursor=Cursors.Hand;}
+    public void ApplyTheme(Theme t){theme=t;Invalidate();}
+    protected override void OnMouseDown(MouseEventArgs e){Set(e.X);} protected override void OnMouseMove(MouseEventArgs e){if(e.Button==MouseButtons.Left)Set(e.X);} private void Set(int x){Value=Minimum+(int)((Maximum-Minimum)*Math.Clamp(x/(double)Math.Max(1,Width),0,1));}
+    protected override void OnPaint(PaintEventArgs e){e.Graphics.SmoothingMode=SmoothingMode.AntiAlias; int y=Height/2; using var track=new Pen(theme.BorderStrong,3){StartCap=LineCap.Round,EndCap=LineCap.Round}; e.Graphics.DrawLine(track,4,y,Width-4,y); double f=(Value-Minimum)/(double)Math.Max(1,Maximum-Minimum); int x=4+(int)((Width-8)*f); using var fill=new Pen(theme.Accent,3){StartCap=LineCap.Round,EndCap=LineCap.Round}; e.Graphics.DrawLine(fill,4,y,x,y); using var b=new SolidBrush(theme.Accent); e.Graphics.FillEllipse(b,x-6,y-6,12,12);}
 }
 
 internal readonly record struct Theme(Color Bg, Color Surface, Color SurfaceHover, Color Input, Color Text, Color Secondary, Color Muted, Color Accent, Color AccentHover, Color Border, Color BorderStrong, Color Success, Color Danger, Color Info)
