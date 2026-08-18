@@ -15,5 +15,12 @@
     <PublishReadyToRun>false</PublishReadyToRun>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <Version>3.1.0</Version>
+    <FileVersion>3.1.0.0</FileVersion>
+    <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <Company>Plexium</Company>
+    <Product>Plexium Auto Clicker</Product>
+    <Description>Plexium Auto Clicker for Windows</Description>
+    <Copyright>Copyright © Plexium</Copyright>
   </PropertyGroup>
 </Project>
