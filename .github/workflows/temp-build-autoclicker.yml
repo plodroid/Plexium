@@ -1,0 +1,21 @@
+name: Temp Auto Clicker Build
+on:
+  pull_request:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Publish
+        run: dotnet publish PlexiumAutoClicker/PlexiumAutoClicker.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o publish
+      - name: Package source
+        shell: pwsh
+        run: Compress-Archive -Path PlexiumAutoClicker/* -DestinationPath publish/Plexium-Auto-Clicker-Source.zip -Force
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Plexium-Auto-Clicker
+          path: publish/*
