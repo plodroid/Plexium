@@ -2,6 +2,8 @@ name: Build Plexium Auto Clicker
 on:
   push:
     branches: ["temp-plexium-autoclicker-build"]
+  pull_request:
+    branches: ["main"]
 jobs:
   build:
     runs-on: windows-latest
