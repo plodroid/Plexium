@@ -12,3 +12,4 @@ Features:
 - Plexium-inspired warm dark UI
 
 Build target: Windows x64, .NET 8, self-contained single-file publish.
+Build validation is performed with GitHub Actions on Windows.
