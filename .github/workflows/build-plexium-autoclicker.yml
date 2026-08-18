@@ -12,8 +12,15 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+      - name: Fix source patch
+        shell: pwsh
+        run: |
+          $p = 'PlexiumAutoClicker/Program.cs'
+          $s = Get-Content $p -Raw
+          $s = $s.Replace('else if (c is Button) { c.BackColor = darkMode ? Color.FromArgb(62, 62, 62) : SystemColors.Control; c.ForeColor = text; c.FlatStyle = FlatStyle.Standard; }','else if (c is Button b) { b.BackColor = darkMode ? Color.FromArgb(62, 62, 62) : SystemColors.Control; b.ForeColor = text; b.FlatStyle = FlatStyle.Standard; }')
+          Set-Content $p $s
       - name: Publish
-        run: dotnet publish PlexiumAutoClicker/PlexiumAutoClicker.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o publish
+        run: dotnet publish PlexiumAutoClicker/PlexiumAutoClicker.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
       - name: Package source
         shell: pwsh
         run: Compress-Archive -Path PlexiumAutoClicker/* -DestinationPath publish/Plexium-Auto-Clicker-Source.zip -Force
