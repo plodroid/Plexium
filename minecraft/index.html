@@ -1,203 +1,41 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#1b1b18">
-  <title>PlexiumMC — Server Wiki</title>
-  <meta name="description" content="Official PlexiumMC server hub and wiki for BoxPvP and Island Wars.">
-  <link rel="icon" type="image/png" href="../assets/Icons/dark.png">
-  <link rel="stylesheet" href="../style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1b1b18">
+<title>PlexiumMC Wiki</title><meta name="description" content="Official PlexiumMC player wiki for BoxPvP and Island Wars.">
+<link rel="icon" type="image/png" href="../assets/server-icon.png"><link rel="stylesheet" href="../style.css">
+<style>
+.wiki-top{padding:132px 0 34px}.wiki-brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}.wiki-brand img{width:58px;height:58px}.wiki-brand small{display:block;color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem}.wiki-brand strong{font-family:var(--font-display);font-size:1.7rem;font-weight:400}.wiki-hero{display:grid;grid-template-columns:1.35fr .65fr;gap:20px}.hero-box,.infobox{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow-md)}.hero-box{padding:36px;position:relative;overflow:hidden}.hero-box:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-190px;top:-210px;background:radial-gradient(circle,var(--accent-subtle),transparent 70%);pointer-events:none}.eyebrow2{color:var(--accent);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800;margin-bottom:10px}.hero-box h1{font-family:var(--font-display);font-size:clamp(3rem,6vw,5.2rem);font-weight:400;line-height:.98;margin:0 0 15px}.hero-box p,.article p,.article li{color:var(--text-secondary)}.server-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}.server-chip{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg-elevated);border:1px solid var(--border-strong);border-radius:12px}.server-chip b{font-size:.68rem;text-transform:uppercase;color:var(--text-muted)}.server-chip code{font-size:.82rem}.copy-mini{border:0;background:var(--accent-subtle);color:var(--accent);border-radius:8px;padding:5px 8px;cursor:pointer;font-weight:800}.infobox{padding:22px}.infobox h2{font-family:var(--font-display);font-weight:400;margin:0 0 10px}.info-row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--border);font-size:.84rem}.info-row span:first-child{color:var(--text-muted)}.info-row span:last-child{text-align:right;font-weight:700}.wiki-search{width:100%;margin:18px 0 0;padding:14px 16px;border-radius:14px;border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--text-primary);font:inherit;outline:none}.wiki-search:focus,.sword-search:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-subtle)}.mode-tabs{display:flex;gap:8px;margin:28px 0 24px;flex-wrap:wrap}.mode-tab{border:1px solid var(--border);background:var(--bg-surface);color:var(--text-secondary);padding:10px 14px;border-radius:999px;cursor:pointer;font:inherit;font-weight:700}.mode-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}.article-layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:28px;align-items:start}.article-nav{position:sticky;top:100px;padding:13px;border:1px solid var(--border);background:var(--bg-surface);border-radius:15px}.article-nav b{display:block;font-size:.67rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;padding:7px 10px}.article-nav a{display:block;text-decoration:none;color:var(--text-secondary);padding:9px 10px;border-radius:9px;font-size:.85rem}.article-nav a:hover{background:var(--bg-surface-hover);color:var(--text-primary)}.article{min-width:0}.article-section{position:relative;scroll-margin-top:110px;padding:0 0 70px}.article-section h2{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.35rem);font-weight:400;line-height:1.06;margin:0 0 12px}.lead{font-size:1.05rem;line-height:1.75}.story-steps{display:grid;gap:11px;margin-top:20px}.story-step{display:grid;grid-template-columns:44px 1fr;gap:13px;padding:16px;border:1px solid var(--border);background:var(--bg-surface);border-radius:14px}.step-num{width:44px;height:44px;border-radius:12px;background:var(--accent-subtle);color:var(--accent);display:grid;place-items:center;font-weight:900}.story-step strong,.wiki-card strong{display:block;color:var(--text-primary);margin-bottom:3px}.wiki-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px}.wiki-card{padding:18px;border:1px solid var(--border);background:var(--bg-surface);border-radius:14px;position:relative}.stat{font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;margin-bottom:7px}.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:15px;background:var(--bg-surface);margin-top:17px}.progress-table,.sword-table{width:100%;border-collapse:collapse;min-width:820px}.progress-table th,.progress-table td,.sword-table th,.sword-table td{padding:12px 13px;border-bottom:1px solid var(--border);text-align:left;font-size:.81rem}.progress-table th,.sword-table th{background:var(--bg-elevated);color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-size:.65rem}.progress-table td,.sword-table td{color:var(--text-secondary)}.level-badge{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:999px;background:var(--accent-subtle);color:var(--accent);font-weight:900}.callout{margin:17px 0;padding:15px 17px;border-left:3px solid var(--accent);background:var(--accent-subtle);border-radius:0 12px 12px 0;color:var(--text-secondary)}.command-grid{display:grid;gap:8px;margin-top:14px}.command{display:flex;justify-content:space-between;gap:16px;padding:13px 15px;border:1px solid var(--border);background:var(--bg-surface);border-radius:12px}.command code{color:var(--accent);font-weight:800}.command span{color:var(--text-secondary);text-align:right}.code-hunt{padding:22px;border:1px dashed rgba(200,125,92,.36);background:linear-gradient(180deg,var(--accent-subtle),transparent);border-radius:17px}.secret-mark{position:absolute;width:18px;height:18px;border-radius:50%;border:1px solid var(--border-strong);background:transparent;color:transparent;opacity:.24;cursor:pointer;transition:.2s}.secret-mark:hover{opacity:.9;border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-subtle)}.secret-toast{position:fixed;right:22px;bottom:22px;z-index:100000;max-width:340px;padding:16px 18px;border:1px solid var(--border-strong);background:var(--bg-elevated);box-shadow:var(--shadow-md);border-radius:14px;transform:translateY(120px);opacity:0;transition:.35s}.secret-toast.show{transform:translateY(0);opacity:1}.secret-toast b{color:var(--accent)}.secret-toast small{display:block;color:var(--text-muted);margin-top:5px}.secret-progress{margin-top:12px;color:var(--text-muted);font-size:.82rem}.box-panel,.island-panel{display:none}.box-panel.active,.island-panel.active{display:block}.sword-search{width:100%;margin:14px 0 10px;padding:13px 15px;border:1px solid var(--border-strong);border-radius:12px;background:var(--bg-surface);color:var(--text-primary);font:inherit;outline:none}[data-hidden="true"]{display:none!important}@media(max-width:900px){.wiki-hero{grid-template-columns:1fr}.article-layout{grid-template-columns:1fr}.article-nav{position:relative;top:0;display:flex;overflow:auto}.article-nav b{display:none}.article-nav a{white-space:nowrap}}@media(max-width:650px){.wiki-top{padding-top:115px}.hero-box{padding:24px}.wiki-grid{grid-template-columns:1fr}.server-chip{width:100%;justify-content:space-between}.command{flex-direction:column;gap:4px}.command span{text-align:left}}
+</style>
 </head>
-<body class="page-shell">
-<div class="grain-overlay"></div>
-<div class="site-shell">
-  <div class="nav-wrap">
-    <nav class="navigation" aria-label="Main navigation">
-      <a class="nav-item" href="../">Home</a>
-      <a class="nav-item" href="../browser/">Browser</a>
-      <a class="nav-item active" href="./">Minecraft</a>
-      <div class="nav-divider"></div>
-      <button class="theme-toggle-wrap" id="themeToggle" aria-label="Toggle theme">
-        <span class="theme-icon">
-          <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
-          <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </span>
-      </button>
-    </nav>
-  </div>
+<body class="page-shell"><div class="grain-overlay"></div><div class="site-shell">
+<div class="nav-wrap"><nav class="navigation"><a class="nav-item" href="../">Home</a><a class="nav-item" href="../browser/">Browser</a><a class="nav-item active" href="./">Minecraft</a><div class="nav-divider"></div><button class="theme-toggle-wrap" id="themeToggle" aria-label="Toggle theme" style="border:0;background:transparent;color:inherit"><span class="theme-icon"><svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg><svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button></nav></div>
+<main class="wiki-top"><div class="container">
+<div class="wiki-brand"><img src="../assets/server-icon.png" alt="PlexiumMC"><div><small>Official Wiki</small><strong>PlexiumMC</strong></div></div>
+<div class="wiki-hero"><section class="hero-box"><div class="eyebrow2">BoxPvP · Island Wars</div><h1>Play. Mine. Fight. <em style="color:var(--accent);font-weight:400">Progress.</em></h1><p>This is the player guide to PlexiumMC: where to start, what to mine, what to buy, how progression works, and what you should aim for next.</p><div class="server-chips"><div class="server-chip"><b>Java</b><code>plexium.minecraft.how</code><button class="copy-mini" data-copy="plexium.minecraft.how">Copy</button></div><div class="server-chip"><b>Bedrock</b><code>mauritania-thrust.tun.ply.gg:22451</code><button class="copy-mini" data-copy="mauritania-thrust.tun.ply.gg:22451">Copy</button></div></div><button class="secret-mark" style="right:30px;bottom:25px" data-secret="0" aria-label="A strange mark"></button></section>
+<aside class="infobox"><h2>PlexiumMC</h2><div class="info-row"><span>Main mode</span><span>BoxPvP</span></div><div class="info-row"><span>Second mode</span><span>Island Wars</span></div><div class="info-row"><span>BoxPvP tiers</span><span>20 character sets</span></div><div class="info-row"><span>Island Wars</span><span>45 swords</span></div><div class="info-row"><span>Combat tag</span><span>15 seconds</span></div><div class="info-row"><span>Codes</span><span>Hidden in lobby + wiki</span></div></aside></div>
+<input class="wiki-search" id="wikiSearch" type="search" placeholder="Search the wiki — Plankton, TNT, crates, codes, ender chest…"><div class="mode-tabs"><button class="mode-tab active" data-mode="box">BoxPvP Wiki</button><button class="mode-tab" data-mode="island">Island Wars Wiki</button></div>
 
-  <header class="page-hero">
-    <div class="container">
-      <div class="hero-eyebrow">Plexium Minecraft Network</div>
-      <h1>Plexium<em>MC.</em></h1>
-      <p>BoxPvP, Island Wars and the Plexium lobby in one network. This page is the player-facing wiki for joining, progression, commands and custom game mechanics.</p>
-      <div class="server-addresses">
-        <div class="address-card">
-          <div class="label">Java Edition</div>
-          <div class="address-line"><code>plexium.minecraft.how</code><button class="copy-btn" data-copy="plexium.minecraft.how">Copy</button></div>
-        </div>
-        <div class="address-card">
-          <div class="label">Bedrock Edition · temporary</div>
-          <div class="address-line"><code>mauritania-thrust.tun.ply.gg : 22451</code><button class="copy-btn" data-copy="mauritania-thrust.tun.ply.gg:22451">Copy</button></div>
-        </div>
-      </div>
-    </div>
-  </header>
+<div class="box-panel active" id="boxPanel"><div class="article-layout"><aside class="article-nav"><b>BoxPvP</b><a href="#overview">Overview</a><a href="#start">Start here</a><a href="#progression">20-level progression</a><a href="#economy">Economy & shop</a><a href="#rewards">Playtime rewards</a><a href="#crates">Crates</a><a href="#storage">Ender Chest</a><a href="#tnt">Mine TNT</a><a href="#auctions">Auction House</a><a href="#codes">Codes</a><a href="#commands">Commands</a></aside><article class="article">
+<section class="article-section searchable" id="overview" data-search="boxpvp overview mine fight progress character gear"><div class="eyebrow2">BoxPvP</div><h2>The main story</h2><p class="lead">BoxPvP is a progression PvP game. You begin with basic gear, mine resources in the arena, convert them into character upgrade blocks, then evolve your equipment through <strong>20 SpongeBob-themed character sets</strong>.</p><div class="story-steps"><div class="story-step"><div class="step-num">1</div><div><strong>Build your starter kit</strong><span>Use the starter shop for your first armor, tools, food and utility.</span></div></div><div class="story-step"><div class="step-num">2</div><div><strong>Mine your current tier</strong><span>Every character level has a specific mine material.</span></div></div><div class="story-step"><div class="step-num">3</div><div><strong>Convert 64 → 1</strong><span>64 mine blocks become one custom Character Block for that tier.</span></div></div><div class="story-step"><div class="step-num">4</div><div><strong>Upgrade and move forward</strong><span>Your previous character gear is required to craft the next set.</span></div></div></div></section>
+<section class="article-section searchable" id="start" data-search="starter shop first gear gold diamond armor tools"><div class="eyebrow2">Beginner guide</div><h2>Your first session</h2><p>Mine common resources and open <code>/shop</code>. The starter shop contains armor, tools, food, rockets, utility, enchants, shulker boxes and resource exchanges.</p><div class="wiki-grid"><div class="wiki-card"><div class="stat">1×</div><strong>Gold Block starter pieces</strong><span>Core diamond armor and starter tools cost one Gold Block each.</span></div><div class="wiki-card"><div class="stat">64→1</div><strong>Character Blocks</strong><span>Mine 64 of your current character material to make one upgrade block.</span><button class="secret-mark" style="right:12px;top:12px" data-secret="1"></button></div><div class="wiki-card"><div class="stat">20</div><strong>Character levels</strong><span>Weapons, tools and armor become stronger as you climb.</span></div><div class="wiki-card"><div class="stat">15s</div><strong>Combat tag</strong><span>After fighting, some safe actions stay unavailable until combat ends.</span></div></div><div class="callout"><strong>Good first goal:</strong> complete Plankton gear. Keep your old character gear because it becomes part of the next upgrade recipe.</div></section>
+<section class="article-section searchable" id="progression" data-search="plankton spongebob mr krabs karen patrick pearl sandy mrs puff larry gary mermaid man barnacle boy man ray dirty bubble bubble bass fred doodlebob squilliam flying dutchman squidward"><div class="eyebrow2">Progression</div><h2>All 20 character levels</h2><p>Each level has its own mine material. Convert 64 of it into one Character Block, then combine Character Blocks with your previous gear.</p><div class="table-wrap"><table class="progress-table"><thead><tr><th>Level</th><th>Character</th><th>Mine material</th><th>Sword / Pickaxe / Axe</th><th>Each armor piece</th></tr></thead><tbody id="progressRows"></tbody></table></div><div class="callout">Upgrade costs grow in groups of three levels: early gear uses 6/12 Character Blocks, while endgame reaches 42/84.</div></section>
+<section class="article-section searchable" id="economy" data-search="economy shop gold emerald diamond sponge utility enchants"><div class="eyebrow2">Economy</div><h2>Shop & resource flow</h2><p>Items and money work together. Common resources can be traded into gold currency, while higher-value Gold Blocks and Diamond Blocks unlock stronger utility.</p><div class="wiki-grid"><div class="wiki-card"><strong>Resource exchange</strong><span>Emeralds, diamonds, coal, iron and sponge can be traded for gold currency.</span></div><div class="wiki-card"><strong>Diamond Blocks</strong><span>64 Gold Blocks can be exchanged for 1 Diamond Block.</span></div><div class="wiki-card"><strong>Utility</strong><span>Food, rockets, bows, arrows, ender pearls, water buckets, apples and shulker boxes are sold here.</span></div><div class="wiki-card"><strong>Enchanting</strong><span>Buy enchanted books and XP bottles to improve gear.</span><button class="secret-mark" style="right:12px;bottom:12px" data-secret="2"></button></div></div></section>
+<section class="article-section searchable" id="rewards" data-search="playtime daily party key vote key hourly rewards money"><div class="eyebrow2">Free progression</div><h2>Playtime & daily rewards</h2><p>Open <code>/playtime</code> to claim rewards you earn just by playing.</p><div class="wiki-grid"><div class="wiki-card"><div class="stat">20m</div><strong>Party Key</strong><span>Earn a Party Key every 20 minutes.</span></div><div class="wiki-card"><div class="stat">$1,500</div><strong>Daily reward</strong><span>Claim $1,500 + 1 Vote Key each day.</span></div><div class="wiki-card"><div class="stat">$750/h</div><strong>Milestone money</strong><span>Claim $750 × milestone hour at 1, 2, 4, 8, 12, 24 and 48 hours.</span></div><div class="wiki-card"><div class="stat">48h</div><strong>Final milestone</strong><span>The last built-in playtime reward milestone.</span></div></div></section>
+<section class="article-section searchable" id="crates" data-search="crates keys party vote vip mvp plex plexium"><div class="eyebrow2">Crates</div><h2>Keys & crate rewards</h2><p>PlexiumMC has six key tiers: <strong>Party, Vote, VIP, MVP, Plex and Plexium</strong>. Use <code>/crates</code> to view keys and crate rewards.</p><p>Party crate rolls can upgrade into stronger keys: <strong>65% Vote, 19% VIP, 10% MVP, 5% Plex and 1% Plexium</strong>.</p><div class="callout">Plexium Keys are the rarest Party-key upgrade at only 1%.</div></section>
+<section class="article-section searchable" id="storage" data-search="ender chest echest storage pages slots hour"><div class="eyebrow2">Storage</div><h2>Plexium Ender Chest</h2><p><code>/echest</code> opens your paged personal storage. You begin with <strong>27 slots</strong>.</p><div class="wiki-grid"><div class="wiki-card"><strong>Free expansion</strong><span>Earn one free slot for every hour of playtime.</span></div><div class="wiki-card"><strong>Paid expansion</strong><span>First bought slot costs $500; each next slot adds $250.</span></div><div class="wiki-card"><strong>Capacity</strong><span>Up to 10 pages, 45 slots per page.</span></div><div class="wiki-card"><strong>Combat</strong><span>You cannot open it while combat-tagged.</span></div></div></section>
+<section class="article-section searchable" id="tnt" data-search="mine tnt diamond blocks efficiency blast radius"><div class="eyebrow2">Mining utility</div><h2>Mine TNT</h2><p>Mine TNT is a progression mining tool sold in four tiers. It clears mine blocks around the blast rather than acting like ordinary griefing TNT.</p><div class="wiki-grid"><div class="wiki-card"><div class="stat">I</div><strong>5 Diamond Blocks</strong><span>Entry tier.</span></div><div class="wiki-card"><div class="stat">II</div><strong>10 Diamond Blocks</strong><span>Blast radius 5.</span></div><div class="wiki-card"><div class="stat">III</div><strong>16 Diamond Blocks</strong><span>Blast radius 7.</span><button class="secret-mark" style="right:12px;top:12px" data-secret="3"></button></div><div class="wiki-card"><div class="stat">IV</div><strong>24 Diamond Blocks</strong><span>Blast radius 9.</span></div></div><div class="callout">You need an Efficiency pickaxe to use Mine TNT in the mine.</div></section>
+<section class="article-section searchable" id="auctions" data-search="auction house ah sell listing"><div class="eyebrow2">Trading</div><h2>Auction House</h2><p>Use <code>/ah</code> to browse player listings. Hold an item and use <code>/ah sell &lt;price&gt;</code> to list it. Sold auctions pay directly into your BoxPvP balance.</p></section>
+<section class="article-section searchable" id="codes" data-search="codes redeem hidden secret lobby website"><div class="eyebrow2">Secrets</div><h2>Redeem codes</h2><div class="code-hunt"><p><strong>Plexium codes are meant to be discovered.</strong> There is no plain public code list on this wiki.</p><p><strong>Every active code is hidden somewhere around the server lobby.</strong> Those same codes are also hidden as tiny secrets throughout this website. Look closely and click anything suspicious 👀</p><p>When you find one, enter BoxPvP and use <code>/codes</code> or <code>/code</code>.</p><div class="secret-progress" id="secretProgress">Website secrets found: 0 / 6</div></div><button class="secret-mark" style="right:5px;top:4px" data-secret="4"></button></section>
+<section class="article-section searchable" id="commands" data-search="commands shop playtime crates ah echest codes balance spawn lobby discord"><div class="eyebrow2">Reference</div><h2>Useful commands</h2><div class="command-grid"><div class="command"><code>/shop</code><span>Open the BoxPvP shop.</span></div><div class="command"><code>/playtime</code><span>View daily and playtime rewards.</span></div><div class="command"><code>/crates</code><span>Open the crate/key menu.</span></div><div class="command"><code>/ah</code><span>Open Auction House.</span></div><div class="command"><code>/ah sell &lt;price&gt;</code><span>List your held item.</span></div><div class="command"><code>/echest</code><span>Open personal storage.</span></div><div class="command"><code>/codes</code><span>Redeem a discovered code.</span></div><div class="command"><code>/balance</code><span>Show your balance.</span></div><div class="command"><code>/spawn</code><span>Return to BoxPvP spawn when allowed.</span></div><div class="command"><code>/lobby</code><span>Return to network lobby.</span></div><div class="command"><code>/discord</code><span>Show the Discord invite.</span></div></div><button class="secret-mark" style="left:2px;bottom:32px" data-secret="5"></button></section>
+</article></div></div>
 
-  <main class="section">
-    <div class="container wiki-layout">
-      <aside class="wiki-nav">
-        <a href="#start">Getting started</a>
-        <a href="#boxpvp">BoxPvP</a>
-        <a href="#boxpvp-shop">BoxPvP shop & TNT</a>
-        <a href="#boxpvp-codes">Codes & protections</a>
-        <a href="#islandwars">Island Wars</a>
-        <a href="#island-economy">Economy & voids</a>
-        <a href="#island-shop">Shop & controls</a>
-        <a href="#island-swords">45 sword tiers</a>
-        <a href="#commands">Commands</a>
-      </aside>
-
-      <div class="wiki-content">
-        <section class="wiki-section" id="start">
-          <div class="section-label">Start here</div>
-          <h2>Getting started</h2>
-          <p>Connect through the Java address above, or use the temporary Bedrock tunnel address and port. From the network lobby, choose a game and jump in.</p>
-          <div class="info-grid">
-            <div class="info-card"><strong>Java</strong><span>Use <code>plexium.minecraft.how</code> as the server address.</span></div>
-            <div class="info-card"><strong>Bedrock</strong><span>Use <code>mauritania-thrust.tun.ply.gg</code> with port <code>22451</code>.</span></div>
-            <div class="info-card"><strong>BoxPvP</strong><span>Mine, progress through the arena economy, use custom shops and fight other players.</span></div>
-            <div class="info-card"><strong>Island Wars</strong><span>Knock players into the void, earn money from damage and unlock increasingly wild swords.</span></div>
-          </div>
-        </section>
-
-        <section class="wiki-section" id="boxpvp">
-          <div class="section-label">Game 01</div>
-          <h2>BoxPvP</h2>
-          <p>BoxPvP is the main progression PvP arena. Players enter the box, mine the allowed resources, build up value, buy upgrades and fight around the custom map.</p>
-          <h3>Core loop</h3>
-          <ul>
-            <li>Enter through the Plexium lobby and head to the BoxPvP world.</li>
-            <li>Mine resources inside the configured arena regions.</li>
-            <li>Use the server shops and custom NPC areas to turn progression into stronger tools and utility.</li>
-            <li>PvP is centered around the box while protected travel/spawn areas stay controlled through WorldGuard.</li>
-          </ul>
-          <div class="callout">The map uses region-specific block rules: the arena can allow selected blocks such as prismarine, dark prismarine, raw gold blocks, terracotta, concrete and glazed terracotta without removing protections everywhere else.</div>
-        </section>
-
-        <section class="wiki-section" id="boxpvp-shop">
-          <div class="section-label">BoxPvP systems</div>
-          <h2>Shop, TNT & custom items</h2>
-          <p>The BoxPvP shop has custom purchase behavior instead of relying on vanilla item dropping.</p>
-          <div class="info-grid">
-            <div class="info-card"><strong>TNT purchases</strong><span>TNT purchases can fill available inventory space directly. When the inventory is full, TNT overflow does not spill onto the floor, avoiding item-drop lag.</span></div>
-            <div class="info-card"><strong>TNT restrictions</strong><span>TNT use is tied to the intended mining/progression rules. WorldGuard placement restrictions are not supposed to make purchased TNT unusable for normal players.</span></div>
-            <div class="info-card"><strong>Diamond-block pricing</strong><span>The TNT shop was moved to diamond-block pricing, with the updated shop config controlling the current cost for each TNT option.</span></div>
-            <div class="info-card"><strong>Mr Krabs area</strong><span>The red stained-glass restriction is limited to the intended <code>/pg spawn</code> area, so it does not block players from reaching the Mr Krabs location.</span></div>
-          </div>
-        </section>
-
-        <section class="wiki-section" id="boxpvp-codes">
-          <div class="section-label">BoxPvP systems</div>
-          <h2>Codes, spawn & protections</h2>
-          <ul>
-            <li><code>/codes</code> opens the code flow and clearly shows where the player should type a code.</li>
-            <li>An invalid code should return the player cleanly instead of leaving them stuck inside the sign/input state.</li>
-            <li>Events were removed from the custom shop flow.</li>
-            <li>Spawn barriers and red stained glass are scoped to the spawn system rather than globally blocking unrelated NPC locations.</li>
-            <li>WorldGuard still controls ordinary placing/breaking, while custom plugin logic handles exceptions required by the game.</li>
-          </ul>
-          <p>The network also uses the wider server stack for permissions, NPCs, tab display, version compatibility, world management and protection.</p>
-        </section>
-
-        <section class="wiki-section" id="islandwars">
-          <div class="section-label">Game 02 · JAR 1.0.0</div>
-          <h2>Island Wars</h2>
-          <p>Island Wars is a void-only knockback minigame. The plugin describes itself as a “void-only knockback island minigame with money-per-damage swords.” Every configured sword has its own price, knockback, passive proc and right-click special.</p>
-          <h3>How a fight works</h3>
-          <ul>
-            <li>You start with the free Tier 1 <strong>Rookie Tapblade</strong> when the default-sword join setting is enabled.</li>
-            <li>Damage dealt with configured swords earns money. The shipped configuration pays <strong>$1 per damage</strong>.</li>
-            <li>Recent attackers can receive a <strong>$10 void-kill bonus</strong> when a victim falls into the void within the configured 15-second credit window.</li>
-            <li>Plugin swords do not lose durability, and the game is configured to keep inventory on void death.</li>
-            <li>Each sword has normal knockback plus a chance-based passive ability. Right-clicking uses that sword’s separate active ability when it is off cooldown.</li>
-          </ul>
-        </section>
-
-        <section class="wiki-section" id="island-economy">
-          <div class="section-label">Island Wars</div>
-          <h2>Economy, voids & progression</h2>
-          <div class="info-grid">
-            <div class="info-card"><strong>$1 per damage</strong><span>The default config uses <code>money-per-damage: 1</code>.</span></div>
-            <div class="info-card"><strong>+$10 void kill</strong><span>Void bonus credit lasts 15,000 ms after the qualifying hit.</span></div>
-            <div class="info-card"><strong>45 tiers</strong><span>Prices rise from the free Rookie Tapblade to the $6,305,000 Titan Mace.</span></div>
-            <div class="info-card"><strong>Persistent unlocks</strong><span>The plugin tracks money, void deaths and unlocked swords per player.</span></div>
-          </div>
-          <p>A player’s sword tooltip exposes combat information such as ability text, bonus damage, right-click special and void bonus details. The plugin also tracks void falls and uses a “Void King” style stat presentation.</p>
-        </section>
-
-        <section class="wiki-section" id="island-shop">
-          <div class="section-label">Island Wars</div>
-          <h2>Shop & controls</h2>
-          <p>Use <code>/shop</code> to open the sword shop. The GUI supports cycling filters, equipping already-unlocked swords and unlocking swords you can afford. You can also use <code>/shop &lt;word&gt;</code> for text search.</p>
-          <div class="info-grid">
-            <div class="info-card"><strong>Shop entries</strong><span>Shop entries are used to unlock or equip swords depending on ownership.</span></div>
-            <div class="info-card"><strong>Right-click in combat</strong><span>Uses the equipped sword’s active ability. Active abilities have their own cooldown and visual/sound feedback.</span></div>
-            <div class="info-card"><strong>Passive proc</strong><span>Hitting with a configured sword can trigger its chance-based passive ability.</span></div>
-            <div class="info-card"><strong>Search</strong><span><code>/shop &lt;word&gt;</code> searches sword names and the shop UI includes filters.</span></div>
-          </div>
-          <h3>Ability families found in the JAR</h3>
-          <p>Examples include dash, slime trap, pull field, quake, boomerang pulse, reverse field, clone, meteor strike, phase shift, time freeze, counter stance, domain expansion, fish save, swap strike, octopus blind and tornado-style actives. Passives include extra shove, sky launch, slow/pop, area shockwave, speed boosts, disorient effects, levitation and bonus-money effects.</p>
-        </section>
-
-        <section class="wiki-section" id="island-swords">
-          <div class="section-label">Island Wars database</div>
-          <h2>All 45 sword tiers</h2>
-          <p>This table is generated from the <code>config.yml</code> inside the uploaded <strong>KnockbackIslandWars-1.0.0.jar</strong>.</p>
-          <div class="table-tools"><input id="swordSearch" type="search" placeholder="Search sword, passive, active ability…"></div>
-          <div class="table-wrap">
-            <table class="sword-table">
-              <thead><tr><th>Tier</th><th>Sword</th><th>Price</th><th>Knockback</th><th>Passive</th><th>Right-click active</th></tr></thead>
-              <tbody id="swordRows"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="wiki-section" id="commands">
-          <div class="section-label">Reference</div>
-          <h2>Commands</h2>
-          <h3>Player commands</h3>
-          <div class="command-list">
-            <div class="command-row"><code>/shop</code><span>Open the Island Wars sword shop.</span></div>
-            <div class="command-row"><code>/shop &lt;search&gt;</code><span>Search the sword shop by word.</span></div>
-            <div class="command-row"><code>/balance</code><span>Show your current Island Wars balance.</span></div>
-            <div class="command-row"><code>/bal</code><span>Alias for balance. The JAR also defines <code>/ballance</code>, <code>/money</code> and <code>/coins</code>.</span></div>
-          </div>
-          <h3>Operator commands</h3>
-          <div class="command-list">
-            <div class="command-row"><code>/kiw swords</code><span>List configured swords.</span></div>
-            <div class="command-row"><code>/kiw sword &lt;id&gt; [player]</code><span>Give a configured sword.</span></div>
-            <div class="command-row"><code>/kiw setmoney &lt;player&gt; &lt;amount&gt;</code><span>Set a player’s money.</span></div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </main>
-
-  <footer class="footer"><div class="container">PlexiumMC <span class="accent-dot"></span> Java: plexium.minecraft.how</div></footer>
-</div>
+<div class="island-panel" id="islandPanel"><div class="article-layout"><aside class="article-nav"><b>Island Wars</b><a href="#iw-overview">Overview</a><a href="#iw-progress">How to progress</a><a href="#iw-money">Money & voids</a><a href="#iw-abilities">Abilities</a><a href="#iw-swords">45 swords</a><a href="#iw-commands">Commands</a></aside><article class="article"><section class="article-section searchable" id="iw-overview" data-search="island wars knockback void"><div class="eyebrow2">Island Wars</div><h2>Knock them into the void.</h2><p class="lead">Island Wars is a knockback progression game. Fight on islands, earn money by dealing damage, throw opponents into the void for bonus cash, then spend that money on stronger swords.</p></section><section class="article-section searchable" id="iw-progress" data-search="island wars progression rookie tapblade"><div class="eyebrow2">Progression</div><h2>How to progress</h2><div class="story-steps"><div class="story-step"><div class="step-num">1</div><div><strong>Start with Rookie Tapblade</strong><span>Tier 1 is free.</span></div></div><div class="story-step"><div class="step-num">2</div><div><strong>Fight for money</strong><span>Every point of damage pays $1.</span></div></div><div class="story-step"><div class="step-num">3</div><div><strong>Secure void kills</strong><span>Earn a $10 bonus when a qualifying target falls within 15 seconds.</span></div></div><div class="story-step"><div class="step-num">4</div><div><strong>Unlock stronger swords</strong><span>Use <code>/shop</code> and climb all 45 tiers to Titan Mace.</span></div></div></div></section><section class="article-section searchable" id="iw-money" data-search="island money damage void bonus"><div class="eyebrow2">Economy</div><h2>Money & voids</h2><div class="wiki-grid"><div class="wiki-card"><div class="stat">$1</div><strong>Per damage</strong><span>Your main income.</span></div><div class="wiki-card"><div class="stat">+$10</div><strong>Void bonus</strong><span>Bonus for credited void kills.</span></div><div class="wiki-card"><div class="stat">15s</div><strong>Credit window</strong><span>Your qualifying hit stays eligible.</span></div><div class="wiki-card"><div class="stat">$6.3M</div><strong>Endgame</strong><span>Titan Mace costs $6,305,000.</span></div></div></section><section class="article-section searchable" id="iw-abilities" data-search="passive active right click cooldown"><div class="eyebrow2">Combat</div><h2>Passives & right-click abilities</h2><p>Every sword has normal knockback, a chance-based passive, and a separate right-click active ability with a cooldown. Higher tiers add pulls, pushes, dashes, freezes, swaps, domains, meteors, clones and other control tools.</p><div class="callout">The best sword is not only raw knockback. Learn your passive proc and active cooldown.</div></section><section class="article-section searchable" id="iw-swords" data-search="45 swords island wars titan rookie"><div class="eyebrow2">Database</div><h2>All 45 swords</h2><input class="sword-search" id="swordSearch" type="search" placeholder="Search sword or ability…"><div class="table-wrap"><table class="sword-table"><thead><tr><th>Tier</th><th>Sword</th><th>Price</th><th>Knockback</th><th>Passive</th><th>Active</th></tr></thead><tbody id="swordRows"></tbody></table></div></section><section class="article-section searchable" id="iw-commands" data-search="island commands shop balance"><div class="eyebrow2">Reference</div><h2>Island Wars commands</h2><div class="command-grid"><div class="command"><code>/shop</code><span>Open sword shop.</span></div><div class="command"><code>/shop &lt;search&gt;</code><span>Search for a sword.</span></div><div class="command"><code>/balance</code><span>Show your balance.</span></div><div class="command"><code>/bal</code><span>Short balance alias.</span></div></div></section></article></div></div>
+</div></main><footer class="footer"><div class="container">PlexiumMC <span class="accent-dot"></span> Player Wiki</div></footer></div><div class="secret-toast" id="secretToast"></div>
 <script>
-const root=document.documentElement;
-const saved=localStorage.getItem('plexium-theme'); if(saved) root.dataset.theme=saved;
-document.getElementById('themeToggle').addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('plexium-theme',root.dataset.theme);});
-document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{await navigator.clipboard.writeText(btn.dataset.copy);const old=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=old,1200);}));
-let swordData=[];
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const cash=n=>'$'+Number(n).toLocaleString();
-function renderSwords(q=''){const rows=swordData.filter(s=>(s.name+' '+s.passive+' '+s.active+' '+s.id).toLowerCase().includes(q.toLowerCase())).map(s=>`<tr><td><span class="tier-pill">${s.tier}</span></td><td><strong>${esc(s.name)}</strong><small>${esc(s.material.replaceAll('_',' ').toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()))}</small></td><td>${cash(s.price)}</td><td>${Number(s.kb).toFixed(2)}<small>vertical ${Number(s.vkb).toFixed(2)}</small></td><td><strong>${esc(s.passive)}</strong><small>${esc(s.passive_desc)} · ${(s.chance*100).toFixed(1)}% proc</small></td><td><strong>${esc(s.active)}</strong><small>${esc(s.active_desc)} · ${(s.active_cd/1000).toFixed(2)}s CD</small></td></tr>`).join('');document.getElementById('swordRows').innerHTML=rows;}
-fetch('swords.json').then(r=>r.json()).then(d=>{swordData=d;renderSwords();}).catch(()=>{document.getElementById('swordRows').innerHTML='<tr><td colspan="6">Could not load sword database.</td></tr>';});
-document.getElementById('swordSearch').addEventListener('input',e=>renderSwords(e.target.value.trim()));
-</script>
-</body>
-</html>
+const root=document.documentElement,saved=localStorage.getItem('plexium-theme');if(saved)root.dataset.theme=saved;document.getElementById('themeToggle').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('plexium-theme',root.dataset.theme)};document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{await navigator.clipboard.writeText(b.dataset.copy);let o=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=o,1000)});
+const progression=[{"level":1,"name":"Plankton","mine":"Dark Prismarine","w":6,"a":12},{"level":2,"name":"SpongeBob","mine":"Raw Gold Block","w":6,"a":12},{"level":3,"name":"Mr. Krabs","mine":"Black Glazed Terracotta","w":6,"a":12},{"level":4,"name":"Karen","mine":"Light Blue Glazed Terracotta","w":12,"a":24},{"level":5,"name":"Patrick","mine":"Pink Glazed Terracotta","w":12,"a":24},{"level":6,"name":"Pearl","mine":"Gray Glazed Terracotta","w":12,"a":24},{"level":7,"name":"Sandy","mine":"White Glazed Terracotta","w":18,"a":36},{"level":8,"name":"Mrs. Puff","mine":"Brown Concrete","w":18,"a":36},{"level":9,"name":"Larry","mine":"Blue Terracotta","w":18,"a":36},{"level":10,"name":"Gary","mine":"Light Blue Concrete","w":24,"a":48},{"level":11,"name":"Mermaid Man","mine":"Prismarine","w":24,"a":48},{"level":12,"name":"Barnacle Boy","mine":"Red Terracotta","w":24,"a":48},{"level":13,"name":"Man Ray","mine":"Red Glazed Terracotta","w":30,"a":60},{"level":14,"name":"Dirty Bubble","mine":"Brown Terracotta","w":30,"a":60},{"level":15,"name":"Bubble Bass","mine":"Orange Concrete","w":30,"a":60},{"level":16,"name":"Fred (My Leg!)","mine":"Green Terracotta","w":36,"a":72},{"level":17,"name":"DoodleBob","mine":"Black Concrete","w":36,"a":72},{"level":18,"name":"Squilliam","mine":"Light Gray Concrete","w":36,"a":72},{"level":19,"name":"Flying Dutchman","mine":"Lime Terracotta","w":42,"a":84},{"level":20,"name":"Squidward","mine":"Cyan Terracotta","w":42,"a":84}];document.getElementById('progressRows').innerHTML=progression.map(x=>`<tr><td><span class="level-badge">${x.level}</span></td><td><strong>${x.name}</strong></td><td>${x.mine}<br><small>64 → 1 ${x.name} Block</small></td><td>Previous gear + ${x.w} blocks</td><td>Previous armor + ${x.a} blocks</td></tr>`).join('');
+document.querySelectorAll('.mode-tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b));let i=b.dataset.mode==='island';document.getElementById('boxPanel').classList.toggle('active',!i);document.getElementById('islandPanel').classList.toggle('active',i)});document.getElementById('wikiSearch').oninput=e=>{let q=e.target.value.trim().toLowerCase();document.querySelectorAll('.searchable').forEach(s=>s.dataset.hidden=q&&!((s.dataset.search+' '+s.innerText).toLowerCase().includes(q))?'true':'false')};
+let swords=[];const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),cash=n=>'$'+Number(n).toLocaleString();function render(q=''){document.getElementById('swordRows').innerHTML=swords.filter(s=>(s.name+' '+s.passive+' '+s.active).toLowerCase().includes(q.toLowerCase())).map(s=>`<tr><td><span class="level-badge">${s.tier}</span></td><td><strong>${esc(s.name)}</strong></td><td>${cash(s.price)}</td><td>${Number(s.kb).toFixed(2)}<br><small>Vertical ${Number(s.vkb).toFixed(2)}</small></td><td><strong>${esc(s.passive)}</strong><br><small>${esc(s.passive_desc)}</small></td><td><strong>${esc(s.active)}</strong><br><small>${esc(s.active_desc)} · ${(s.active_cd/1000).toFixed(1)}s</small></td></tr>`).join('')}fetch('swords.json').then(r=>r.json()).then(d=>{swords=d;render()});document.getElementById('swordSearch').oninput=e=>render(e.target.value);
+const secrets=[['MTgwODIwMjZSRUxFQVNF','NSBNVlAgS2V5cyArICQzMCwwMDA='],['QUJERVJBSE1FTjEyMw==','VG90ZW0gb2YgVW5keWluZyArIFBsZXhpdW0gS2V5'],['UklHSVNCUkFJTlJPVA==','VG90ZW0gb2YgVW5keWluZw=='],['U0hISDIxMw==','MyBQbGV4IEtleXMgKyAzIE1WUCBLZXlz'],['U1VNTUVS','JDUwMCwwMDA='],['VEhJQ1RIRVZFTg==','NSBQYXJ0eSBLZXlzICsgJDEsMDAw']],found=new Set(JSON.parse(localStorage.getItem('plexium-found-codes')||'[]'));function progress(){let p=document.getElementById('secretProgress');if(p)p.textContent=`Website secrets found: ${found.size} / 6`}progress();document.querySelectorAll('.secret-mark').forEach(m=>m.onclick=()=>{let i=+m.dataset.secret,c=atob(secrets[i][0]),r=atob(secrets[i][1]);found.add(i);localStorage.setItem('plexium-found-codes',JSON.stringify([...found]));progress();let t=document.getElementById('secretToast');t.innerHTML=`<b>Secret code found: ${esc(c)}</b><small>Reward: ${esc(r)} · Redeem with /codes in BoxPvP</small>`;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),6500)});
+</script></body></html>
