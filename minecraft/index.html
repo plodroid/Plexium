@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#1b1b18">
+  <title>PlexiumMC — Server Wiki</title>
+  <meta name="description" content="Official PlexiumMC server hub and wiki for BoxPvP and Island Wars.">
+  <link rel="icon" type="image/png" href="../assets/Icons/dark.png">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="page-shell">
+<div class="grain-overlay"></div>
+<div class="site-shell">
+  <div class="nav-wrap">
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="nav-item" href="../">Home</a>
+      <a class="nav-item" href="../browser/">Browser</a>
+      <a class="nav-item active" href="./">Minecraft</a>
+      <div class="nav-divider"></div>
+      <button class="theme-toggle-wrap" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">
+          <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+      </button>
+    </nav>
+  </div>
+
+  <header class="page-hero">
+    <div class="container">
+      <div class="hero-eyebrow">Plexium Minecraft Network</div>
+      <h1>Plexium<em>MC.</em></h1>
+      <p>BoxPvP, Island Wars and the Plexium lobby in one network. This page is the player-facing wiki for joining, progression, commands and custom game mechanics.</p>
+      <div class="server-addresses">
+        <div class="address-card">
+          <div class="label">Java Edition</div>
+          <div class="address-line"><code>plexium.minecraft.how</code><button class="copy-btn" data-copy="plexium.minecraft.how">Copy</button></div>
+        </div>
+        <div class="address-card">
+          <div class="label">Bedrock Edition · temporary</div>
+          <div class="address-line"><code>mauritania-thrust.tun.ply.gg : 22451</code><button class="copy-btn" data-copy="mauritania-thrust.tun.ply.gg:22451">Copy</button></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container wiki-layout">
+      <aside class="wiki-nav">
+        <a href="#start">Getting started</a>
+        <a href="#boxpvp">BoxPvP</a>
+        <a href="#boxpvp-shop">BoxPvP shop & TNT</a>
+        <a href="#boxpvp-codes">Codes & protections</a>
+        <a href="#islandwars">Island Wars</a>
+        <a href="#island-economy">Economy & voids</a>
+        <a href="#island-shop">Shop & controls</a>
+        <a href="#island-swords">45 sword tiers</a>
+        <a href="#commands">Commands</a>
+      </aside>
+
+      <div class="wiki-content">
+        <section class="wiki-section" id="start">
+          <div class="section-label">Start here</div>
+          <h2>Getting started</h2>
+          <p>Connect through the Java address above, or use the temporary Bedrock tunnel address and port. From the network lobby, choose a game and jump in.</p>
+          <div class="info-grid">
+            <div class="info-card"><strong>Java</strong><span>Use <code>plexium.minecraft.how</code> as the server address.</span></div>
+            <div class="info-card"><strong>Bedrock</strong><span>Use <code>mauritania-thrust.tun.ply.gg</code> with port <code>22451</code>.</span></div>
+            <div class="info-card"><strong>BoxPvP</strong><span>Mine, progress through the arena economy, use custom shops and fight other players.</span></div>
+            <div class="info-card"><strong>Island Wars</strong><span>Knock players into the void, earn money from damage and unlock increasingly wild swords.</span></div>
+          </div>
+        </section>
+
+        <section class="wiki-section" id="boxpvp">
+          <div class="section-label">Game 01</div>
+          <h2>BoxPvP</h2>
+          <p>BoxPvP is the main progression PvP arena. Players enter the box, mine the allowed resources, build up value, buy upgrades and fight around the custom map.</p>
+          <h3>Core loop</h3>
+          <ul>
+            <li>Enter through the Plexium lobby and head to the BoxPvP world.</li>
+            <li>Mine resources inside the configured arena regions.</li>
+            <li>Use the server shops and custom NPC areas to turn progression into stronger tools and utility.</li>
+            <li>PvP is centered around the box while protected travel/spawn areas stay controlled through WorldGuard.</li>
+          </ul>
+          <div class="callout">The map uses region-specific block rules: the arena can allow selected blocks such as prismarine, dark prismarine, raw gold blocks, terracotta, concrete and glazed terracotta without removing protections everywhere else.</div>
+        </section>
+
+        <section class="wiki-section" id="boxpvp-shop">
+          <div class="section-label">BoxPvP systems</div>
+          <h2>Shop, TNT & custom items</h2>
+          <p>The BoxPvP shop has custom purchase behavior instead of relying on vanilla item dropping.</p>
+          <div class="info-grid">
+            <div class="info-card"><strong>TNT purchases</strong><span>TNT purchases can fill available inventory space directly. When the inventory is full, TNT overflow does not spill onto the floor, avoiding item-drop lag.</span></div>
+            <div class="info-card"><strong>TNT restrictions</strong><span>TNT use is tied to the intended mining/progression rules. WorldGuard placement restrictions are not supposed to make purchased TNT unusable for normal players.</span></div>
+            <div class="info-card"><strong>Diamond-block pricing</strong><span>The TNT shop was moved to diamond-block pricing, with the updated shop config controlling the current cost for each TNT option.</span></div>
+            <div class="info-card"><strong>Mr Krabs area</strong><span>The red stained-glass restriction is limited to the intended <code>/pg spawn</code> area, so it does not block players from reaching the Mr Krabs location.</span></div>
+          </div>
+        </section>
+
+        <section class="wiki-section" id="boxpvp-codes">
+          <div class="section-label">BoxPvP systems</div>
+          <h2>Codes, spawn & protections</h2>
+          <ul>
+            <li><code>/codes</code> opens the code flow and clearly shows where the player should type a code.</li>
+            <li>An invalid code should return the player cleanly instead of leaving them stuck inside the sign/input state.</li>
+            <li>Events were removed from the custom shop flow.</li>
+            <li>Spawn barriers and red stained glass are scoped to the spawn system rather than globally blocking unrelated NPC locations.</li>
+            <li>WorldGuard still controls ordinary placing/breaking, while custom plugin logic handles exceptions required by the game.</li>
+          </ul>
+          <p>The network also uses the wider server stack for permissions, NPCs, tab display, version compatibility, world management and protection.</p>
+        </section>
+
+        <section class="wiki-section" id="islandwars">
+          <div class="section-label">Game 02 · JAR 1.0.0</div>
+          <h2>Island Wars</h2>
+          <p>Island Wars is a void-only knockback minigame. The plugin describes itself as a “void-only knockback island minigame with money-per-damage swords.” Every configured sword has its own price, knockback, passive proc and right-click special.</p>
+          <h3>How a fight works</h3>
+          <ul>
+            <li>You start with the free Tier 1 <strong>Rookie Tapblade</strong> when the default-sword join setting is enabled.</li>
+            <li>Damage dealt with configured swords earns money. The shipped configuration pays <strong>$1 per damage</strong>.</li>
+            <li>Recent attackers can receive a <strong>$10 void-kill bonus</strong> when a victim falls into the void within the configured 15-second credit window.</li>
+            <li>Plugin swords do not lose durability, and the game is configured to keep inventory on void death.</li>
+            <li>Each sword has normal knockback plus a chance-based passive ability. Right-clicking uses that sword’s separate active ability when it is off cooldown.</li>
+          </ul>
+        </section>
+
+        <section class="wiki-section" id="island-economy">
+          <div class="section-label">Island Wars</div>
+          <h2>Economy, voids & progression</h2>
+          <div class="info-grid">
+            <div class="info-card"><strong>$1 per damage</strong><span>The default config uses <code>money-per-damage: 1</code>.</span></div>
+            <div class="info-card"><strong>+$10 void kill</strong><span>Void bonus credit lasts 15,000 ms after the qualifying hit.</span></div>
+            <div class="info-card"><strong>45 tiers</strong><span>Prices rise from the free Rookie Tapblade to the $6,305,000 Titan Mace.</span></div>
+            <div class="info-card"><strong>Persistent unlocks</strong><span>The plugin tracks money, void deaths and unlocked swords per player.</span></div>
+          </div>
+          <p>A player’s sword tooltip exposes combat information such as ability text, bonus damage, right-click special and void bonus details. The plugin also tracks void falls and uses a “Void King” style stat presentation.</p>
+        </section>
+
+        <section class="wiki-section" id="island-shop">
+          <div class="section-label">Island Wars</div>
+          <h2>Shop & controls</h2>
+          <p>Use <code>/shop</code> to open the sword shop. The GUI supports cycling filters, equipping already-unlocked swords and unlocking swords you can afford. You can also use <code>/shop &lt;word&gt;</code> for text search.</p>
+          <div class="info-grid">
+            <div class="info-card"><strong>Shop entries</strong><span>Shop entries are used to unlock or equip swords depending on ownership.</span></div>
+            <div class="info-card"><strong>Right-click in combat</strong><span>Uses the equipped sword’s active ability. Active abilities have their own cooldown and visual/sound feedback.</span></div>
+            <div class="info-card"><strong>Passive proc</strong><span>Hitting with a configured sword can trigger its chance-based passive ability.</span></div>
+            <div class="info-card"><strong>Search</strong><span><code>/shop &lt;word&gt;</code> searches sword names and the shop UI includes filters.</span></div>
+          </div>
+          <h3>Ability families found in the JAR</h3>
+          <p>Examples include dash, slime trap, pull field, quake, boomerang pulse, reverse field, clone, meteor strike, phase shift, time freeze, counter stance, domain expansion, fish save, swap strike, octopus blind and tornado-style actives. Passives include extra shove, sky launch, slow/pop, area shockwave, speed boosts, disorient effects, levitation and bonus-money effects.</p>
+        </section>
+
+        <section class="wiki-section" id="island-swords">
+          <div class="section-label">Island Wars database</div>
+          <h2>All 45 sword tiers</h2>
+          <p>This table is generated from the <code>config.yml</code> inside the uploaded <strong>KnockbackIslandWars-1.0.0.jar</strong>.</p>
+          <div class="table-tools"><input id="swordSearch" type="search" placeholder="Search sword, passive, active ability…"></div>
+          <div class="table-wrap">
+            <table class="sword-table">
+              <thead><tr><th>Tier</th><th>Sword</th><th>Price</th><th>Knockback</th><th>Passive</th><th>Right-click active</th></tr></thead>
+              <tbody id="swordRows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="wiki-section" id="commands">
+          <div class="section-label">Reference</div>
+          <h2>Commands</h2>
+          <h3>Player commands</h3>
+          <div class="command-list">
+            <div class="command-row"><code>/shop</code><span>Open the Island Wars sword shop.</span></div>
+            <div class="command-row"><code>/shop &lt;search&gt;</code><span>Search the sword shop by word.</span></div>
+            <div class="command-row"><code>/balance</code><span>Show your current Island Wars balance.</span></div>
+            <div class="command-row"><code>/bal</code><span>Alias for balance. The JAR also defines <code>/ballance</code>, <code>/money</code> and <code>/coins</code>.</span></div>
+          </div>
+          <h3>Operator commands</h3>
+          <div class="command-list">
+            <div class="command-row"><code>/kiw swords</code><span>List configured swords.</span></div>
+            <div class="command-row"><code>/kiw sword &lt;id&gt; [player]</code><span>Give a configured sword.</span></div>
+            <div class="command-row"><code>/kiw setmoney &lt;player&gt; &lt;amount&gt;</code><span>Set a player’s money.</span></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container">PlexiumMC <span class="accent-dot"></span> Java: plexium.minecraft.how</div></footer>
+</div>
+<script>
+const root=document.documentElement;
+const saved=localStorage.getItem('plexium-theme'); if(saved) root.dataset.theme=saved;
+document.getElementById('themeToggle').addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('plexium-theme',root.dataset.theme);});
+document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{await navigator.clipboard.writeText(btn.dataset.copy);const old=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=old,1200);}));
+let swordData=[];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cash=n=>'$'+Number(n).toLocaleString();
+function renderSwords(q=''){const rows=swordData.filter(s=>(s.name+' '+s.passive+' '+s.active+' '+s.id).toLowerCase().includes(q.toLowerCase())).map(s=>`<tr><td><span class="tier-pill">${s.tier}</span></td><td><strong>${esc(s.name)}</strong><small>${esc(s.material.replaceAll('_',' ').toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()))}</small></td><td>${cash(s.price)}</td><td>${Number(s.kb).toFixed(2)}<small>vertical ${Number(s.vkb).toFixed(2)}</small></td><td><strong>${esc(s.passive)}</strong><small>${esc(s.passive_desc)} · ${(s.chance*100).toFixed(1)}% proc</small></td><td><strong>${esc(s.active)}</strong><small>${esc(s.active_desc)} · ${(s.active_cd/1000).toFixed(2)}s CD</small></td></tr>`).join('');document.getElementById('swordRows').innerHTML=rows;}
+fetch('swords.json').then(r=>r.json()).then(d=>{swordData=d;renderSwords();}).catch(()=>{document.getElementById('swordRows').innerHTML='<tr><td colspan="6">Could not load sword database.</td></tr>';});
+document.getElementById('swordSearch').addEventListener('input',e=>renderSwords(e.target.value.trim()));
+</script>
+</body>
+</html>

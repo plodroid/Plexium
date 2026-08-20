@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="5pB2G8BBCzH1qZb6cJToClP1kS4qfIR0VUnIb_qnaV8" />
+  <meta name="theme-color" content="#18120f" />
+  <meta name="color-scheme" content="dark" />
+  <title>Plex Browser 2.0.0 — Download</title>
+  <meta name="Download Plex Browser, a fast and private desktop browser for Windows, macOS and Linux with cool features, customization and a clean modern interface." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://plexium.rweb.site/" />
+  <meta property="og:title" content="Plex Browser 2.0.0 Available" />
+  <meta property="og:description" content="Download Plex Browser 2.0.0 for Windows, macOS and Linux." />
+  <meta property="og:image" content="https://plexium.rweb.site/assets/Icons/icon-normal.png" />
+  <meta property="og:image:alt" content="Plex Browser icon" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Plex Browser 2.0.0 Available" />
+  <meta name="twitter:description" content="Download Plex Browser 2.0.0 for Windows, macOS and Linux." />
+  <meta name="twitter:image" content="https://plexium.rweb.site/assets/Icons/icon-normal.png" />
+
+  <link rel="icon" type="image/png" href="assets/Icons/dark.png" />
+  <style>
+    :root{
+      --bg:#14100e;
+      --bg-2:#1a1411;
+      --surface:rgba(255,247,239,.055);
+      --surface-strong:rgba(255,247,239,.085);
+      --surface-hover:rgba(255,247,239,.11);
+      --line:rgba(255,241,229,.11);
+      --line-hi:rgba(255,241,229,.20);
+      --text:#f8eee6;
+      --muted:#b9a99d;
+      --faint:#7d7067;
+      --accent:#df7653;
+      --accent-2:#f0a17d;
+      --accent-deep:#a64d35;
+      --shadow:0 30px 90px rgba(0,0,0,.36);
+      --glass-shadow:0 18px 50px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.055);
+      --r1:14px; --r2:20px; --r3:28px;
+      --ease:cubic-bezier(.22,.78,.24,1);
+      --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 620px at 50% -120px,rgba(223,118,83,.15),transparent 60%),
+        radial-gradient(700px 520px at 7% 44%,rgba(240,161,125,.055),transparent 62%),
+        linear-gradient(180deg,#17120f 0%,#120f0d 45%,#100d0c 100%);
+      font-family:var(--font);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;inset:0;z-index:-3;pointer-events:none;
+      opacity:.18;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+    }
+    ::selection{background:var(--accent);color:#160c08}
+    a{color:inherit}
+    button,a{font:inherit}
+    img{display:block;max-width:100%}
+    .wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+
+    /* warm cursor aura */
+    .cursor-aura{
+      position:fixed;left:0;top:0;width:320px;height:320px;border-radius:50%;z-index:-1;
+      pointer-events:none;opacity:0;transform:translate3d(-50%,-50%,0);
+      background:radial-gradient(circle,rgba(235,125,84,.13),rgba(235,125,84,.045) 36%,transparent 69%);
+      filter:blur(9px);transition:opacity .3s ease;
+    }
+    body.pointer-on .cursor-aura{opacity:1}
+
+    .glass{
+      background:linear-gradient(180deg,rgba(255,250,245,.078),rgba(255,250,245,.036));
+      border:1px solid var(--line);
+      box-shadow:var(--glass-shadow);
+      backdrop-filter:blur(22px) saturate(1.08);
+      -webkit-backdrop-filter:blur(22px) saturate(1.08);
+    }
+
+    .nav-shell{position:fixed;inset:18px 0 auto;z-index:50;pointer-events:none}
+    .nav{
+      pointer-events:auto;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 14px 0 12px;background:rgba(25,20,17,.70);border:1px solid rgba(255,243,233,.13);
+      box-shadow:0 14px 44px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.045);
+      backdrop-filter:blur(26px) saturate(1.15);-webkit-backdrop-filter:blur(26px) saturate(1.15);
+    }
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:190px}
+    .brand img{width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(223,118,83,.18))}
+    .brand strong{font-size:14px;letter-spacing:-.01em;font-weight:650}
+    .brand .version{font-size:11px;color:var(--faint);border:1px solid var(--line);border-radius:99px;padding:3px 7px;margin-left:2px}
+    .nav-links{display:flex;align-items:center;gap:4px}
+    .nav-links a{padding:8px 11px;border-radius:10px;text-decoration:none;color:var(--muted);font-size:13px;transition:.22s var(--ease)}
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.055)}
+    .nav-cta{display:flex;align-items:center;gap:8px;padding:9px 14px!important;background:linear-gradient(180deg,#ee926e,#d86543)!important;color:#1c0d08!important;font-weight:700!important;box-shadow:0 10px 26px rgba(218,98,61,.20),inset 0 1px 0 rgba(255,255,255,.35)}
+    .nav-cta:hover{transform:translateY(-1px);filter:brightness(1.04)}
+
+    .hero{padding:172px 0 80px;text-align:center;position:relative}
+    h1{font-size:clamp(48px,7vw,88px);line-height:.95;letter-spacing:-.055em;margin:0 auto;max-width:920px;font-weight:760}
+    h1 .warm{background:linear-gradient(180deg,#ffd9c5 0%,#e47e59 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{max-width:680px;margin:26px auto 0;color:var(--muted);font-size:clamp(16px,2vw,19px);line-height:1.65;letter-spacing:-.01em}
+    .hero-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 19px;border-radius:14px;text-decoration:none;border:1px solid transparent;font-weight:650;font-size:14px;transition:.25s var(--ease);cursor:pointer}
+    .btn svg{width:17px;height:17px}
+    .btn-primary{background:linear-gradient(180deg,#ee926e 0%,#d96543 100%);color:#1b0b06;box-shadow:0 13px 34px rgba(217,101,67,.24),inset 0 1px 0 rgba(255,255,255,.36)}
+    .btn-primary:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 18px 40px rgba(217,101,67,.29),inset 0 1px 0 rgba(255,255,255,.40)}
+    .btn-ghost{color:var(--text);background:rgba(255,255,255,.045);border-color:var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+    .btn-ghost:hover{transform:translateY(-2px);background:rgba(255,255,255,.075);border-color:var(--line-hi)}
+    .mini-note{margin-top:13px;color:var(--faint);font-size:12px}
+
+    .browser-stage{margin:62px auto 0;position:relative;max-width:1110px;perspective:1400px}
+    .browser-stage::before{content:"";position:absolute;left:13%;right:13%;bottom:-8%;height:24%;background:rgba(222,107,72,.17);filter:blur(58px);border-radius:50%;z-index:-1}
+    .browser-frame{border-radius:24px;padding:10px;transform:rotateX(1.2deg) translateY(0);animation:stageFloat 7s ease-in-out infinite;will-change:transform}
+    .browser-frame img{border-radius:17px;width:100%;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.055)}
+    .browser-badge{position:absolute;right:18px;top:18px;padding:9px 12px;border-radius:12px;color:#e6d9d0;font-size:11px;background:rgba(16,13,12,.7);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(16px)}
+    @keyframes stageFloat{0%,100%{transform:rotateX(1.2deg) translateY(0)}50%{transform:rotateX(.35deg) translateY(-7px)}}
+
+    .section{padding:90px 0;position:relative}
+    .section-rule{border-top:1px solid rgba(255,255,255,.07)}
+    .eyebrow{color:var(--accent-2);font-size:11px;font-weight:760;letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px}
+    h2{margin:0;font-size:clamp(34px,4vw,54px);line-height:1.06;letter-spacing:-.04em;font-weight:730}
+    .section-lead{margin:16px 0 0;color:var(--muted);font-size:16px;line-height:1.7;max-width:650px}
+    .section-head.split{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}
+
+    .download-wrap{border-radius:28px;padding:28px;overflow:hidden;position:relative}
+    .download-wrap::before{content:"";position:absolute;right:-140px;top:-180px;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(226,117,80,.16),transparent 66%);pointer-events:none}
+    .download-top{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:16px 6px 28px}
+    .release-mark{width:120px;filter:drop-shadow(0 18px 36px rgba(219,101,67,.18));margin-left:auto;margin-right:20px}
+    .release-title{font-size:30px;letter-spacing:-.035em;margin:0 0 9px}.release-copy{color:var(--muted);margin:0;line-height:1.6;max-width:590px}
+    .os-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:2px}
+    .os-card{min-height:170px;padding:20px;border-radius:20px;background:rgba(255,255,255,.035);border:1px solid var(--line);display:flex;flex-direction:column;transition:.25s var(--ease);position:relative;overflow:hidden}
+    .os-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.16)}
+    .os-icon{width:37px;height:37px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.055);border:1px solid var(--line);margin-bottom:23px}
+    .os-icon svg{width:20px;height:20px;opacity:.85}
+    .os-name{font-weight:700;font-size:15px}.os-file{font-size:11px;color:var(--faint);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .os-action{margin-top:auto;display:flex;align-items:center;justify-content:space-between;color:#eb9878;font-size:12px;font-weight:650;text-decoration:none;padding-top:16px}
+    .os-card.recommended::after{content:"Detected";position:absolute;top:15px;right:15px;color:#ffb396;font-size:9px;text-transform:uppercase;font-weight:800;letter-spacing:.08em;background:rgba(226,117,80,.11);border:1px solid rgba(226,117,80,.22);padding:5px 7px;border-radius:99px}
+    .download-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--faint);font-size:11px;padding:18px 4px 0}
+
+    .feature-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-auto-rows:minmax(210px,auto);gap:12px;margin-top:36px}
+    .feature-card{border-radius:22px;padding:24px;position:relative;overflow:hidden;min-width:0;transition:.25s var(--ease)}
+    .feature-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.16)}
+    .feature-card.big{grid-row:span 2;padding:28px}
+    .feature-icon{width:39px;height:39px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.045);display:grid;place-items:center;margin-bottom:28px}
+    .feature-icon svg{width:20px;height:20px;stroke:#efa07f;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .feature-card h3{font-size:19px;margin:0 0 8px;letter-spacing:-.02em}.feature-card p{color:var(--muted);font-size:13px;line-height:1.65;margin:0;max-width:400px}
+    .feature-card.big h3{font-size:27px}.feature-card.big p{font-size:14px}
+    .big-visual{margin:32px -4px 0;border:1px solid var(--line);border-radius:18px;background:rgba(10,8,7,.36);padding:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+    .search-demo{height:46px;border-radius:13px;border:1px solid rgba(236,144,107,.28);background:rgba(255,255,255,.045);display:flex;align-items:center;padding:0 14px;gap:10px;color:#ac9b90;font-size:12px;box-shadow:0 0 34px rgba(223,118,83,.07)}
+    .key{margin-left:auto;font-size:10px;color:#796b62;border:1px solid var(--line);padding:3px 6px;border-radius:6px}
+    .feature-card::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-90px;bottom:-120px;background:radial-gradient(circle,rgba(223,118,83,.08),transparent 67%);pointer-events:none}
+
+    .release-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:14px;margin-top:34px}
+    .version-card{border-radius:22px;padding:24px;align-self:start;position:sticky;top:100px}
+    .version-kicker{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;font-weight:750}.version-number{font-size:42px;font-weight:760;letter-spacing:-.055em;margin:7px 0 2px}.version-state{display:inline-flex;align-items:center;gap:7px;color:#f2a181;font-size:12px;margin-top:8px}.version-state i{width:6px;height:6px;border-radius:50%;background:#e87854;box-shadow:0 0 14px #e87854}.version-meta{display:grid;gap:11px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}.meta-row{display:flex;justify-content:space-between;gap:16px;font-size:12px}.meta-row span:first-child{color:var(--faint)}.meta-row span:last-child{color:#d8c9bf}
+    .notes{border-radius:22px;overflow:hidden}.note-row{display:grid;grid-template-columns:114px 1fr;gap:24px;padding:22px 24px;border-bottom:1px solid var(--line)}.note-row:last-child{border-bottom:0}.note-tag{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e99472;margin-top:2px}.note-row h3{font-size:15px;margin:0 0 5px}.note-row p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+
+    .gallery{margin-top:34px;display:grid;grid-template-columns:1fr .34fr;gap:12px}
+    .shot{border-radius:22px;overflow:hidden;padding:9px;min-height:220px;position:relative}.shot img{width:100%;height:100%;object-fit:cover;border-radius:15px;border:1px solid rgba(255,255,255,.055)}
+    .icon-wall{border-radius:22px;padding:18px;min-height:220px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.icon-tile{min-height:112px;border:1px solid rgba(255,255,255,.065);border-radius:16px;background:rgba(255,255,255,.028);display:grid;place-items:center;padding:16px;overflow:hidden;transition:transform .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease)}.icon-tile:hover{transform:translateY(-2px);background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.13)}.icon-tile img{width:min(92px,78%);max-height:92px;object-fit:contain;filter:drop-shadow(0 16px 30px rgba(0,0,0,.36))}.icon-tile.mark img{width:min(84px,72%)}
+
+    .faq{margin-top:34px;border-radius:22px;overflow:hidden}.faq details{border-bottom:1px solid var(--line);padding:0 22px}.faq details:last-child{border-bottom:0}.faq summary{list-style:none;cursor:pointer;padding:20px 2px;font-size:14px;font-weight:650;display:flex;align-items:center;justify-content:space-between;gap:20px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--faint);font-size:20px;font-weight:350;transition:.25s var(--ease)}.faq details[open] summary::after{transform:rotate(45deg);color:var(--accent-2)}.faq p{margin:-3px 0 20px;color:var(--muted);font-size:13px;line-height:1.7;max-width:760px}
+
+    .final{padding:90px 0 110px}.final-card{border-radius:30px;min-height:330px;padding:50px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;position:relative;overflow:hidden}.final-card::before{content:"";position:absolute;width:570px;height:330px;bottom:-250px;left:50%;transform:translateX(-50%);border-radius:50%;background:rgba(223,118,83,.18);filter:blur(80px)}.final-icon{width:72px;margin-bottom:20px;filter:drop-shadow(0 16px 34px rgba(223,118,83,.2))}.final-card h2{font-size:clamp(36px,5vw,60px);position:relative}.final-card p{color:var(--muted);max-width:540px;line-height:1.6;position:relative}.final-card .hero-actions{position:relative}
+
+    footer{padding:25px 0 38px;border-top:1px solid rgba(255,255,255,.065)}
+    .footer{display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--faint);font-size:11px}.footer-left{display:flex;align-items:center;gap:9px}.footer-left img{width:20px}.footer-links{display:flex;gap:16px}.footer-links a{text-decoration:none}.footer-links a:hover{color:var(--text)}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}.reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){
+      .nav-links a:not(.nav-cta){display:none}.brand{min-width:auto}
+      .download-top{grid-template-columns:1fr}.release-mark{display:none}.os-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr 1fr}.feature-card.big{grid-column:1/-1;grid-row:auto}.release-grid{grid-template-columns:1fr}.version-card{position:static}.gallery{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .wrap{width:min(100% - 24px,1180px)}.nav-shell{top:10px}.nav{height:56px;border-radius:16px}.brand .version{display:none}.nav-cta{padding:8px 11px!important}
+      .hero{padding-top:132px}.hero-copy{font-size:15px}.browser-stage{margin-top:42px}.browser-frame{padding:6px;border-radius:18px}.browser-frame img{border-radius:13px}.browser-badge{display:none}
+      .section{padding:66px 0}.section-head.split{display:block}.section-head .btn{margin-top:18px}.download-wrap{padding:17px}.download-top{padding:8px 3px 21px}.feature-grid{grid-template-columns:1fr}.feature-card.big{grid-column:auto}.note-row{grid-template-columns:1fr;gap:7px}.note-tag{margin:0}.final-card{padding:38px 20px;min-height:300px}.footer{align-items:flex-start;flex-direction:column}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.browser-frame{animation:none}.reveal{opacity:1;transform:none;transition:none}.btn,.feature-card,.os-card,.nav-links a{transition:none}.cursor-aura{display:none}}
+  </style>
+</head>
+<body>
+  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+
+  <div class="nav-shell">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Plex Browser home">
+        <img src="assets/Icons/icon-no-bg.png" alt="" />
+        <strong>Plex Browser</strong>
+        <span class="version">2.0.0</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#release-notes">Release notes</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#download">Download</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <h1 class="reveal">Your browser, <span class="warm">reworked.</span></h1>
+        <p class="hero-copy reveal">Plex Browser 2.0.0 brings the new interface to everyone — a warm, focused browser with glassy depth, quick access to AI tools, privacy controls, performance modes and the workflow features already built into Plex.</p>
+        <div class="hero-actions reveal">
+          <a id="smartDownload" class="btn btn-primary" href="#download">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download Plex 2.0.0
+          </a>
+          <a class="btn btn-ghost" href="#release-notes">View release notes</a>
+        </div>
+        <div class="mini-note reveal">Windows · macOS · Linux · Free · No account required</div>
+
+        <div class="browser-stage reveal">
+          <div class="browser-frame glass">
+            <img src="assets/screenshots/browser-2.0.0.png" alt="Plex Browser 2.0.0 interface" />
+          </div>
+          <div class="browser-badge">Actual Plex Browser UI</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="download">
+      <div class="wrap reveal">
+        <div class="download-wrap glass">
+          <div class="download-top">
+            <div>
+              <div class="eyebrow">Public release</div>
+              <h2 class="release-title">Plex Browser 2.0.0</h2>
+              <p class="release-copy">Choose your platform below. The release is public — no invite, beta access or early-access membership needed.</p>
+            </div>
+            <img class="release-mark" src="assets/Icons/installer.png" alt="Plex Browser installer icon" />
+          </div>
+
+          <div class="os-grid">
+            <article class="os-card" data-os="windows">
+              <div class="os-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4.5 10.5 3v8H2V4.5Zm9.5-1.7L22 1v10H11.5V2.8ZM2 12h8.5v8L2 18.5V12Zm9.5 0H22v10l-10.5-1.8V12Z"/></svg></div>
+              <div class="os-name">Windows</div>
+              <div class="os-file">Plex Browser Setup 2.0.0.exe</div>
+              <a class="os-action" href="downloads/v2.0.0/Plex%20Browser%20Setup%202.0.0.exe" download>Download .exe <span>↓</span></a>
+            </article>
+            <article class="os-card" data-os="macos">
+              <div class="os-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.7 12.7c0-2.4 2-3.6 2.1-3.7-1.1-1.6-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.8 1.3 10.3.9 1.2 1.9 2.6 3.3 2.5 1.3-.1 1.8-.8 3.4-.8 1.6 0 2 .8 3.4.8s2.3-1.2 3.1-2.5c1-1.4 1.4-2.8 1.4-2.9-.1 0-3.3-1.3-3.3-4.3ZM14.3 5.5c.7-.9 1.2-2.1 1.1-3.3-1.1 0-2.4.7-3.2 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.5-.6 3.2-1.5Z"/></svg></div>
+              <div class="os-name">macOS</div>
+              <div class="os-file">Plex Browser-2.0.0-arm64.dmg</div>
+              <a class="os-action" href="downloads/v2.0.0/Plex%20Browser-2.0.0-arm64.dmg" download>Download .dmg <span>↓</span></a>
+            </article>
+            <article class="os-card" data-os="linux">
+              <div class="os-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2c-3 0-4 2.7-4 5.8 0 2.4-.8 3.1-1.8 4.7C5.1 14.2 4 16 4.8 18c.5 1.3 1.6 1.7 2.7 1.5.9 1.5 2.4 2.5 4.5 2.5s3.6-1 4.5-2.5c1.1.2 2.2-.2 2.7-1.5.8-2-.3-3.8-1.4-5.5-1-1.6-1.8-2.3-1.8-4.7C16 4.7 15 2 12 2Z"/><path d="M9.5 8.5h.01M14.5 8.5h.01M10 11c1.1.6 2.9.6 4 0"/></svg></div>
+              <div class="os-name">Linux</div>
+              <div class="os-file">plex-browser_2.0.0_amd64.deb</div>
+              <a class="os-action" href="downloads/v2.0.0/plex-browser_2.0.0_amd64.deb" download>Download .deb <span>↓</span></a>
+            </article>
+          </div>
+          <div class="download-foot"><span>Version 2.0.0 · Stable channel</span><span>Need another build? See the GitHub release page.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="features">
+      <div class="wrap">
+        <div class="section-head split reveal">
+          <div>
+            <div class="eyebrow">Built into Plex</div>
+            <h2>Fast when you need it.<br />Quiet when you don’t.</h2>
+            <p class="section-lead">Plex keeps its controls close without turning the browser into a dashboard. Most of the time, the interface gets out of the way.</p>
+          </div>
+          <a class="btn btn-ghost" href="#download">Get Plex</a>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card big glass reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="m12 3 1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z"/><path d="m18.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></svg></div>
+            <h3>Smart search</h3>
+            <p>Type less and get moving faster with search suggestions and quick destinations right where you already browse.</p>
+            <div class="big-visual">
+              <div class="search-demo"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#e99573" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg> Search the web… <span class="key">⌘ L</span></div>
+            </div>
+          </article>
+
+          <article class="feature-card glass reveal"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Fortress Privacy</h3><p>Ad, tracker and DoH blocking with an encrypted cookie vault.</p></article>
+          <article class="feature-card glass reveal"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 18V9M9 18V5M14 18v-7M19 18V3"/></svg></div><h3>Plex Pulse</h3><p>CPU, RAM and bandwidth budgets across Eco, Balanced and Performance modes.</p></article>
+          <article class="feature-card glass reveal"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/><path d="m17 15 3 3-3 3"/></svg></div><h3>Search suggestions</h3><p>Useful suggestions appear as you type so common searches and destinations take fewer steps.</p></article>
+          <article class="feature-card glass reveal"><div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8.5c4-1 7 .2 7 .2M9 11.5c3.4-.8 6 .2 6 .2M9.5 14.5c2.5-.5 4.5.2 4.5.2"/></svg></div><h3>Spotify player</h3><p>Keep playback controls close in a compact browser widget without jumping between windows.</p></article>
+          <article class="feature-card glass reveal"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 7h7l2 2h7v9H4z"/><path d="M8 4h8"/></svg></div><h3>Tab groups & profiles</h3><p>Color-coded groups and named profiles for separate workspaces.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="release-notes">
+      <div class="wrap">
+        <div class="reveal"><div class="eyebrow">Release notes</div><h2>2.0.0 — public release.</h2><p class="section-lead">No early-access gate. No 1.x launch copy. This page is for the current public release.</p></div>
+        <div class="release-grid">
+          <aside class="version-card glass reveal">
+            <div class="version-kicker">Current version</div><div class="version-number">2.0.0</div><div class="version-state"><i></i> Stable · Public</div>
+            <div class="version-meta"><div class="meta-row"><span>Platforms</span><span>Windows / macOS / Linux</span></div><div class="meta-row"><span>Access</span><span>Public</span></div><div class="meta-row"><span>Account</span><span>Not required</span></div></div>
+          </aside>
+          <div class="notes glass reveal">
+            <div class="note-row"><div class="note-tag">Interface</div><div><h3>New Plex visual system</h3><p>The current UI uses a warmer palette, depth and translucent surfaces to match the browser itself without burying the controls in effects.</p></div></div>
+            <div class="note-row"><div class="note-tag">Search</div><div><h3>Smarter suggestions</h3><p>Search suggestions and quick destinations help you get where you are going with fewer keystrokes.</p></div></div>
+            <div class="note-row"><div class="note-tag">Performance</div><div><h3>Plex Pulse modes</h3><p>Use Eco, Balanced or Performance behavior to manage CPU, RAM and bandwidth budgets.</p></div></div>
+            <div class="note-row"><div class="note-tag">Media</div><div><h3>Spotify controls in reach</h3><p>A compact player keeps music controls available without taking over the browsing experience.</p></div></div>
+            <div class="note-row"><div class="note-tag">Privacy</div><div><h3>Fortress Privacy</h3><p>Privacy controls include ad, tracker and DoH blocking plus the encrypted cookie vault described by Plex.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule">
+      <div class="wrap">
+        <div class="reveal"><div class="eyebrow">Interface</div><h2>A closer look at Plex.</h2><p class="section-lead">The release page carries the same warm dark palette, rounded controls and restrained glass treatment as the browser itself.</p></div>
+        <div class="gallery reveal">
+          <div class="shot glass"><img src="assets/screenshots/browser-2.0.0.png" alt="Plex Browser interface preview" /></div>
+          <div class="icon-wall glass" aria-label="Plex Browser icon set">
+            <div class="icon-tile"><img src="assets/Icons/dark.png" alt="Plex Browser dark app icon" /></div>
+            <div class="icon-tile mark"><img src="assets/Icons/icon-no-bg.png" alt="Plex Browser transparent mark" /></div>
+            <div class="icon-tile"><img src="assets/Icons/icon-normal.png" alt="Plex Browser light app icon" /></div>
+            <div class="icon-tile"><img src="assets/Icons/installer.png" alt="Plex Browser installer icon" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="faq">
+      <div class="wrap">
+        <div class="reveal"><div class="eyebrow">FAQ</div><h2>Before you install.</h2></div>
+        <div class="faq glass reveal">
+          <details open><summary>Is Plex Browser 2.0.0 publicly released?</summary><p>Yes. Version 2.0.0 is presented here as the public stable release, not an early-access or private-beta build.</p></details>
+          <details><summary>Which platforms are available?</summary><p>The release page provides downloads for Windows, macOS and Linux.</p></details>
+          <details><summary>Do I need an account?</summary><p>No account is required for the download flow shown on this release page.</p></details>
+          <details><summary>Where do the download buttons point?</summary><p>They point to the <code>downloads/v2.0.0/</code> folder so you can drop your actual installer files into that directory when publishing the site.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="wrap">
+        <div class="final-card glass reveal">
+          <img class="final-icon" src="assets/Icons/icon-no-bg.png" alt="" />
+          <h2>Ready to browse with Plex?</h2>
+          <p>Version 2.0.0 is out now for the public. Pick your platform and install it.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#download">Download Plex 2.0.0</a><a class="btn btn-ghost" href="https://github.com/plodroid" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer">
+      <div class="footer-left"><img src="assets/Icons/icon-no-bg.png" alt="" /><span>Plex Browser · 2.0.0</span></div>
+      <div class="footer-links"><a href="#release-notes">Release notes</a><a href="#faq">FAQ</a><a href="https://github.com/plodroid" target="_blank" rel="noopener">GitHub</a></div>
+    </div>
+  </footer>
+
+  <script>
+
+    document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',e=>{
+      const id=link.getAttribute('href'); const el=document.querySelector(id); if(!el)return;
+      e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'});
+    }));
+
+
+    const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('in');io.unobserve(entry.target)}
+    }),{threshold:.12,rootMargin:'0px 0px -30px'});
+    document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=Math.min(i%4,3)*55+'ms';io.observe(el)});
+
+
+    const aura=document.getElementById('cursorAura');
+    if(matchMedia('(pointer:fine)').matches){
+      let x=innerWidth/2,y=innerHeight/2,cx=x,cy=y;
+      addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;document.body.classList.add('pointer-on')},{passive:true});
+      addEventListener('mouseleave',()=>document.body.classList.remove('pointer-on'));
+      (function tick(){cx+=(x-cx)*.13;cy+=(y-cy)*.13;aura.style.transform=`translate3d(${cx-160}px,${cy-160}px,0)`;requestAnimationFrame(tick)})();
+    }
+
+    const ua=navigator.userAgent.toLowerCase();
+    let os='windows';
+    if(ua.includes('mac')) os='macos'; else if(ua.includes('linux')&&!ua.includes('android')) os='linux';
+    const card=document.querySelector(`[data-os="${os}"]`); if(card)card.classList.add('recommended');
+    const smart=document.getElementById('smartDownload');
+    const osLink=card?.querySelector('.os-action');
+    if(osLink){ smart.href=osLink.href; smart.setAttribute('download',''); smart.lastChild && (smart.childNodes[smart.childNodes.length-1].textContent=` Download for ${card.querySelector('.os-name').textContent}`); }
+  </script>
+</body>
+</html>
