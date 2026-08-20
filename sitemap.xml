@@ -3,4 +3,10 @@
   <url>
     <loc>https://plexium.rweb.site/</loc>
   </url>
+  <url>
+    <loc>https://plexium.rweb.site/browser/</loc>
+  </url>
+  <url>
+    <loc>https://plexium.rweb.site/minecraft/</loc>
+  </url>
 </urlset>
