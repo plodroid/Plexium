@@ -1,0 +1,10 @@
+{
+  "latest": "2.0.0",
+  "channel": "stable",
+  "public": true,
+  "downloads": {
+    "windows": "downloads/v2.0.0/Plex Browser Setup 2.0.0.exe",
+    "macos_arm64": "downloads/v2.0.0/Plex Browser-2.0.0-arm64.dmg",
+    "linux_amd64": "downloads/v2.0.0/plex-browser_2.0.0_amd64.deb"
+  }
+}
