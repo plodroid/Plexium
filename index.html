@@ -8,8 +8,9 @@
   <meta name="description" content="Plexium home — Plex Browser and the Plexium Minecraft network.">
   <link rel="icon" type="image/png" href="assets/Icons/dark.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home-fixes.css">
 </head>
-<body class="page-shell">
+<body class="page-shell home-page">
 <div class="grain-overlay"></div>
 <div class="site-shell">
   <div class="nav-wrap">
@@ -28,43 +29,27 @@
   </div>
 
   <main>
-    <section class="hero">
+    <section class="hero home-hero">
       <div class="container">
-        <div class="hero-inner">
-          <div>
-            <div class="hero-eyebrow">Welcome to Plexium</div>
-            <h1 class="hero-title">One place for <em>everything.</em></h1>
-            <p class="hero-desc">Plexium is home to the Plex Browser and the Plexium Minecraft network. Pick where you want to go.</p>
-            <div class="hero-actions">
-              <a class="glow-btn" href="browser/">Open Browser</a>
-              <a class="soft-btn" href="minecraft/">Minecraft Server</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <div class="blur-card">
-              <div class="blur-card-inner">
-                <div style="font-family:var(--font-display);font-size:5.6rem;color:var(--accent);font-style:italic;">P</div>
-              </div>
-              <div class="blur-card-badge">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-              <div class="blur-card-overlay">
-                <div class="label">Plexium</div>
-                <div class="title">Build. Play. Browse.</div>
-              </div>
-            </div>
+        <div class="home-hero-inner">
+          <div class="hero-eyebrow">Welcome to Plexium</div>
+          <h1 class="hero-title">One place for <em>everything.</em></h1>
+          <p class="hero-desc">Plexium is home to the Plex Browser and the Plexium Minecraft network. Pick where you want to go.</p>
+          <div class="hero-actions">
+            <a class="glow-btn" href="browser/">Open Browser</a>
+            <a class="soft-btn" href="minecraft/">Minecraft Server</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="products">
+    <section class="section home-products" id="products">
       <div class="container">
         <div class="section-label">Choose a product</div>
         <h2 class="section-title">What are you here for?</h2>
         <div class="menu-grid">
           <a class="menu-card" href="browser/">
-            <div class="menu-icon">⌘</div>
+            <div class="menu-icon product-logo"><img src="assets/Icons/icon-normal.png" alt="Plex Browser icon"></div>
             <h2>Browser</h2>
             <p>The original Plex Browser website — downloads, features, screenshots, customization and everything that was previously on the root page.</p>
             <div class="menu-meta">
@@ -73,7 +58,7 @@
             </div>
           </a>
           <a class="menu-card" href="minecraft/">
-            <div class="menu-icon">⛏</div>
+            <div class="menu-icon product-logo"><img src="assets/server-icon.png" alt="Plexium Minecraft server icon"></div>
             <h2>Minecraft Server</h2>
             <p>Join PlexiumMC and read the full game wiki for BoxPvP and Island Wars, including server addresses, commands, mechanics and progression.</p>
             <div class="menu-meta">
