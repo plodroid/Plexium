@@ -1,0 +1,37 @@
+name: Remove release pill
+
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-release-pill.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  remove:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove release pill from homepage
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('        <div class="status-pill glass reveal"><span class="status-dot"></span> Plex 2.0.0 is publicly available</div>\n', '')
+          text = text.replace('    .status-pill{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border-radius:999px;color:#d8c8bd;font-size:12px;margin-bottom:24px}\n', '')
+          text = text.replace('    .status-dot{width:7px;height:7px;border-radius:50%;background:#e57b55;box-shadow:0 0 0 5px rgba(229,123,85,.095),0 0 26px rgba(229,123,85,.55)}\n', '')
+          p.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit change
+        run: |
+          if git diff --quiet; then
+            echo "Nothing to change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- index.html
+          git commit -m "Remove homepage release status pill"
+          git push
