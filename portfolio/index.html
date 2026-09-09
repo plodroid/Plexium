@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="system">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b0b0c">
-  <meta name="color-scheme" content="dark light">
-  <title>Portfolio — Websites & Apps by Plexium</title>
-  <meta name="description" content="Websites and apps built for real businesses: responsive design, clear pricing in DZD, live design demos and existing app work.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <title>Portfolio — Websites & Apps</title>
+  <meta name="description" content="Responsive websites and useful desktop apps, with real work, live website concepts, clear pricing in DZD, and a straightforward project process.">
   <link rel="canonical" href="https://plexium.rweb.site/portfolio/">
   <link rel="icon" type="image/png" href="../assets/Icons/dark.png">
   <link rel="stylesheet" href="styles.css">
@@ -14,351 +15,287 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="topbar-shell">
-    <nav class="topbar" aria-label="Main navigation">
-      <a class="brand" href="../" aria-label="Plexium home">
-        <span class="brand-mark" aria-hidden="true">P</span>
-        <span>Plexium</span>
+  <header class="site-header" id="siteHeader">
+    <nav class="glass-bar" aria-label="Portfolio navigation">
+      <a class="nav-brand" href="../" aria-label="Back to Plexium home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+        <span>Portfolio</span>
       </a>
 
-      <div class="nav-links" aria-label="Plexium sections">
-        <a href="../browser/">Browser</a>
-        <a href="../minecraft/">Minecraft</a>
-        <a class="active" href="./" aria-current="page">Portfolio</a>
+      <div class="nav-sections" aria-label="Page sections">
+        <a href="#work">Work</a>
+        <a href="#concepts">Concepts</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
       </div>
 
-      <button class="icon-button" id="themeToggle" type="button" aria-label="Switch color theme" title="Switch color theme">
-        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
-      </button>
+      <div class="nav-actions">
+        <a class="nav-contact" href="#start">Start a project</a>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle appearance" title="Toggle appearance">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.4A8 8 0 0 1 9.6 3.6 8.5 8.5 0 1 0 20.4 14.4Z"/></svg>
+        </button>
+      </div>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero section-pad">
-      <div class="shell hero-grid">
+    <section class="hero section" aria-labelledby="hero-title">
+      <div class="content hero-content">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Independent web & app development</p>
-          <h1>I build things people can <span>actually use.</span></h1>
-          <p class="lead">Clean websites, useful desktop apps, and interfaces that don’t feel like somebody dropped a template on your business and called it a day.</p>
+          <p class="eyebrow">Websites & desktop apps</p>
+          <h1 id="hero-title">Work that feels <span>finished.</span></h1>
+          <p class="hero-lead">I build clean, responsive websites and practical apps for businesses that want something polished, understandable, and easy to use.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#work">See the work</a>
-            <a class="button secondary" href="#pricing">Check pricing</a>
+            <a class="button button-primary" href="#work">View my work</a>
+            <a class="button button-secondary" href="#pricing">See pricing</a>
           </div>
-          <ul class="quick-facts" aria-label="Service highlights">
-            <li>Mobile + desktop</li>
-            <li>Clear DZD pricing</li>
-            <li>Source code available</li>
-            <li>Built around the actual job</li>
-          </ul>
+          <div class="hero-notes" aria-label="Project highlights">
+            <span>Mobile + desktop</span>
+            <span>Clear DZD pricing</span>
+            <span>Source handoff available</span>
+          </div>
         </div>
 
-        <div class="hero-showcase reveal" aria-label="Selected interface previews">
-          <div class="preview-window preview-main">
-            <div class="window-chrome"><i></i><i></i><i></i><span>recent work</span></div>
-            <img src="../assets/incometrackerapp.png" alt="Income tracker desktop app dashboard preview">
-          </div>
-          <div class="preview-window preview-float">
-            <div class="window-chrome compact"><i></i><i></i><i></i></div>
-            <img src="../assets/AAsportsMembertracker.png" alt="AA Sports member tracker app preview">
+        <div class="showcase reveal" aria-label="Featured app preview">
+          <div class="showcase-window" id="showcaseWindow">
+            <div class="window-toolbar">
+              <div class="traffic-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="window-title" id="showcaseTitle">Income Tracker</div>
+              <div class="window-spacer"></div>
+            </div>
+            <div class="showcase-stage">
+              <img class="showcase-image active" src="../assets/incometrackerapp.png" alt="Income Tracker desktop app dashboard" data-showcase-image="income">
+              <img class="showcase-image" src="../assets/AAsportsMembertracker.png" alt="AA Sports Member Tracker desktop app" data-showcase-image="sports">
+            </div>
+            <div class="showcase-switch" role="tablist" aria-label="Choose app preview">
+              <button class="showcase-tab active" type="button" role="tab" aria-selected="true" data-showcase="income" data-title="Income Tracker">Income Tracker</button>
+              <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-showcase="sports" data-title="AA Sports">AA Sports</button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="confidence-strip" aria-label="What clients get">
-      <div class="shell confidence-grid">
-        <div><strong>Responsive by default</strong><span>Phone, tablet, laptop, ultrawide — it should still make sense.</span></div>
-        <div><strong>No mystery quote</strong><span>You can see the working price ranges before we even talk.</span></div>
-        <div><strong>Not one visual style</strong><span>The demos below are intentionally different. Your brand gets its own look.</span></div>
+    <section class="trust-strip" aria-label="What every project includes">
+      <div class="content trust-list">
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h5"/></svg><span><b>Responsive first</b><small>Layouts that still make sense on phones, tablets, laptops, and wide screens.</small></span></div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M8 11h8M8 14h4"/></svg><span><b>Clear scope</b><small>You can see the working price range and what affects the final quote before we begin.</small></span></div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 12 3 3 7-7"/><circle cx="12" cy="12" r="9"/></svg><span><b>Built for the job</b><small>No template dump. The interface follows what the business actually needs people to do.</small></span></div>
       </div>
     </section>
 
-    <section class="section-pad" id="work">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Existing apps</p>
-          <h2>Actual work, not fake dashboard filler.</h2>
-          <p>These are previews already in the Plexium project assets. Tap either one to inspect it properly.</p>
-        </div>
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="content">
+        <header class="section-header reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="work-title">Real apps. Real interfaces.</h2>
+          <p>These are actual projects already in my portfolio, shown without fake mockups covering the UI.</p>
+        </header>
 
-        <div class="work-grid">
-          <article class="work-card reveal">
-            <button class="work-image open-lightbox" type="button" data-image="../assets/incometrackerapp.png" data-alt="Income tracker app dashboard">
-              <img src="../assets/incometrackerapp.png" alt="Income tracker app dashboard">
-              <span>View larger</span>
+        <div class="work-stack">
+          <article class="work-item reveal">
+            <button class="work-preview open-lightbox" type="button" data-image="../assets/incometrackerapp.png" data-alt="Income Tracker dashboard">
+              <img src="../assets/incometrackerapp.png" alt="Income Tracker dashboard preview">
+              <span class="preview-action"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>Open preview</span>
             </button>
-            <div class="work-body">
-              <div class="work-topline"><span>Desktop app</span><span>Business tools</span></div>
+            <div class="work-info">
+              <div class="work-kicker">Desktop app · Business tools</div>
               <h3>Income Tracker</h3>
-              <p>A desktop dashboard for tracking money, projects and business activity without turning basic numbers into a spreadsheet nightmare.</p>
-              <div class="tag-row"><span>Data UI</span><span>Charts</span><span>Desktop</span></div>
+              <p>A focused dashboard for tracking income, projects, progress, and business activity without turning everyday work into spreadsheet maintenance.</p>
+              <ul class="feature-list">
+                <li>Financial overview and charts</li>
+                <li>Project and payment tracking</li>
+                <li>Desktop-first workflow</li>
+              </ul>
             </div>
           </article>
 
-          <article class="work-card reveal">
-            <button class="work-image open-lightbox" type="button" data-image="../assets/AAsportsMembertracker.png" data-alt="AA Sports member tracker">
-              <img src="../assets/AAsportsMembertracker.png" alt="AA Sports member tracker">
-              <span>View larger</span>
+          <article class="work-item reverse reveal">
+            <button class="work-preview open-lightbox" type="button" data-image="../assets/AAsportsMembertracker.png" data-alt="AA Sports Member Tracker">
+              <img src="../assets/AAsportsMembertracker.png" alt="AA Sports Member Tracker preview">
+              <span class="preview-action"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>Open preview</span>
             </button>
-            <div class="work-body">
-              <div class="work-topline"><span>Desktop app</span><span>Gym management</span></div>
+            <div class="work-info">
+              <div class="work-kicker">Desktop app · Gym management</div>
               <h3>AA Sports Member Tracker</h3>
-              <p>A practical management interface made around a real gym workflow — members, activity and the day-to-day admin that needs to stay quick.</p>
-              <div class="tag-row"><span>Management</span><span>Members</span><span>Desktop</span></div>
+              <p>A management app built around a real gym workflow: keeping members, activity, and day-to-day admin close without burying staff in menus.</p>
+              <ul class="feature-list">
+                <li>Member-focused management</li>
+                <li>Fast everyday navigation</li>
+                <li>Built around the gym's workflow</li>
+              </ul>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section-pad lab-section" id="demos">
-      <div class="shell">
-        <div class="section-heading row-heading reveal">
-          <div>
-            <p class="eyebrow">Design lab</p>
-            <h2>Six demo sites. Six different personalities.</h2>
-            <p>I don’t want every client site looking like the same glass card pack. Open these and compare them.</p>
-          </div>
-          <span class="desktop-note">Each demo opens as its own page ↗</span>
-        </div>
+    <section class="section section-muted" id="concepts" aria-labelledby="concepts-title">
+      <div class="content">
+        <header class="section-header reveal">
+          <p class="eyebrow">Website concepts</p>
+          <h2 id="concepts-title">Different businesses need different voices.</h2>
+          <p>The portfolio stays consistent; the work doesn’t have to. These live concept sites show how the visual direction can change around the client.</p>
+        </header>
 
-        <div class="demo-grid">
-          <a class="demo-card cafe reveal" href="demos/cafe.html">
-            <div class="demo-art">
-              <div class="mini-nav">Morrow <span>Menu &nbsp; Visit</span></div>
-              <div class="mini-copy"><small>Neighborhood coffee</small><b>Slow mornings.<br>Good coffee.</b><em>See the menu →</em></div>
+        <div class="concept-grid">
+          <a class="concept-card reveal" href="demos/cafe.html">
+            <div class="concept-window concept-cafe">
+              <div class="concept-toolbar"><i></i><i></i><i></i><span>Morrow Coffee</span></div>
+              <div class="concept-body"><small>Neighborhood coffee</small><strong>Slow mornings.<br>Good coffee.</strong><em>Menu →</em></div>
             </div>
-            <div class="demo-meta"><div><strong>Morrow Coffee</strong><span>Warm editorial café</span></div><span class="open-arrow">↗</span></div>
+            <div class="concept-meta"><span><b>Morrow Coffee</b><small>Warm editorial café</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
           </a>
 
-          <a class="demo-card gym reveal" href="demos/gym.html">
-            <div class="demo-art">
-              <div class="mini-nav">VOLT <span>TRAIN HARDER</span></div>
-              <div class="gym-number">01</div>
-              <div class="mini-copy"><small>Performance club</small><b>BUILD<br>POWER.</b><em>Start training →</em></div>
+          <a class="concept-card reveal" href="demos/gym.html">
+            <div class="concept-window concept-gym">
+              <div class="concept-toolbar"><i></i><i></i><i></i><span>VOLT</span></div>
+              <div class="concept-body"><small>Performance club</small><strong>BUILD<br>POWER.</strong><em>Start training →</em></div>
             </div>
-            <div class="demo-meta"><div><strong>Volt Training</strong><span>Bold fitness / black + yellow</span></div><span class="open-arrow">↗</span></div>
+            <div class="concept-meta"><span><b>Volt Training</b><small>Bold fitness</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
           </a>
 
-          <a class="demo-card studio reveal" href="demos/studio.html">
-            <div class="demo-art">
-              <div class="mini-nav">ARC° <span>Work &nbsp; About</span></div>
-              <div class="studio-line"></div>
-              <div class="mini-copy"><small>Independent creative studio</small><b>Make less.<br>Mean more.</b><em>Selected work →</em></div>
+          <a class="concept-card reveal" href="demos/studio.html">
+            <div class="concept-window concept-studio">
+              <div class="concept-toolbar"><i></i><i></i><i></i><span>ARC°</span></div>
+              <div class="concept-body"><small>Independent studio</small><strong>Make less.<br>Mean more.</strong><em>Selected work →</em></div>
             </div>
-            <div class="demo-meta"><div><strong>ARC Studio</strong><span>Monochrome creative studio</span></div><span class="open-arrow">↗</span></div>
+            <div class="concept-meta"><span><b>ARC Studio</b><small>Monochrome creative</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
           </a>
 
-          <a class="demo-card estate reveal" href="demos/estate.html">
-            <div class="demo-art">
-              <div class="mini-nav">NORTH <span>Homes &nbsp; Journal</span></div>
-              <div class="mini-copy"><small>Curated residences</small><b>Homes worth<br>keeping.</b><em>Explore properties →</em></div>
+          <a class="concept-card reveal" href="demos/estate.html">
+            <div class="concept-window concept-estate">
+              <div class="concept-toolbar"><i></i><i></i><i></i><span>North Residences</span></div>
+              <div class="concept-body"><small>Curated residences</small><strong>Homes worth<br>keeping.</strong><em>Explore →</em></div>
             </div>
-            <div class="demo-meta"><div><strong>North Residences</strong><span>Luxury property / editorial</span></div><span class="open-arrow">↗</span></div>
+            <div class="concept-meta"><span><b>North Residences</b><small>Luxury property</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
           </a>
 
-          <a class="demo-card saas reveal" href="demos/saas.html">
-            <div class="demo-art">
-              <div class="mini-nav">Relay <span>Product &nbsp; Pricing</span></div>
-              <div class="saas-panel">
-                <span class="metric">Revenue <b>$84,240</b></span>
-                <span class="spark"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-              </div>
-              <div class="mini-copy"><small>Simple business analytics</small><b>Know what<br>changed.</b><em>Try Relay →</em></div>
+          <a class="concept-card reveal" href="demos/saas.html">
+            <div class="concept-window concept-saas">
+              <div class="concept-toolbar"><i></i><i></i><i></i><span>Relay</span></div>
+              <div class="concept-body"><small>Business analytics</small><strong>Know what<br>changed.</strong><em>Try Relay →</em></div>
             </div>
-            <div class="demo-meta"><div><strong>Relay Analytics</strong><span>Clean product / SaaS</span></div><span class="open-arrow">↗</span></div>
+            <div class="concept-meta"><span><b>Relay Analytics</b><small>Clean SaaS product</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
           </a>
 
-          <a class="demo-card restaurant reveal" href="demos/restaurant.html">
-            <div class="demo-art">
-              <div class="mini-nav">SABLE <span>Menu &nbsp; Book</span></div>
-              <div class="restaurant-ring"></div>
-              <div class="mini-copy"><small>Kitchen · late dining</small><b>Dinner,<br>done right.</b><em>Reserve a table →</em></div>
+          <a class="concept-card reveal" href="demos/restaurant.html">
+            <div class="concept-window concept-restaurant">
+              <div class="concept-toolbar"><i></i><i></i><i></i><span>Sable</span></div>
+              <div class="concept-body"><small>Kitchen · late dining</small><strong>Dinner,<br>done right.</strong><em>Reserve →</em></div>
             </div>
-            <div class="demo-meta"><div><strong>Sable Restaurant</strong><span>Dark hospitality / premium</span></div><span class="open-arrow">↗</span></div>
+            <div class="concept-meta"><span><b>Sable Restaurant</b><small>Premium hospitality</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="section-pad services-section" id="services">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <p class="eyebrow">What I can build</p>
-          <h2>From “we just need a site” to a proper app.</h2>
-          <p>The scope changes, but the basics don’t: it needs to be clear, quick, responsive and easy to keep using.</p>
-        </div>
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="content split-layout">
+        <header class="section-header sticky-copy reveal">
+          <p class="eyebrow">What I build</p>
+          <h2 id="services-title">The useful stuff.</h2>
+          <p>Most projects fit into one of these. If yours doesn’t, the scope still starts from what the final user needs to do.</p>
+        </header>
 
-        <div class="service-grid">
-          <article class="service-card reveal"><span class="service-num">01</span><h3>Business websites</h3><p>Landing pages, restaurant sites, gym sites, portfolios, menus, service pages and full multi-page sites.</p></article>
-          <article class="service-card reveal"><span class="service-num">02</span><h3>Desktop apps</h3><p>Electron-style business tools, trackers, dashboards, local admin apps and utilities built around a real workflow.</p></article>
-          <article class="service-card reveal"><span class="service-num">03</span><h3>Redesigns</h3><p>If the current site works but looks dated, I can rebuild the interface without throwing away what already makes sense.</p></article>
-          <article class="service-card reveal"><span class="service-num">04</span><h3>Responsive polish</h3><p>Layouts are checked for small screens, touch targets, readable type, keyboard access and reduced-motion preferences.</p></article>
-          <article class="service-card reveal"><span class="service-num">05</span><h3>Deployment help</h3><p>I can prepare the project for hosting and help connect the final domain. Paid domain or hosting fees stay separate.</p></article>
-          <article class="service-card reveal"><span class="service-num">06</span><h3>Source handoff</h3><p>You can receive the project source when the job is finished, so the work isn’t trapped behind some mystery builder.</p></article>
+        <div class="settings-group reveal" role="list" aria-label="Services">
+          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg></span><span><b>Business websites</b><small>Landing pages, restaurants, gyms, portfolios, services, menus, and multi-page sites.</small></span></div>
+          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><span><b>Desktop apps</b><small>Trackers, dashboards, management tools, and local utilities built around a real workflow.</small></span></div>
+          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M4 18 18 4l2 2L6 20H4v-2Z"/><path d="m13 5 6 6"/></svg></span><span><b>Redesigns</b><small>Keep what already works, then rebuild the interface, structure, responsiveness, and polish around it.</small></span></div>
+          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m17 14 3 3-3 3"/></svg></span><span><b>Responsive polish</b><small>Touch targets, readable type, keyboard focus, reduced motion, and layouts that adapt cleanly.</small></span></div>
+          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 20h14"/></svg></span><span><b>Deployment help</b><small>Prepare the final project for hosting and help connect the domain. Paid hosting/domain fees stay separate.</small></span></div>
+          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M8 5H5v14h14v-3"/><path d="M10 14 19 5M13 5h6v6"/></svg></span><span><b>Source handoff</b><small>Project source can be handed over when the job is finished, so your work isn’t trapped in a builder.</small></span></div>
         </div>
       </div>
     </section>
 
-    <section class="section-pad pricing-section" id="pricing">
-      <div class="shell">
-        <div class="section-heading row-heading reveal">
+    <section class="section section-muted" id="pricing" aria-labelledby="pricing-title">
+      <div class="content">
+        <header class="section-header pricing-heading reveal">
           <div>
             <p class="eyebrow">Pricing</p>
-            <h2>No “DM for price” nonsense.</h2>
-            <p>These are working ranges, not bait prices. Final quotes stay inside the matching range once the scope is clear.</p>
+            <h2 id="pricing-title">Clear ranges before we talk.</h2>
+            <p>Final pricing depends on scope, but these are the ranges I use to keep expectations straightforward.</p>
           </div>
-          <div class="rate-card" aria-label="Currency conversion basis">
-            <span>Conversion guide</span>
-            <strong>£1 ≈ 300 DZD</strong>
-            <small>USD shown at ≈ $1.355 / £1 · Sep 2026 snapshot</small>
-          </div>
-        </div>
+          <div class="conversion-note"><span>Conversion guide</span><b>£1 ≈ 300 DZD</b><small>USD values are approximate.</small></div>
+        </header>
 
-        <div class="pricing-switch" role="tablist" aria-label="Pricing category">
-          <button class="price-tab active" id="webTab" type="button" role="tab" aria-selected="true" aria-controls="websitePrices" data-target="websitePrices">Websites</button>
-          <button class="price-tab" id="appTab" type="button" role="tab" aria-selected="false" aria-controls="appPrices" data-target="appPrices">Apps</button>
+        <div class="segmented-control reveal" role="tablist" aria-label="Pricing type">
+          <button class="segment active" id="webTab" type="button" role="tab" aria-selected="true" aria-controls="websitePrices" data-target="websitePrices">Websites</button>
+          <button class="segment" id="appTab" type="button" role="tab" aria-selected="false" aria-controls="appPrices" data-target="appPrices">Apps</button>
+          <span class="segment-indicator" aria-hidden="true"></span>
         </div>
 
         <div class="price-panel active" id="websitePrices" role="tabpanel" aria-labelledby="webTab">
-          <div class="price-grid">
-            <article class="price-card reveal" data-min="6000" data-max="7500">
-              <div class="price-name"><span>Simple site</span><small>Good for a focused presence</small></div>
-              <div class="price-main">6,000–7,500 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>1–2 focused pages</li><li>Responsive layout</li><li>Contact / location info</li><li>Clean branded styling</li></ul>
-            </article>
-
-            <article class="price-card reveal" data-min="9000" data-max="10000">
-              <div class="price-name"><span>Basic site</span><small>For a normal local business</small></div>
-              <div class="price-main">9,000–10,000 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>Several useful sections/pages</li><li>Menu, services or gallery</li><li>Responsive interactions</li><li>Basic deployment help</li></ul>
-            </article>
-
-            <article class="price-card featured reveal" data-min="10000" data-max="15000">
-              <div class="featured-label">Most common</div>
-              <div class="price-name"><span>Advanced site</span><small>More custom, more moving parts</small></div>
-              <div class="price-main">10,000–15,000 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>Custom visual direction</li><li>Richer interactions</li><li>More content/pages</li><li>Forms or practical JS features</li></ul>
-            </article>
-
-            <article class="price-card reveal" data-min="15000" data-max="30000">
-              <div class="price-name"><span>All you need</span><small>Full business site</small></div>
-              <div class="price-main">15,000–30,000 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>Full multi-page build</li><li>Custom components</li><li>Advanced polish</li><li>Launch / handoff support</li></ul>
-            </article>
+          <div class="pricing-list reveal">
+            <article class="price-row" data-min="6000" data-max="7500"><div><span class="price-level">Simple site</span><small>Focused online presence</small></div><div class="price-value"><b>6,000–7,500 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>1–2 focused pages</li><li>Responsive layout</li><li>Contact or location info</li><li>Branded styling</li></ul></article>
+            <article class="price-row" data-min="9000" data-max="10000"><div><span class="price-level">Basic site</span><small>Standard business website</small></div><div class="price-value"><b>9,000–10,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Several useful sections</li><li>Menu, services, or gallery</li><li>Responsive interactions</li><li>Basic deployment help</li></ul></article>
+            <article class="price-row recommended" data-min="10000" data-max="15000"><div><span class="price-level">Advanced site <em>Most common</em></span><small>More custom and interactive</small></div><div class="price-value"><b>10,000–15,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Custom layout and interactions</li><li>More pages or content</li><li>Advanced responsive polish</li><li>More custom components</li></ul></article>
+            <article class="price-row" data-min="15000" data-max="30000"><div><span class="price-level">All you need</span><small>Full business website</small></div><div class="price-value"><b>15,000–30,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Full multi-page build</li><li>Advanced interactions</li><li>Detailed responsive pass</li><li>Broader project scope</li></ul></article>
           </div>
         </div>
 
         <div class="price-panel" id="appPrices" role="tabpanel" aria-labelledby="appTab" hidden>
-          <div class="price-grid">
-            <article class="price-card" data-min="10000" data-max="15000">
-              <div class="price-name"><span>Simple app</span><small>One clear job, done well</small></div>
-              <div class="price-main">10,000–15,000 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>Focused workflow</li><li>Local data / settings</li><li>Responsive app layout</li><li>Source project</li></ul>
-            </article>
-
-            <article class="price-card" data-min="20000" data-max="40000">
-              <div class="price-name"><span>Basic app</span><small>Multiple useful screens</small></div>
-              <div class="price-main">20,000–40,000 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>Several screens</li><li>Forms + stored data</li><li>Search / filtering</li><li>Installer-ready structure</li></ul>
-            </article>
-
-            <article class="price-card featured" data-min="30000" data-max="60000">
-              <div class="featured-label">Custom build</div>
-              <div class="price-name"><span>Advanced app</span><small>More logic and deeper UI</small></div>
-              <div class="price-main">30,000–60,000 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>Dashboard / data views</li><li>Advanced workflows</li><li>Import / export options</li><li>More custom interaction</li></ul>
-            </article>
-
-            <article class="price-card" data-min="70000" data-max="150000">
-              <div class="price-name"><span>All you need</span><small>Larger custom application</small></div>
-              <div class="price-main">70,000–150,000 <b>DZD</b></div>
-              <div class="price-convert"><span class="gbp"></span><span class="usd"></span></div>
-              <ul><li>Larger feature set</li><li>Complex data / admin UI</li><li>Polished release build</li><li>Full project handoff</li></ul>
-            </article>
+          <div class="pricing-list reveal in">
+            <article class="price-row" data-min="10000" data-max="15000"><div><span class="price-level">Simple app</span><small>Focused utility</small></div><div class="price-value"><b>10,000–15,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Small focused workflow</li><li>Core app interface</li><li>Local data where suitable</li><li>Desktop packaging</li></ul></article>
+            <article class="price-row" data-min="20000" data-max="40000"><div><span class="price-level">Basic app</span><small>Normal business tool</small></div><div class="price-value"><b>20,000–40,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Several screens</li><li>Forms and management flows</li><li>Saved data</li><li>Responsive states</li></ul></article>
+            <article class="price-row recommended" data-min="30000" data-max="60000"><div><span class="price-level">Advanced app <em>Most common</em></span><small>Custom business workflow</small></div><div class="price-value"><b>30,000–60,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Dashboards and charts</li><li>More custom features</li><li>Polished state handling</li><li>Deeper workflow logic</li></ul></article>
+            <article class="price-row" data-min="70000" data-max="150000"><div><span class="price-level">All you need</span><small>Larger custom app</small></div><div class="price-value"><b>70,000–150,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Larger feature set</li><li>Complex screens and flows</li><li>Broader data handling</li><li>Full product polish</li></ul></article>
           </div>
         </div>
 
-        <p class="pricing-note">The DZD range is the quote that matters. GBP and USD are there so the number is easy to understand for anyone viewing the portfolio; exchange rates move.</p>
+        <p class="pricing-footnote reveal">Hosting, domains, paid APIs, licenses, or other third-party costs are separate unless they’re included in the agreed quote.</p>
       </div>
     </section>
 
-    <section class="section-pad process-section" id="process">
-      <div class="shell process-grid">
-        <div class="section-heading sticky-heading reveal">
-          <p class="eyebrow">How a project works</p>
-          <h2>Simple process. No weird agency maze.</h2>
-          <p>You should know what happens before the first line of code gets written.</p>
-        </div>
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="content split-layout">
+        <header class="section-header sticky-copy reveal">
+          <p class="eyebrow">How it works</p>
+          <h2 id="process-title">Straightforward from day one.</h2>
+          <p>You shouldn’t need a meeting just to understand what happens next.</p>
+        </header>
 
-        <ol class="process-list">
-          <li class="reveal"><span>1</span><div><h3>Pick the rough level</h3><p>Use the pricing above to work out whether the project is simple, basic, advanced or a full build.</p></div></li>
-          <li class="reveal"><span>2</span><div><h3>Agree on the scope</h3><p>Pages, features, visual direction and anything the project absolutely has to do get written down first.</p></div></li>
-          <li class="reveal"><span>3</span><div><h3>I build and test it</h3><p>The project gets made around the agreed scope, then checked across common screen sizes and input methods.</p></div></li>
-          <li class="reveal"><span>4</span><div><h3>You review it</h3><p>A normal polish pass is part of the process. Big new features added after the scope are treated as extra work, not hidden inside the original quote.</p></div></li>
-          <li class="reveal"><span>5</span><div><h3>Launch + handoff</h3><p>The finished project can be prepared for deployment and the source can be handed over with the important files kept understandable.</p></div></li>
+        <ol class="process-list reveal">
+          <li><span>1</span><div><b>Tell me what you need</b><p>Send the business, project type, must-have features, style references, content you already have, and target budget.</p></div></li>
+          <li><span>2</span><div><b>I lock the scope</b><p>I match the request to a price range, clarify what’s included, and make sure the important parts are understood before building.</p></div></li>
+          <li><span>3</span><div><b>I build and refine it</b><p>The project gets the layout, interaction, responsiveness, states, and polish needed for the actual use case.</p></div></li>
+          <li><span>4</span><div><b>You review the finished work</b><p>We handle the agreed revisions, final checks, deployment or packaging, and source handoff if it’s part of the job.</p></div></li>
         </ol>
       </div>
     </section>
 
-    <section class="section-pad faq-section" id="faq">
-      <div class="shell faq-layout">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Before you ask</p>
-          <h2>The stuff clients normally want to know.</h2>
-          <p>If you’re checking this page in person, this section should answer most of the obvious questions before we even start talking.</p>
-        </div>
+    <section class="section section-muted" id="faq" aria-labelledby="faq-title">
+      <div class="content narrow-content">
+        <header class="section-header reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">The things people usually ask.</h2>
+        </header>
 
-        <div class="faq-list">
-          <details class="reveal">
-            <summary>Will the site work properly on phones?</summary>
-            <p>Yes. Responsive behavior is part of the build, not a paid add-on. Navigation, text size, spacing and touch targets are designed for smaller screens too.</p>
-          </details>
-          <details class="reveal">
-            <summary>Do I need to already own a domain?</summary>
-            <p>No. A project can be built and previewed first. If you want a custom domain later, I can help connect it. The cost of a paid domain or hosting provider is separate from the development price.</p>
-          </details>
-          <details class="reveal">
-            <summary>Can you redesign something I already have?</summary>
-            <p>Yep. If the content or backend already works, the job can focus on structure, visuals, mobile behavior and interaction instead of rebuilding everything for no reason.</p>
-          </details>
-          <details class="reveal">
-            <summary>How long does a project take?</summary>
-            <p>It depends on scope. A focused site is obviously faster than a full app with stored data and multiple workflows. The schedule is agreed before the build starts so there isn’t a random deadline invented halfway through.</p>
-          </details>
-          <details class="reveal">
-            <summary>What do I need to provide?</summary>
-            <p>If you have a logo, photos, menu, service list, prices or existing text, send them. If not, the project can start with a clear structure and placeholders while the final content is prepared.</p>
-          </details>
-          <details class="reveal">
-            <summary>Do I get the source code?</summary>
-            <p>For normal custom projects, yes — the source can be handed over. If a project ever uses a third-party licensed asset or service, that part follows its own license instead of pretending it belongs to us.</p>
-          </details>
-          <details class="reveal">
-            <summary>What happens if I ask for extra features later?</summary>
-            <p>Small polish is one thing. A whole new feature is another. Anything that changes the agreed scope gets priced clearly before it’s added, so neither side has to guess.</p>
-          </details>
+        <div class="faq-group reveal">
+          <details><summary>What do I need to send before you start?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>A short description of the business or project, the pages or screens you need, required features, any logo/photos/text you already have, examples of styles you like, and your target budget.</p></div></details>
+          <details><summary>Do you make the site work on phones too?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Yes. Responsive behavior is part of the normal build, not an extra visual pass at the end.</p></div></details>
+          <details><summary>Can you redesign an existing website or app?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Yes. If the current project already has useful content or functionality, the redesign can preserve what makes sense and focus on structure, usability, responsiveness, and visual quality.</p></div></details>
+          <details><summary>Are domain and hosting costs included?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Not automatically. I can help prepare or connect the project, but paid hosting, domains, APIs, licenses, and similar third-party fees are separate unless the quote says otherwise.</p></div></details>
+          <details><summary>Will I get the source code?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Source handoff is available and can be included in the final scope so you’re not locked into a mystery builder or account.</p></div></details>
+          <details><summary>What if I ask for more features after we start?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Small agreed revisions are handled inside the project. New pages, screens, or features that noticeably change the scope can change the final quote, and I’ll tell you before adding them.</p></div></details>
         </div>
       </div>
     </section>
 
-    <section class="cta-section">
-      <div class="shell">
-        <div class="cta-card reveal">
-          <p class="eyebrow">Ready when you are</p>
-          <h2>Got a project in mind?</h2>
-          <p>Show me what the business does, what the site or app needs to do, and which demo above feels closest to the direction. That’s enough to get the conversation moving.</p>
-          <div class="cta-actions">
-            <a class="button primary" href="https://github.com/plodroid" target="_blank" rel="noopener">Open my GitHub ↗</a>
-            <button class="button secondary" id="copyBrief" type="button">Copy a project brief</button>
+    <section class="section start-section" id="start" aria-labelledby="start-title">
+      <div class="content narrow-content">
+        <div class="start-card reveal">
+          <p class="eyebrow">Start a project</p>
+          <h2 id="start-title">Have something in mind?</h2>
+          <p>Use this short brief and send it with the project. It covers the details I need to understand the job without making you answer twenty separate questions.</p>
+          <div class="brief-preview" aria-label="Project brief fields">
+            <span>Project type</span><span>Business / project</span><span>What it needs to do</span><span>Pages or screens</span><span>Style you like</span><span>Must-have features</span><span>Content you already have</span><span>Target budget</span>
+          </div>
+          <div class="start-actions">
+            <button class="button button-primary" id="copyBrief" type="button">Copy project brief</button>
+            <a class="button button-secondary" href="#work">Look through the work again</a>
           </div>
           <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
         </div>
@@ -367,15 +304,20 @@
   </main>
 
   <footer class="site-footer">
-    <div class="shell footer-inner">
-      <div><strong>Plexium Portfolio</strong><span>Websites · Apps · UI</span></div>
-      <div class="footer-links"><a href="../">Home</a><a href="../browser/">Browser</a><a href="../minecraft/">Minecraft</a><a href="#pricing">Pricing</a></div>
+    <div class="content footer-inner">
+      <span>Portfolio · Websites & Apps</span>
+      <a href="../">Back to Plexium</a>
     </div>
   </footer>
 
-  <dialog class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close preview">×</button>
-    <img id="lightboxImage" alt="">
+  <dialog class="lightbox" id="lightbox" aria-label="Project preview">
+    <div class="lightbox-bar">
+      <span>Preview</span>
+      <button class="icon-button" id="lightboxClose" type="button" aria-label="Close preview">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
+      </button>
+    </div>
+    <div class="lightbox-content"><img id="lightboxImage" alt=""></div>
   </dialog>
 
   <script src="app.js"></script>
