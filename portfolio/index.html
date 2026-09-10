@@ -107,12 +107,25 @@ html[data-theme="dark"] .liquid-indicator{border-color:rgba(255,255,255,.14);box
 /* ---------- Desktop nav: classic shell, liquid only on tab selection ---------- */
 .site-nav{position:fixed;z-index:1200;left:0;right:0;top:14px;padding:0 16px;pointer-events:none}
 .nav-shell{
-  pointer-events:auto;width:min(860px,100%);height:62px;margin:auto;padding:7px 9px 7px 15px;
-  display:grid;grid-template-columns:120px 1fr 50px;align-items:center;gap:10px;
-  border-radius:24px;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line-soft);box-shadow:var(--shadow);
+  pointer-events:auto;
+  width:max-content;
+  max-width:calc(100vw - 28px);
+  height:62px;
+  margin:auto;
+  padding:7px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  border:1px solid var(--line-soft);
+  box-shadow:0 14px 42px rgba(0,0,0,.10),0 2px 8px rgba(0,0,0,.04),inset 0 1px rgba(255,255,255,.36);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
 }
-.nav-brand{font-size:.92rem;font-weight:720;letter-spacing:-.02em}
-.nav-tabs{justify-self:center;display:flex;align-items:center;height:48px;padding:0 2px;border-radius:999px}
+.nav-brand{display:none}
+.nav-tabs{display:flex;align-items:center;height:48px;padding:0 2px;border-radius:999px}
 .nav-tabs a{
   min-width:84px;height:48px;padding:0 15px;display:flex;align-items:center;justify-content:center;border-radius:999px;
   color:var(--muted);font-size:.88rem;font-weight:640;transition:color 180ms ease,transform 160ms var(--ease),background-color 180ms ease;
@@ -122,6 +135,7 @@ html[data-theme="dark"] .liquid-indicator{border-color:rgba(255,255,255,.14);box
 .nav-tabs a:active{transform:scale(.975)}
 .icon-btn{
   width:44px;height:44px;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--muted);
+  flex:0 0 44px;
   transition:transform 160ms var(--ease),background-color 180ms ease,color 180ms ease,box-shadow 180ms ease;
 }
 .icon-btn:hover{color:var(--text);transform:scale(1.055);background:var(--glass);box-shadow:inset 1px 1px rgba(255,255,255,.4),0 4px 12px rgba(0,0,0,.06);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}
@@ -369,7 +383,6 @@ html[data-theme=dark] .range-thumb{background:rgba(120,120,128,.48);border-color
 
 <header class="site-nav">
   <nav class="nav-shell" aria-label="Portfolio navigation">
-    <span class="nav-brand" aria-hidden="true"></span>
     <div class="nav-tabs" id="desktopTabs" data-liquid-tabs>
       <a class="active" href="#work">Work</a>
       <a href="#process">Process</a>
