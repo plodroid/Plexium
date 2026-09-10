@@ -1,24 +1,26 @@
 <!doctype html>
-<html lang="en" data-profile="apple" data-appearance="light">
+<html lang="en" data-appearance="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <title>Portfolio — Websites & Apps</title>
-  <meta name="description" content="A polished Apple-inspired portfolio for websites and apps with real previews, pricing, motion, and interactive demos.">
+  <meta name="description" content="A polished Apple-inspired portfolio for websites and apps with real previews, clear pricing, thoughtful motion, and interactive demos.">
   <link rel="stylesheet" href="styles/part1.css">
-<link rel="stylesheet" href="styles/part2.css">
-<link rel="stylesheet" href="styles/part3.css">
-<link rel="stylesheet" href="styles/part4.css">
+  <link rel="stylesheet" href="styles/part2.css">
+  <link rel="stylesheet" href="styles/part3.css">
+  <link rel="stylesheet" href="styles/part4.css">
+  <link rel="stylesheet" href="styles/part5.css">
 </head>
 <body>
-  <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="siteHeader">
-    <nav class="glass-nav squish-surface" aria-label="Main navigation">
+    <nav class="glass-nav" aria-label="Main navigation">
       <a class="brand" href="#hero" aria-label="Portfolio home">
-        <span class="brand-dot"></span>
+        <span class="brand-dot" aria-hidden="true"></span>
         <span>Portfolio</span>
       </a>
       <div class="nav-links">
@@ -29,53 +31,34 @@
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-actions">
-        <button class="icon-btn squish" id="settingsBtn" aria-label="Open settings">
-          <svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7Zm8 3.5l-1.71-.57a6.75 6.75 0 0 0-.47-1.14l.82-1.59-1.5-1.5-1.59.82c-.36-.19-.74-.35-1.14-.47L14 4h-4l-.41 1.55c-.4.12-.78.28-1.14.47l-1.59-.82-1.5 1.5.82 1.59c-.19.36-.35.74-.47 1.14L4 12l1.71.57c.12.4.28.78.47 1.14l-.82 1.59 1.5 1.5 1.59-.82c.36.19.74.35 1.14.47L10 20h4l.41-1.55c.4-.12.78-.28 1.14-.47l1.59.82 1.5-1.5-.82-1.59c.19-.36.35-.74.47-1.14L20 12Z"/></svg>
-        </button>
-        <button class="icon-btn squish" id="collapseNavBtn" aria-label="Hide navigation">
-          <svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg>
+        <button class="icon-btn" id="settingsBtn" aria-label="Open appearance settings" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7Zm8 3.5l-1.71-.57a6.75 6.75 0 0 0-.47-1.14l.82-1.59-1.5-1.5-1.59.82c-.36-.19-.74-.35-1.14-.47L14 4h-4l-.41 1.55c-.4.12-.78.28-1.14.47l-1.59-.82-1.5 1.5.82 1.59c-.19.36-.35.74-.47 1.14L4 12l1.71.57c.12.4.28.78.47 1.14l-.82 1.59 1.5 1.5 1.59-.82c.36.19.74.35 1.14.47L10 20h4l.41-1.55c.4-.12.78-.28 1.14-.47l1.59.82 1.5-1.5-.82-1.59c.19-.36.35-.74.47-1.14L20 12Z"/></svg>
         </button>
       </div>
     </nav>
   </header>
 
-  <button class="nav-restore" id="navRestoreBtn" aria-label="Show navigation">
-    <svg viewBox="0 0 24 24"><path d="M9 5l-7 7 7 7"/></svg>
-    <span>Nav</span>
-  </button>
-
   <aside class="settings-sheet" id="settingsSheet" aria-hidden="true">
     <div class="sheet-backdrop" id="sheetBackdrop"></div>
-    <section class="sheet-panel squish-surface" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <section class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
       <div class="sheet-head">
         <div>
           <p class="eyebrow">Settings</p>
           <h2 id="sheetTitle">Appearance</h2>
         </div>
         <button class="icon-btn" id="closeSettingsBtn" aria-label="Close settings">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
       </div>
-      <div class="settings-group squish-surface">
-        <div class="row-head"><strong>Theme style</strong><span>Default is Apple</span></div>
-        <div class="segmented" data-setting="profile">
-          <button class="segmented-btn active" data-value="apple">Apple</button>
-          <button class="segmented-btn" data-value="claude">Claude</button>
-        </div>
-      </div>
-      <div class="settings-group squish-surface">
-        <div class="row-head"><strong>Light / dark</strong><span>Start in light mode</span></div>
-        <div class="segmented" data-setting="appearance">
+      <div class="settings-group">
+        <div class="row-head"><strong>Appearance</strong><span>Light by default</span></div>
+        <div class="segmented" data-setting="appearance" role="group" aria-label="Appearance">
           <button class="segmented-btn active" data-value="light">Light</button>
           <button class="segmented-btn" data-value="dark">Dark</button>
           <button class="segmented-btn" data-value="system">System</button>
         </div>
       </div>
-      <div class="settings-group squish-surface">
-        <div class="row-head"><strong>Motion</strong><span>Subtle when needed, wow when noticed</span></div>
-        <label class="toggle-row"><span>High motion mode</span><input id="motionToggle" type="checkbox" checked><i></i></label>
-        <label class="toggle-row"><span>Cursor glow</span><input id="cursorToggle" type="checkbox" checked><i></i></label>
-      </div>
+      <p class="settings-footnote">Motion and transparency automatically respect your device accessibility preferences.</p>
     </section>
   </aside>
 
@@ -85,19 +68,19 @@
     <div class="content footer-inner">
       <div>
         <strong>Portfolio</strong>
-        <p>Websites and apps with better visuals, better motion, and less template energy.</p>
+        <p>Websites and apps built with clear structure, careful motion, and platform-aware interaction.</p>
       </div>
       <div class="footer-links">
         <a href="#hero">Top</a>
         <a href="#pricing">Pricing</a>
-        <a href="#contact">Email</a>
-        <a href="#">GitHub</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/plodroid">GitHub</a>
       </div>
       <span>© 2026 All rights reserved.</span>
     </div>
   </footer>
 
-  <nav class="mobile-dock squish-surface" aria-label="Mobile navigation">
+  <nav class="mobile-dock" aria-label="Mobile navigation">
     <a href="#work">Work</a>
     <a href="#apps">Apps</a>
     <a href="#pricing">Pricing</a>
@@ -105,12 +88,12 @@
   </nav>
 
   <dialog class="preview-modal" id="previewModal">
-    <div class="modal-window squish-surface">
+    <div class="modal-window">
       <div class="window-top">
-        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="window-pill" id="modalTitle">Preview</div>
         <button class="icon-btn" id="closePreviewBtn" aria-label="Close preview">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
       </div>
       <iframe id="previewFrame" title="Live preview"></iframe>
