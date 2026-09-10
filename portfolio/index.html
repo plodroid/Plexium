@@ -1,323 +1,120 @@
 <!doctype html>
-<html lang="en" data-theme="system">
+<html lang="en" data-profile="apple" data-appearance="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <title>Portfolio — Websites & Apps</title>
-  <meta name="description" content="Responsive websites and useful desktop apps, with real work, live website concepts, clear pricing in DZD, and a straightforward project process.">
-  <link rel="canonical" href="https://plexium.rweb.site/portfolio/">
-  <link rel="icon" type="image/png" href="../assets/Icons/dark.png">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="A polished Apple-inspired portfolio for websites and apps with real previews, pricing, motion, and interactive demos.">
+  <link rel="stylesheet" href="styles/part1.css">
+<link rel="stylesheet" href="styles/part2.css">
+<link rel="stylesheet" href="styles/part3.css">
+<link rel="stylesheet" href="styles/part4.css">
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="siteHeader">
-    <nav class="glass-bar" aria-label="Portfolio navigation">
-      <a class="nav-brand" href="../" aria-label="Back to Plexium home">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+    <nav class="glass-nav squish-surface" aria-label="Main navigation">
+      <a class="brand" href="#hero" aria-label="Portfolio home">
+        <span class="brand-dot"></span>
         <span>Portfolio</span>
       </a>
-
-      <div class="nav-sections" aria-label="Page sections">
+      <div class="nav-links">
         <a href="#work">Work</a>
-        <a href="#concepts">Concepts</a>
+        <a href="#apps">Apps</a>
+        <a href="#websites">Websites</a>
         <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </div>
-
       <div class="nav-actions">
-        <a class="nav-contact" href="#start">Start a project</a>
-        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle appearance" title="Toggle appearance">
-          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
-          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.4A8 8 0 0 1 9.6 3.6 8.5 8.5 0 1 0 20.4 14.4Z"/></svg>
+        <button class="icon-btn squish" id="settingsBtn" aria-label="Open settings">
+          <svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7Zm8 3.5l-1.71-.57a6.75 6.75 0 0 0-.47-1.14l.82-1.59-1.5-1.5-1.59.82c-.36-.19-.74-.35-1.14-.47L14 4h-4l-.41 1.55c-.4.12-.78.28-1.14.47l-1.59-.82-1.5 1.5.82 1.59c-.19.36-.35.74-.47 1.14L4 12l1.71.57c.12.4.28.78.47 1.14l-.82 1.59 1.5 1.5 1.59-.82c.36.19.74.35 1.14.47L10 20h4l.41-1.55c.4-.12.78-.28 1.14-.47l1.59.82 1.5-1.5-.82-1.59c.19-.36.35-.74.47-1.14L20 12Z"/></svg>
+        </button>
+        <button class="icon-btn squish" id="collapseNavBtn" aria-label="Hide navigation">
+          <svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg>
         </button>
       </div>
     </nav>
   </header>
 
-  <main id="main">
-    <section class="hero section" aria-labelledby="hero-title">
-      <div class="content hero-content">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Websites & desktop apps</p>
-          <h1 id="hero-title">Work that feels <span>finished.</span></h1>
-          <p class="hero-lead">I build clean, responsive websites and practical apps for businesses that want something polished, understandable, and easy to use.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#work">View my work</a>
-            <a class="button button-secondary" href="#pricing">See pricing</a>
-          </div>
-          <div class="hero-notes" aria-label="Project highlights">
-            <span>Mobile + desktop</span>
-            <span>Clear DZD pricing</span>
-            <span>Source handoff available</span>
-          </div>
-        </div>
+  <button class="nav-restore" id="navRestoreBtn" aria-label="Show navigation">
+    <svg viewBox="0 0 24 24"><path d="M9 5l-7 7 7 7"/></svg>
+    <span>Nav</span>
+  </button>
 
-        <div class="showcase reveal" aria-label="Featured app preview">
-          <div class="showcase-window" id="showcaseWindow">
-            <div class="window-toolbar">
-              <div class="traffic-lights" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div class="window-title" id="showcaseTitle">Income Tracker</div>
-              <div class="window-spacer"></div>
-            </div>
-            <div class="showcase-stage">
-              <img class="showcase-image active" src="../assets/incometrackerapp.png" alt="Income Tracker desktop app dashboard" data-showcase-image="income">
-              <img class="showcase-image" src="../assets/AAsportsMembertracker.png" alt="AA Sports Member Tracker desktop app" data-showcase-image="sports">
-            </div>
-            <div class="showcase-switch" role="tablist" aria-label="Choose app preview">
-              <button class="showcase-tab active" type="button" role="tab" aria-selected="true" data-showcase="income" data-title="Income Tracker">Income Tracker</button>
-              <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-showcase="sports" data-title="AA Sports">AA Sports</button>
-            </div>
-          </div>
+  <aside class="settings-sheet" id="settingsSheet" aria-hidden="true">
+    <div class="sheet-backdrop" id="sheetBackdrop"></div>
+    <section class="sheet-panel squish-surface" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <div class="sheet-head">
+        <div>
+          <p class="eyebrow">Settings</p>
+          <h2 id="sheetTitle">Appearance</h2>
+        </div>
+        <button class="icon-btn" id="closeSettingsBtn" aria-label="Close settings">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="settings-group squish-surface">
+        <div class="row-head"><strong>Theme style</strong><span>Default is Apple</span></div>
+        <div class="segmented" data-setting="profile">
+          <button class="segmented-btn active" data-value="apple">Apple</button>
+          <button class="segmented-btn" data-value="claude">Claude</button>
         </div>
       </div>
-    </section>
-
-    <section class="trust-strip" aria-label="What every project includes">
-      <div class="content trust-list">
-        <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h5"/></svg><span><b>Responsive first</b><small>Layouts that still make sense on phones, tablets, laptops, and wide screens.</small></span></div>
-        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M8 11h8M8 14h4"/></svg><span><b>Clear scope</b><small>You can see the working price range and what affects the final quote before we begin.</small></span></div>
-        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 12 3 3 7-7"/><circle cx="12" cy="12" r="9"/></svg><span><b>Built for the job</b><small>No template dump. The interface follows what the business actually needs people to do.</small></span></div>
-      </div>
-    </section>
-
-    <section class="section" id="work" aria-labelledby="work-title">
-      <div class="content">
-        <header class="section-header reveal">
-          <p class="eyebrow">Selected work</p>
-          <h2 id="work-title">Real apps. Real interfaces.</h2>
-          <p>These are actual projects already in my portfolio, shown without fake mockups covering the UI.</p>
-        </header>
-
-        <div class="work-stack">
-          <article class="work-item reveal">
-            <button class="work-preview open-lightbox" type="button" data-image="../assets/incometrackerapp.png" data-alt="Income Tracker dashboard">
-              <img src="../assets/incometrackerapp.png" alt="Income Tracker dashboard preview">
-              <span class="preview-action"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>Open preview</span>
-            </button>
-            <div class="work-info">
-              <div class="work-kicker">Desktop app · Business tools</div>
-              <h3>Income Tracker</h3>
-              <p>A focused dashboard for tracking income, projects, progress, and business activity without turning everyday work into spreadsheet maintenance.</p>
-              <ul class="feature-list">
-                <li>Financial overview and charts</li>
-                <li>Project and payment tracking</li>
-                <li>Desktop-first workflow</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="work-item reverse reveal">
-            <button class="work-preview open-lightbox" type="button" data-image="../assets/AAsportsMembertracker.png" data-alt="AA Sports Member Tracker">
-              <img src="../assets/AAsportsMembertracker.png" alt="AA Sports Member Tracker preview">
-              <span class="preview-action"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>Open preview</span>
-            </button>
-            <div class="work-info">
-              <div class="work-kicker">Desktop app · Gym management</div>
-              <h3>AA Sports Member Tracker</h3>
-              <p>A management app built around a real gym workflow: keeping members, activity, and day-to-day admin close without burying staff in menus.</p>
-              <ul class="feature-list">
-                <li>Member-focused management</li>
-                <li>Fast everyday navigation</li>
-                <li>Built around the gym's workflow</li>
-              </ul>
-            </div>
-          </article>
+      <div class="settings-group squish-surface">
+        <div class="row-head"><strong>Light / dark</strong><span>Start in light mode</span></div>
+        <div class="segmented" data-setting="appearance">
+          <button class="segmented-btn active" data-value="light">Light</button>
+          <button class="segmented-btn" data-value="dark">Dark</button>
+          <button class="segmented-btn" data-value="system">System</button>
         </div>
       </div>
-    </section>
-
-    <section class="section section-muted" id="concepts" aria-labelledby="concepts-title">
-      <div class="content">
-        <header class="section-header reveal">
-          <p class="eyebrow">Website concepts</p>
-          <h2 id="concepts-title">Different businesses need different voices.</h2>
-          <p>The portfolio stays consistent; the work doesn’t have to. These live concept sites show how the visual direction can change around the client.</p>
-        </header>
-
-        <div class="concept-grid">
-          <a class="concept-card reveal" href="demos/cafe.html">
-            <div class="concept-window concept-cafe">
-              <div class="concept-toolbar"><i></i><i></i><i></i><span>Morrow Coffee</span></div>
-              <div class="concept-body"><small>Neighborhood coffee</small><strong>Slow mornings.<br>Good coffee.</strong><em>Menu →</em></div>
-            </div>
-            <div class="concept-meta"><span><b>Morrow Coffee</b><small>Warm editorial café</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
-          </a>
-
-          <a class="concept-card reveal" href="demos/gym.html">
-            <div class="concept-window concept-gym">
-              <div class="concept-toolbar"><i></i><i></i><i></i><span>VOLT</span></div>
-              <div class="concept-body"><small>Performance club</small><strong>BUILD<br>POWER.</strong><em>Start training →</em></div>
-            </div>
-            <div class="concept-meta"><span><b>Volt Training</b><small>Bold fitness</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
-          </a>
-
-          <a class="concept-card reveal" href="demos/studio.html">
-            <div class="concept-window concept-studio">
-              <div class="concept-toolbar"><i></i><i></i><i></i><span>ARC°</span></div>
-              <div class="concept-body"><small>Independent studio</small><strong>Make less.<br>Mean more.</strong><em>Selected work →</em></div>
-            </div>
-            <div class="concept-meta"><span><b>ARC Studio</b><small>Monochrome creative</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
-          </a>
-
-          <a class="concept-card reveal" href="demos/estate.html">
-            <div class="concept-window concept-estate">
-              <div class="concept-toolbar"><i></i><i></i><i></i><span>North Residences</span></div>
-              <div class="concept-body"><small>Curated residences</small><strong>Homes worth<br>keeping.</strong><em>Explore →</em></div>
-            </div>
-            <div class="concept-meta"><span><b>North Residences</b><small>Luxury property</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
-          </a>
-
-          <a class="concept-card reveal" href="demos/saas.html">
-            <div class="concept-window concept-saas">
-              <div class="concept-toolbar"><i></i><i></i><i></i><span>Relay</span></div>
-              <div class="concept-body"><small>Business analytics</small><strong>Know what<br>changed.</strong><em>Try Relay →</em></div>
-            </div>
-            <div class="concept-meta"><span><b>Relay Analytics</b><small>Clean SaaS product</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
-          </a>
-
-          <a class="concept-card reveal" href="demos/restaurant.html">
-            <div class="concept-window concept-restaurant">
-              <div class="concept-toolbar"><i></i><i></i><i></i><span>Sable</span></div>
-              <div class="concept-body"><small>Kitchen · late dining</small><strong>Dinner,<br>done right.</strong><em>Reserve →</em></div>
-            </div>
-            <div class="concept-meta"><span><b>Sable Restaurant</b><small>Premium hospitality</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
-          </a>
-        </div>
+      <div class="settings-group squish-surface">
+        <div class="row-head"><strong>Motion</strong><span>Subtle when needed, wow when noticed</span></div>
+        <label class="toggle-row"><span>High motion mode</span><input id="motionToggle" type="checkbox" checked><i></i></label>
+        <label class="toggle-row"><span>Cursor glow</span><input id="cursorToggle" type="checkbox" checked><i></i></label>
       </div>
     </section>
+  </aside>
 
-    <section class="section" id="services" aria-labelledby="services-title">
-      <div class="content split-layout">
-        <header class="section-header sticky-copy reveal">
-          <p class="eyebrow">What I build</p>
-          <h2 id="services-title">The useful stuff.</h2>
-          <p>Most projects fit into one of these. If yours doesn’t, the scope still starts from what the final user needs to do.</p>
-        </header>
-
-        <div class="settings-group reveal" role="list" aria-label="Services">
-          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg></span><span><b>Business websites</b><small>Landing pages, restaurants, gyms, portfolios, services, menus, and multi-page sites.</small></span></div>
-          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><span><b>Desktop apps</b><small>Trackers, dashboards, management tools, and local utilities built around a real workflow.</small></span></div>
-          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M4 18 18 4l2 2L6 20H4v-2Z"/><path d="m13 5 6 6"/></svg></span><span><b>Redesigns</b><small>Keep what already works, then rebuild the interface, structure, responsiveness, and polish around it.</small></span></div>
-          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m17 14 3 3-3 3"/></svg></span><span><b>Responsive polish</b><small>Touch targets, readable type, keyboard focus, reduced motion, and layouts that adapt cleanly.</small></span></div>
-          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 20h14"/></svg></span><span><b>Deployment help</b><small>Prepare the final project for hosting and help connect the domain. Paid hosting/domain fees stay separate.</small></span></div>
-          <div class="settings-row" role="listitem"><span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M8 5H5v14h14v-3"/><path d="M10 14 19 5M13 5h6v6"/></svg></span><span><b>Source handoff</b><small>Project source can be handed over when the job is finished, so your work isn’t trapped in a builder.</small></span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="pricing" aria-labelledby="pricing-title">
-      <div class="content">
-        <header class="section-header pricing-heading reveal">
-          <div>
-            <p class="eyebrow">Pricing</p>
-            <h2 id="pricing-title">Clear ranges before we talk.</h2>
-            <p>Final pricing depends on scope, but these are the ranges I use to keep expectations straightforward.</p>
-          </div>
-          <div class="conversion-note"><span>Conversion guide</span><b>£1 ≈ 300 DZD</b><small>USD values are approximate.</small></div>
-        </header>
-
-        <div class="segmented-control reveal" role="tablist" aria-label="Pricing type">
-          <button class="segment active" id="webTab" type="button" role="tab" aria-selected="true" aria-controls="websitePrices" data-target="websitePrices">Websites</button>
-          <button class="segment" id="appTab" type="button" role="tab" aria-selected="false" aria-controls="appPrices" data-target="appPrices">Apps</button>
-          <span class="segment-indicator" aria-hidden="true"></span>
-        </div>
-
-        <div class="price-panel active" id="websitePrices" role="tabpanel" aria-labelledby="webTab">
-          <div class="pricing-list reveal">
-            <article class="price-row" data-min="6000" data-max="7500"><div><span class="price-level">Simple site</span><small>Focused online presence</small></div><div class="price-value"><b>6,000–7,500 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>1–2 focused pages</li><li>Responsive layout</li><li>Contact or location info</li><li>Branded styling</li></ul></article>
-            <article class="price-row" data-min="9000" data-max="10000"><div><span class="price-level">Basic site</span><small>Standard business website</small></div><div class="price-value"><b>9,000–10,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Several useful sections</li><li>Menu, services, or gallery</li><li>Responsive interactions</li><li>Basic deployment help</li></ul></article>
-            <article class="price-row recommended" data-min="10000" data-max="15000"><div><span class="price-level">Advanced site <em>Most common</em></span><small>More custom and interactive</small></div><div class="price-value"><b>10,000–15,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Custom layout and interactions</li><li>More pages or content</li><li>Advanced responsive polish</li><li>More custom components</li></ul></article>
-            <article class="price-row" data-min="15000" data-max="30000"><div><span class="price-level">All you need</span><small>Full business website</small></div><div class="price-value"><b>15,000–30,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Full multi-page build</li><li>Advanced interactions</li><li>Detailed responsive pass</li><li>Broader project scope</li></ul></article>
-          </div>
-        </div>
-
-        <div class="price-panel" id="appPrices" role="tabpanel" aria-labelledby="appTab" hidden>
-          <div class="pricing-list reveal in">
-            <article class="price-row" data-min="10000" data-max="15000"><div><span class="price-level">Simple app</span><small>Focused utility</small></div><div class="price-value"><b>10,000–15,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Small focused workflow</li><li>Core app interface</li><li>Local data where suitable</li><li>Desktop packaging</li></ul></article>
-            <article class="price-row" data-min="20000" data-max="40000"><div><span class="price-level">Basic app</span><small>Normal business tool</small></div><div class="price-value"><b>20,000–40,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Several screens</li><li>Forms and management flows</li><li>Saved data</li><li>Responsive states</li></ul></article>
-            <article class="price-row recommended" data-min="30000" data-max="60000"><div><span class="price-level">Advanced app <em>Most common</em></span><small>Custom business workflow</small></div><div class="price-value"><b>30,000–60,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Dashboards and charts</li><li>More custom features</li><li>Polished state handling</li><li>Deeper workflow logic</li></ul></article>
-            <article class="price-row" data-min="70000" data-max="150000"><div><span class="price-level">All you need</span><small>Larger custom app</small></div><div class="price-value"><b>70,000–150,000 DZD</b><span class="gbp"></span><span class="usd"></span></div><ul><li>Larger feature set</li><li>Complex screens and flows</li><li>Broader data handling</li><li>Full product polish</li></ul></article>
-          </div>
-        </div>
-
-        <p class="pricing-footnote reveal">Hosting, domains, paid APIs, licenses, or other third-party costs are separate unless they’re included in the agreed quote.</p>
-      </div>
-    </section>
-
-    <section class="section" id="process" aria-labelledby="process-title">
-      <div class="content split-layout">
-        <header class="section-header sticky-copy reveal">
-          <p class="eyebrow">How it works</p>
-          <h2 id="process-title">Straightforward from day one.</h2>
-          <p>You shouldn’t need a meeting just to understand what happens next.</p>
-        </header>
-
-        <ol class="process-list reveal">
-          <li><span>1</span><div><b>Tell me what you need</b><p>Send the business, project type, must-have features, style references, content you already have, and target budget.</p></div></li>
-          <li><span>2</span><div><b>I lock the scope</b><p>I match the request to a price range, clarify what’s included, and make sure the important parts are understood before building.</p></div></li>
-          <li><span>3</span><div><b>I build and refine it</b><p>The project gets the layout, interaction, responsiveness, states, and polish needed for the actual use case.</p></div></li>
-          <li><span>4</span><div><b>You review the finished work</b><p>We handle the agreed revisions, final checks, deployment or packaging, and source handoff if it’s part of the job.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="faq" aria-labelledby="faq-title">
-      <div class="content narrow-content">
-        <header class="section-header reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2 id="faq-title">The things people usually ask.</h2>
-        </header>
-
-        <div class="faq-group reveal">
-          <details><summary>What do I need to send before you start?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>A short description of the business or project, the pages or screens you need, required features, any logo/photos/text you already have, examples of styles you like, and your target budget.</p></div></details>
-          <details><summary>Do you make the site work on phones too?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Yes. Responsive behavior is part of the normal build, not an extra visual pass at the end.</p></div></details>
-          <details><summary>Can you redesign an existing website or app?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Yes. If the current project already has useful content or functionality, the redesign can preserve what makes sense and focus on structure, usability, responsiveness, and visual quality.</p></div></details>
-          <details><summary>Are domain and hosting costs included?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Not automatically. I can help prepare or connect the project, but paid hosting, domains, APIs, licenses, and similar third-party fees are separate unless the quote says otherwise.</p></div></details>
-          <details><summary>Will I get the source code?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Source handoff is available and can be included in the final scope so you’re not locked into a mystery builder or account.</p></div></details>
-          <details><summary>What if I ask for more features after we start?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div><p>Small agreed revisions are handled inside the project. New pages, screens, or features that noticeably change the scope can change the final quote, and I’ll tell you before adding them.</p></div></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section start-section" id="start" aria-labelledby="start-title">
-      <div class="content narrow-content">
-        <div class="start-card reveal">
-          <p class="eyebrow">Start a project</p>
-          <h2 id="start-title">Have something in mind?</h2>
-          <p>Use this short brief and send it with the project. It covers the details I need to understand the job without making you answer twenty separate questions.</p>
-          <div class="brief-preview" aria-label="Project brief fields">
-            <span>Project type</span><span>Business / project</span><span>What it needs to do</span><span>Pages or screens</span><span>Style you like</span><span>Must-have features</span><span>Content you already have</span><span>Target budget</span>
-          </div>
-          <div class="start-actions">
-            <button class="button button-primary" id="copyBrief" type="button">Copy project brief</button>
-            <a class="button button-secondary" href="#work">Look through the work again</a>
-          </div>
-          <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <main id="main" data-fragments="3"></main>
 
   <footer class="site-footer">
     <div class="content footer-inner">
-      <span>Portfolio · Websites & Apps</span>
-      <a href="../">Back to Plexium</a>
+      <div>
+        <strong>Portfolio</strong>
+        <p>Websites and apps with better visuals, better motion, and less template energy.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Top</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Email</a>
+        <a href="#">GitHub</a>
+      </div>
+      <span>© 2026 All rights reserved.</span>
     </div>
   </footer>
 
-  <dialog class="lightbox" id="lightbox" aria-label="Project preview">
-    <div class="lightbox-bar">
-      <span>Preview</span>
-      <button class="icon-button" id="lightboxClose" type="button" aria-label="Close preview">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
-      </button>
+  <nav class="mobile-dock squish-surface" aria-label="Mobile navigation">
+    <a href="#work">Work</a>
+    <a href="#apps">Apps</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <dialog class="preview-modal" id="previewModal">
+    <div class="modal-window squish-surface">
+      <div class="window-top">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="window-pill" id="modalTitle">Preview</div>
+        <button class="icon-btn" id="closePreviewBtn" aria-label="Close preview">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <iframe id="previewFrame" title="Live preview"></iframe>
     </div>
-    <div class="lightbox-content"><img id="lightboxImage" alt=""></div>
   </dialog>
 
   <script src="app.js"></script>

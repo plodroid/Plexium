@@ -1,0 +1,49 @@
+.reveal { opacity: 0; transform: translateY(34px) scale(.985); transition: opacity 520ms var(--ease-out), transform 780ms var(--ease-out); }
+.reveal.in { opacity: 1; transform: translateY(0) scale(1); }
+.squish, .squish-surface { transform-origin: center; }
+.squished { animation: squish 320ms var(--ease-out); }
+@keyframes squish {
+  0% { transform: scale(1); }
+  30% { transform: scaleX(1.012) scaleY(.985); }
+  65% { transform: scaleX(.996) scaleY(1.004); }
+  100% { transform: scale(1); }
+}
+.cursor-glow {
+  position: fixed; left: 0; top: 0; width: 220px; height: 220px; z-index: 0; pointer-events: none; border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft) 0%, rgba(255,255,255,0) 68%); filter: blur(28px); opacity: .7; transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1180px) {
+  .sticky-layout, .advice-panel, .contact-grid { grid-template-columns: 1fr; }
+  .sticky-visual { position: relative; top: 0; }
+}
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .showcase-stage { min-height: 690px; }
+  .app-stage[data-stage="0"], .app-stage[data-stage="1"], .stock-demo { grid-template-columns: 1fr; }
+  .metric-grid, .floating-picks, .concept-grid, .compare-grid, .contact-links { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .content, .narrow { width: min(100% - 28px, 1200px); }
+  .section { padding: 86px 0; }
+  .hero { padding-top: 102px; }
+  .hero h1 { font-size: clamp(3rem, 15vw, 4.6rem); }
+  .stage-window { padding: 10px; border-radius: 24px; }
+  .window-tabs { display: none; }
+  .showcase-stage { min-height: 780px; }
+  .metric-grid, .metric-grid.two-up, .floating-picks, .compare-grid, .contact-links, .contact-form { grid-template-columns: 1fr; }
+  .gallery-card { width: 180px; }
+  .price-row { grid-template-columns: 1fr; }
+  .budget-topline, .support-row, .concept-meta, .footer-inner { flex-direction: column; align-items: flex-start; }
+  .mobile-dock { display: inline-flex; }
+  .nav-restore { top: auto; bottom: 84px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .app-stage, .ticker-track, .gallery-rail { animation: none !important; transition: none !important; opacity: 1; transform: none; }
+  .cursor-glow { display: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass-nav, .sheet-panel, .stage-window, .mobile-dock, .nav-restore, .modal-window { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--bg-2); }
+}
+

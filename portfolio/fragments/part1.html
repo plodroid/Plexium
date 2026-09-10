@@ -1,0 +1,134 @@
+<section class="hero section" id="hero">
+      <div class="content hero-content">
+        <p class="eyebrow reveal">Small tweaks to clean code.</p>
+        <h1 class="reveal">We build things people can <span>actually use.</span></h1>
+        <p class="hero-copy reveal">Showcase-heavy, Apple-clean, and built to make people stop scrolling for a sec and think, “hm, this is impressive — they made all this?”</p>
+        <div class="hero-actions reveal">
+          <a class="primary-btn squish" href="#work">See the work</a>
+          <a class="secondary-btn squish" href="#pricing">View pricing</a>
+        </div>
+
+        <div class="hero-stack reveal">
+          <div class="hero-window stage-window squish-surface" id="heroStage">
+            <div class="window-top">
+              <div class="traffic"><i></i><i></i><i></i></div>
+              <div class="window-pill">Interactive app preview</div>
+              <div class="window-tabs">
+                <button class="mini-tab active" data-app="0">Studio Board</button>
+                <button class="mini-tab" data-app="1">AA Sports</button>
+                <button class="mini-tab" data-app="2">Stock Viewer</button>
+                <button class="mini-tab" data-app="3">Simple Calc</button>
+              </div>
+            </div>
+            <div class="showcase-stage">
+              <div class="app-stage active" data-stage="0">
+                <div class="fake-sidebar squish-surface">
+                  <h3>Recent</h3>
+                  <button class="side-item active squish">Projects</button>
+                  <button class="side-item squish">Payments</button>
+                  <button class="side-item squish">Clients</button>
+                  <button class="side-item squish">Reports</button>
+                </div>
+                <div class="fake-app-main">
+                  <div class="hello-bar squish-surface"><strong>Hello Plodroid.</strong><span>Live preview dashboard</span></div>
+                  <div class="metric-grid">
+                    <article class="metric squish-surface"><span>Monthly income</span><strong>$1,820</strong><em>+14%</em></article>
+                    <article class="metric squish-surface"><span>Open projects</span><strong>06</strong><em>4 active</em></article>
+                    <article class="metric squish-surface"><span>Websites made</span><strong>12</strong><em>Updated weekly</em></article>
+                  </div>
+                  <div class="graph-card squish-surface">
+                    <div class="graph-head"><strong>Income this month</strong><span>Apple smooth</span></div>
+                    <div class="bar-track">
+                      <i style="height:44%"></i><i style="height:58%"></i><i style="height:40%"></i><i style="height:72%"></i><i style="height:66%"></i><i style="height:91%"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-stage" data-stage="1">
+                <div class="fake-sidebar squish-surface dark-side">
+                  <h3>AA Sports</h3>
+                  <button class="side-item active squish">Members</button>
+                  <button class="side-item squish">Plans</button>
+                  <button class="side-item squish">Sessions</button>
+                  <button class="side-item squish">Finance</button>
+                </div>
+                <div class="fake-app-main">
+                  <div class="table-card squish-surface">
+                    <div class="graph-head"><strong>Today's members</strong><span>24 checked in</span></div>
+                    <div class="mini-table">
+                      <div><span>Amine</span><em>Boxe</em></div>
+                      <div><span>Sara</span><em>Cardio</em></div>
+                      <div><span>Nour</span><em>Taekwondo</em></div>
+                      <div><span>Rami</span><em>Gym</em></div>
+                    </div>
+                  </div>
+                  <div class="metric-grid two-up">
+                    <article class="metric amber squish-surface"><span>Monthly revenue</span><strong>$640</strong><em>stable</em></article>
+                    <article class="metric amber squish-surface"><span>New members</span><strong>09</strong><em>this week</em></article>
+                  </div>
+                </div>
+              </div>
+              <div class="app-stage" data-stage="2">
+                <div class="stock-demo">
+                  <div class="stock-left squish-surface">
+                    <button class="ticker active squish" data-stock="0">AAPL</button>
+                    <button class="ticker squish" data-stock="1">NVDA</button>
+                    <button class="ticker squish" data-stock="2">MSFT</button>
+                    <button class="ticker squish" data-stock="3">AMD</button>
+                  </div>
+                  <div class="stock-right squish-surface">
+                    <div class="graph-head"><strong id="stockName">Apple Inc.</strong><span id="stockPrice">$223.10</span></div>
+                    <svg class="stock-line" viewBox="0 0 400 180" preserveAspectRatio="none"><path id="stockPath" d="M10 130 C60 124, 90 90, 140 95 S220 150, 280 96 S330 60, 390 74"/></svg>
+                    <div class="stock-foot"><span>1D</span><span>1W</span><span class="active">1M</span><span>YTD</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-stage" data-stage="3">
+                <div class="calc-demo squish-surface">
+                  <div class="calc-display" id="calcDisplay">0</div>
+                  <div class="calc-grid">
+                    <button class="calc-key squish" data-key="7">7</button>
+                    <button class="calc-key squish" data-key="8">8</button>
+                    <button class="calc-key squish" data-key="9">9</button>
+                    <button class="calc-key accent squish" data-key="/">÷</button>
+                    <button class="calc-key squish" data-key="4">4</button>
+                    <button class="calc-key squish" data-key="5">5</button>
+                    <button class="calc-key squish" data-key="6">6</button>
+                    <button class="calc-key accent squish" data-key="*">×</button>
+                    <button class="calc-key squish" data-key="1">1</button>
+                    <button class="calc-key squish" data-key="2">2</button>
+                    <button class="calc-key squish" data-key="3">3</button>
+                    <button class="calc-key accent squish" data-key="-">−</button>
+                    <button class="calc-key muted squish" data-key="c">C</button>
+                    <button class="calc-key squish" data-key="0">0</button>
+                    <button class="calc-key squish" data-key="=">=</button>
+                    <button class="calc-key accent squish" data-key="+">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-picks">
+            <button class="pick-card squish-surface active" data-app-select="0">
+              <strong>Studio Board</strong><span>Main showcase</span>
+            </button>
+            <button class="pick-card squish-surface" data-app-select="1">
+              <strong>AA Sports</strong><span>Member tracker</span>
+            </button>
+            <button class="pick-card squish-surface" data-app-select="2">
+              <strong>Stock Viewer</strong><span>Interactive chart</span>
+            </button>
+            <button class="pick-card squish-surface" data-app-select="3">
+              <strong>Simple Calc</strong><span>Functional mini app</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="ticker-band">
+      <div class="ticker-track">
+        <span>Apple-clean</span><span>Liquid glass</span><span>Responsive</span><span>Interactive previews</span><span>Website concepts</span><span>App concepts</span><span>Motion done properly</span><span>Apple-clean</span><span>Liquid glass</span><span>Responsive</span><span>Interactive previews</span>
+      </div>
+    </section>
+<section class="section work-section" id="work">
+      <div class="content">
