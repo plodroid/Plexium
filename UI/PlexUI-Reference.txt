@@ -690,3 +690,313 @@ Roadmap
 We are planning a larger project built around this interface language. The goal is to extend PlexUI beyond a single website into a broader system for production interfaces, reusable components, and consistent product experiences.
 
 End of PlexUI Design Reference
+
+
+Detailed implementation chapters
+================================
+
+Layout
+------
+
+Use a consistent page width and section rhythm before introducing additional
+containers.
+
+CSS:
+
+.wrap{
+  width:min(1180px,calc(100% - 48px));
+  margin:auto;
+}
+
+.section{
+  padding:118px 0;
+  scroll-margin-top:110px;
+}
+
+@media(max-width:820px){
+  .wrap{
+    width:min(100% - 28px,1180px);
+  }
+
+  .section{
+    padding:88px 0;
+  }
+}
+
+Typography
+----------
+
+Use large, short display statements and calm supporting copy.
+
+.hero h1{
+  font-size:clamp(4.2rem,9.5vw,8.9rem);
+  line-height:.86;
+  letter-spacing:-.082em;
+}
+
+.section-head h2{
+  font-size:clamp(3rem,6.7vw,6rem);
+  line-height:.92;
+  letter-spacing:-.066em;
+}
+
+.eyebrow{
+  color:var(--blue);
+  font-size:.78rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  font-weight:760;
+}
+
+Desktop navigation
+------------------
+
+The desktop navigation should be centered and compact rather than full-width.
+
+.site-nav{
+  position:fixed;
+  z-index:1200;
+  left:0;
+  right:0;
+  top:14px;
+  padding:0 16px;
+  pointer-events:none;
+}
+
+.nav-shell{
+  pointer-events:auto;
+  width:max-content;
+  max-width:calc(100vw - 28px);
+  height:62px;
+  margin:auto;
+  padding:7px 8px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  border:1px solid var(--line-soft);
+  backdrop-filter:blur(18px) saturate(160%);
+}
+
+Button motion
+-------------
+
+Use subtle physical response.
+
+.btn{
+  min-height:50px;
+  padding:0 20px;
+  border-radius:16px;
+  transition:
+    transform 160ms var(--ease),
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px) scale(1.018);
+}
+
+.btn:active{
+  transform:scale(.975);
+}
+
+Settings
+--------
+
+Settings should be centered. Dim the page behind the settings panel but do not
+blur the entire page.
+
+.settings{
+  position:fixed;
+  inset:0;
+  z-index:4000;
+  display:grid;
+  place-items:center;
+  padding:18px;
+}
+
+.settings-bg{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.25);
+}
+
+.settings-panel{
+  position:relative;
+  width:min(400px,100%);
+  padding:18px;
+  border-radius:30px;
+  background:color-mix(in srgb,var(--surface) 80%,transparent);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(22px) saturate(165%);
+}
+
+Scroll-spy
+----------
+
+Use a fixed viewport activation line rather than simply selecting whichever
+section currently has the highest IntersectionObserver ratio.
+
+const sectionIds=[
+  'overview',
+  'features',
+  'pricing',
+  'contact'
+];
+
+const sections=
+  sectionIds.map(id=>
+    document.getElementById(id)
+  );
+
+function currentSection(){
+  const activationY=
+    innerHeight*.42;
+
+  for(const section of sections){
+    const rect=
+      section.getBoundingClientRect();
+
+    if(
+      rect.top<=activationY &&
+      rect.bottom>activationY
+    ){
+      return section.id;
+    }
+  }
+
+  return sections[0].id;
+}
+
+Cards and screenshots
+---------------------
+
+Use solid surfaces for most content cards.
+
+.content-card{
+  border-radius:28px;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  box-shadow:
+    0 16px 46px rgba(0,0,0,.08);
+}
+
+When the whole screenshot should be visible:
+
+.content-card img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  border-radius:5px;
+}
+
+Range controls
+--------------
+
+A slider is optional. Use it only when the product needs a numeric range.
+
+Structure:
+
+<div class="range-wrap" id="rangeWrap">
+  <div class="range-track">
+    <div class="range-fill"></div>
+  </div>
+  <div class="range-thumb"></div>
+  <input id="rangeInput" type="range" min="0" max="100" value="40">
+</div>
+
+Update progress with JavaScript:
+
+const input=
+  document.querySelector('#rangeInput');
+
+const wrap=
+  document.querySelector('#rangeWrap');
+
+function updateRange(){
+  const progress=
+    (
+      (+input.value - +input.min) /
+      (+input.max - +input.min)
+    )*100;
+
+  wrap.style.setProperty(
+    '--progress',
+    progress+'%'
+  );
+}
+
+input.addEventListener(
+  'input',
+  updateRange
+);
+
+updateRange();
+
+Forms
+-----
+
+Inputs should stay quiet and readable.
+
+.field{
+  width:100%;
+  min-height:52px;
+  padding:0 14px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  color:var(--text);
+  outline:none;
+}
+
+.field:focus{
+  border-color:rgba(10,132,255,.65);
+  box-shadow:
+    0 0 0 4px
+    rgba(10,132,255,.16);
+}
+
+Mobile tab bar
+--------------
+
+On compact screens, the desktop navigation can become a floating bottom tab bar.
+
+.mobile-tabs{
+  position:fixed;
+  left:50%;
+  bottom:max(12px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  width:min(370px,calc(100% - 22px));
+  height:70px;
+  padding:7px;
+  display:flex;
+  border-radius:26px;
+  background:color-mix(in srgb,var(--glass) 88%,transparent);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(22px) saturate(180%);
+}
+
+Implementation QA
+-----------------
+
+This checklist is for the developer or AI. It must not be rendered as product
+content unless a product explicitly needs such a checklist.
+
+Verify:
+- Light, Dark, and Auto appearance.
+- Desktop and mobile composition.
+- Practical touch targets.
+- Liquid Glass remains limited to suitable control layers.
+- Segmented controls share one visual/motion system.
+- Scroll motion is purposeful.
+- Pointer position remains exact when a custom cursor is used.
+- Full application screenshots are not accidentally cropped.
+- Reduced motion and transparency fallbacks.
+- Visible keyboard focus.
+- No duplicate IDs.
+- No dead links.
+- No console errors.
+- No generic glow-heavy SaaS styling.
+
