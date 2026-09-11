@@ -314,6 +314,63 @@ html[data-theme="dark"] .liquid-indicator{
   transform:translateY(-5px);
   box-shadow:0 28px 72px rgba(0,0,0,.13);
 }
+
+/* Plex Browser keeps its own orange product identity inside PlexUI */
+.browser-card{
+  --browser-orange:#df7653;
+  --browser-orange-2:#f0a17d;
+  --browser-orange-deep:#a64d35;
+  border-color:color-mix(in srgb,var(--browser-orange) 24%,var(--line));
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb,var(--bg) 92%,var(--browser-orange) 8%),
+      var(--bg) 58%
+    );
+}
+.browser-card:hover{
+  border-color:color-mix(in srgb,var(--browser-orange) 42%,var(--line));
+  box-shadow:
+    0 30px 78px rgba(0,0,0,.13),
+    0 0 0 1px color-mix(in srgb,var(--browser-orange) 10%,transparent);
+}
+.browser-card .hub-label,
+.browser-card .hub-link{
+  color:var(--browser-orange);
+}
+.browser-card .browser-visual{
+  background:
+    radial-gradient(
+      520px 360px at 50% 46%,
+      color-mix(in srgb,var(--browser-orange-2) 24%,transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb,var(--surface-soft) 94%,var(--browser-orange) 6%);
+}
+.browser-card .browser-visual::before{
+  background:
+    radial-gradient(
+      420px 300px at 50% 50%,
+      color-mix(in srgb,var(--browser-orange) 24%,transparent),
+      transparent 72%
+    );
+}
+.browser-card .browser-icon{
+  filter:drop-shadow(0 20px 36px rgba(223,118,83,.22));
+}
+.browser-card:hover .browser-icon{
+  filter:drop-shadow(0 24px 42px rgba(223,118,83,.30));
+}
+.browser-quick{
+  color:#df7653!important;
+}
+.browser-quick span{
+  color:#df7653!important;
+}
+.browser-quick:hover{
+  background:
+    color-mix(in srgb,var(--surface) 90%,#df7653 10%)!important;
+}
 .hub-featured{
   grid-row:1 / span 2;
   min-height:600px;
@@ -798,7 +855,7 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 
       <div class="hub-grid stagger">
 
-        <a class="hub-card hub-featured" href="browser/">
+        <a class="hub-card hub-featured browser-card" href="browser/">
           <div class="hub-copy">
             <div class="hub-label">Plex Browser</div>
             <h3>Browse your way.</h3>
@@ -847,7 +904,7 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 
       <div class="quick-links reveal">
         <span class="quick-title">Quick access</span>
-        <a href="browser/">Download Browser <span>↗</span></a>
+        <a class="browser-quick" href="browser/">Download Browser <span>↗</span></a>
         <a href="minecraft/">Minecraft Wiki <span>↗</span></a>
         <a href="portfolio/#pricing">View Pricing <span>↗</span></a>
       </div>
