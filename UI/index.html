@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f5f7">
+<title>PlexUI — Interface Design Reference</title>
+<meta name="description" content="PlexUI is a reusable interface language for websites and apps, with Liquid Glass controls, motion, responsive behavior, and accessible appearance.">
+<style>
+:root{
+  --bg:#f5f5f7;--surface:#fff;--surface-soft:#ececf0;--text:#1d1d1f;--muted:#6e6e73;--soft:#86868b;
+  --line:rgba(60,60,67,.15);--line-soft:rgba(60,60,67,.08);--blue:#0071e3;--blue2:#0a84ff;
+  --glass:rgba(240,240,243,.42);--glass-strong:rgba(255,255,255,.72);--glass-border:rgba(255,255,255,.72);
+  --shadow:0 18px 55px rgba(0,0,0,.10),0 2px 9px rgba(0,0,0,.04);--max:1180px;
+  --ease:cubic-bezier(.22,1,.36,1);--ease-ios:cubic-bezier(.32,.72,0,1);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;color-scheme:light
+}
+html[data-theme=dark]{
+  --bg:#000;--surface:#1c1c1e;--surface-soft:#111113;--text:#f5f5f7;--muted:#a1a1a6;--soft:#86868b;
+  --line:rgba(255,255,255,.13);--line-soft:rgba(255,255,255,.07);--blue:#0a84ff;--blue2:#5ac8fa;
+  --glass:rgba(46,46,50,.40);--glass-strong:rgba(60,60,65,.58);--glass-border:rgba(255,255,255,.15);
+  --shadow:0 24px 65px rgba(0,0,0,.46),0 1px 0 rgba(255,255,255,.04);color-scheme:dark
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:inherit;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+::selection{background:var(--blue);color:#fff}
+.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
+.topbar{position:fixed;z-index:1000;left:0;right:0;top:0;height:66px;background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line-soft);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
+.topbar-inner{height:100%;display:flex;align-items:center;gap:24px}
+.brand{font-weight:760;letter-spacing:-.035em;font-size:1.08rem}
+.brand span{color:var(--blue)}
+.toplinks{display:flex;align-items:center;gap:4px;margin-left:auto}
+.toplinks a{padding:9px 11px;border-radius:10px;color:var(--muted);font-size:.85rem;font-weight:620;transition:background-color 150ms ease,color 150ms ease,transform 150ms var(--ease)}
+.toplinks a:hover{background:rgba(127,127,127,.08);color:var(--text);transform:translateY(-1px)}
+.theme-control{margin-left:6px;height:38px;padding:3px;border-radius:999px;background:rgba(127,127,127,.10);display:flex;position:relative;isolation:isolate}
+.theme-control button{position:relative;z-index:2;border:0;background:transparent;min-width:55px;height:32px;border-radius:999px;color:var(--muted);font-size:.75rem;font-weight:650}
+.theme-control button.active{color:var(--text)}
+.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:54px;padding-top:66px}
+.sidebar{position:sticky;top:66px;height:calc(100vh - 66px);padding:36px 0;align-self:start}
+.sidebar nav{display:grid;gap:3px}
+.sidebar a{padding:9px 11px;border-radius:10px;color:var(--muted);font-size:.84rem;transition:background-color 140ms ease,color 140ms ease}
+.sidebar a:hover,.sidebar a.active{background:rgba(127,127,127,.08);color:var(--text)}
+.main{min-width:0;padding-bottom:110px}
+.hero{padding:105px 0 92px;border-bottom:1px solid var(--line-soft)}
+.kicker{margin:0 0 14px;color:var(--blue);font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;font-weight:760}
+.hero h1{margin:0;max-width:850px;font-size:clamp(4rem,8vw,7.4rem);line-height:.86;letter-spacing:-.075em}
+.hero h1 span{color:var(--soft)}
+.hero .lead{max-width:720px;margin:24px 0 0;color:var(--muted);font-size:1.15rem;line-height:1.65}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}
+.btn{min-height:46px;padding:0 16px;border:1px solid transparent;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-weight:670;transition:transform 150ms var(--ease),background-color 160ms ease,box-shadow 160ms ease}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 24px rgba(0,113,227,.20)}
+.btn-secondary{background:var(--surface);border-color:var(--line);color:var(--text)}
+.btn:hover{transform:translateY(-2px) scale(1.015)}
+.btn:active{transform:scale(.975)}
+.doc-section{padding:86px 0;border-bottom:1px solid var(--line-soft);scroll-margin-top:85px}
+.doc-head{max-width:780px;margin-bottom:30px}
+.doc-head h2{margin:0;font-size:clamp(2.3rem,4.7vw,4.2rem);line-height:.94;letter-spacing:-.055em}
+.doc-head p{margin:17px 0 0;max-width:700px;color:var(--muted);line-height:1.68}
+.note{padding:16px 18px;border-left:3px solid var(--blue);background:rgba(0,113,227,.055);border-radius:0 16px 16px 0;color:var(--muted);line-height:1.58}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.token-card,.demo-card,.principle{border:1px solid var(--line-soft);border-radius:24px;background:var(--surface);padding:22px}
+.token-card h3,.demo-card h3,.principle h3{margin:0;font-size:1rem;letter-spacing:-.025em}
+.token-card p,.demo-card p,.principle p{margin:8px 0 0;color:var(--muted);font-size:.9rem;line-height:1.55}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.swatch{height:70px;border-radius:14px;border:1px solid var(--line-soft);position:relative;overflow:hidden}
+.swatch span{position:absolute;left:8px;bottom:7px;padding:4px 6px;border-radius:6px;background:rgba(0,0,0,.55);color:#fff;font-size:.65rem}
+.type-demo{margin-top:18px}
+.type-demo strong{display:block;font-size:3rem;line-height:.9;letter-spacing:-.065em}
+.type-demo p{margin-top:12px}
+[data-liquid-tabs]{position:relative;isolation:isolate}
+.liquid-goo{position:absolute;inset:0;z-index:0;pointer-events:none;filter:url(#liquidGoo);overflow:visible}
+.liquid-blob,.liquid-bridge{position:absolute;top:50%;height:calc(100% - 8px);border-radius:999px;background:rgba(210,210,214,.48);transform:translateY(-50%);will-change:left,width,opacity,transform}
+html[data-theme=dark] .liquid-blob,html[data-theme=dark] .liquid-bridge{background:rgba(140,140,148,.32)}
+.liquid-bridge{opacity:0;height:70%}
+.liquid-indicator{position:absolute;z-index:1;top:4px;height:calc(100% - 8px);border-radius:999px;pointer-events:none;background:color-mix(in srgb,var(--glass-strong) 88%,transparent);border:1px solid rgba(255,255,255,.68);-webkit-backdrop-filter:blur(12px) saturate(180%);backdrop-filter:blur(12px) saturate(180%);box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.72),inset -1px -1.5px 0 rgba(255,255,255,.20),inset 0 -8px 18px rgba(70,70,76,.06),0 5px 14px rgba(0,0,0,.09);transition:transform 340ms var(--ease-ios),width 340ms var(--ease-ios);will-change:transform,width}
+html[data-theme=dark] .liquid-indicator{border-color:rgba(255,255,255,.14);box-shadow:inset 1px 1px rgba(255,255,255,.14),0 7px 18px rgba(0,0,0,.28)}
+.liquid-indicator.moving{animation:liquidPulse 340ms var(--ease-ios)}
+.liquid-bridge.animate{animation:bridgeMelt 340ms var(--ease-ios)}
+@keyframes liquidPulse{0%{scale:1}42%{scale:1.08 .97}100%{scale:1}}
+@keyframes bridgeMelt{0%{opacity:.34;scale:1 .88}56%{opacity:.18;scale:1 1}100%{opacity:0;scale:.92 .84}}
+[data-liquid-tabs]>*:not(.liquid-goo):not(.liquid-indicator){position:relative;z-index:2}
+.segmented{height:54px;padding:4px;display:flex;align-items:center;border-radius:999px;background:rgba(127,127,127,.10);border:1px solid var(--line-soft);max-width:410px}
+.segmented button{min-width:88px;flex:1;height:46px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-weight:650;transition:color 160ms ease,transform 150ms var(--ease),background-color 160ms ease}
+.segmented button.active{color:var(--text)}
+.segmented button:hover{background:rgba(127,127,127,.045);transform:scale(1.015)}
+.code-wrap{margin-top:20px;border:1px solid var(--line-soft);border-radius:20px;overflow:hidden;background:#111214;color:#f5f5f7}
+.code-head{height:46px;padding:0 12px 0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.09);font-size:.78rem;color:#a1a1a6}
+.copy-btn{height:30px;padding:0 10px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:#202124;color:#f5f5f7;font-size:.74rem}
+.copy-btn:hover{background:#2b2c30}
+pre{margin:0;padding:18px;overflow:auto;font:500 .78rem/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.code-comment{color:#7f8c98}.code-blue{color:#69b7ff}.code-green{color:#9bdc9b}
+.cursor-lab{position:relative;height:310px;margin-top:18px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 30% 30%,rgba(0,113,227,.12),transparent 34%),linear-gradient(145deg,var(--surface),var(--surface-soft));display:grid;place-items:center}
+.cursor-lab,.cursor-lab *{cursor:none!important}
+.cursor-lab-copy{text-align:center;pointer-events:none}
+.cursor-lab-copy strong{display:block;font-size:1.3rem;letter-spacing:-.035em}
+.cursor-lab-copy span{display:block;margin-top:7px;color:var(--muted);font-size:.85rem}
+.demo-cursor{position:fixed;left:0;top:0;z-index:5000;width:20px;height:20px;border-radius:50%;border:1.4px solid #fff;mix-blend-mode:difference;pointer-events:none;opacity:0;transform:translate3d(-100px,-100px,0) translate(-50%,-50%);transform-origin:center;will-change:transform;transition:opacity 80ms ease,width 140ms var(--ease),height 140ms var(--ease)}
+.demo-cursor::after{content:"";position:absolute;inset:5px;border-radius:inherit;background:#fff}
+.demo-cursor::before{content:"";position:absolute;right:55%;top:50%;height:12px;width:var(--trail,14px);border-radius:999px;transform:translateY(-50%);background:rgba(255,255,255,.75);opacity:var(--trail-opacity,0);filter:blur(var(--blur,0))}
+.demo-cursor.show{opacity:1}
+.motion-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.motion-sample{height:130px;border-radius:20px;border:1px solid var(--line-soft);background:var(--surface);display:grid;place-items:center;overflow:hidden}
+.motion-dot{width:42px;height:42px;border-radius:50%;background:var(--blue);animation:sampleMotion 2.6s var(--ease) infinite}
+.motion-sample:nth-child(2) .motion-dot{animation-delay:.25s}.motion-sample:nth-child(3) .motion-dot{animation-delay:.5s}
+@keyframes sampleMotion{0%,100%{transform:translateY(18px);opacity:.45;filter:blur(2px)}45%,65%{transform:none;opacity:1;filter:blur(0)}}
+.usage-box{padding:24px;border-radius:24px;background:var(--surface);border:1px solid var(--line-soft)}
+.usage-box code{display:block;margin-top:14px;padding:15px;border-radius:14px;background:var(--surface-soft);color:var(--text);font:500 .8rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}
+.roadmap{padding:34px;border-radius:30px;background:linear-gradient(140deg,#0f1012,#1b1d22);color:#f5f5f7;box-shadow:0 24px 70px rgba(0,0,0,.20)}
+.roadmap h3{margin:0;font-size:2rem;letter-spacing:-.055em}.roadmap p{max-width:700px;margin:13px 0 0;color:#a1a1a6;line-height:1.65}
+.footer{padding:28px 0 50px;color:var(--muted);font-size:.84rem}
+.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(22px);filter:blur(3px);transition:opacity 480ms var(--ease),transform 620ms var(--ease),filter 480ms ease}
+.reveal.visible{opacity:1;transform:none;filter:blur(0)}
+@media(max-width:900px){
+  .wrap{width:min(100% - 28px,var(--max))}
+  .toplinks a{display:none}
+  .theme-control{margin-left:auto}
+  .layout{display:block;padding-top:66px}
+  .sidebar{display:none}
+  .hero{padding:82px 0 70px}
+  .hero h1{font-size:clamp(3.7rem,14vw,6rem)}
+  .doc-section{padding:68px 0}
+  .grid-2,.motion-row{grid-template-columns:1fr}
+  .swatches{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+  .theme-control button{min-width:45px}
+  .hero-actions{align-items:stretch;flex-direction:column}
+  .hero-actions .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .liquid-indicator,.liquid-bridge,.motion-dot{animation:none!important;transition:none!important}
+}
+@media(prefers-reduced-transparency:reduce){
+  .topbar,.liquid-indicator{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--surface)!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+<defs><filter id="liquidGoo"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 16 -8" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></defs>
+</svg>
+<div class="demo-cursor" id="demoCursor" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#overview">Plex<span>UI</span></a>
+    <nav class="toplinks" aria-label="Documentation">
+      <a href="#foundations">Foundations</a>
+      <a href="#components">Components</a>
+      <a href="#motion">Motion</a>
+      <a href="#reference">Reference</a>
+    </nav>
+    <div class="theme-control" id="themeTabs" data-liquid-tabs aria-label="Appearance">
+      <button class="active" data-theme="light">Light</button>
+      <button data-theme="dark">Dark</button>
+      <button data-theme="auto">Auto</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+<aside class="sidebar">
+  <nav>
+    <a class="active" href="#overview">Overview</a>
+    <a href="#principles">Principles</a>
+    <a href="#foundations">Foundations</a>
+    <a href="#components">Components</a>
+    <a href="#cursor">Cursor</a>
+    <a href="#motion">Motion</a>
+    <a href="#accessibility">Accessibility</a>
+    <a href="#reference">Use with AI</a>
+    <a href="#roadmap">Roadmap</a>
+  </nav>
+</aside>
+
+<main class="main">
+<section class="hero" id="overview">
+  <p class="kicker reveal">Interface design reference</p>
+  <h1 class="reveal">Build with a<br><span>consistent language.</span></h1>
+  <p class="lead reveal">PlexUI is a reusable UI and interaction system for websites and apps. It defines foundations, Liquid Glass controls, motion, responsive behavior, appearance, and accessibility without prescribing what your product has to do.</p>
+  <div class="hero-actions reveal">
+    <a class="btn btn-primary" href="./PlexUI-Reference.txt" download>Download reference</a>
+    <a class="btn btn-secondary" href="#components">View components</a>
+  </div>
+</section>
+
+<section class="doc-section" id="principles">
+  <div class="doc-head reveal"><h2>Design the interface. Keep the product yours.</h2><p>PlexUI describes how controls, surfaces, motion, and hierarchy behave. Product features, content, data, and information architecture should always be designed around the actual use case.</p></div>
+  <div class="grid-2">
+    <article class="principle reveal"><h3>Use glass selectively</h3><p>Liquid Glass belongs on navigation, compact controls, floating chrome, and selection states. Most content surfaces should remain solid and easy to scan.</p></article>
+    <article class="principle reveal"><h3>Let motion explain state</h3><p>Selection movement, hover response, entry motion, and pointer feedback should clarify what changed instead of decorating every element.</p></article>
+    <article class="principle reveal"><h3>Keep hierarchy calm</h3><p>Large type, restrained color, generous spacing, and clear grouping should do more work than decorative layers.</p></article>
+    <article class="principle reveal"><h3>Adapt the function</h3><p>A segmented control can mean Day / Week / Month, Grid / List, or anything else your product needs. The interaction language stays consistent; the feature does not.</p></article>
+  </div>
+</section>
+
+<section class="doc-section" id="foundations">
+  <div class="doc-head reveal"><h2>Foundations</h2><p>The system uses a neutral light/dark palette, Apple-adjacent typography, soft radii, and a single blue interaction accent.</p></div>
+  <div class="grid-2">
+    <article class="token-card reveal">
+      <h3>Color</h3><p>Neutral surfaces keep content dominant. Blue is reserved for action and selection.</p>
+      <div class="swatches">
+        <div class="swatch" style="background:#f5f5f7"><span>#f5f5f7</span></div>
+        <div class="swatch" style="background:#1d1d1f"><span>#1d1d1f</span></div>
+        <div class="swatch" style="background:#0071e3"><span>#0071e3</span></div>
+        <div class="swatch" style="background:#86868b"><span>#86868b</span></div>
+      </div>
+    </article>
+    <article class="token-card reveal">
+      <h3>Type</h3><p>Use the platform system stack and tighter tracking as type gets larger.</p>
+      <div class="type-demo"><strong>Clear first.</strong><p>Supporting copy stays quieter, smaller, and easier to scan.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="doc-section" id="components">
+  <div class="doc-head reveal"><h2>Liquid selection</h2><p>The selected state moves as a material, not a flat rectangle. A brief bridge joins the old and new positions, then collapses as the active surface settles.</p></div>
+  <div class="demo-card reveal">
+    <h3>Segmented control</h3><p>The labels are examples. Replace them with choices that match your product.</p>
+    <div class="segmented" id="componentTabs" data-liquid-tabs style="margin-top:18px">
+      <button class="active">Overview</button><button>Activity</button><button>Details</button>
+    </div>
+    <div class="code-wrap">
+      <div class="code-head"><span>HTML</span><button class="copy-btn" data-copy="htmlCode">Copy</button></div>
+      <pre><code id="htmlCode">&lt;div class="segmented" data-liquid-tabs&gt;
+  &lt;button class="active"&gt;Overview&lt;/button&gt;
+  &lt;button&gt;Activity&lt;/button&gt;
+  &lt;button&gt;Details&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-head"><span>CSS</span><button class="copy-btn" data-copy="cssCode">Copy</button></div>
+      <pre><code id="cssCode">.segmented{
+  height:54px;
+  padding:4px;
+  display:flex;
+  border-radius:999px;
+  background:rgba(127,127,127,.10);
+  border:1px solid var(--line-soft);
+}
+.liquid-indicator{
+  position:absolute;
+  top:4px;
+  height:calc(100% - 8px);
+  border-radius:999px;
+  background:color-mix(in srgb,var(--glass-strong) 88%,transparent);
+  backdrop-filter:blur(12px) saturate(180%);
+  transition:transform 340ms var(--ease-ios),width 340ms var(--ease-ios);
+}</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-head"><span>JavaScript</span><button class="copy-btn" data-copy="jsCode">Copy</button></div>
+      <pre><code id="jsCode">function setTab(container,item){
+  container.querySelectorAll('button').forEach(button =&gt; {
+    button.classList.toggle('active',button === item);
+  });
+  positionLiquid(container,item,true);
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" id="cursor">
+  <div class="doc-head reveal"><h2>Elastic pointer</h2><p>The pointer stays exact. Only the cursor shape responds to velocity. The demo below hides the native pointer inside the box and restores it as soon as you leave.</p></div>
+  <div class="cursor-lab reveal" id="cursorLab">
+    <div class="cursor-lab-copy"><strong>Move your pointer here.</strong><span>Fast movement stretches the shape. Hovering outside returns to your normal cursor.</span></div>
+  </div>
+</section>
+
+<section class="doc-section" id="motion">
+  <div class="doc-head reveal"><h2>Motion that can be replayed</h2><p>Entry motion should remain subtle and should be able to replay when content leaves and re-enters the viewport. The system favors opacity, translation, and short blur over dramatic scale effects.</p></div>
+  <div class="motion-row reveal">
+    <div class="motion-sample"><div class="motion-dot"></div></div>
+    <div class="motion-sample"><div class="motion-dot"></div></div>
+    <div class="motion-sample"><div class="motion-dot"></div></div>
+  </div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>JavaScript — replayable reveal</span><button class="copy-btn" data-copy="motionCode">Copy</button></div>
+    <pre><code id="motionCode">const observer = new IntersectionObserver(entries =&gt; {
+  entries.forEach(entry =&gt; {
+    entry.target.classList.toggle('is-visible',entry.isIntersecting);
+  });
+},{ threshold:.16 });
+
+document.querySelectorAll('.reveal').forEach(element =&gt; {
+  observer.observe(element);
+});</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="accessibility">
+  <div class="doc-head reveal"><h2>Accessibility is part of the system</h2><p>Motion and transparency have fallbacks. Mobile controls use practical touch targets. Interfaces should remain readable when glass or animation is reduced.</p></div>
+  <div class="note reveal">Use <strong>prefers-reduced-motion</strong> to remove non-essential motion and <strong>prefers-reduced-transparency</strong> to replace glass with an opaque surface. Do not make core functionality depend on hover.</div>
+</section>
+
+<section class="doc-section" id="reference">
+  <div class="doc-head reveal"><h2>Use PlexUI as a reference</h2><p>The text reference includes the foundations, code patterns, motion rules, responsive behavior, and implementation checklist in a format that can be read by developers or attached directly to an AI coding task.</p></div>
+  <div class="usage-box reveal">
+    <strong>Example instruction</strong>
+    <code>Build a website for [purpose]. Use the attached PlexUI Design Reference as the UI/UX design system. Preserve its visual language, Liquid Glass behavior, typography, spacing, light/dark appearance, motion, and responsive principles. Adapt the content, information architecture, features, data, and functionality to this project.</code>
+    <div class="hero-actions" style="justify-content:flex-start;margin-top:18px">
+      <a class="btn btn-primary" href="./PlexUI-Reference.txt" download>Download PlexUI Reference</a>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section" id="roadmap">
+  <div class="roadmap reveal">
+    <p class="kicker" style="color:#5ac8fa">Roadmap</p>
+    <h3>We’re taking this further.</h3>
+    <p>We’re planning a larger project built around this interface language. The goal is to extend PlexUI beyond a single website into a broader system for production interfaces, reusable components, and consistent product experiences.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner"><span>PlexUI · Interface Design Reference</span><span>Copy the examples. Adapt them to your product.</span></div>
+</footer>
+</main>
+</div>
+
+<script>
+(()=>{
+'use strict';
+const $=(q,c=document)=>c.querySelector(q),$$=(q,c=document)=>[...c.querySelectorAll(q)],root=document.documentElement;
+const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+function ensureLiquid(container){
+  if(!container||container.dataset.liquidReady)return;
+  container.dataset.liquidReady='1';
+  const goo=document.createElement('span');goo.className='liquid-goo';goo.innerHTML='<span class="liquid-bridge"></span><span class="liquid-blob"></span>';
+  const indicator=document.createElement('span');indicator.className='liquid-indicator';
+  container.prepend(indicator);container.prepend(goo);
+}
+function positionLiquid(container,active,animate=true){
+  if(!container||!active)return;ensureLiquid(container);
+  const indicator=$('.liquid-indicator',container),blob=$('.liquid-blob',container),bridge=$('.liquid-bridge',container);
+  const c=container.getBoundingClientRect(),a=active.getBoundingClientRect(),x=a.left-c.left,w=a.width;
+  const ox=Number(indicator.dataset.x||x),ow=Number(indicator.dataset.w||w),oc=ox+ow/2,nc=x+w/2,l=Math.min(oc,nc),r=Math.max(oc,nc);
+  blob.style.left=x+'px';blob.style.width=w+'px';bridge.style.left=(l-8)+'px';bridge.style.width=(r-l+16)+'px';
+  indicator.style.width=w+'px';indicator.style.transform='translateX('+x+'px)';indicator.dataset.x=String(x);indicator.dataset.w=String(w);
+  if(animate&&!reduced&&Math.abs(nc-oc)>2){
+    indicator.classList.remove('moving');bridge.classList.remove('animate');void indicator.offsetWidth;
+    indicator.classList.add('moving');bridge.classList.add('animate');
+    clearTimeout(container._t);container._t=setTimeout(()=>{indicator.classList.remove('moving');bridge.classList.remove('animate')},370);
+  }
+}
+function setTab(container,item,animate=true){$$('button,a',container).forEach(el=>el.classList.toggle('active',el===item));positionLiquid(container,item,animate)}
+$$('[data-liquid-tabs]').forEach(container=>{ensureLiquid(container);$$('button',container).forEach(button=>button.addEventListener('click',()=>setTab(container,button,true)));requestAnimationFrame(()=>positionLiquid(container,$('.active',container)||$('button',container),false))});
+addEventListener('resize',()=>$$('[data-liquid-tabs]').forEach(c=>positionLiquid(c,$('.active',c)||$('button',c),false)));
+
+const mq=matchMedia('(prefers-color-scheme:dark)'),themeTabs=$('#themeTabs');
+function resolve(choice){return choice==='auto'?(mq.matches?'dark':'light'):choice}
+function applyTheme(choice){root.dataset.theme=resolve(choice);localStorage.setItem('plexui-docs-theme',choice);document.querySelector('meta[name=theme-color]').content=root.dataset.theme==='dark'?'#000':'#f5f5f7'}
+const saved=localStorage.getItem('plexui-docs-theme')||'light';applyTheme(saved);setTab(themeTabs,$('[data-theme="'+saved+'"]',themeTabs),false);
+$$('[data-theme]',themeTabs).forEach(button=>button.addEventListener('click',()=>{const choice=button.dataset.theme;const update=()=>applyTheme(choice);setTab(themeTabs,button,true);if(!reduced&&document.startViewTransition)document.startViewTransition(update);else update()}));
+mq.addEventListener?.('change',()=>{if(localStorage.getItem('plexui-docs-theme')==='auto')applyTheme('auto')});
+
+if(!reduced&&'IntersectionObserver'in window){
+  const io=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('visible',e.isIntersecting)),{threshold:.12,rootMargin:'-3% 0px -5%'});
+  $$('.reveal').forEach(el=>io.observe(el));
+}else{$$('.reveal').forEach(el=>el.classList.add('visible'))}
+
+const sectionIds=['overview','principles','foundations','components','cursor','motion','accessibility','reference','roadmap'];
+let sideRAF=0;addEventListener('scroll',()=>{if(sideRAF)return;sideRAF=requestAnimationFrame(()=>{sideRAF=0;const y=innerHeight*.30;let active='overview';for(const id of sectionIds){const el=document.getElementById(id);if(!el)continue;const r=el.getBoundingClientRect();if(r.top<=y&&r.bottom>y){active=id;break}}$$('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+active))})},{passive:true});
+
+$$('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{const source=document.getElementById(button.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);const old=button.textContent;button.textContent='Copied';setTimeout(()=>button.textContent=old,1200)}catch{button.textContent='Select code'}}));
+
+const lab=$('#cursorLab'),cursor=$('#demoCursor');let lx=0,ly=0,lt=performance.now(),x=-100,y=-100,angle=0,stretch=0,target=0,speed=0;
+if(matchMedia('(pointer:fine)').matches&&!reduced){
+  lab.addEventListener('pointerenter',e=>{x=e.clientX;y=e.clientY;lx=x;ly=y;lt=performance.now();cursor.classList.add('show')});
+  lab.addEventListener('pointerleave',()=>cursor.classList.remove('show'));
+  lab.addEventListener('pointermove',e=>{const now=performance.now(),dt=Math.max(7,now-lt),dx=e.clientX-lx,dy=e.clientY-ly;speed=Math.min(1,Math.hypot(dx,dy)/dt/2.1);if(Math.abs(dx)+Math.abs(dy)>.1)angle=Math.atan2(dy,dx)*180/Math.PI;target=speed*.58;x=e.clientX;y=e.clientY;lx=x;ly=y;lt=now},{passive:true});
+  lab.addEventListener('pointerdown',()=>{cursor.style.width='16px';cursor.style.height='16px'});
+  lab.addEventListener('pointerup',()=>{cursor.style.width='20px';cursor.style.height='20px'});
+  function frame(){stretch+=(target-stretch)*.26;target*=.84;speed*=.88;cursor.style.setProperty('--trail',(14+speed*24).toFixed(1)+'px');cursor.style.setProperty('--trail-opacity',(speed*.28).toFixed(3));cursor.style.setProperty('--blur',(speed*3.4).toFixed(1)+'px');cursor.style.transform='translate3d('+x+'px,'+y+'px,0) translate(-50%,-50%) rotate('+angle+'deg) scale('+(1+stretch)+','+(1-stretch*.3)+')';requestAnimationFrame(frame)}frame();
+}
+})();
+</script>
+</body>
+</html>
