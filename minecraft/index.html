@@ -284,125 +284,137 @@ html.mc-custom-cursor,html.mc-custom-cursor body,html.mc-custom-cursor body *{cu
 }
 
 
-/* Minecraft-specific PlexUI identity */
+
+/* Minecraft-specific content using the Plex Browser visual language */
 html[data-theme="dark"]{
-  --bg:#161a16;
-  --bg-surface:#20251f;
-  --bg-surface-hover:#293128;
-  --bg-elevated:#252b24;
-  --text-primary:#ece5da;
-  --text-secondary:#bcb4a8;
-  --text-muted:#837c70;
-  --accent:#cf835e;
-  --accent-glow:#e49a73;
-  --accent-subtle:rgba(207,131,94,.13);
-  --border:rgba(236,229,218,.085);
-  --border-strong:rgba(236,229,218,.18);
-  --mc-moss:#879b78;
-  --mc-moss-soft:rgba(135,155,120,.11);
+  --bg:#14100e;
+  --bg-surface:#1a1411;
+  --bg-surface-hover:rgba(255,247,239,.075);
+  --bg-elevated:#211916;
+  --text-primary:#f8eee6;
+  --text-secondary:#b9a99d;
+  --text-muted:#7d7067;
+  --accent:#df7653;
+  --accent-glow:#f0a17d;
+  --accent-subtle:rgba(223,118,83,.12);
+  --border:rgba(255,241,229,.11);
+  --border-strong:rgba(255,241,229,.20);
 }
 html[data-theme="light"]{
-  --bg:#f1ede4;
-  --bg-surface:#fffdf8;
-  --bg-surface-hover:#f6f1e7;
-  --bg-elevated:#faf6ee;
-  --text-primary:#292b25;
-  --text-secondary:#5d5d55;
-  --text-muted:#888178;
-  --accent:#b96f4d;
-  --accent-glow:#ca805c;
-  --accent-subtle:rgba(185,111,77,.09);
-  --border:rgba(41,43,37,.085);
-  --border-strong:rgba(41,43,37,.16);
-  --mc-moss:#6f8564;
-  --mc-moss-soft:rgba(111,133,100,.09);
+  --bg:#f6efe9;
+  --bg-surface:#fffaf6;
+  --bg-surface-hover:#f4e9e2;
+  --bg-elevated:#fbf3ee;
+  --text-primary:#2c211d;
+  --text-secondary:#6d5b52;
+  --text-muted:#9a897f;
+  --accent:#c96545;
+  --accent-glow:#df7653;
+  --accent-subtle:rgba(201,101,69,.10);
+  --border:rgba(44,33,29,.09);
+  --border-strong:rgba(44,33,29,.16);
 }
 
-.navigation.plex-island{gap:6px;padding-left:8px}
-.mc-nav-brand{
-  height:46px;padding:0 11px 0 6px;display:flex;align-items:center;gap:9px;flex:0 0 auto;
-  color:var(--text-primary);font-size:.86rem;font-weight:760;letter-spacing:-.025em;
+body{
+  background:
+    radial-gradient(1100px 620px at 50% -120px,rgba(223,118,83,.15),transparent 60%),
+    radial-gradient(700px 520px at 7% 44%,rgba(240,161,125,.055),transparent 62%),
+    linear-gradient(180deg,#17120f 0%,#120f0d 45%,#100d0c 100%);
 }
-.mc-nav-brand img{width:30px;height:30px;border-radius:8px;image-rendering:auto}
-.mc-top-tabs{
-  position:relative;isolation:isolate;height:48px;padding:0 2px;display:flex;align-items:center;border-radius:18px;
-  background:color-mix(in srgb,var(--mc-moss) 7%,transparent);
+html[data-theme="light"] body{
+  background:
+    radial-gradient(900px 520px at 50% -80px,rgba(201,101,69,.10),transparent 62%),
+    linear-gradient(180deg,#faf5f0 0%,#f4ece6 100%);
 }
+
+.navigation.plex-island{
+  background:rgba(25,20,17,.70);
+  border-color:rgba(255,243,233,.13);
+  box-shadow:0 14px 44px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.045);
+  -webkit-backdrop-filter:blur(26px) saturate(1.15);
+  backdrop-filter:blur(26px) saturate(1.15);
+}
+html[data-theme="light"] .navigation.plex-island{
+  background:rgba(255,250,246,.75);
+  border-color:rgba(44,33,29,.11);
+}
+.mc-nav-brand{height:46px;padding:0 11px 0 6px;display:flex;align-items:center;gap:9px;font-size:.86rem;font-weight:760}
+.mc-nav-brand img{width:30px;height:30px;border-radius:9px}
+.mc-top-tabs{position:relative;isolation:isolate;height:48px;padding:0 2px;display:flex;align-items:center;border-radius:999px}
 .mc-top-tabs button{
-  position:relative;z-index:2;height:44px;min-width:92px;padding:0 14px;border:0;border-radius:15px;background:transparent;color:var(--text-secondary);
-  font:inherit;font-size:.82rem;font-weight:690;cursor:pointer;transition:color 160ms ease,transform 150ms var(--plex-ease),background-color 160ms ease;
+  position:relative;z-index:2;height:44px;min-width:94px;padding:0 14px;border:0;border-radius:999px;background:transparent;
+  color:var(--text-secondary);font:inherit;font-size:.82rem;font-weight:690;cursor:pointer;
+  transition:color 160ms ease,transform 150ms var(--plex-ease),background-color 160ms ease;
 }
 .mc-top-tabs button.active{color:var(--text-primary)}
-.mc-top-tabs button:hover{transform:translateY(-1px) scale(1.015);background:var(--mc-moss-soft)}
-.mc-top-tabs button:active{transform:scale(.975)}
-.mc-top-tabs .plex-liquid-indicator,.mc-top-tabs .plex-liquid-blob,.mc-top-tabs .plex-liquid-bridge{border-radius:15px}
+.mc-top-tabs button:hover{transform:translateY(-1px) scale(1.015);background:rgba(255,255,255,.035)}
 .mc-search-btn{
-  position:relative;z-index:2;width:44px;height:44px;border:0;border-radius:15px;background:transparent;color:var(--text-secondary);display:grid;place-items:center;cursor:pointer;
-  transition:transform 150ms var(--plex-ease),background-color 160ms ease,color 160ms ease;
+  position:relative;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--text-secondary);
+  display:grid;place-items:center;cursor:pointer;transition:transform 150ms var(--plex-ease),background-color 160ms ease,color 160ms ease;
 }
 .mc-search-btn svg,.mc-mobile-action svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.mc-search-btn:hover{color:var(--text-primary);transform:scale(1.045);background:var(--mc-moss-soft)}
+.mc-search-btn:hover{color:var(--text-primary);transform:scale(1.05);background:rgba(255,255,255,.055)}
 .mc-search-btn:active{transform:scale(.94)}
 
-/* The Minecraft page uses a subtle block-grid / terrain language rather than the portfolio's pure neutral surfaces. */
-.wiki-top{position:relative;isolation:isolate}
-.wiki-top::before{
-  content:"";position:absolute;z-index:-1;left:0;right:0;top:0;height:650px;pointer-events:none;opacity:.42;
-  background:
-    radial-gradient(650px 360px at 16% 8%,var(--mc-moss-soft),transparent 72%),
-    radial-gradient(600px 340px at 82% 14%,var(--accent-subtle),transparent 72%);
+.hero-box,.infobox{
+  border-radius:28px;
+  background:linear-gradient(180deg,rgba(255,250,245,.068),rgba(255,250,245,.032));
+  border:1px solid var(--border);
+  box-shadow:0 18px 50px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.04);
 }
-.hero-box{border-radius:22px;isolation:isolate}
-.hero-box::before{
-  content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.055;
-  background-image:
-    linear-gradient(to right,var(--text-primary) 1px,transparent 1px),
-    linear-gradient(to bottom,var(--text-primary) 1px,transparent 1px);
-  background-size:28px 28px;
-  -webkit-mask-image:linear-gradient(115deg,#000,transparent 76%);
-  mask-image:linear-gradient(115deg,#000,transparent 76%);
+html[data-theme="light"] .hero-box,html[data-theme="light"] .infobox{background:rgba(255,250,246,.78)}
+.hero-box::before{display:none}
+.wiki-brand small{color:var(--accent)}
+.eyebrow2{color:var(--accent);display:block}
+.eyebrow2::before{display:none}
+.wiki-card,.story-step,.command,.table-wrap,.article-nav{
+  border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,250,245,.055),rgba(255,250,245,.026));
+  border:1px solid var(--border);
+  box-shadow:0 12px 34px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.025);
 }
-.infobox{border-radius:22px;border-top:2px solid color-mix(in srgb,var(--mc-moss) 48%,transparent)}
-.wiki-brand small{color:var(--mc-moss)}
-.eyebrow2{display:flex;align-items:center;gap:9px;color:var(--accent)}
-.eyebrow2::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--mc-moss);box-shadow:0 0 0 4px var(--mc-moss-soft)}
-.story-step{border-radius:16px}
-.wiki-card{border-radius:18px;overflow:hidden}
-.wiki-card::before{
-  content:"";position:absolute;left:0;right:0;top:0;height:2px;
-  background:linear-gradient(90deg,var(--mc-moss),var(--accent),transparent 72%);
-  opacity:.45;
-}
-.command{border-radius:14px}
-.table-wrap{border-radius:18px}
-.article-nav{border-radius:18px}
-.callout{border-left-color:var(--mc-moss);background:linear-gradient(90deg,var(--mc-moss-soft),transparent)}
-.level-badge{border-radius:10px;background:var(--mc-moss-soft);color:var(--mc-moss)}
-.step-num{border-radius:12px;background:linear-gradient(145deg,var(--mc-moss-soft),var(--accent-subtle));color:var(--text-primary)}
-.stat{color:var(--accent)}
-.mode-tabs{border-radius:18px;background:var(--mc-moss-soft)}
-.mode-tab{border-radius:14px}
-.mode-tabs .plex-liquid-indicator,.mode-tabs .plex-liquid-blob,.mode-tabs .plex-liquid-bridge{border-radius:14px}
-.secret-mark:hover{border-color:var(--mc-moss);box-shadow:0 0 0 5px var(--mc-moss-soft)}
+html[data-theme="light"] .wiki-card,
+html[data-theme="light"] .story-step,
+html[data-theme="light"] .command,
+html[data-theme="light"] .table-wrap,
+html[data-theme="light"] .article-nav{background:rgba(255,250,246,.72)}
+.wiki-card::before{display:none}
+.callout{border-left-color:var(--accent);background:var(--accent-subtle)}
+.level-badge{border-radius:999px;background:var(--accent-subtle);color:var(--accent)}
+.step-num{border-radius:14px;background:var(--accent-subtle);color:var(--accent)}
+.mode-tabs{border-radius:999px;background:rgba(255,247,239,.055)}
+.mode-tab{border-radius:999px}
+.mode-tabs .plex-liquid-indicator,.mode-tabs .plex-liquid-blob,.mode-tabs .plex-liquid-bridge{border-radius:999px}
 
-/* Minecraft mobile bar: modes + compact actions, no ecosystem navigation */
-.mc-mobile-tabs{gap:6px}
-.mc-mobile-mode-tabs{
-  position:relative;isolation:isolate;display:flex;align-items:center;flex:1;height:56px;padding:0;border-radius:20px;background:var(--mc-moss-soft);
+.server-chip{
+  background:linear-gradient(180deg,rgba(255,250,245,.078),rgba(255,250,245,.036));
+  border-color:var(--border);
+  box-shadow:0 10px 28px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.04);
 }
+.wiki-search,.sword-search{
+  background:rgba(255,250,245,.045);
+  border-color:var(--border);
+}
+html[data-theme="light"] .wiki-search,html[data-theme="light"] .sword-search{background:rgba(255,255,255,.72)}
+
+.mc-mobile-tabs{
+  background:rgba(25,20,17,.76);
+  border-color:rgba(255,243,233,.13);
+  box-shadow:0 18px 50px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.045);
+}
+html[data-theme="light"] .mc-mobile-tabs{background:rgba(255,250,246,.82);border-color:rgba(44,33,29,.11)}
+.mc-mobile-mode-tabs{position:relative;isolation:isolate;display:flex;align-items:center;flex:1;height:56px;border-radius:999px}
 .mc-mobile-mode-tabs button{
-  position:relative;z-index:2;flex:1;height:56px;border:0;border-radius:18px;background:transparent;color:var(--text-secondary);font:inherit;font-size:.72rem;font-weight:690;
+  position:relative;z-index:2;flex:1;height:56px;border:0;border-radius:999px;background:transparent;color:var(--text-secondary);
+  font:inherit;font-size:.72rem;font-weight:690;
 }
 .mc-mobile-mode-tabs button.active{color:var(--text-primary)}
-.mc-mobile-mode-tabs .plex-liquid-indicator{top:4px;height:48px;border-radius:17px}
-.mc-mobile-mode-tabs .plex-liquid-blob,.mc-mobile-mode-tabs .plex-liquid-bridge{height:44px;border-radius:17px}
-.mc-mobile-action{
-  flex:0 0 48px!important;width:48px;height:48px!important;align-self:center;border-radius:16px!important;
-}
-@media(max-width:580px){
-  .mc-nav-brand strong{display:none}
-  .mc-top-tabs button{min-width:78px;padding:0 10px}
-}
+.mc-mobile-mode-tabs .plex-liquid-indicator{top:4px;height:48px;border-radius:999px}
+.mc-mobile-mode-tabs .plex-liquid-blob,.mc-mobile-mode-tabs .plex-liquid-bridge{height:44px;border-radius:999px}
+.mc-mobile-action{flex:0 0 48px!important;width:48px;height:48px!important;align-self:center;border-radius:50%!important}
+
+.footer a{color:var(--text-secondary);text-decoration:none;transition:color 150ms ease}
+.footer a:hover{color:var(--accent)}
 
 /* Footer ecosystem links */
 .footer a{color:var(--text-secondary);text-decoration:none;transition:color 150ms ease}
