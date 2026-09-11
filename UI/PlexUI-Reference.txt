@@ -1,0 +1,692 @@
+PlexUI Design Reference
+Version 1.0
+
+PlexUI is a reusable UI and interaction language for websites and apps. It defines visual foundations, Liquid Glass controls, motion, navigation, responsive behavior, light and dark appearance, and accessibility patterns.
+
+This reference defines HOW an interface should look, move, resize, and respond. It does not prescribe product-specific features.
+
+Use PlexUI for the interface system. Adapt the content, data, navigation labels, forms, business logic, and product features to the project.
+
+Core principles
+===============
+
+1. Keep hierarchy calm and obvious.
+2. Use generous spacing instead of filling every empty area.
+3. Keep content surfaces mostly solid.
+4. Reserve Liquid Glass for controls, navigation, selected states, floating chrome, and compact interactive UI.
+5. Motion should communicate state or hierarchy.
+6. Desktop hover feedback should be tactile but restrained.
+7. Mobile interactions must work without hover.
+8. Support Light, Dark, and Auto appearance.
+9. Respect prefers-reduced-motion and prefers-reduced-transparency.
+10. Avoid generic SaaS styling, excessive gradients, random glows, and card spam.
+
+UI-only rule
+============
+
+Copy:
+- palette
+- typography
+- spacing
+- radii
+- Liquid Glass material
+- liquid selection animation
+- hover behavior
+- cursor behavior
+- scroll reveals
+- light/dark appearance
+- mobile tab-bar language
+- motion timing
+- accessibility behavior
+
+Do not automatically copy:
+- currencies
+- pricing
+- portfolio sections
+- contact details
+- dashboards
+- specific forms
+- specific navigation labels
+- specific business logic
+- project data
+
+If one example uses "Overview / Activity / Details" and your app needs "Day / Week / Month", use Day / Week / Month with the same PlexUI control style and motion.
+
+Foundations
+===========
+
+CSS:
+
+:root{
+  --bg:#f5f5f7;
+  --surface:#fff;
+  --surface-soft:#ececf0;
+  --text:#1d1d1f;
+  --muted:#6e6e73;
+  --soft:#86868b;
+  --line:rgba(60,60,67,.15);
+  --line-soft:rgba(60,60,67,.08);
+  --blue:#0071e3;
+  --blue2:#0a84ff;
+  --glass:rgba(240,240,243,.42);
+  --glass-strong:rgba(255,255,255,.72);
+  --glass-border:rgba(255,255,255,.72);
+  --shadow:0 18px 55px rgba(0,0,0,.10),0 2px 9px rgba(0,0,0,.04);
+  --max:1180px;
+  --r:24px;
+  --r-lg:34px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-ios:cubic-bezier(.32,.72,0,1);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+
+html[data-theme="dark"]{
+  --bg:#000;
+  --surface:#1c1c1e;
+  --surface-soft:#111113;
+  --text:#f5f5f7;
+  --muted:#a1a1a6;
+  --soft:#86868b;
+  --line:rgba(255,255,255,.13);
+  --line-soft:rgba(255,255,255,.07);
+  --blue:#0a84ff;
+  --blue2:#5ac8fa;
+  --glass:rgba(46,46,50,.40);
+  --glass-strong:rgba(60,60,65,.58);
+  --glass-border:rgba(255,255,255,.15);
+  --shadow:0 24px 65px rgba(0,0,0,.46),0 1px 0 rgba(255,255,255,.04);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  background:var(--bg);
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:inherit;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.wrap{
+  width:min(var(--max),calc(100% - 48px));
+  margin:auto;
+}
+
+.section{
+  padding:118px 0;
+  scroll-margin-top:110px;
+}
+
+Typography
+==========
+
+Eyebrow:
+
+.eyebrow{
+  margin:0 0 14px;
+  color:var(--blue);
+  font-size:.78rem;
+  line-height:1.2;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  font-weight:760;
+}
+
+Section headline:
+
+.section-head{
+  max-width:820px;
+  margin-bottom:38px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:clamp(3rem,6.7vw,6rem);
+  line-height:.92;
+  letter-spacing:-.066em;
+}
+
+.section-head p{
+  margin:20px 0 0;
+  max-width:700px;
+  color:var(--muted);
+  font-size:1.08rem;
+  line-height:1.65;
+}
+
+Use large, short statements followed by calm explanatory copy.
+
+Liquid Glass material
+=====================
+
+.glass-material{
+  background:color-mix(in srgb,var(--glass) 84%,transparent);
+  border:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(18px) saturate(165%);
+  backdrop-filter:blur(18px) saturate(165%);
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.46),
+    inset -1px -1px 0 rgba(255,255,255,.12),
+    inset 0 -7px 16px rgba(60,60,67,.035),
+    0 8px 25px rgba(0,0,0,.08);
+}
+
+Use this material selectively. Avoid placing it behind every content block.
+
+Liquid segmented control
+========================
+
+HTML:
+
+<div class="segmented" id="exampleTabs" data-liquid-tabs>
+  <button class="active">Overview</button>
+  <button>Activity</button>
+  <button>Details</button>
+</div>
+
+Include this SVG filter once:
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <filter id="liquidGoo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/>
+      <feColorMatrix
+        in="blur"
+        mode="matrix"
+        values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          0 0 0 16 -8
+        "
+        result="goo"
+      />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+  </defs>
+</svg>
+
+CSS:
+
+.segmented{
+  position:relative;
+  isolation:isolate;
+  height:54px;
+  padding:4px;
+  display:flex;
+  align-items:center;
+  border-radius:999px;
+  background:rgba(127,127,127,.10);
+  border:1px solid var(--line-soft);
+}
+
+.segmented button{
+  position:relative;
+  z-index:2;
+  min-width:88px;
+  flex:1;
+  height:46px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:var(--muted);
+  font:inherit;
+  font-weight:650;
+  transition:color 160ms ease,transform 150ms var(--ease),background-color 160ms ease;
+}
+
+.segmented button.active{
+  color:var(--text);
+}
+
+.segmented button:hover{
+  background:rgba(127,127,127,.045);
+  transform:scale(1.015);
+}
+
+.liquid-goo{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  filter:url(#liquidGoo);
+  overflow:visible;
+}
+
+.liquid-blob,
+.liquid-bridge{
+  position:absolute;
+  top:50%;
+  height:calc(100% - 8px);
+  border-radius:999px;
+  background:rgba(210,210,214,.48);
+  transform:translateY(-50%);
+  will-change:left,width,opacity,transform;
+}
+
+html[data-theme="dark"] .liquid-blob,
+html[data-theme="dark"] .liquid-bridge{
+  background:rgba(140,140,148,.32);
+}
+
+.liquid-bridge{
+  opacity:0;
+  height:70%;
+}
+
+.liquid-indicator{
+  position:absolute;
+  z-index:1;
+  top:4px;
+  height:calc(100% - 8px);
+  border-radius:999px;
+  pointer-events:none;
+  background:color-mix(in srgb,var(--glass-strong) 88%,transparent);
+  border:1px solid rgba(255,255,255,.68);
+  -webkit-backdrop-filter:blur(12px) saturate(180%);
+  backdrop-filter:blur(12px) saturate(180%);
+  box-shadow:
+    inset 1.5px 1.5px 0 rgba(255,255,255,.72),
+    inset -1px -1.5px 0 rgba(255,255,255,.20),
+    inset 0 -8px 18px rgba(70,70,76,.06),
+    0 5px 14px rgba(0,0,0,.09);
+  transition:transform 340ms var(--ease-ios),width 340ms var(--ease-ios),background-color 220ms ease;
+  will-change:transform,width;
+}
+
+.liquid-indicator.moving{
+  animation:liquidPulse 340ms var(--ease-ios);
+}
+
+@keyframes liquidPulse{
+  0%{scale:1}
+  42%{scale:1.08 .97}
+  100%{scale:1}
+}
+
+.liquid-bridge.animate{
+  animation:bridgeMelt 340ms var(--ease-ios);
+}
+
+@keyframes bridgeMelt{
+  0%{opacity:.34;scale:1 .88}
+  56%{opacity:.18;scale:1 1}
+  100%{opacity:0;scale:.92 .84}
+}
+
+JavaScript:
+
+const $=(q,c=document)=>c.querySelector(q);
+const $$=(q,c=document)=>[...c.querySelectorAll(q)];
+
+function ensureLiquid(container){
+  if(!container || container.dataset.liquidReady)return;
+  container.dataset.liquidReady='1';
+
+  const goo=document.createElement('span');
+  goo.className='liquid-goo';
+  goo.innerHTML='<span class="liquid-bridge"></span><span class="liquid-blob"></span>';
+
+  const indicator=document.createElement('span');
+  indicator.className='liquid-indicator';
+
+  container.prepend(indicator);
+  container.prepend(goo);
+}
+
+function positionLiquid(container,active,animate=true){
+  if(!container || !active)return;
+
+  ensureLiquid(container);
+
+  const indicator=container.querySelector('.liquid-indicator');
+  const blob=container.querySelector('.liquid-blob');
+  const bridge=container.querySelector('.liquid-bridge');
+
+  const containerRect=container.getBoundingClientRect();
+  const activeRect=active.getBoundingClientRect();
+
+  const x=activeRect.left-containerRect.left;
+  const width=activeRect.width;
+
+  const oldX=Number(indicator.dataset.x || x);
+  const oldWidth=Number(indicator.dataset.w || width);
+
+  const oldCenter=oldX+(oldWidth/2);
+  const newCenter=x+(width/2);
+
+  const left=Math.min(oldCenter,newCenter);
+  const right=Math.max(oldCenter,newCenter);
+
+  blob.style.left=x+'px';
+  blob.style.width=width+'px';
+
+  bridge.style.left=(left-8)+'px';
+  bridge.style.width=(right-left+16)+'px';
+
+  indicator.style.width=width+'px';
+  indicator.style.transform='translateX('+x+'px)';
+
+  indicator.dataset.x=String(x);
+  indicator.dataset.w=String(width);
+
+  if(animate && Math.abs(newCenter-oldCenter)>2){
+    indicator.classList.remove('moving');
+    bridge.classList.remove('animate');
+    void indicator.offsetWidth;
+    indicator.classList.add('moving');
+    bridge.classList.add('animate');
+
+    clearTimeout(container._liquidTimer);
+    container._liquidTimer=setTimeout(()=>{
+      indicator.classList.remove('moving');
+      bridge.classList.remove('animate');
+    },370);
+  }
+}
+
+function setTab(container,item,animate=true){
+  container.querySelectorAll('a,button').forEach(control=>{
+    control.classList.toggle('active',control===item);
+  });
+
+  positionLiquid(container,item,animate);
+}
+
+document.querySelectorAll('[data-liquid-tabs]').forEach(container=>{
+  ensureLiquid(container);
+
+  container.querySelectorAll('button').forEach(button=>{
+    button.addEventListener('click',()=>{
+      setTab(container,button,true);
+    });
+  });
+
+  requestAnimationFrame(()=>{
+    positionLiquid(
+      container,
+      container.querySelector('.active') || container.querySelector('button'),
+      false
+    );
+  });
+});
+
+Dynamic-Island-style navigation
+===============================
+
+Keep desktop navigation compact and centered.
+
+.site-nav{
+  position:fixed;
+  z-index:1200;
+  left:0;
+  right:0;
+  top:14px;
+  padding:0 16px;
+  pointer-events:none;
+}
+
+.nav-shell{
+  pointer-events:auto;
+  width:max-content;
+  max-width:calc(100vw - 28px);
+  height:62px;
+  margin:auto;
+  padding:7px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  border:1px solid var(--line-soft);
+  box-shadow:
+    0 14px 42px rgba(0,0,0,.10),
+    0 2px 8px rgba(0,0,0,.04),
+    inset 0 1px rgba(255,255,255,.36);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
+}
+
+Use the liquid segmented-control system for the active navigation item.
+
+Buttons
+=======
+
+.btn{
+  min-height:50px;
+  padding:0 20px;
+  border-radius:16px;
+  border:1px solid transparent;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:680;
+  transition:
+    transform 160ms var(--ease),
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.btn-primary{
+  background:var(--blue);
+  color:white;
+  box-shadow:0 12px 30px rgba(0,113,227,.22);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px) scale(1.018);
+  background:var(--blue2);
+  box-shadow:0 15px 35px rgba(0,113,227,.25);
+}
+
+.btn:active{
+  transform:scale(.975);
+}
+
+Replayable reveal motion
+========================
+
+CSS:
+
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  filter:blur(4px);
+  transition:
+    opacity 520ms var(--ease),
+    transform 650ms var(--ease),
+    filter 520ms ease;
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:none;
+  filter:blur(0);
+}
+
+JavaScript:
+
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if(!reduced && 'IntersectionObserver' in window){
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      entry.target.classList.toggle('is-visible',entry.isIntersecting);
+    });
+  },{
+    threshold:.16,
+    rootMargin:'-4% 0px -7% 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach(element=>{
+    observer.observe(element);
+  });
+}else{
+  document.querySelectorAll('.reveal').forEach(element=>{
+    element.classList.add('is-visible');
+  });
+}
+
+Do not unobserve elements if the motion should replay when the user scrolls back.
+
+Elastic cursor
+==============
+
+Use the custom cursor only when it makes sense. The pointer position should remain exact; only its shape should have inertia.
+
+Core behavior:
+
+- native cursor hidden only in the intended region
+- custom cursor uses event.clientX and event.clientY directly
+- velocity changes horizontal stretch
+- hover can increase cursor size
+- pointer down can compress it
+- motion blur should remain subtle
+
+For a contained demo, hide the native pointer only inside the demo region:
+
+.cursor-demo,
+.cursor-demo *{
+  cursor:none!important;
+}
+
+Outside the demo, leave the browser cursor unchanged.
+
+Light / Dark / Auto
+===================
+
+Appearance switching is part of PlexUI and should normally remain available.
+
+Use:
+
+const mqDark=matchMedia('(prefers-color-scheme: dark)');
+
+const resolveTheme=choice=>{
+  return choice==='system'
+    ?(mqDark.matches?'dark':'light')
+    :choice;
+};
+
+function applyTheme(choice){
+  document.documentElement.dataset.theme=resolveTheme(choice);
+  localStorage.setItem('plexui-theme',choice);
+}
+
+Use an understated crossfade or View Transition. Do not use a giant circle, ocean, or unrelated transition gimmick.
+
+Mobile navigation
+=================
+
+On compact screens, a floating bottom tab bar may replace the desktop navigation.
+
+Requirements:
+- safe-area aware
+- roughly 56px tap targets
+- Liquid Glass material
+- same liquid selector system
+- no hover dependency
+- active state synchronized with the page
+
+Example:
+
+.mobile-tabs{
+  position:fixed;
+  left:50%;
+  bottom:max(12px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  width:min(370px,calc(100% - 22px));
+  height:70px;
+  padding:7px;
+  display:flex;
+  border-radius:26px;
+  background:color-mix(in srgb,var(--glass) 88%,transparent);
+  border:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.16),
+    inset 1px 1px rgba(255,255,255,.36);
+}
+
+Accessibility
+=============
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+
+  .reveal,
+  .liquid-indicator,
+  .liquid-bridge{
+    transition:none!important;
+    animation:none!important;
+  }
+
+  .reveal{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+  }
+}
+
+@media(prefers-reduced-transparency:reduce){
+  .liquid-indicator,
+  .mobile-tabs{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:var(--surface)!important;
+  }
+}
+
+Implementation checklist
+========================
+
+This checklist is for the developer or AI building the product. It is not interface content and must not be rendered in the final site unless explicitly requested.
+
+Check:
+- light, dark, and auto appearance
+- responsive layout
+- mobile tap targets
+- reduced motion
+- reduced transparency
+- keyboard usability
+- no duplicate IDs
+- no dead links
+- no console errors
+- Liquid Glass is limited to suitable UI layers
+- segmented controls use the same selector behavior
+- custom cursor never changes perceived pointer sensitivity
+- real screenshots use object-fit:contain when the full UI should remain visible
+- no generic purple/blue SaaS gradients
+- no unnecessary card spam
+- motion communicates state or hierarchy
+
+Using PlexUI with AI
+====================
+
+When giving this file to an AI, use a prompt such as:
+
+"Build a website for [purpose]. Use the attached PlexUI Design Reference as the UI/UX design system. Preserve its visual language, Liquid Glass behavior, typography, spacing, light/dark appearance, motion, and responsive principles. Adapt the content, information architecture, features, data, and functionality to this project. Do not copy unrelated functionality from the examples."
+
+The AI should treat examples as design patterns, not required features.
+
+Roadmap
+=======
+
+We are planning a larger project built around this interface language. The goal is to extend PlexUI beyond a single website into a broader system for production interfaces, reusable components, and consistent product experiences.
+
+End of PlexUI Design Reference
