@@ -1,164 +1,960 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#1b1b18">
-  <title>Plexium — Browser, Minecraft & Portfolio</title>
-  <meta name="description" content="Plexium home — Plex Browser, PlexiumMC, and a portfolio of websites and apps.">
-  <link rel="canonical" href="https://plexium.rweb.site/">
-  <link rel="icon" type="image/png" href="assets/Icons/dark.png">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="home-fixes.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f5f7">
+<title>Plexium — Browser, Minecraft & Portfolio</title>
+<meta name="description" content="Plexium home — Plex Browser, PlexiumMC, and a portfolio of websites and apps.">
+<link rel="canonical" href="https://plexium.rweb.site/">
+<link rel="icon" type="image/png" href="assets/Icons/dark.png">
+<style>
+:root{
+  --bg:#f5f5f7;
+  --surface:#fff;
+  --surface-soft:#ececf0;
+  --text:#1d1d1f;
+  --muted:#6e6e73;
+  --soft:#86868b;
+  --line:rgba(60,60,67,.15);
+  --line-soft:rgba(60,60,67,.08);
+  --blue:#0071e3;
+  --blue2:#0a84ff;
+  --glass:rgba(240,240,243,.42);
+  --glass-strong:rgba(255,255,255,.72);
+  --glass-border:rgba(255,255,255,.72);
+  --shadow:0 18px 55px rgba(0,0,0,.10),0 2px 9px rgba(0,0,0,.04);
+  --max:1180px;
+  --r:24px;
+  --r-lg:34px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-ios:cubic-bezier(.32,.72,0,1);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+html[data-theme="dark"]{
+  --bg:#000;
+  --surface:#1c1c1e;
+  --surface-soft:#111113;
+  --text:#f5f5f7;
+  --muted:#a1a1a6;
+  --soft:#86868b;
+  --line:rgba(255,255,255,.13);
+  --line-soft:rgba(255,255,255,.07);
+  --blue:#0a84ff;
+  --blue2:#5ac8fa;
+  --glass:rgba(46,46,50,.40);
+  --glass-strong:rgba(60,60,65,.58);
+  --glass-border:rgba(255,255,255,.15);
+  --shadow:0 24px 65px rgba(0,0,0,.46),0 1px 0 rgba(255,255,255,.04);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:inherit;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition:background-color 280ms ease,color 220ms ease;
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--blue);color:#fff}
+.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
+.section{padding:118px 0}
+.eyebrow{
+  margin:0 0 14px;
+  color:var(--blue);
+  font-size:.78rem;
+  line-height:1.2;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  font-weight:760;
+}
+.section-head{max-width:820px;margin-bottom:38px}
+.section-head h2{
+  margin:0;
+  font-size:clamp(3rem,6.7vw,6rem);
+  line-height:.92;
+  letter-spacing:-.066em;
+}
+.section-head p:last-child{
+  margin:20px 0 0;
+  color:var(--muted);
+  font-size:1.08rem;
+  line-height:1.65;
+  max-width:700px;
+}
+
+/* exact-position elastic cursor */
+html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none!important}
+.cursor{
+  --trail:0px;--trail-opacity:0;--blur:0px;
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:9000;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+  border:1.4px solid #fff;
+  mix-blend-mode:difference;
+  transform:translate3d(-100px,-100px,0) translate(-50%,-50%);
+  transform-origin:center;
+  will-change:transform,opacity;
+  transition:width 150ms var(--ease),height 150ms var(--ease),opacity 100ms ease;
+}
+.cursor::after{content:"";position:absolute;inset:5px;border-radius:inherit;background:#fff}
+.cursor::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  right:55%;
+  top:50%;
+  width:calc(14px + var(--trail));
+  height:12px;
+  border-radius:999px;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,.85);
+  opacity:var(--trail-opacity);
+  filter:blur(var(--blur));
+}
+.cursor.ready{opacity:1}
+.cursor.hover{width:38px;height:38px}
+.cursor.down{width:17px;height:17px}
+
+/* Liquid Glass */
+.glass-material{
+  background:color-mix(in srgb,var(--glass) 84%,transparent);
+  border:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(18px) saturate(165%);
+  backdrop-filter:blur(18px) saturate(165%);
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.46),
+    inset -1px -1px 0 rgba(255,255,255,.12),
+    inset 0 -7px 16px rgba(60,60,67,.035),
+    0 8px 25px rgba(0,0,0,.08);
+}
+[data-liquid-tabs]{position:relative;isolation:isolate}
+.liquid-goo{position:absolute;inset:0;z-index:0;pointer-events:none;filter:url(#liquidGoo);overflow:visible}
+.liquid-blob,.liquid-bridge{
+  position:absolute;
+  top:50%;
+  height:calc(100% - 8px);
+  border-radius:999px;
+  background:rgba(210,210,214,.48);
+  transform:translateY(-50%);
+  will-change:left,width,opacity,transform;
+}
+html[data-theme="dark"] .liquid-blob,
+html[data-theme="dark"] .liquid-bridge{background:rgba(140,140,148,.32)}
+.liquid-bridge{opacity:0;height:70%}
+.liquid-indicator{
+  position:absolute;
+  z-index:1;
+  top:4px;
+  height:calc(100% - 8px);
+  border-radius:999px;
+  pointer-events:none;
+  background:color-mix(in srgb,var(--glass-strong) 88%,transparent);
+  border:1px solid rgba(255,255,255,.68);
+  -webkit-backdrop-filter:blur(12px) saturate(180%);
+  backdrop-filter:blur(12px) saturate(180%);
+  box-shadow:
+    inset 1.5px 1.5px 0 rgba(255,255,255,.72),
+    inset -1px -1.5px 0 rgba(255,255,255,.20),
+    inset 0 -8px 18px rgba(70,70,76,.06),
+    0 5px 14px rgba(0,0,0,.09);
+  transition:transform 340ms var(--ease-ios),width 340ms var(--ease-ios),background-color 220ms ease;
+  will-change:transform,width;
+}
+html[data-theme="dark"] .liquid-indicator{
+  border-color:rgba(255,255,255,.14);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.16),inset -1px -1px 0 rgba(255,255,255,.05),0 7px 18px rgba(0,0,0,.28);
+}
+.liquid-indicator.moving{animation:liquidPulse 340ms var(--ease-ios)}
+.liquid-bridge.animate{animation:bridgeMelt 340ms var(--ease-ios)}
+@keyframes liquidPulse{0%{scale:1}42%{scale:1.08 .97}100%{scale:1}}
+@keyframes bridgeMelt{0%{opacity:.34;scale:1 .88}56%{opacity:.18;scale:1 1}100%{opacity:0;scale:.92 .84}}
+[data-liquid-tabs]>*:not(.liquid-goo):not(.liquid-indicator){position:relative;z-index:2}
+
+/* Portfolio-style Dynamic Island nav */
+.site-nav{position:fixed;z-index:1200;left:0;right:0;top:14px;padding:0 16px;pointer-events:none}
+.nav-shell{
+  pointer-events:auto;
+  width:max-content;
+  max-width:calc(100vw - 28px);
+  height:62px;
+  margin:auto;
+  padding:7px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  border:1px solid var(--line-soft);
+  box-shadow:0 14px 42px rgba(0,0,0,.10),0 2px 8px rgba(0,0,0,.04),inset 0 1px rgba(255,255,255,.36);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
+}
+.nav-tabs{display:flex;align-items:center;height:48px;padding:0 2px;border-radius:999px}
+.nav-tabs a{
+  min-width:84px;
+  height:48px;
+  padding:0 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:.88rem;
+  font-weight:640;
+  transition:color 180ms ease,transform 160ms var(--ease),background-color 180ms ease;
+}
+.nav-tabs a.active{color:var(--text)}
+.nav-tabs a:hover{color:var(--text);transform:translateY(-1px) scale(1.018);background:rgba(127,127,127,.055)}
+.nav-tabs a:active{transform:scale(.975)}
+.icon-btn{
+  width:44px;height:44px;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--muted);
+  flex:0 0 44px;
+  transition:transform 160ms var(--ease),background-color 180ms ease,color 180ms ease,box-shadow 180ms ease;
+}
+.icon-btn:hover{
+  color:var(--text);
+  transform:scale(1.055);
+  background:var(--glass);
+  box-shadow:inset 1px 1px rgba(255,255,255,.4),0 4px 12px rgba(0,0,0,.06);
+  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);
+}
+.icon-btn:active{transform:scale(.94)}
+.icon-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* hero */
+.hero{
+  min-height:90svh;
+  padding:170px 0 110px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-20%;
+  background:radial-gradient(700px 420px at 50% 35%,rgba(0,113,227,.10),transparent 70%);
+  transform:translateY(var(--hero-p,0px));
+}
+.hero-copy{text-align:center;max-width:1080px;margin:auto}
+.hero h1{
+  margin:0;
+  font-size:clamp(4.2rem,9.5vw,8.9rem);
+  line-height:.86;
+  letter-spacing:-.082em;
+}
+.hero h1 span{color:var(--soft)}
+.hero .lead{
+  max-width:720px;
+  margin:25px auto 0;
+  color:var(--muted);
+  font-size:clamp(1.08rem,1.7vw,1.3rem);
+  line-height:1.62;
+}
+.hero-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:30px}
+.btn{
+  min-height:50px;
+  padding:0 20px;
+  border-radius:16px;
+  border:1px solid transparent;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:680;
+  transition:transform 160ms var(--ease),background-color 180ms ease,box-shadow 180ms ease,border-color 180ms ease;
+}
+.btn-primary{background:var(--blue);color:white;box-shadow:0 12px 30px rgba(0,113,227,.22)}
+.btn-primary:hover{transform:translateY(-2px) scale(1.018);background:var(--blue2);box-shadow:0 15px 35px rgba(0,113,227,.25)}
+.btn-plain{background:var(--surface);border-color:var(--line);color:var(--text)}
+.btn-plain:hover{transform:translateY(-2px) scale(1.018);background:color-mix(in srgb,var(--surface) 88%,var(--glass));box-shadow:0 12px 28px rgba(0,0,0,.07)}
+.btn:active{transform:scale(.975)}
+
+/* motion rail */
+.motion-rail{
+  overflow:hidden;
+  padding:14px 0;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+  background:rgba(127,127,127,.035);
+}
+.rail-track{display:flex;width:max-content;gap:10px;animation:rail 34s linear infinite}
+.rail-item{
+  padding:11px 15px;
+  border-radius:999px;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  font-size:.86rem;
+  color:var(--muted);
+  box-shadow:0 5px 14px rgba(0,0,0,.035);
+}
+@keyframes rail{to{transform:translateX(-50%)}}
+.motion-rail:hover .rail-track{animation-play-state:paused}
+
+/* products */
+.products{background:var(--surface)}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.product-card{
+  min-width:0;
+  min-height:390px;
+  padding:26px;
+  border-radius:30px;
+  background:var(--bg);
+  border:1px solid var(--line);
+  box-shadow:0 16px 46px rgba(0,0,0,.08);
+  display:flex;
+  flex-direction:column;
+  transition:transform 300ms var(--ease),box-shadow 300ms ease,border-color 180ms ease;
+}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 28px 75px rgba(0,0,0,.13);border-color:var(--line)}
+.product-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.product-icon{
+  width:72px;height:72px;border-radius:20px;background:var(--surface);border:1px solid var(--line-soft);
+  display:grid;place-items:center;padding:9px;overflow:hidden;
+  transition:transform 220ms var(--ease),box-shadow 220ms ease;
+}
+.product-card:hover .product-icon{transform:translateY(-2px) scale(1.03);box-shadow:0 12px 26px rgba(0,0,0,.08)}
+.product-icon img{width:100%;height:100%;object-fit:contain;border-radius:13px}
+.product-icon svg{width:38px;height:38px;fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.product-tag{color:var(--blue);font-size:.77rem;font-weight:750}
+.product-body{margin-top:auto;padding-top:52px}
+.product-card h3{margin:0;font-size:2rem;letter-spacing:-.05em}
+.product-card p{margin:10px 0 0;color:var(--muted);line-height:1.62}
+.product-link{display:inline-flex;align-items:center;gap:5px;margin-top:20px;color:var(--blue);font-weight:650;font-size:.92rem}
+.product-link span{transition:transform 160ms var(--ease)}
+.product-card:hover .product-link span{transform:translateX(3px)}
+
+/* ecosystem */
+.ecosystem{background:var(--bg)}
+.ecosystem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ecosystem-card{
+  min-height:270px;
+  padding:26px;
+  border-radius:28px;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:transform 260ms var(--ease),box-shadow 260ms ease;
+}
+.ecosystem-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.ecosystem-card span{color:var(--blue);font-size:.8rem;font-weight:760}
+.ecosystem-card h3{margin:0 0 8px;font-size:1.65rem;letter-spacing:-.045em}
+.ecosystem-card p{margin:0;color:var(--muted);line-height:1.55}
+
+/* footer */
+.footer{padding:30px 0 110px;border-top:1px solid var(--line-soft);color:var(--muted);font-size:.86rem}
+.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.footer a{transition:color 150ms ease}.footer a:hover{color:var(--text)}
+
+/* settings */
+.settings{position:fixed;inset:0;z-index:4000;display:grid;place-items:center;padding:18px;pointer-events:none;visibility:hidden}
+.settings.open{visibility:visible;pointer-events:auto}
+.settings-bg{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background-color 180ms ease}
+.settings.open .settings-bg{background:rgba(0,0,0,.25)}
+.settings-panel{
+  position:relative;
+  width:min(400px,100%);
+  padding:18px;
+  border-radius:30px;
+  background:color-mix(in srgb,var(--surface) 80%,transparent);
+  border:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(22px) saturate(165%);
+  backdrop-filter:blur(22px) saturate(165%);
+  box-shadow:0 28px 90px rgba(0,0,0,.22),inset 1px 1px rgba(255,255,255,.35);
+  opacity:0;
+  transform:translateY(12px) scale(.985);
+  transition:opacity 180ms ease,transform 260ms var(--ease);
+}
+.settings.open .settings-panel{opacity:1;transform:none}
+.settings-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.settings-top h3{margin:0;font-size:1.45rem;letter-spacing:-.045em}
+.setting-row{padding:15px 0;border-top:1px solid var(--line-soft)}
+.setting-row:first-of-type{border-top:0}
+.setting-row>span{display:block;margin-bottom:10px;color:var(--muted);font-size:.84rem}
+.segmented{
+  height:54px;
+  padding:4px;
+  display:flex;
+  align-items:center;
+  border-radius:999px;
+  background:rgba(127,127,127,.10);
+  border:1px solid var(--line-soft);
+}
+.segmented button{
+  min-width:88px;
+  flex:1;
+  height:46px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:var(--muted);
+  font-weight:650;
+  transition:color 160ms ease,transform 150ms var(--ease),background-color 160ms ease;
+}
+.segmented button.active{color:var(--text)}
+.segmented button:hover{background:rgba(127,127,127,.045);transform:scale(1.015)}
+.segmented button:active{transform:scale(.975)}
+
+::view-transition-old(root),::view-transition-new(root){animation-duration:260ms;animation-timing-function:var(--ease)}
+::view-transition-old(root){animation-name:themeOld}
+::view-transition-new(root){animation-name:themeNew}
+@keyframes themeOld{to{opacity:0}}
+@keyframes themeNew{from{opacity:0}}
+
+/* replayable reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  filter:blur(4px);
+  transition:opacity 520ms var(--ease),transform 650ms var(--ease),filter 520ms ease;
+}
+.reveal.is-visible{opacity:1;transform:none;filter:blur(0)}
+.reveal[data-delay="1"]{transition-delay:50ms}
+.reveal[data-delay="2"]{transition-delay:100ms}
+.reveal[data-delay="3"]{transition-delay:150ms}
+.stagger>*{
+  opacity:0;
+  transform:translateY(22px);
+  filter:blur(3px);
+  transition:opacity 480ms var(--ease),transform 620ms var(--ease),filter 480ms ease;
+}
+.stagger.is-visible>*{opacity:1;transform:none;filter:blur(0)}
+.stagger.is-visible>*:nth-child(2){transition-delay:70ms}
+.stagger.is-visible>*:nth-child(3){transition-delay:140ms}
+
+.mobile-tabs{display:none}
+
+@media(max-width:900px){
+  .product-grid,.ecosystem-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .wrap{width:min(100% - 28px,var(--max))}
+  .section{padding:88px 0}
+  .site-nav{display:none}
+  .hero{min-height:auto;padding:138px 0 94px}
+  .hero h1{font-size:clamp(4rem,15vw,6.4rem)}
+  .product-card{min-height:330px}
+  .footer{padding-bottom:115px}
+  .mobile-tabs{
+    position:fixed;
+    z-index:1300;
+    left:50%;
+    bottom:max(12px,env(safe-area-inset-bottom));
+    transform:translateX(-50%);
+    display:flex;
+    width:min(390px,calc(100% - 22px));
+    height:70px;
+    padding:7px;
+    border-radius:26px;
+    background:color-mix(in srgb,var(--glass) 88%,transparent);
+    border:1px solid var(--glass-border);
+    -webkit-backdrop-filter:blur(22px) saturate(180%);
+    backdrop-filter:blur(22px) saturate(180%);
+    box-shadow:0 18px 45px rgba(0,0,0,.16),inset 1px 1px rgba(255,255,255,.36);
+  }
+  .mobile-tabs a{
+    flex:1;
+    height:56px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--muted);
+    font-size:.73rem;
+    font-weight:650;
+    transition:color 160ms ease,transform 150ms var(--ease);
+  }
+  .mobile-tabs a.active{color:var(--text)}
+  .mobile-tabs a:active{transform:scale(.96)}
+  .mobile-tabs .liquid-indicator{top:7px;height:56px;border-radius:20px}
+  .mobile-tabs .liquid-blob,.mobile-tabs .liquid-bridge{height:48px}
+}
+@media(max-width:520px){
+  .product-card,.ecosystem-card{padding:22px}
+  .product-icon{width:64px;height:64px}
+  .section-head h2{font-size:clamp(2.8rem,14vw,4.2rem)}
+}
+@media(pointer:coarse),(max-width:900px){
+  html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:auto!important}
+  .cursor{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.stagger>*,.liquid-indicator,.liquid-bridge{transition:none!important;animation:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important;filter:none!important}
+  .cursor{display:none!important}
+  .rail-track{animation:none!important}
+}
+@media(prefers-reduced-transparency:reduce){
+  .settings-panel,.mobile-tabs,.liquid-indicator,.nav-shell{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:var(--surface)!important;
+  }
+}
+</style>
 </head>
-<body class="page-shell home-page">
-<div class="home-cursor" id="homeCursor" aria-hidden="true"></div>
-<div class="grain-overlay"></div>
-<div class="site-shell">
-  <div class="nav-wrap">
-    <nav class="navigation home-island" aria-label="Main navigation">
-      <a class="nav-item active" href="./">Home</a>
-      <a class="nav-item" href="browser/">Browser</a>
-      <a class="nav-item" href="minecraft/">Minecraft</a>
-      <a class="nav-item" href="portfolio/">Portfolio</a>
-      <div class="nav-divider"></div>
-      <button class="theme-toggle-wrap" id="themeToggle" aria-label="Toggle theme">
-        <span class="theme-icon">
-          <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
-          <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </span>
-      </button>
-    </nav>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <filter id="liquidGoo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 16 -8" result="goo"/>
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<header class="site-nav">
+  <nav class="nav-shell" aria-label="Main navigation">
+    <div class="nav-tabs" id="desktopTabs" data-liquid-tabs>
+      <a class="active" href="./">Home</a>
+      <a href="browser/">Browser</a>
+      <a href="minecraft/">Minecraft</a>
+      <a href="portfolio/">Portfolio</a>
+    </div>
+    <button class="icon-btn" id="settingsOpen" aria-label="Appearance settings">
+      <svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5L9 6.1a7 7 0 0 0-1.7 1l-2.4-1-2 3.4L5 11a7 7 0 0 0 0 2l-2.1 1.5 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.5 3.1h5l.5-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4L18.9 13c.1-.3.1-.7.1-1Z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-copy">
+      <p class="eyebrow reveal">Welcome to Plexium.</p>
+      <h1 class="reveal" data-delay="1">One place.<br><span>Everything we build.</span></h1>
+      <p class="lead reveal" data-delay="2">Plex Browser, PlexiumMC, and our websites and apps — designed as separate products, tied together by one clean system.</p>
+      <div class="hero-actions reveal" data-delay="3">
+        <a class="btn btn-primary" href="#products">Explore Plexium</a>
+        <a class="btn btn-plain" href="portfolio/">View portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="motion-rail" aria-hidden="true">
+    <div class="rail-track">
+      <span class="rail-item">Plex Browser</span>
+      <span class="rail-item">PlexiumMC</span>
+      <span class="rail-item">Websites</span>
+      <span class="rail-item">Desktop apps</span>
+      <span class="rail-item">UI systems</span>
+      <span class="rail-item">Liquid Glass</span>
+      <span class="rail-item">Motion</span>
+      <span class="rail-item">Plex Browser</span>
+      <span class="rail-item">PlexiumMC</span>
+      <span class="rail-item">Websites</span>
+      <span class="rail-item">Desktop apps</span>
+      <span class="rail-item">UI systems</span>
+      <span class="rail-item">Liquid Glass</span>
+      <span class="rail-item">Motion</span>
+    </div>
   </div>
 
-  <main>
-    <section class="hero home-hero">
-      <div class="container">
-        <div class="home-hero-inner">
-          <div class="hero-eyebrow">Welcome to Plexium</div>
-          <h1 class="hero-title">One place for <em>everything.</em></h1>
-          <p class="hero-desc">Plexium is where I keep the things I build — Plex Browser, the Plexium Minecraft network, and my website and app portfolio.</p>
-          <div class="hero-actions">
-            <a class="glow-btn" href="portfolio/">Explore Portfolio</a>
-            <a class="soft-btn" href="browser/">Open Browser</a>
-          </div>
-        </div>
+  <section class="section products" id="products">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Products</p>
+        <h2>Pick where you want to go.</h2>
+        <p>Each part of Plexium has its own purpose. The interface stays familiar while the product gets to be itself.</p>
       </div>
-    </section>
 
-    <section class="section home-products" id="products">
-      <div class="container">
-        <div class="section-label">Choose where to go</div>
-        <h2 class="section-title">What are you here for?</h2>
-        <div class="menu-grid">
-          <a class="menu-card" href="browser/">
-            <div class="menu-icon product-logo"><img src="assets/Icons/icon-normal.png" alt="Plex Browser icon"></div>
-            <h2>Browser</h2>
-            <p>The original Plex Browser website — downloads, features, screenshots, customization and everything that was previously on the root page.</p>
-            <div class="menu-meta">
-              <span class="chip">Plex Browser 2.0.0</span>
-              <span class="chip">Windows · macOS · Linux</span>
-            </div>
-          </a>
-          <a class="menu-card" href="minecraft/">
-            <div class="menu-icon product-logo"><img src="assets/server-icon.png" alt="Plexium Minecraft server icon"></div>
-            <h2>Minecraft Server</h2>
-            <p>Join PlexiumMC and read the full game wiki for BoxPvP and Island Wars, including server addresses, commands, mechanics and progression.</p>
-            <div class="menu-meta">
-              <span class="chip">Java + Bedrock</span>
-              <span class="chip">BoxPvP · Island Wars</span>
-            </div>
-          </a>
-          <a class="menu-card" href="portfolio/">
-            <div class="menu-icon product-logo portfolio-mark" aria-hidden="true">
+      <div class="product-grid stagger">
+        <a class="product-card" href="browser/">
+          <div class="product-top">
+            <div class="product-icon"><img src="assets/Icons/icon-normal.png" alt="Plex Browser icon"></div>
+            <span class="product-tag">Browser</span>
+          </div>
+          <div class="product-body">
+            <h3>Plex Browser</h3>
+            <p>Downloads, features, screenshots, customization, privacy controls, performance modes, and the current public release.</p>
+            <div class="product-link">Open Browser <span>→</span></div>
+          </div>
+        </a>
+
+        <a class="product-card" href="minecraft/">
+          <div class="product-top">
+            <div class="product-icon"><img src="assets/server-icon.png" alt="PlexiumMC server icon"></div>
+            <span class="product-tag">Minecraft</span>
+          </div>
+          <div class="product-body">
+            <h3>PlexiumMC</h3>
+            <p>Join the network and read the full player wiki for BoxPvP and Island Wars, including progression, commands, crates, and more.</p>
+            <div class="product-link">Open Minecraft <span>→</span></div>
+          </div>
+        </a>
+
+        <a class="product-card" href="portfolio/">
+          <div class="product-top">
+            <div class="product-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32"><rect x="4.5" y="6.5" width="23" height="19" rx="5"/><path d="M10 13h12M10 18h7"/><circle cx="23" cy="19" r="2.5"/></svg>
             </div>
-            <h2>Portfolio</h2>
-            <p>Websites, desktop apps, live design demos, pricing, and a clear look at what working with me actually includes.</p>
-            <div class="menu-meta">
-              <span class="chip">Websites · Apps</span>
-              <span class="chip">Pricing · Live demos</span>
-            </div>
-          </a>
-        </div>
+            <span class="product-tag">Work</span>
+          </div>
+          <div class="product-body">
+            <h3>Portfolio</h3>
+            <p>Websites, desktop apps, real project previews, pricing, process, and a clear look at what we build for clients.</p>
+            <div class="product-link">View portfolio <span>→</span></div>
+          </div>
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="footer">
-    <div class="container">© 2026 Plexium. All rights reserved. <span class="accent-dot"></span> <a href="./">Home</a> · <a href="browser/">Browser</a> · <a href="minecraft/">Minecraft</a> · <a href="portfolio/">Portfolio</a> · <a href="UI/">PlexUI</a> · <a href="https://github.com/plodroid" target="_blank" rel="noopener">GitHub</a></div>
-  </footer>
-</div>
+  <section class="section ecosystem">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One ecosystem</p>
+        <h2>Different products.<br>Same attention to detail.</h2>
+        <p>The products do not need to look identical. They share the same motion, hierarchy, interaction quality, and finishing standards.</p>
+      </div>
+
+      <div class="ecosystem-grid stagger">
+        <article class="ecosystem-card">
+          <span>01</span>
+          <div>
+            <h3>Focused interfaces</h3>
+            <p>Each product keeps the controls it needs and drops the ones it does not.</p>
+          </div>
+        </article>
+
+        <article class="ecosystem-card">
+          <span>02</span>
+          <div>
+            <h3>Purposeful motion</h3>
+            <p>Movement shows state, hierarchy, and response instead of constantly asking for attention.</p>
+          </div>
+        </article>
+
+        <article class="ecosystem-card">
+          <span>03</span>
+          <div>
+            <h3>Built to feel finished</h3>
+            <p>Spacing, mobile behavior, hover feedback, light and dark appearance, and the tiny details all count.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© 2026 Plexium. All rights reserved.</span>
+    <div>
+      <a href="./">Home</a> ·
+      <a href="browser/">Browser</a> ·
+      <a href="minecraft/">Minecraft</a> ·
+      <a href="portfolio/">Portfolio</a> ·
+      <a href="UI/">PlexUI</a> ·
+      <a href="https://github.com/plodroid" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<aside class="settings" id="settings" aria-hidden="true">
+  <div class="settings-bg" id="settingsBg"></div>
+  <section class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="settings-top">
+      <h3 id="settingsTitle">Appearance</h3>
+      <button class="icon-btn" id="settingsClose" aria-label="Close settings">×</button>
+    </div>
+    <div class="setting-row">
+      <span>Theme</span>
+      <div class="segmented" id="themeTabs" data-liquid-tabs>
+        <button class="active" data-theme-choice="light">Light</button>
+        <button data-theme-choice="dark">Dark</button>
+        <button data-theme-choice="system">Auto</button>
+      </div>
+    </div>
+    <div class="setting-row">
+      <span style="margin:0">Motion respects your device accessibility settings.</span>
+    </div>
+  </section>
+</aside>
+
+<nav class="mobile-tabs" id="mobileTabs" data-liquid-tabs aria-label="Mobile navigation">
+  <a class="active" href="./">Home</a>
+  <a href="browser/">Browser</a>
+  <a href="minecraft/">Minecraft</a>
+  <a href="portfolio/">Portfolio</a>
+</nav>
+
 <script>
 (()=>{
 'use strict';
+const $=(q,c=document)=>c.querySelector(q);
+const $$=(q,c=document)=>[...c.querySelectorAll(q)];
 const root=document.documentElement;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const saved=localStorage.getItem('plexium-theme');
-if(saved)root.dataset.theme=saved;
 
-document.getElementById('themeToggle').addEventListener('click',()=>{
-  const apply=()=>{
-    root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';
-    localStorage.setItem('plexium-theme',root.dataset.theme);
-  };
-  if(!reduced&&document.startViewTransition)document.startViewTransition(apply);else apply();
-});
+/* liquid selectors */
+function ensureLiquid(container){
+  if(!container||container.dataset.liquidReady)return;
+  container.dataset.liquidReady='1';
 
-const revealTargets=[
-  document.querySelector('.hero-eyebrow'),
-  document.querySelector('.hero-title'),
-  document.querySelector('.hero-desc'),
-  document.querySelector('.hero-actions'),
-  document.querySelector('.section-label'),
-  document.querySelector('.section-title'),
-  ...document.querySelectorAll('.menu-card')
-].filter(Boolean);
+  const goo=document.createElement('span');
+  goo.className='liquid-goo';
+  goo.innerHTML='<span class="liquid-bridge"></span><span class="liquid-blob"></span>';
 
-revealTargets.forEach((el,i)=>{
-  el.classList.add('home-reveal');
-  if(i%4)el.dataset.delay=String(i%4);
-});
+  const indicator=document.createElement('span');
+  indicator.className='liquid-indicator';
 
-if(!reduced&&'IntersectionObserver'in window){
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>entry.target.classList.toggle('is-visible',entry.isIntersecting));
-  },{threshold:.14,rootMargin:'-4% 0px -6%'});
-  revealTargets.forEach(el=>io.observe(el));
-}else{
-  revealTargets.forEach(el=>el.classList.add('is-visible'));
+  container.prepend(indicator);
+  container.prepend(goo);
 }
 
-const cursor=document.getElementById('homeCursor');
-if(matchMedia('(pointer:fine)').matches&&!reduced&&cursor){
-  root.classList.add('home-custom-cursor');
-  let lx=0,ly=0,lt=performance.now(),x=-100,y=-100,angle=0,stretch=0,target=0,speed=0;
+function positionLiquid(container,active,animate=true){
+  if(!container||!active)return;
+  ensureLiquid(container);
 
-  addEventListener('pointermove',e=>{
-    const now=performance.now(),dt=Math.max(7,now-lt),dx=e.clientX-lx,dy=e.clientY-ly;
-    speed=Math.min(1,(Math.hypot(dx,dy)/dt)/2.15);
-    if(Math.abs(dx)+Math.abs(dy)>.1)angle=Math.atan2(dy,dx)*180/Math.PI;
-    target=speed*.58;
-    x=e.clientX;y=e.clientY;lx=x;ly=y;lt=now;
+  const indicator=$('.liquid-indicator',container);
+  const blob=$('.liquid-blob',container);
+  const bridge=$('.liquid-bridge',container);
+
+  const cr=container.getBoundingClientRect();
+  const ar=active.getBoundingClientRect();
+
+  const x=ar.left-cr.left;
+  const width=ar.width;
+
+  const oldX=Number(indicator.dataset.x||x);
+  const oldWidth=Number(indicator.dataset.w||width);
+
+  const oldCenter=oldX+(oldWidth/2);
+  const newCenter=x+(width/2);
+
+  const left=Math.min(oldCenter,newCenter);
+  const right=Math.max(oldCenter,newCenter);
+
+  blob.style.left=x+'px';
+  blob.style.width=width+'px';
+
+  bridge.style.left=(left-8)+'px';
+  bridge.style.width=(right-left+16)+'px';
+
+  indicator.style.width=width+'px';
+  indicator.style.transform='translateX('+x+'px)';
+
+  indicator.dataset.x=String(x);
+  indicator.dataset.w=String(width);
+
+  if(animate&&!reduced&&Math.abs(newCenter-oldCenter)>2){
+    indicator.classList.remove('moving');
+    bridge.classList.remove('animate');
+    void indicator.offsetWidth;
+    indicator.classList.add('moving');
+    bridge.classList.add('animate');
+
+    clearTimeout(container._liquidTimer);
+    container._liquidTimer=setTimeout(()=>{
+      indicator.classList.remove('moving');
+      bridge.classList.remove('animate');
+    },370);
+  }
+}
+
+function refreshLiquids(){
+  $$('[data-liquid-tabs]').forEach(container=>{
+    positionLiquid(
+      container,
+      $('.active',container)||$('a,button',container),
+      false
+    );
+  });
+}
+
+$$('[data-liquid-tabs]').forEach(ensureLiquid);
+requestAnimationFrame(refreshLiquids);
+addEventListener('resize',refreshLiquids);
+
+/* appearance */
+const mqDark=matchMedia('(prefers-color-scheme: dark)');
+const themeTabs=$('#themeTabs');
+const resolveTheme=choice=>choice==='system'?(mqDark.matches?'dark':'light'):choice;
+
+function applyTheme(choice){
+  const next=resolveTheme(choice);
+  root.dataset.theme=next;
+  document.querySelector('meta[name="theme-color"]').content=next==='dark'?'#000000':'#f5f5f7';
+  localStorage.setItem('plexium-home-theme',choice);
+  requestAnimationFrame(refreshLiquids);
+}
+
+function setThemeButton(choice,animate=false){
+  const button=$('[data-theme-choice="'+choice+'"]',themeTabs);
+  if(!button)return;
+
+  $$('button',themeTabs).forEach(control=>control.classList.toggle('active',control===button));
+  positionLiquid(themeTabs,button,animate);
+}
+
+const savedTheme=localStorage.getItem('plexium-home-theme')||'light';
+applyTheme(savedTheme);
+setThemeButton(savedTheme,false);
+
+$$('[data-theme-choice]',themeTabs).forEach(button=>{
+  button.addEventListener('click',()=>{
+    const choice=button.dataset.themeChoice;
+    setThemeButton(choice,true);
+
+    const update=()=>applyTheme(choice);
+
+    if(!reduced&&document.startViewTransition){
+      document.startViewTransition(update);
+    }else{
+      update();
+    }
+  });
+});
+
+mqDark.addEventListener?.('change',()=>{
+  if(localStorage.getItem('plexium-home-theme')==='system'){
+    applyTheme('system');
+  }
+});
+
+const settings=$('#settings');
+$('#settingsOpen').addEventListener('click',()=>{
+  settings.classList.add('open');
+  settings.setAttribute('aria-hidden','false');
+  requestAnimationFrame(refreshLiquids);
+});
+function closeSettings(){
+  settings.classList.remove('open');
+  settings.setAttribute('aria-hidden','true');
+}
+$('#settingsClose').addEventListener('click',closeSettings);
+$('#settingsBg').addEventListener('click',closeSettings);
+addEventListener('keydown',event=>{if(event.key==='Escape')closeSettings()});
+
+/* replayable motion */
+if(!reduced&&'IntersectionObserver'in window){
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      entry.target.classList.toggle('is-visible',entry.isIntersecting);
+    });
+  },{
+    threshold:.16,
+    rootMargin:'-4% 0px -7% 0px'
+  });
+
+  $$('.reveal,.stagger').forEach(element=>observer.observe(element));
+}else{
+  $$('.reveal,.stagger').forEach(element=>element.classList.add('is-visible'));
+}
+
+/* subtle hero parallax */
+if(!reduced){
+  let heroRAF=0;
+
+  addEventListener('scroll',()=>{
+    if(heroRAF)return;
+
+    heroRAF=requestAnimationFrame(()=>{
+      heroRAF=0;
+      const y=Math.min(42,scrollY*.055);
+      $('.hero')?.style.setProperty('--hero-p',y+'px');
+    });
+  },{passive:true});
+}
+
+/* exact-position elastic cursor */
+const cursor=$('#cursor');
+
+if(matchMedia('(pointer:fine)').matches&&!reduced){
+  root.classList.add('custom-cursor');
+
+  let lastX=0;
+  let lastY=0;
+  let lastT=performance.now();
+
+  let x=-100;
+  let y=-100;
+  let angle=0;
+  let stretch=0;
+  let targetStretch=0;
+  let speed01=0;
+
+  addEventListener('pointermove',event=>{
+    const now=performance.now();
+    const dt=Math.max(7,now-lastT);
+
+    const dx=event.clientX-lastX;
+    const dy=event.clientY-lastY;
+
+    const velocity=Math.hypot(dx,dy)/dt;
+    speed01=Math.min(1,velocity/2.2);
+
+    if(Math.abs(dx)+Math.abs(dy)>.1){
+      angle=Math.atan2(dy,dx)*180/Math.PI;
+    }
+
+    targetStretch=speed01*.58;
+
+    x=event.clientX;
+    y=event.clientY;
+
+    lastX=event.clientX;
+    lastY=event.clientY;
+    lastT=now;
+
     cursor.classList.add('ready');
   },{passive:true});
 
   addEventListener('pointerdown',()=>cursor.classList.add('down'));
   addEventListener('pointerup',()=>cursor.classList.remove('down'));
-  document.addEventListener('mouseover',e=>cursor.classList.toggle('hover',!!e.target.closest('a,button,.menu-card')));
+
+  document.addEventListener('mouseover',event=>{
+    const interactive=!!event.target.closest('a,button,input,textarea,select,.product-card,.ecosystem-card');
+    cursor.classList.toggle('hover',interactive);
+  });
+
   document.addEventListener('mouseleave',()=>cursor.classList.remove('ready'));
 
-  function tick(){
-    stretch+=(target-stretch)*.26;
-    target*=.84;
-    speed*=.88;
-    cursor.style.setProperty('--trail',(14+speed*22).toFixed(1)+'px');
-    cursor.style.setProperty('--trail-opacity',(speed*.25).toFixed(3));
-    cursor.style.setProperty('--trail-blur',(speed*3.4).toFixed(1)+'px');
-    cursor.style.transform='translate3d('+x+'px,'+y+'px,0) translate(-50%,-50%) rotate('+angle+'deg) scale('+(1+stretch)+','+(1-stretch*.3)+')';
-    requestAnimationFrame(tick);
+  function cursorFrame(){
+    stretch+=(targetStretch-stretch)*.26;
+    targetStretch*=.84;
+    speed01*=.88;
+
+    cursor.style.setProperty('--trail',(speed01*23).toFixed(1)+'px');
+    cursor.style.setProperty('--trail-opacity',(speed01*.26).toFixed(3));
+    cursor.style.setProperty('--blur',(speed01*3.6).toFixed(1)+'px');
+
+    cursor.style.transform=
+      'translate3d('+x+'px,'+y+'px,0) '+
+      'translate(-50%,-50%) '+
+      'rotate('+angle+'deg) '+
+      'scale('+(1+stretch)+','+(1-stretch*.30)+')';
+
+    requestAnimationFrame(cursorFrame);
   }
-  tick();
+
+  cursorFrame();
 }
 })();
 </script>
