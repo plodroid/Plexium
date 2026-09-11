@@ -140,6 +140,61 @@ pre{margin:0;padding:18px;overflow:auto;font:500 .78rem/1.65 ui-monospace,SFMono
 @media(prefers-reduced-transparency:reduce){
   .topbar,.liquid-indicator{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--surface)!important}
 }
+
+/* ---------- Long-form documentation ---------- */
+.prose{max-width:780px;color:var(--muted);line-height:1.78;font-size:1rem}
+.prose p{margin:0 0 18px}
+.prose strong{color:var(--text)}
+.subsection{margin-top:46px}
+.subsection h3{margin:0;font-size:1.55rem;letter-spacing:-.04em}
+.subsection>p{max-width:760px;margin:12px 0 0;color:var(--muted);line-height:1.72}
+.spec-table{width:100%;margin-top:20px;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--line-soft);border-radius:18px;background:var(--surface)}
+.spec-table th,.spec-table td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line-soft);font-size:.84rem;vertical-align:top}
+.spec-table th{color:var(--text);font-weight:700;background:rgba(127,127,127,.055)}
+.spec-table td{color:var(--muted)}
+.spec-table tr:last-child td{border-bottom:0}
+.rule-list{display:grid;gap:10px;margin-top:20px}
+.rule{padding:15px 17px;border-radius:16px;background:var(--surface);border:1px solid var(--line-soft);color:var(--muted);line-height:1.55}
+.rule strong{color:var(--text)}
+.anatomy{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.anatomy div{min-height:126px;padding:18px;border-radius:20px;background:var(--surface);border:1px solid var(--line-soft)}
+.anatomy b{display:block;margin-bottom:8px}
+.anatomy span{color:var(--muted);font-size:.86rem;line-height:1.5}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.do-dont article{padding:20px;border-radius:20px;border:1px solid var(--line-soft);background:var(--surface)}
+.do-dont .good{border-color:rgba(52,199,89,.24);background:color-mix(in srgb,var(--surface) 94%,#34c759)}
+.do-dont .bad{border-color:rgba(255,69,58,.22);background:color-mix(in srgb,var(--surface) 94%,#ff453a)}
+.do-dont h4{margin:0 0 8px;font-size:.95rem}
+.do-dont p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.55}
+.inline-code{padding:2px 6px;border-radius:6px;background:var(--surface-soft);font:500 .86em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.component-demo{margin-top:20px;padding:24px;border-radius:24px;background:var(--surface);border:1px solid var(--line-soft)}
+.component-demo>p{margin:8px 0 0;color:var(--muted);line-height:1.55;font-size:.9rem}
+.demo-nav-island{width:max-content;max-width:100%;margin:22px auto 0;padding:7px 8px;display:flex;align-items:center;gap:6px;border-radius:999px;background:color-mix(in srgb,var(--surface) 90%,transparent);border:1px solid var(--line-soft);box-shadow:0 14px 42px rgba(0,0,0,.10),inset 0 1px rgba(255,255,255,.36);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
+.demo-nav-island a{height:44px;min-width:76px;padding:0 14px;display:flex;align-items:center;justify-content:center;border-radius:999px;color:var(--muted);font-size:.82rem;font-weight:650}
+.demo-nav-island a:first-child{background:var(--glass-strong);color:var(--text);box-shadow:inset 1px 1px rgba(255,255,255,.45),0 4px 12px rgba(0,0,0,.07)}
+.demo-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.demo-settings{max-width:360px;margin:20px auto 0;padding:18px;border-radius:28px;background:color-mix(in srgb,var(--surface) 80%,transparent);border:1px solid var(--glass-border);box-shadow:0 25px 60px rgba(0,0,0,.16),inset 1px 1px rgba(255,255,255,.32);-webkit-backdrop-filter:blur(20px) saturate(165%);backdrop-filter:blur(20px) saturate(165%)}
+.demo-settings h4{margin:0 0 12px;font-size:1.15rem}
+.demo-settings p{margin:0;color:var(--muted);font-size:.85rem;line-height:1.55}
+.mini-slider{position:relative;height:64px;margin-top:18px;display:flex;align-items:center}
+.mini-slider-track{position:absolute;left:0;right:0;height:10px;border-radius:999px;background:#d6d6da;overflow:hidden}
+html[data-theme=dark] .mini-slider-track{background:#36363b}
+.mini-slider-fill{width:62%;height:100%;background:linear-gradient(117deg,#49a3fc,#3681ee)}
+.mini-slider-thumb{position:absolute;left:62%;top:50%;width:58px;height:40px;border-radius:999px;transform:translate(-50%,-50%);background:rgba(255,255,255,.86);border:1px solid rgba(255,255,255,.92);box-shadow:0 1px 8px rgba(0,30,63,.10),inset 1px 1px rgba(69,168,243,.20);-webkit-backdrop-filter:blur(7px) saturate(175%);backdrop-filter:blur(7px) saturate(175%)}
+.mobile-frame{width:min(330px,100%);margin:22px auto 0;padding:14px 12px 22px;border-radius:38px;background:#111214;box-shadow:0 24px 60px rgba(0,0,0,.22)}
+.mobile-screen{height:420px;border-radius:28px;background:linear-gradient(180deg,var(--surface),var(--surface-soft));position:relative;overflow:hidden}
+.mobile-screen::before{content:"";position:absolute;left:50%;top:10px;transform:translateX(-50%);width:88px;height:24px;border-radius:999px;background:#000}
+.mobile-bar-demo{position:absolute;left:10px;right:10px;bottom:10px;height:66px;padding:6px;display:flex;border-radius:24px;background:color-mix(in srgb,var(--glass) 88%,transparent);border:1px solid var(--glass-border);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%)}
+.mobile-bar-demo span{flex:1;display:grid;place-items:center;border-radius:18px;color:var(--muted);font-size:.7rem}
+.mobile-bar-demo span:first-child{background:var(--glass-strong);color:var(--text)}
+.checklist{display:grid;gap:8px;margin-top:18px}
+.checklist li{list-style:none;padding:12px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--line-soft);color:var(--muted);line-height:1.5}
+.checklist li::before{content:"✓";display:inline-grid;place-items:center;width:20px;height:20px;margin-right:9px;border-radius:50%;background:rgba(52,199,89,.13);color:#28a745;font-weight:800;font-size:.72rem;vertical-align:middle}
+.docs-callout{margin-top:22px;padding:22px;border-radius:22px;background:linear-gradient(145deg,rgba(0,113,227,.07),rgba(90,200,250,.035));border:1px solid rgba(0,113,227,.14)}
+.docs-callout strong{display:block;font-size:1rem}
+.docs-callout p{margin:8px 0 0;color:var(--muted);line-height:1.58}
+@media(max-width:900px){.anatomy,.do-dont{grid-template-columns:1fr}.spec-table{display:block;overflow:auto}}
+
 </style>
 </head>
 <body>
@@ -171,10 +226,22 @@ pre{margin:0;padding:18px;overflow:auto;font:500 .78rem/1.65 ui-monospace,SFMono
     <a class="active" href="#overview">Overview</a>
     <a href="#principles">Principles</a>
     <a href="#foundations">Foundations</a>
-    <a href="#components">Components</a>
+    <a href="#layout">Layout</a>
+    <a href="#type">Typography</a>
+    <a href="#glass">Liquid Glass</a>
+    <a href="#components">Segments</a>
+    <a href="#navigation">Navigation</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#settings-sheet">Settings</a>
     <a href="#cursor">Cursor</a>
     <a href="#motion">Motion</a>
+    <a href="#scrollspy">Scroll spy</a>
+    <a href="#cards">Cards</a>
+    <a href="#slider">Slider</a>
+    <a href="#forms">Forms</a>
+    <a href="#mobile">Mobile</a>
     <a href="#accessibility">Accessibility</a>
+    <a href="#implementation">Implementation</a>
     <a href="#reference">Use with AI</a>
     <a href="#roadmap">Roadmap</a>
   </nav>
@@ -217,6 +284,136 @@ pre{margin:0;padding:18px;overflow:auto;font:500 .78rem/1.65 ui-monospace,SFMono
       <h3>Type</h3><p>Use the platform system stack and tighter tracking as type gets larger.</p>
       <div class="type-demo"><strong>Clear first.</strong><p>Supporting copy stays quieter, smaller, and easier to scan.</p></div>
     </article>
+  </div>
+</section>
+
+
+<section class="doc-section" id="layout">
+  <div class="doc-head reveal">
+    <h2>Layout and spacing</h2>
+    <p>PlexUI uses a wide content canvas with large vertical intervals. The empty space is intentional: it separates ideas before borders or cards have to.</p>
+  </div>
+  <div class="prose reveal">
+    <p>The default desktop content width is <strong>1180px</strong>. On smaller screens, the layout falls back to viewport gutters rather than compressing every component. Sections usually receive more vertical space than their internal cards, which helps the page read as an article rather than a dashboard made of boxes.</p>
+    <p>Use consistent page gutters and section rhythm before adding decorative dividers. If a section feels crowded, increase spacing first. Do not solve every grouping problem by adding another container.</p>
+  </div>
+  <table class="spec-table reveal">
+    <thead><tr><th>Token</th><th>Default</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td>Content width</td><td>1180px</td><td>Primary reading / product canvas</td></tr>
+      <tr><td>Desktop gutter</td><td>24px each side</td><td>Minimum viewport breathing room</td></tr>
+      <tr><td>Mobile gutter</td><td>14px each side</td><td>Compact screens</td></tr>
+      <tr><td>Section padding</td><td>118px vertical</td><td>Desktop chapter separation</td></tr>
+      <tr><td>Mobile section padding</td><td>88px vertical</td><td>Preserves rhythm without wasting screen</td></tr>
+      <tr><td>Card gap</td><td>16–24px</td><td>Related content groups</td></tr>
+    </tbody>
+  </table>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS — layout foundation</span><button class="copy-btn" data-copy="layoutCode">Copy</button></div>
+    <pre><code id="layoutCode">.wrap{
+  width:min(1180px,calc(100% - 48px));
+  margin:auto;
+}
+
+.section{
+  padding:118px 0;
+  scroll-margin-top:110px;
+}
+
+@media(max-width:820px){
+  .wrap{
+    width:min(100% - 28px,1180px);
+  }
+
+  .section{
+    padding:88px 0;
+  }
+}</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="type">
+  <div class="doc-head reveal">
+    <h2>Typography is the hierarchy</h2>
+    <p>Large headings, restrained supporting copy, and tight tracking do most of the visual work. PlexUI should not need ten decorative devices to make a section feel important.</p>
+  </div>
+  <div class="anatomy reveal">
+    <div><b>Display</b><span>Short, large statements. Tight tracking and compact line-height.</span></div>
+    <div><b>Supporting copy</b><span>Neutral color, comfortable line-height, and limited width.</span></div>
+    <div><b>Eyebrow</b><span>Small uppercase context label using the interaction accent.</span></div>
+  </div>
+  <div class="subsection reveal"><h3>System font stack</h3><p>Use the platform stack first. It keeps rendering native on Apple devices while remaining practical elsewhere. Do not ship proprietary font files just to imitate the system face.</p></div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS — type scale</span><button class="copy-btn" data-copy="typeCode">Copy</button></div>
+    <pre><code id="typeCode">:root{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+.hero h1{
+  font-size:clamp(4.2rem,9.5vw,8.9rem);
+  line-height:.86;
+  letter-spacing:-.082em;
+}
+
+.section-head h2{
+  font-size:clamp(3rem,6.7vw,6rem);
+  line-height:.92;
+  letter-spacing:-.066em;
+}
+
+.eyebrow{
+  color:var(--blue);
+  font-size:.78rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  font-weight:760;
+}</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="glass">
+  <div class="doc-head reveal">
+    <h2>Liquid Glass is a control material</h2>
+    <p>Glass is most useful when it communicates an interactive layer floating above content. In PlexUI it belongs on navigation, selected states, settings surfaces, compact toolbars, and other controls that benefit from depth.</p>
+  </div>
+  <div class="prose reveal">
+    <p>A convincing glass surface needs more than opacity. PlexUI combines <strong>background translucency</strong>, <strong>saturation</strong>, <strong>blur</strong>, <strong>bright internal reflections</strong>, and a soft external shadow. These layers create a material edge even when the background underneath is nearly flat.</p>
+    <p>Content cards should usually remain solid. If everything is translucent, the interface loses hierarchy and glass stops feeling special.</p>
+  </div>
+  <div class="do-dont reveal">
+    <article class="good"><h4>Use glass for</h4><p>Navigation, selected states, compact floating tools, settings chrome, tab bars, slider thumbs, and other interactive layers.</p></article>
+    <article class="bad"><h4>Avoid glass for</h4><p>Every paragraph, large article surfaces, every product card, long tables, and decorative backgrounds with no functional reason.</p></article>
+  </div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS — material</span><button class="copy-btn" data-copy="glassCode">Copy</button></div>
+    <pre><code id="glassCode">.glass-material{
+  background:
+    color-mix(
+      in srgb,
+      var(--glass) 84%,
+      transparent
+    );
+
+  border:
+    1px solid var(--glass-border);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(165%);
+
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.46),
+    inset -1px -1px 0 rgba(255,255,255,.12),
+    inset 0 -7px 16px rgba(60,60,67,.035),
+    0 8px 25px rgba(0,0,0,.08);
+}</code></pre>
   </div>
 </section>
 
@@ -265,6 +462,147 @@ pre{margin:0;padding:18px;overflow:auto;font:500 .78rem/1.65 ui-monospace,SFMono
 }</code></pre>
     </div>
   </div>
+
+</section>
+
+<section class="doc-section" id="navigation">
+  <div class="doc-head reveal">
+    <h2>Navigation should feel compact and anchored</h2>
+    <p>Desktop navigation uses a centered, content-sized island rather than a full-width bar. It should feel like interface chrome, not another content section.</p>
+  </div>
+  <div class="component-demo reveal">
+    <h3>Dynamic-Island-style shell</h3>
+    <p>The shell stays compact. The active item can use the same liquid selector system used by segmented controls.</p>
+    <div class="demo-nav-island"><a href="javascript:void(0)">Overview</a><a href="javascript:void(0)">Components</a><a href="javascript:void(0)">Motion</a></div>
+  </div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>HTML</span><button class="copy-btn" data-copy="navHtml">Copy</button></div>
+    <pre><code id="navHtml">&lt;header class="site-nav"&gt;
+  &lt;nav class="nav-shell"&gt;
+    &lt;div class="nav-tabs" data-liquid-tabs&gt;
+      &lt;a class="active" href="#overview"&gt;Overview&lt;/a&gt;
+      &lt;a href="#features"&gt;Features&lt;/a&gt;
+      &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;button class="icon-btn" aria-label="Settings"&gt;…&lt;/button&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+  </div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS</span><button class="copy-btn" data-copy="navCss">Copy</button></div>
+    <pre><code id="navCss">.site-nav{
+  position:fixed;
+  z-index:1200;
+  left:0;
+  right:0;
+  top:14px;
+  padding:0 16px;
+  pointer-events:none;
+}
+
+.nav-shell{
+  pointer-events:auto;
+  width:max-content;
+  max-width:calc(100vw - 28px);
+  height:62px;
+  margin:auto;
+  padding:7px 8px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  border:1px solid var(--line-soft);
+  box-shadow:
+    0 14px 42px rgba(0,0,0,.10),
+    0 2px 8px rgba(0,0,0,.04),
+    inset 0 1px rgba(255,255,255,.36);
+  backdrop-filter:blur(18px) saturate(160%);
+}</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="buttons">
+  <div class="doc-head reveal"><h2>Buttons respond, they do not perform</h2><p>Hover motion should be felt more than noticed. Primary buttons can lift slightly; icon controls may grow a little more; dense segmented controls should barely move.</p></div>
+  <div class="component-demo reveal">
+    <h3>Primary and secondary</h3>
+    <div class="demo-buttons"><button class="btn btn-primary">Continue</button><button class="btn btn-secondary">Learn more</button></div>
+  </div>
+  <table class="spec-table reveal">
+    <thead><tr><th>Control</th><th>Hover</th><th>Pressed</th></tr></thead>
+    <tbody>
+      <tr><td>Primary action</td><td>translateY(-2px), scale(1.018)</td><td>scale(.975)</td></tr>
+      <tr><td>Icon button</td><td>scale(1.04–1.06)</td><td>scale(.94–.97)</td></tr>
+      <tr><td>Segment</td><td>scale(1.01–1.02)</td><td>scale(.975)</td></tr>
+      <tr><td>Card</td><td>translateY(-4px to -6px)</td><td>Usually none</td></tr>
+    </tbody>
+  </table>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS</span><button class="copy-btn" data-copy="buttonCode">Copy</button></div>
+    <pre><code id="buttonCode">.btn{
+  min-height:50px;
+  padding:0 20px;
+  border-radius:16px;
+  border:1px solid transparent;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:680;
+  transition:
+    transform 160ms var(--ease),
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.btn-primary{
+  background:var(--blue);
+  color:white;
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px) scale(1.018);
+  background:var(--blue2);
+}
+
+.btn:active{
+  transform:scale(.975);
+}</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="settings-sheet">
+  <div class="doc-head reveal"><h2>Settings float above the page</h2><p>The settings sheet is centered, compact, and translucent. The page behind it is dimmed, not blurred into unreadable mush.</p></div>
+  <div class="demo-settings reveal"><h4>Appearance</h4><p>Settings surfaces use stronger glass than ordinary content. Theme selection can reuse the liquid segmented-control system.</p></div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS — centered settings sheet</span><button class="copy-btn" data-copy="settingsCode">Copy</button></div>
+    <pre><code id="settingsCode">.settings{
+  position:fixed;
+  inset:0;
+  z-index:4000;
+  display:grid;
+  place-items:center;
+  padding:18px;
+}
+
+.settings-bg{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.25);
+}
+
+.settings-panel{
+  position:relative;
+  width:min(400px,100%);
+  padding:18px;
+  border-radius:30px;
+  background:color-mix(in srgb,var(--surface) 80%,transparent);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(22px) saturate(165%);
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.22),
+    inset 1px 1px rgba(255,255,255,.35);
+}</code></pre>
+  </div>
 </section>
 
 <section class="doc-section" id="cursor">
@@ -295,9 +633,239 @@ document.querySelectorAll('.reveal').forEach(element =&gt; {
   </div>
 </section>
 
+
+<section class="doc-section" id="scrollspy">
+  <div class="doc-head reveal"><h2>Scroll-spy should be deterministic</h2><p>Navigation state should not jump because two sections happen to intersect the viewport at once. PlexUI uses a fixed activation line inside the viewport and selects whichever section actually occupies that line.</p></div>
+  <div class="prose reveal"><p>A useful default is <strong>42% of the viewport height</strong>. This makes the selected navigation item track what the user is actually reading and prevents short sections from being skipped.</p></div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>JavaScript — active section</span><button class="copy-btn" data-copy="spyCode">Copy</button></div>
+    <pre><code id="spyCode">const sectionIds=[
+  'overview',
+  'features',
+  'pricing',
+  'contact'
+];
+
+const sections=
+  sectionIds.map(id=&gt;
+    document.getElementById(id)
+  );
+
+function currentSection(){
+  const activationY=
+    innerHeight*.42;
+
+  for(const section of sections){
+    const rect=
+      section.getBoundingClientRect();
+
+    if(
+      rect.top&lt;=activationY &&
+      rect.bottom&gt;activationY
+    ){
+      return section.id;
+    }
+  }
+
+  return sections[0].id;
+}
+
+addEventListener('scroll',()=&gt;{
+  requestAnimationFrame(()=&gt;{
+    updateNavigation(
+      currentSection()
+    );
+  });
+},{passive:true});</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="cards">
+  <div class="doc-head reveal"><h2>Content surfaces stay solid</h2><p>Cards organize content, but they should not become the personality of the whole interface. PlexUI cards are generally neutral, thin-bordered, softly elevated, and spacious.</p></div>
+  <div class="rule-list reveal">
+    <div class="rule"><strong>Real screenshots:</strong> use <span class="inline-code">object-fit: contain</span> when users need to see the complete interface.</div>
+    <div class="rule"><strong>Radius:</strong> roughly 24–30px for large content cards, smaller for nested UI.</div>
+    <div class="rule"><strong>Elevation:</strong> a soft shadow should separate a card without making it look detached from the page.</div>
+    <div class="rule"><strong>Glass:</strong> avoid using it for long reading surfaces or every content card.</div>
+  </div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS — content card</span><button class="copy-btn" data-copy="cardCode">Copy</button></div>
+    <pre><code id="cardCode">.content-card{
+  border-radius:28px;
+  overflow:hidden;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  box-shadow:
+    0 16px 46px rgba(0,0,0,.08);
+  transition:
+    transform 260ms var(--ease),
+    box-shadow 260ms ease;
+}
+
+.content-card:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 24px 62px rgba(0,0,0,.12);
+}
+
+.content-card img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  border-radius:5px;
+}</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="slider">
+  <div class="doc-head reveal"><h2>Range controls can carry the material</h2><p>A slider is not a mandatory PlexUI feature. When a product genuinely needs a numeric range, the track stays simple and the draggable thumb becomes the glass element.</p></div>
+  <div class="component-demo reveal">
+    <h3>Glass thumb</h3><p>The thumb stretches slightly while dragging and settles back to its resting shape.</p>
+    <div class="mini-slider"><div class="mini-slider-track"><div class="mini-slider-fill"></div></div><div class="mini-slider-thumb"></div></div>
+  </div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>HTML</span><button class="copy-btn" data-copy="sliderHtml">Copy</button></div>
+    <pre><code id="sliderHtml">&lt;div class="range-wrap" id="rangeWrap"&gt;
+  &lt;div class="range-track"&gt;
+    &lt;div class="range-fill"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="range-thumb"&gt;&lt;/div&gt;
+
+  &lt;input
+    id="rangeInput"
+    type="range"
+    min="0"
+    max="100"
+    value="40"
+  &gt;
+&lt;/div&gt;</code></pre>
+  </div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>JavaScript</span><button class="copy-btn" data-copy="sliderJs">Copy</button></div>
+    <pre><code id="sliderJs">const input=
+  document.querySelector('#rangeInput');
+
+const wrap=
+  document.querySelector('#rangeWrap');
+
+function updateRange(){
+  const progress=
+    (
+      (+input.value - +input.min) /
+      (+input.max - +input.min)
+    )*100;
+
+  wrap.style.setProperty(
+    '--progress',
+    progress+'%'
+  );
+}
+
+input.addEventListener(
+  'input',
+  updateRange
+);
+
+updateRange();</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="forms">
+  <div class="doc-head reveal"><h2>Forms should feel quiet</h2><p>Inputs are functional surfaces. Keep them readable, adequately sized, and visually subordinate to the task they perform.</p></div>
+  <table class="spec-table reveal">
+    <thead><tr><th>Property</th><th>Guideline</th></tr></thead>
+    <tbody>
+      <tr><td>Minimum control height</td><td>About 48–52px for important inputs</td></tr>
+      <tr><td>Radius</td><td>14–18px depending on density</td></tr>
+      <tr><td>Focus state</td><td>Blue border plus soft focus ring</td></tr>
+      <tr><td>Placeholder</td><td>Supportive, never the only accessible label</td></tr>
+      <tr><td>Motion</td><td>Minimal; focus should not bounce the field</td></tr>
+    </tbody>
+  </table>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS — input</span><button class="copy-btn" data-copy="formCode">Copy</button></div>
+    <pre><code id="formCode">.field{
+  width:100%;
+  min-height:52px;
+  padding:0 14px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  color:var(--text);
+  outline:none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.field:focus{
+  border-color:
+    rgba(10,132,255,.65);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(10,132,255,.16);
+}</code></pre>
+  </div>
+</section>
+
+<section class="doc-section" id="mobile">
+  <div class="doc-head reveal"><h2>Mobile is a different composition, not a smaller desktop</h2><p>On compact screens, dense desktop chrome should simplify. PlexUI typically replaces the centered desktop island with a bottom floating tab bar that is easier to reach.</p></div>
+  <div class="mobile-frame reveal"><div class="mobile-screen"><div class="mobile-bar-demo"><span>Home</span><span>Browse</span><span>Saved</span><span>Profile</span></div></div></div>
+  <div class="subsection reveal"><h3>Touch targets and safe areas</h3><p>Primary mobile controls should be comfortable to tap, not merely technically clickable. Use <span class="inline-code">env(safe-area-inset-bottom)</span> for floating controls on devices with home indicators.</p></div>
+  <div class="code-wrap reveal">
+    <div class="code-head"><span>CSS — floating mobile tab bar</span><button class="copy-btn" data-copy="mobileCode">Copy</button></div>
+    <pre><code id="mobileCode">.mobile-tabs{
+  position:fixed;
+  left:50%;
+  bottom:max(
+    12px,
+    env(safe-area-inset-bottom)
+  );
+  transform:translateX(-50%);
+  width:min(370px,calc(100% - 22px));
+  height:70px;
+  padding:7px;
+  display:flex;
+  border-radius:26px;
+  background:
+    color-mix(
+      in srgb,
+      var(--glass) 88%,
+      transparent
+    );
+  border:1px solid var(--glass-border);
+  backdrop-filter:
+    blur(22px)
+    saturate(180%);
+}</code></pre>
+  </div>
+</section>
+
 <section class="doc-section" id="accessibility">
   <div class="doc-head reveal"><h2>Accessibility is part of the system</h2><p>Motion and transparency have fallbacks. Mobile controls use practical touch targets. Interfaces should remain readable when glass or animation is reduced.</p></div>
   <div class="note reveal">Use <strong>prefers-reduced-motion</strong> to remove non-essential motion and <strong>prefers-reduced-transparency</strong> to replace glass with an opaque surface. Do not make core functionality depend on hover.</div>
+</section>
+
+
+<section class="doc-section" id="implementation">
+  <div class="doc-head reveal"><h2>Implementation checklist</h2><p>This is a developer checklist, not interface content. It exists to catch the small mistakes that make a polished system feel inconsistent.</p></div>
+  <ul class="checklist reveal">
+    <li>Light, Dark, and Auto appearance work and persist correctly.</li>
+    <li>Desktop and mobile layouts are both intentional, not merely responsive.</li>
+    <li>Touch targets remain practical on compact screens.</li>
+    <li>Liquid Glass is limited to controls and floating interface layers.</li>
+    <li>Every segmented control uses the same selection behavior.</li>
+    <li>Scroll reveals replay only where replaying is useful.</li>
+    <li>The custom pointer never changes perceived pointer sensitivity.</li>
+    <li>Real screenshots are not unintentionally cropped.</li>
+    <li>Reduced-motion and reduced-transparency preferences are respected.</li>
+    <li>Keyboard focus remains visible and usable.</li>
+    <li>No duplicate IDs, dead links, or console errors remain.</li>
+    <li>No random purple/blue SaaS glow has replaced the neutral visual hierarchy.</li>
+  </ul>
+  <div class="docs-callout reveal"><strong>Do not render this checklist in the product.</strong><p>It is for the person or AI implementing the interface. Only show a QA checklist to end users when the product itself genuinely requires one.</p></div>
 </section>
 
 <section class="doc-section" id="reference">
@@ -367,7 +935,7 @@ if(!reduced&&'IntersectionObserver'in window){
   $$('.reveal').forEach(el=>io.observe(el));
 }else{$$('.reveal').forEach(el=>el.classList.add('visible'))}
 
-const sectionIds=['overview','principles','foundations','components','cursor','motion','accessibility','reference','roadmap'];
+const sectionIds=['overview','principles','foundations','layout','type','glass','components','navigation','buttons','settings-sheet','cursor','motion','scrollspy','cards','slider','forms','mobile','accessibility','implementation','reference','roadmap'];
 let sideRAF=0;addEventListener('scroll',()=>{if(sideRAF)return;sideRAF=requestAnimationFrame(()=>{sideRAF=0;const y=innerHeight*.30;let active='overview';for(const id of sectionIds){const el=document.getElementById(id);if(!el)continue;const r=el.getBoundingClientRect();if(r.top<=y&&r.bottom>y){active=id;break}}$$('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+active))})},{passive:true});
 
 $$('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{const source=document.getElementById(button.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);const old=button.textContent;button.textContent='Copied';setTimeout(()=>button.textContent=old,1200)}catch{button.textContent='Select code'}}));
