@@ -12,15 +12,15 @@
   <link rel="stylesheet" href="home-fixes.css">
 </head>
 <body class="page-shell home-page">
+<div class="home-cursor" id="homeCursor" aria-hidden="true"></div>
 <div class="grain-overlay"></div>
 <div class="site-shell">
   <div class="nav-wrap">
-    <nav class="navigation" aria-label="Main navigation">
+    <nav class="navigation home-island" aria-label="Main navigation">
       <a class="nav-item active" href="./">Home</a>
       <a class="nav-item" href="browser/">Browser</a>
       <a class="nav-item" href="minecraft/">Minecraft</a>
       <a class="nav-item" href="portfolio/">Portfolio</a>
-      <a class="nav-item" href="UI/">PlexUI</a>
       <div class="nav-divider"></div>
       <button class="theme-toggle-wrap" id="themeToggle" aria-label="Toggle theme">
         <span class="theme-icon">
@@ -37,7 +37,7 @@
         <div class="home-hero-inner">
           <div class="hero-eyebrow">Welcome to Plexium</div>
           <h1 class="hero-title">One place for <em>everything.</em></h1>
-          <p class="hero-desc">Plexium is where I keep the things I build — Plex Browser, the Plexium Minecraft network, my website and app portfolio, and PlexUI, the interface system behind them.</p>
+          <p class="hero-desc">Plexium is where I keep the things I build — Plex Browser, the Plexium Minecraft network, and my website and app portfolio.</p>
           <div class="hero-actions">
             <a class="glow-btn" href="portfolio/">Explore Portfolio</a>
             <a class="soft-btn" href="browser/">Open Browser</a>
@@ -80,17 +80,6 @@
               <span class="chip">Pricing · Live demos</span>
             </div>
           </a>
-          <a class="menu-card" href="UI/">
-            <div class="menu-icon portfolio-mark" aria-hidden="true">
-              <svg viewBox="0 0 32 32"><path d="M7 8h18M7 16h12M7 24h9"/><circle cx="24" cy="21" r="4"/></svg>
-            </div>
-            <h2>PlexUI</h2>
-            <p>The public interface design reference behind Plexium — Liquid Glass controls, motion, navigation, responsive behavior, accessibility, and reusable code examples.</p>
-            <div class="menu-meta">
-              <span class="chip">UI · UX</span>
-              <span class="chip">Reference · Components</span>
-            </div>
-          </a>
         </div>
       </div>
     </section>
@@ -101,13 +90,77 @@
   </footer>
 </div>
 <script>
+(()=>{
+'use strict';
 const root=document.documentElement;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const saved=localStorage.getItem('plexium-theme');
-if(saved) root.dataset.theme=saved;
+if(saved)root.dataset.theme=saved;
+
 document.getElementById('themeToggle').addEventListener('click',()=>{
-  root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';
-  localStorage.setItem('plexium-theme',root.dataset.theme);
+  const apply=()=>{
+    root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';
+    localStorage.setItem('plexium-theme',root.dataset.theme);
+  };
+  if(!reduced&&document.startViewTransition)document.startViewTransition(apply);else apply();
 });
+
+const revealTargets=[
+  document.querySelector('.hero-eyebrow'),
+  document.querySelector('.hero-title'),
+  document.querySelector('.hero-desc'),
+  document.querySelector('.hero-actions'),
+  document.querySelector('.section-label'),
+  document.querySelector('.section-title'),
+  ...document.querySelectorAll('.menu-card')
+].filter(Boolean);
+
+revealTargets.forEach((el,i)=>{
+  el.classList.add('home-reveal');
+  if(i%4)el.dataset.delay=String(i%4);
+});
+
+if(!reduced&&'IntersectionObserver'in window){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>entry.target.classList.toggle('is-visible',entry.isIntersecting));
+  },{threshold:.14,rootMargin:'-4% 0px -6%'});
+  revealTargets.forEach(el=>io.observe(el));
+}else{
+  revealTargets.forEach(el=>el.classList.add('is-visible'));
+}
+
+const cursor=document.getElementById('homeCursor');
+if(matchMedia('(pointer:fine)').matches&&!reduced&&cursor){
+  root.classList.add('home-custom-cursor');
+  let lx=0,ly=0,lt=performance.now(),x=-100,y=-100,angle=0,stretch=0,target=0,speed=0;
+
+  addEventListener('pointermove',e=>{
+    const now=performance.now(),dt=Math.max(7,now-lt),dx=e.clientX-lx,dy=e.clientY-ly;
+    speed=Math.min(1,(Math.hypot(dx,dy)/dt)/2.15);
+    if(Math.abs(dx)+Math.abs(dy)>.1)angle=Math.atan2(dy,dx)*180/Math.PI;
+    target=speed*.58;
+    x=e.clientX;y=e.clientY;lx=x;ly=y;lt=now;
+    cursor.classList.add('ready');
+  },{passive:true});
+
+  addEventListener('pointerdown',()=>cursor.classList.add('down'));
+  addEventListener('pointerup',()=>cursor.classList.remove('down'));
+  document.addEventListener('mouseover',e=>cursor.classList.toggle('hover',!!e.target.closest('a,button,.menu-card')));
+  document.addEventListener('mouseleave',()=>cursor.classList.remove('ready'));
+
+  function tick(){
+    stretch+=(target-stretch)*.26;
+    target*=.84;
+    speed*=.88;
+    cursor.style.setProperty('--trail',(14+speed*22).toFixed(1)+'px');
+    cursor.style.setProperty('--trail-opacity',(speed*.25).toFixed(3));
+    cursor.style.setProperty('--trail-blur',(speed*3.4).toFixed(1)+'px');
+    cursor.style.transform='translate3d('+x+'px,'+y+'px,0) translate(-50%,-50%) rotate('+angle+'deg) scale('+(1+stretch)+','+(1-stretch*.3)+')';
+    requestAnimationFrame(tick);
+  }
+  tick();
+}
+})();
 </script>
 </body>
 </html>
