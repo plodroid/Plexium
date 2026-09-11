@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://plexium.rweb.site/</loc></url>
-  <url><loc>https://plexium.rweb.site/browser/</loc></url>
-  <url><loc>https://plexium.rweb.site/minecraft/</loc></url>
-  <url><loc>https://plexium.rweb.site/portfolio/</loc></url>
+  <url>
+    <loc>https://plexium.rweb.site/</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
+  <url>
+    <loc>https://plexium.rweb.site/browser/</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
+  <url>
+    <loc>https://plexium.rweb.site/minecraft/</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
+  <url>
+    <loc>https://plexium.rweb.site/portfolio/</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
+  <url>
+    <loc>https://plexium.rweb.site/UI/</loc>
+    <lastmod>2026-09-11</lastmod>
+  </url>
   <url><loc>https://plexium.rweb.site/portfolio/demos/cafe.html</loc></url>
   <url><loc>https://plexium.rweb.site/portfolio/demos/gym.html</loc></url>
   <url><loc>https://plexium.rweb.site/portfolio/demos/studio.html</loc></url>
