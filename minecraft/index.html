@@ -7,15 +7,302 @@
 <link rel="icon" type="image/png" href="../assets/server-icon.png"><link rel="stylesheet" href="../style.css">
 <style>
 .wiki-top{padding:132px 0 34px}.wiki-brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}.wiki-brand img{width:58px;height:58px}.wiki-brand small{display:block;color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem}.wiki-brand strong{font-family:var(--font-display);font-size:1.7rem;font-weight:400}.wiki-hero{display:grid;grid-template-columns:1.35fr .65fr;gap:20px}.hero-box,.infobox{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow-md)}.hero-box{padding:36px;position:relative;overflow:hidden}.hero-box:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-190px;top:-210px;background:radial-gradient(circle,var(--accent-subtle),transparent 70%);pointer-events:none}.eyebrow2{color:var(--accent);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800;margin-bottom:10px}.hero-box h1{font-family:var(--font-display);font-size:clamp(3rem,6vw,5.2rem);font-weight:400;line-height:.98;margin:0 0 15px}.hero-box p,.article p,.article li{color:var(--text-secondary)}.server-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}.server-chip{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg-elevated);border:1px solid var(--border-strong);border-radius:12px}.server-chip b{font-size:.68rem;text-transform:uppercase;color:var(--text-muted)}.server-chip code{font-size:.82rem}.copy-mini{border:0;background:var(--accent-subtle);color:var(--accent);border-radius:8px;padding:5px 8px;cursor:pointer;font-weight:800}.infobox{padding:22px}.infobox h2{font-family:var(--font-display);font-weight:400;margin:0 0 10px}.info-row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--border);font-size:.84rem}.info-row span:first-child{color:var(--text-muted)}.info-row span:last-child{text-align:right;font-weight:700}.wiki-search{width:100%;margin:18px 0 0;padding:14px 16px;border-radius:14px;border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--text-primary);font:inherit;outline:none}.wiki-search:focus,.sword-search:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-subtle)}.mode-tabs{display:flex;gap:8px;margin:28px 0 24px;flex-wrap:wrap}.mode-tab{border:1px solid var(--border);background:var(--bg-surface);color:var(--text-secondary);padding:10px 14px;border-radius:999px;cursor:pointer;font:inherit;font-weight:700}.mode-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}.article-layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:28px;align-items:start}.article-nav{position:sticky;top:100px;padding:13px;border:1px solid var(--border);background:var(--bg-surface);border-radius:15px}.article-nav b{display:block;font-size:.67rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;padding:7px 10px}.article-nav a{display:block;text-decoration:none;color:var(--text-secondary);padding:9px 10px;border-radius:9px;font-size:.85rem}.article-nav a:hover{background:var(--bg-surface-hover);color:var(--text-primary)}.article{min-width:0}.article-section{position:relative;scroll-margin-top:110px;padding:0 0 70px}.article-section h2{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.35rem);font-weight:400;line-height:1.06;margin:0 0 12px}.lead{font-size:1.05rem;line-height:1.75}.story-steps{display:grid;gap:11px;margin-top:20px}.story-step{display:grid;grid-template-columns:44px 1fr;gap:13px;padding:16px;border:1px solid var(--border);background:var(--bg-surface);border-radius:14px}.step-num{width:44px;height:44px;border-radius:12px;background:var(--accent-subtle);color:var(--accent);display:grid;place-items:center;font-weight:900}.story-step strong,.wiki-card strong{display:block;color:var(--text-primary);margin-bottom:3px}.wiki-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px}.wiki-card{padding:18px;border:1px solid var(--border);background:var(--bg-surface);border-radius:14px;position:relative}.stat{font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;margin-bottom:7px}.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:15px;background:var(--bg-surface);margin-top:17px}.progress-table,.sword-table{width:100%;border-collapse:collapse;min-width:820px}.progress-table th,.progress-table td,.sword-table th,.sword-table td{padding:12px 13px;border-bottom:1px solid var(--border);text-align:left;font-size:.81rem}.progress-table th,.sword-table th{background:var(--bg-elevated);color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-size:.65rem}.progress-table td,.sword-table td{color:var(--text-secondary)}.level-badge{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:999px;background:var(--accent-subtle);color:var(--accent);font-weight:900}.callout{margin:17px 0;padding:15px 17px;border-left:3px solid var(--accent);background:var(--accent-subtle);border-radius:0 12px 12px 0;color:var(--text-secondary)}.command-grid{display:grid;gap:8px;margin-top:14px}.command{display:flex;justify-content:space-between;gap:16px;padding:13px 15px;border:1px solid var(--border);background:var(--bg-surface);border-radius:12px}.command code{color:var(--accent);font-weight:800}.command span{color:var(--text-secondary);text-align:right}.code-hunt{padding:22px;border:1px dashed rgba(200,125,92,.36);background:linear-gradient(180deg,var(--accent-subtle),transparent);border-radius:17px}.secret-mark{position:absolute;width:18px;height:18px;border-radius:50%;border:1px solid var(--border-strong);background:transparent;color:transparent;opacity:.24;cursor:pointer;transition:.2s}.secret-mark:hover{opacity:.9;border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-subtle)}.secret-toast{position:fixed;right:22px;bottom:22px;z-index:100000;max-width:340px;padding:16px 18px;border:1px solid var(--border-strong);background:var(--bg-elevated);box-shadow:var(--shadow-md);border-radius:14px;transform:translateY(120px);opacity:0;transition:.35s}.secret-toast.show{transform:translateY(0);opacity:1}.secret-toast b{color:var(--accent)}.secret-toast small{display:block;color:var(--text-muted);margin-top:5px}.secret-progress{margin-top:12px;color:var(--text-muted);font-size:.82rem}.box-panel,.island-panel{display:none}.box-panel.active,.island-panel.active{display:block}.sword-search{width:100%;margin:14px 0 10px;padding:13px 15px;border:1px solid var(--border-strong);border-radius:12px;background:var(--bg-surface);color:var(--text-primary);font:inherit;outline:none}[data-hidden="true"]{display:none!important}@media(max-width:900px){.wiki-hero{grid-template-columns:1fr}.article-layout{grid-template-columns:1fr}.article-nav{position:relative;top:0;display:flex;overflow:auto}.article-nav b{display:none}.article-nav a{white-space:nowrap}}@media(max-width:650px){.wiki-top{padding-top:115px}.hero-box{padding:24px}.wiki-grid{grid-template-columns:1fr}.server-chip{width:100%;justify-content:space-between}.command{flex-direction:column;gap:4px}.command span{text-align:left}}
+
+/* ==========================================================================
+   PlexUI for PlexiumMC
+   Uses the existing Minecraft palette from ../style.css.
+   Browser styling remains untouched because all changes are local to this page.
+   ========================================================================== */
+:root{
+  --plex-ease:cubic-bezier(.22,1,.36,1);
+  --plex-ease-ios:cubic-bezier(.32,.72,0,1);
+  --plex-glass:color-mix(in srgb,var(--bg-surface) 62%,transparent);
+  --plex-glass-strong:color-mix(in srgb,var(--bg-elevated) 76%,transparent);
+  --plex-glass-border:color-mix(in srgb,var(--text-primary) 15%,transparent);
+  --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
+}
+body{font-family:var(--font-body);letter-spacing:-.012em}
+.grain-overlay{opacity:.018}
+.container{max-width:1180px;padding:0 24px}
+.wiki-top{padding:150px 0 72px}
+
+/* exact-position elastic pointer: position never lags, only shape reacts */
+html.mc-custom-cursor,html.mc-custom-cursor body,html.mc-custom-cursor body *{cursor:none!important}
+.plex-cursor{
+  position:fixed;left:0;top:0;z-index:120000;width:20px;height:20px;border-radius:50%;pointer-events:none;opacity:0;
+  border:1.4px solid #fff;mix-blend-mode:difference;transform:translate3d(-100px,-100px,0) translate(-50%,-50%);
+  transform-origin:center;will-change:transform,opacity;transition:width 150ms var(--plex-ease),height 150ms var(--plex-ease),opacity 90ms ease;
+}
+.plex-cursor::after{content:"";position:absolute;inset:5px;border-radius:inherit;background:#fff}
+.plex-cursor::before{content:"";position:absolute;right:55%;top:50%;height:12px;width:var(--trail,14px);border-radius:999px;transform:translateY(-50%);background:rgba(255,255,255,.78);opacity:var(--trail-opacity,0);filter:blur(var(--trail-blur,0))}
+.plex-cursor.ready{opacity:1}.plex-cursor.hover{width:38px;height:38px}.plex-cursor.down{width:17px;height:17px}
+
+/* reusable liquid selection material */
+[data-liquid-tabs]{position:relative;isolation:isolate}
+.plex-liquid-goo{position:absolute;inset:0;z-index:0;pointer-events:none;filter:url(#plexLiquidGoo);overflow:visible}
+.plex-liquid-blob,.plex-liquid-bridge{
+  position:absolute;top:50%;height:calc(100% - 8px);border-radius:999px;transform:translateY(-50%);
+  background:color-mix(in srgb,var(--accent) 18%,var(--bg-surface));opacity:.74;will-change:left,width,opacity,transform;
+}
+.plex-liquid-bridge{opacity:0;height:68%}
+.plex-liquid-indicator{
+  position:absolute;z-index:1;top:4px;height:calc(100% - 8px);border-radius:999px;pointer-events:none;
+  background:var(--plex-glass-strong);border:1px solid var(--plex-glass-border);
+  -webkit-backdrop-filter:blur(12px) saturate(175%);backdrop-filter:blur(12px) saturate(175%);
+  box-shadow:
+    inset 1.5px 1.5px 0 color-mix(in srgb,var(--text-primary) 34%,transparent),
+    inset -1px -1px 0 color-mix(in srgb,var(--accent) 14%,transparent),
+    inset 0 -8px 18px rgba(0,0,0,.08),
+    0 5px 16px rgba(0,0,0,.14);
+  transition:transform 340ms var(--plex-ease-ios),width 340ms var(--plex-ease-ios),background-color 220ms ease;
+  will-change:transform,width;
+}
+.plex-liquid-indicator.moving{animation:mcLiquidPulse 340ms var(--plex-ease-ios)}
+.plex-liquid-bridge.animate{animation:mcBridgeMelt 340ms var(--plex-ease-ios)}
+@keyframes mcLiquidPulse{0%{scale:1}42%{scale:1.09 .965}100%{scale:1}}
+@keyframes mcBridgeMelt{0%{opacity:.38;scale:1 .82}56%{opacity:.19;scale:1 1}100%{opacity:0;scale:.9 .78}}
+[data-liquid-tabs]>*:not(.plex-liquid-goo):not(.plex-liquid-indicator){position:relative;z-index:2}
+
+/* Dynamic-Island desktop navbar */
+.nav-wrap{top:14px;width:100%;pointer-events:none}
+.navigation.plex-island{
+  pointer-events:auto;width:max-content;max-width:calc(100vw - 28px);height:62px;margin:auto;padding:7px 8px;
+  display:flex;align-items:center;gap:3px;border-radius:999px;background:var(--plex-glass);border:1px solid var(--plex-glass-border);
+  box-shadow:0 16px 46px rgba(0,0,0,.20),0 2px 8px rgba(0,0,0,.08),inset 0 1px color-mix(in srgb,var(--text-primary) 22%,transparent);
+  -webkit-backdrop-filter:blur(20px) saturate(165%);backdrop-filter:blur(20px) saturate(165%);transition:background-color 220ms ease,border-color 220ms ease;
+}
+.navigation.plex-island .nav-item{
+  all:unset;box-sizing:border-box;position:relative;z-index:2;min-width:82px;height:48px;padding:0 15px;display:flex;align-items:center;justify-content:center;
+  border-radius:999px;color:var(--text-secondary);font-family:var(--font-body);font-size:.87rem;font-weight:650;white-space:nowrap;cursor:pointer;
+  transition:color 170ms ease,transform 160ms var(--plex-ease),background-color 170ms ease;
+}
+.navigation.plex-island .nav-item.active{color:var(--text-primary)}
+.navigation.plex-island .nav-item:hover{color:var(--text-primary);transform:translateY(-1px) scale(1.018);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.navigation.plex-island .nav-item:active{transform:scale(.975)}
+.plex-settings-btn{
+  position:relative;z-index:2;flex:0 0 44px;width:44px;height:44px;margin-left:3px;border:0;border-radius:50%;display:grid;place-items:center;
+  background:transparent;color:var(--text-secondary);cursor:pointer;transition:transform 160ms var(--plex-ease),background-color 170ms ease,color 170ms ease,box-shadow 170ms ease;
+}
+.plex-settings-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.plex-settings-btn:hover{color:var(--text-primary);transform:scale(1.055);background:var(--plex-glass-strong);box-shadow:inset 1px 1px color-mix(in srgb,var(--text-primary) 25%,transparent),0 5px 14px rgba(0,0,0,.09)}
+.plex-settings-btn:active{transform:scale(.94)}
+
+/* centered appearance sheet; page behind is dimmed but not blurred */
+.plex-settings{position:fixed;inset:0;z-index:110000;display:grid;place-items:center;padding:18px;visibility:hidden;pointer-events:none}
+.plex-settings.open{visibility:visible;pointer-events:auto}
+.plex-settings-bg{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background-color 180ms ease}
+.plex-settings.open .plex-settings-bg{background:rgba(0,0,0,.26)}
+.plex-settings-panel{
+  position:relative;width:min(410px,100%);padding:18px;border-radius:30px;background:color-mix(in srgb,var(--bg-surface) 78%,transparent);
+  border:1px solid var(--plex-glass-border);-webkit-backdrop-filter:blur(22px) saturate(165%);backdrop-filter:blur(22px) saturate(165%);
+  box-shadow:0 30px 90px rgba(0,0,0,.30),inset 1px 1px color-mix(in srgb,var(--text-primary) 22%,transparent);
+  opacity:0;transform:translateY(12px) scale(.985);transition:opacity 180ms ease,transform 260ms var(--plex-ease);
+}
+.plex-settings.open .plex-settings-panel{opacity:1;transform:none}
+.plex-settings-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.plex-settings-top h3{margin:0;font-size:1.42rem;letter-spacing:-.045em}
+.plex-close{width:38px;height:38px;border:0;border-radius:50%;background:var(--bg-elevated);color:var(--text-secondary);font-size:1.3rem;cursor:pointer;transition:transform 150ms var(--plex-ease),background-color 150ms ease}
+.plex-close:hover{transform:scale(1.05);background:var(--bg-surface-hover)}
+.plex-setting-row{padding:13px 0;border-top:1px solid var(--border)}
+.plex-setting-row>span{display:block;margin-bottom:10px;color:var(--text-muted);font-size:.82rem}
+.plex-settings-note{margin:10px 0 0;color:var(--text-muted);font-size:.78rem;line-height:1.55}
+.plex-segmented{
+  position:relative;isolation:isolate;height:54px;padding:4px;display:flex;align-items:center;border-radius:999px;background:color-mix(in srgb,var(--text-primary) 7%,transparent);border:1px solid var(--border);
+}
+.plex-segmented button{
+  flex:1;min-width:88px;height:46px;border:0;border-radius:999px;background:transparent;color:var(--text-secondary);font:inherit;font-weight:650;cursor:pointer;
+  transition:color 160ms ease,transform 150ms var(--plex-ease),background-color 160ms ease;
+}
+.plex-segmented button.active{color:var(--text-primary)}
+.plex-segmented button:hover{transform:scale(1.015);background:color-mix(in srgb,var(--accent) 5%,transparent)}
+.plex-segmented button:active{transform:scale(.975)}
+
+/* hero becomes cleaner and more PlexUI-like while keeping Minecraft colors */
+.wiki-brand{gap:12px;margin-bottom:24px}.wiki-brand img{width:52px;height:52px;border-radius:12px}
+.wiki-brand small{font-size:.72rem;letter-spacing:.13em}.wiki-brand strong{font-size:1.6rem;font-weight:700;letter-spacing:-.045em}
+.wiki-hero{grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:18px}
+.hero-box,.infobox{
+  border-radius:30px;border:1px solid var(--border);box-shadow:0 18px 58px rgba(0,0,0,.13);background:var(--bg-surface);
+  transition:transform 280ms var(--plex-ease),box-shadow 280ms ease,border-color 220ms ease;
+}
+.hero-box{padding:38px;transform:translate3d(var(--hero-x,0),var(--hero-y,0),0)}
+.hero-box:hover,.infobox:hover{border-color:var(--border-strong);box-shadow:0 28px 75px rgba(0,0,0,.17)}
+.hero-box h1{font-size:clamp(3.5rem,7vw,6.4rem);font-weight:760;line-height:.88;letter-spacing:-.072em;margin-bottom:20px}
+.hero-box p{font-size:1.02rem;line-height:1.7;max-width:700px}
+.hero-box:after{opacity:.78}
+.infobox{padding:24px}.infobox h2{font-size:1.48rem;font-weight:720;letter-spacing:-.04em}
+.info-row{padding:12px 0}
+
+/* glass copy chips and tactile controls */
+.server-chips{gap:10px;margin-top:26px}
+.server-chip{
+  min-height:50px;padding:8px 9px 8px 14px;border-radius:17px;background:var(--plex-glass);border:1px solid var(--plex-glass-border);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
+  box-shadow:inset 1px 1px color-mix(in srgb,var(--text-primary) 18%,transparent),0 7px 18px rgba(0,0,0,.08);
+  transition:transform 180ms var(--plex-ease),box-shadow 180ms ease;
+}
+.server-chip:hover{transform:translateY(-2px);box-shadow:inset 1px 1px color-mix(in srgb,var(--text-primary) 23%,transparent),0 12px 28px rgba(0,0,0,.12)}
+.copy-mini,.copy-btn{
+  border:0;border-radius:12px;padding:8px 11px;background:var(--accent-subtle);color:var(--accent);font:inherit;font-size:.78rem;font-weight:720;cursor:pointer;
+  transition:transform 150ms var(--plex-ease),background-color 160ms ease,box-shadow 160ms ease;
+}
+.copy-mini:hover,.copy-btn:hover{transform:scale(1.045);background:color-mix(in srgb,var(--accent) 17%,transparent);box-shadow:0 5px 14px color-mix(in srgb,var(--accent) 12%,transparent)}
+.copy-mini:active,.copy-btn:active{transform:scale(.94)}
+
+/* search */
+.wiki-search,.sword-search{
+  min-height:56px;margin-top:22px;padding:0 18px;border-radius:18px;border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--text-primary);
+  box-shadow:0 7px 20px rgba(0,0,0,.04);transition:border-color 150ms ease,box-shadow 150ms ease,transform 160ms var(--plex-ease);
+}
+.wiki-search:hover,.sword-search:hover{transform:translateY(-1px)}
+.wiki-search:focus,.sword-search:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-subtle),0 12px 28px rgba(0,0,0,.07);transform:none}
+
+/* BoxPvP / Island Wars selector becomes true liquid glass */
+.mode-tabs{
+  position:relative;isolation:isolate;width:max-content;max-width:100%;height:58px;margin:24px 0 34px;padding:4px;display:flex;align-items:center;gap:0;
+  border-radius:999px;background:color-mix(in srgb,var(--text-primary) 6%,transparent);border:1px solid var(--border);
+}
+.mode-tab{
+  position:relative;z-index:2;min-width:144px;height:50px;padding:0 17px;border:0;border-radius:999px;background:transparent!important;color:var(--text-secondary)!important;
+  font:inherit;font-weight:700;cursor:pointer;transition:color 160ms ease,transform 150ms var(--plex-ease),background-color 160ms ease;
+}
+.mode-tab.active{color:var(--text-primary)!important;border-color:transparent!important}
+.mode-tab:hover{transform:scale(1.016);background:color-mix(in srgb,var(--accent) 5%,transparent)!important}
+.mode-tab:active{transform:scale(.975)}
+
+/* article structure */
+.article-layout{grid-template-columns:235px minmax(0,1fr);gap:36px}
+.article-nav{
+  top:100px;padding:12px;border-radius:22px;border:1px solid var(--border);background:color-mix(in srgb,var(--bg-surface) 88%,transparent);
+  box-shadow:0 12px 34px rgba(0,0,0,.07);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+}
+.article-nav b{padding:8px 10px 9px;font-size:.68rem;letter-spacing:.12em}
+.article-nav a{
+  padding:10px 11px;border-radius:12px;color:var(--text-secondary);font-size:.84rem;transition:background-color 150ms ease,color 150ms ease,transform 150ms var(--plex-ease);
+}
+.article-nav a:hover,.article-nav a.mc-active{background:var(--accent-subtle);color:var(--text-primary);transform:translateX(2px)}
+.article-section{padding:0 0 94px;scroll-margin-top:108px}
+.article-section h2{font-size:clamp(2.7rem,5.4vw,5rem);font-weight:760;line-height:.94;letter-spacing:-.062em;margin:0 0 18px}
+.article-section h3{font-size:1.12rem;letter-spacing:-.025em}
+.article-section p,.article-section li{line-height:1.72}
+.lead{font-size:1.08rem;line-height:1.78;max-width:780px}
+.eyebrow2{font-size:.73rem;letter-spacing:.13em;margin-bottom:12px}
+
+/* solid content cards + PlexUI motion */
+.story-steps{gap:12px;margin-top:22px}
+.story-step,.wiki-card,.command{
+  border:1px solid var(--border);background:var(--bg-surface);box-shadow:0 9px 28px rgba(0,0,0,.045);
+  transition:transform 240ms var(--plex-ease),box-shadow 240ms ease,border-color 180ms ease,background-color 180ms ease;
+}
+.story-step{padding:18px;border-radius:20px;grid-template-columns:48px 1fr}
+.step-num{width:48px;height:48px;border-radius:15px}
+.story-step:hover,.wiki-card:hover,.command:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:0 20px 48px rgba(0,0,0,.09)}
+.wiki-grid{gap:14px;margin-top:20px}
+.wiki-card{padding:21px;border-radius:22px}
+.stat{font-size:2.25rem;font-weight:760;letter-spacing:-.06em}
+.command-grid{gap:10px}.command{padding:15px 17px;border-radius:16px}
+.callout{margin:20px 0;padding:17px 19px;border-radius:0 16px 16px 0}
+.code-hunt{padding:24px;border-radius:22px}
+
+/* tables */
+.table-wrap{margin-top:20px;border-radius:22px;box-shadow:0 10px 28px rgba(0,0,0,.045)}
+.progress-table th,.progress-table td,.sword-table th,.sword-table td{padding:14px 15px;font-size:.82rem}
+.progress-table th,.sword-table th{font-size:.66rem;letter-spacing:.09em}
+.level-badge{width:32px;height:32px}
+
+/* replayable motion: JS toggles is-visible whenever elements re-enter */
+.mc-reveal{
+  opacity:0;transform:translateY(25px);filter:blur(3px);
+  transition:opacity 500ms var(--plex-ease),transform 640ms var(--plex-ease),filter 500ms ease;
+}
+.mc-reveal.is-visible{opacity:1;transform:none;filter:blur(0)}
+.mc-reveal[data-mc-delay="1"]{transition-delay:45ms}.mc-reveal[data-mc-delay="2"]{transition-delay:90ms}.mc-reveal[data-mc-delay="3"]{transition-delay:135ms}
+
+/* toast */
+.secret-toast{
+  right:22px;bottom:22px;border-radius:20px;background:var(--plex-glass-strong);border:1px solid var(--plex-glass-border);
+  -webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
+  box-shadow:0 20px 55px rgba(0,0,0,.22);transition:transform 350ms var(--plex-ease),opacity 250ms ease;
+}
+
+/* mobile Safari-like tab bar */
+.mc-mobile-tabs{display:none}
+@media(max-width:820px){
+  .nav-wrap{display:none}
+  .container{padding:0 14px}
+  .wiki-top{padding:102px 0 116px}
+  .mc-mobile-tabs{
+    position:fixed;z-index:10000;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);
+    width:min(390px,calc(100% - 22px));height:70px;padding:7px;display:flex;align-items:center;border-radius:26px;
+    background:var(--plex-glass);border:1px solid var(--plex-glass-border);box-shadow:0 18px 50px rgba(0,0,0,.24),inset 1px 1px color-mix(in srgb,var(--text-primary) 20%,transparent);
+    -webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+  }
+  .mc-mobile-tabs a,.mc-mobile-tabs button{
+    position:relative;z-index:2;flex:1;height:56px;border:0;border-radius:20px;background:transparent;color:var(--text-secondary);font:inherit;font-size:.72rem;font-weight:680;
+    display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:color 150ms ease,transform 140ms var(--plex-ease);
+  }
+  .mc-mobile-tabs .active{color:var(--text-primary)}
+  .mc-mobile-tabs a:active,.mc-mobile-tabs button:active{transform:scale(.96)}
+  .mc-mobile-tabs .plex-liquid-indicator{top:7px;height:56px;border-radius:20px}
+  .mc-mobile-tabs .plex-liquid-blob,.mc-mobile-tabs .plex-liquid-bridge{height:48px}
+  .wiki-hero{grid-template-columns:1fr}
+  .article-layout{grid-template-columns:1fr;gap:24px}
+  .article-nav{
+    position:relative;top:0;display:flex;overflow:auto;gap:3px;padding:7px;border-radius:18px;scrollbar-width:none;
+    -webkit-backdrop-filter:none;backdrop-filter:none;
+  }
+  .article-nav::-webkit-scrollbar{display:none}
+  .article-nav b{display:none}.article-nav a{white-space:nowrap;transform:none!important}
+  .article-section{padding-bottom:76px}
+  .wiki-grid{grid-template-columns:1fr}
+  .mode-tabs{width:100%}.mode-tab{min-width:0;flex:1}
+  .hero-box{padding:28px}.hero-box h1{font-size:clamp(3.2rem,14vw,5rem)}
+  .server-chip{width:100%;justify-content:space-between}
+  .footer{padding-bottom:110px}
+  .secret-toast{bottom:94px;left:14px;right:14px;max-width:none}
+}
+@media(max-width:520px){
+  .article-section h2{font-size:clamp(2.6rem,13vw,4rem)}
+  .hero-box,.infobox{border-radius:24px}
+  .wiki-card{border-radius:19px}
+  .story-step{grid-template-columns:42px 1fr}.step-num{width:42px;height:42px}
+}
+
+/* Accessibility */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .plex-cursor{display:none!important}
+  .mc-reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .plex-liquid-indicator,.plex-liquid-bridge{transition:none!important;animation:none!important}
+  .hero-box{transform:none!important}
+}
+@media(prefers-reduced-transparency:reduce){
+  .navigation.plex-island,.plex-settings-panel,.article-nav,.mc-mobile-tabs,.plex-liquid-indicator,.secret-toast{
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--bg-surface)!important
+  }
+}
+
 </style>
 </head>
-<body class="page-shell"><div class="grain-overlay"></div><div class="site-shell">
-<div class="nav-wrap"><nav class="navigation"><a class="nav-item" href="../">Home</a><a class="nav-item" href="../browser/">Browser</a><a class="nav-item active" href="./">Minecraft</a><div class="nav-divider"></div><button class="theme-toggle-wrap" id="themeToggle" aria-label="Toggle theme" style="border:0;background:transparent;color:inherit"><span class="theme-icon"><svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg><svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button></nav></div>
+<body class="page-shell">
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><defs><filter id="plexLiquidGoo"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 16 -8" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></defs></svg>
+<div class="plex-cursor" id="plexCursor" aria-hidden="true"></div>
+<aside class="plex-settings" id="plexSettings" aria-hidden="true">
+  <div class="plex-settings-bg" id="settingsBg"></div>
+  <section class="plex-settings-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="plex-settings-top"><h3 id="settingsTitle">Appearance</h3><button class="plex-close" id="settingsClose" type="button" aria-label="Close settings">×</button></div>
+    <div class="plex-setting-row"><span>Theme</span><div class="plex-segmented" id="themeTabs" data-liquid-tabs><button class="active" data-theme-choice="dark">Dark</button><button data-theme-choice="light">Light</button><button data-theme-choice="system">Auto</button></div></div>
+    <p class="plex-settings-note">Motion and transparency follow your device accessibility preferences.</p>
+  </section>
+</aside>
+<div class="grain-overlay"></div><div class="site-shell">
+<div class="nav-wrap"><nav class="navigation plex-island" id="mainTabs" data-liquid-tabs aria-label="Main navigation"><a class="nav-item" href="../">Home</a><a class="nav-item" href="../browser/">Browser</a><a class="nav-item active" href="./">Minecraft</a><button class="plex-settings-btn" id="settingsOpen" type="button" aria-label="Appearance settings"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5L9 6.1a7 7 0 0 0-1.7 1l-2.4-1-2 3.4L5 11a7 7 0 0 0 0 2l-2.1 1.5 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.5 3.1h5l.5-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4L18.9 13c.1-.3.1-.7.1-1Z"/></svg></button></nav></div>
 <main class="wiki-top"><div class="container">
 <div class="wiki-brand"><img src="../assets/server-icon.png" alt="PlexiumMC"><div><small>Official Wiki</small><strong>PlexiumMC</strong></div></div>
 <div class="wiki-hero"><section class="hero-box"><div class="eyebrow2">BoxPvP · Island Wars</div><h1>Play. Mine. Fight. <em style="color:var(--accent);font-weight:400">Progress.</em></h1><p>This is the player guide to PlexiumMC: where to start, what to mine, what to buy, how progression works, and what you should aim for next.</p><div class="server-chips"><div class="server-chip"><b>Java</b><code>plexium.minecraft.how</code><button class="copy-mini" data-copy="plexium.minecraft.how">Copy</button></div><div class="server-chip"><b>Bedrock</b><code>mauritania-thrust.tun.ply.gg:22451</code><button class="copy-mini" data-copy="mauritania-thrust.tun.ply.gg:22451">Copy</button></div></div><button class="secret-mark" style="right:30px;bottom:25px" data-secret="0" aria-label="A strange mark"></button></section>
 <aside class="infobox"><h2>PlexiumMC</h2><div class="info-row"><span>Main mode</span><span>BoxPvP</span></div><div class="info-row"><span>Second mode</span><span>Island Wars</span></div><div class="info-row"><span>BoxPvP tiers</span><span>20 character sets</span></div><div class="info-row"><span>Island Wars</span><span>45 swords</span></div><div class="info-row"><span>Combat tag</span><span>15 seconds</span></div><div class="info-row"><span>Codes</span><span>Hidden in lobby + wiki</span></div></aside></div>
-<input class="wiki-search" id="wikiSearch" type="search" placeholder="Search the wiki — Plankton, TNT, crates, codes, ender chest…"><div class="mode-tabs"><button class="mode-tab active" data-mode="box">BoxPvP Wiki</button><button class="mode-tab" data-mode="island">Island Wars Wiki</button></div>
+<input class="wiki-search" id="wikiSearch" type="search" placeholder="Search the wiki — Plankton, TNT, crates, codes, ender chest…"><div class="mode-tabs" id="modeTabs" data-liquid-tabs><button class="mode-tab active" data-mode="box">BoxPvP Wiki</button><button class="mode-tab" data-mode="island">Island Wars Wiki</button></div>
 
 <div class="box-panel active" id="boxPanel"><div class="article-layout"><aside class="article-nav"><b>BoxPvP</b><a href="#overview">Overview</a><a href="#start">Start here</a><a href="#progression">20-level progression</a><a href="#economy">Economy & shop</a><a href="#rewards">Playtime rewards</a><a href="#crates">Crates</a><a href="#storage">Ender Chest</a><a href="#tnt">Mine TNT</a><a href="#auctions">Auction House</a><a href="#codes">Codes</a><a href="#commands">Commands</a></aside><article class="article">
 <section class="article-section searchable" id="overview" data-search="boxpvp overview mine fight progress character gear"><div class="eyebrow2">BoxPvP</div><h2>The main story</h2><p class="lead">BoxPvP is a progression PvP game. You begin with basic gear, mine resources in the arena, convert them into character upgrade blocks, then evolve your equipment through <strong>20 SpongeBob-themed character sets</strong>.</p><div class="story-steps"><div class="story-step"><div class="step-num">1</div><div><strong>Build your starter kit</strong><span>Use the starter shop for your first armor, tools, food and utility.</span></div></div><div class="story-step"><div class="step-num">2</div><div><strong>Mine your current tier</strong><span>Every character level has a specific mine material.</span></div></div><div class="story-step"><div class="step-num">3</div><div><strong>Convert 64 → 1</strong><span>64 mine blocks become one custom Character Block for that tier.</span></div></div><div class="story-step"><div class="step-num">4</div><div><strong>Upgrade and move forward</strong><span>Your previous character gear is required to craft the next set.</span></div></div></div></section>
@@ -32,11 +319,222 @@
 </article></div></div>
 
 <div class="island-panel" id="islandPanel"><div class="article-layout"><aside class="article-nav"><b>Island Wars</b><a href="#iw-overview">Overview</a><a href="#iw-progress">How to progress</a><a href="#iw-money">Money & voids</a><a href="#iw-abilities">Abilities</a><a href="#iw-swords">45 swords</a><a href="#iw-commands">Commands</a></aside><article class="article"><section class="article-section searchable" id="iw-overview" data-search="island wars knockback void"><div class="eyebrow2">Island Wars</div><h2>Knock them into the void.</h2><p class="lead">Island Wars is a knockback progression game. Fight on islands, earn money by dealing damage, throw opponents into the void for bonus cash, then spend that money on stronger swords.</p></section><section class="article-section searchable" id="iw-progress" data-search="island wars progression rookie tapblade"><div class="eyebrow2">Progression</div><h2>How to progress</h2><div class="story-steps"><div class="story-step"><div class="step-num">1</div><div><strong>Start with Rookie Tapblade</strong><span>Tier 1 is free.</span></div></div><div class="story-step"><div class="step-num">2</div><div><strong>Fight for money</strong><span>Every point of damage pays $1.</span></div></div><div class="story-step"><div class="step-num">3</div><div><strong>Secure void kills</strong><span>Earn a $10 bonus when a qualifying target falls within 15 seconds.</span></div></div><div class="story-step"><div class="step-num">4</div><div><strong>Unlock stronger swords</strong><span>Use <code>/shop</code> and climb all 45 tiers to Titan Mace.</span></div></div></div></section><section class="article-section searchable" id="iw-money" data-search="island money damage void bonus"><div class="eyebrow2">Economy</div><h2>Money & voids</h2><div class="wiki-grid"><div class="wiki-card"><div class="stat">$1</div><strong>Per damage</strong><span>Your main income.</span></div><div class="wiki-card"><div class="stat">+$10</div><strong>Void bonus</strong><span>Bonus for credited void kills.</span></div><div class="wiki-card"><div class="stat">15s</div><strong>Credit window</strong><span>Your qualifying hit stays eligible.</span></div><div class="wiki-card"><div class="stat">$6.3M</div><strong>Endgame</strong><span>Titan Mace costs $6,305,000.</span></div></div></section><section class="article-section searchable" id="iw-abilities" data-search="passive active right click cooldown"><div class="eyebrow2">Combat</div><h2>Passives & right-click abilities</h2><p>Every sword has normal knockback, a chance-based passive, and a separate right-click active ability with a cooldown. Higher tiers add pulls, pushes, dashes, freezes, swaps, domains, meteors, clones and other control tools.</p><div class="callout">The best sword is not only raw knockback. Learn your passive proc and active cooldown.</div></section><section class="article-section searchable" id="iw-swords" data-search="45 swords island wars titan rookie"><div class="eyebrow2">Database</div><h2>All 45 swords</h2><input class="sword-search" id="swordSearch" type="search" placeholder="Search sword or ability…"><div class="table-wrap"><table class="sword-table"><thead><tr><th>Tier</th><th>Sword</th><th>Price</th><th>Knockback</th><th>Passive</th><th>Active</th></tr></thead><tbody id="swordRows"></tbody></table></div></section><section class="article-section searchable" id="iw-commands" data-search="island commands shop balance"><div class="eyebrow2">Reference</div><h2>Island Wars commands</h2><div class="command-grid"><div class="command"><code>/shop</code><span>Open sword shop.</span></div><div class="command"><code>/shop &lt;search&gt;</code><span>Search for a sword.</span></div><div class="command"><code>/balance</code><span>Show your balance.</span></div><div class="command"><code>/bal</code><span>Short balance alias.</span></div></div></section></article></div></div>
-</div></main><footer class="footer"><div class="container">PlexiumMC <span class="accent-dot"></span> Player Wiki</div></footer></div><div class="secret-toast" id="secretToast"></div>
+</div></main><footer class="footer"><div class="container">PlexiumMC <span class="accent-dot"></span> Player Wiki · <a href="../UI/">PlexUI</a></div></footer></div>
+<nav class="mc-mobile-tabs" id="mobileTabs" data-liquid-tabs aria-label="Minecraft wiki navigation">
+  <a href="../">Home</a>
+  <button class="active" type="button" data-mobile-mode="box">BoxPvP</button>
+  <button type="button" data-mobile-mode="island">Island Wars</button>
+  <button type="button" data-mobile-search>Search</button>
+</nav>
+<div class="secret-toast" id="secretToast"></div>
 <script>
-const root=document.documentElement,saved=localStorage.getItem('plexium-theme');if(saved)root.dataset.theme=saved;document.getElementById('themeToggle').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('plexium-theme',root.dataset.theme)};document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{await navigator.clipboard.writeText(b.dataset.copy);let o=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=o,1000)});
-const progression=[{"level":1,"name":"Plankton","mine":"Dark Prismarine","w":6,"a":12},{"level":2,"name":"SpongeBob","mine":"Raw Gold Block","w":6,"a":12},{"level":3,"name":"Mr. Krabs","mine":"Black Glazed Terracotta","w":6,"a":12},{"level":4,"name":"Karen","mine":"Light Blue Glazed Terracotta","w":12,"a":24},{"level":5,"name":"Patrick","mine":"Pink Glazed Terracotta","w":12,"a":24},{"level":6,"name":"Pearl","mine":"Gray Glazed Terracotta","w":12,"a":24},{"level":7,"name":"Sandy","mine":"White Glazed Terracotta","w":18,"a":36},{"level":8,"name":"Mrs. Puff","mine":"Brown Concrete","w":18,"a":36},{"level":9,"name":"Larry","mine":"Blue Terracotta","w":18,"a":36},{"level":10,"name":"Gary","mine":"Light Blue Concrete","w":24,"a":48},{"level":11,"name":"Mermaid Man","mine":"Prismarine","w":24,"a":48},{"level":12,"name":"Barnacle Boy","mine":"Red Terracotta","w":24,"a":48},{"level":13,"name":"Man Ray","mine":"Red Glazed Terracotta","w":30,"a":60},{"level":14,"name":"Dirty Bubble","mine":"Brown Terracotta","w":30,"a":60},{"level":15,"name":"Bubble Bass","mine":"Orange Concrete","w":30,"a":60},{"level":16,"name":"Fred (My Leg!)","mine":"Green Terracotta","w":36,"a":72},{"level":17,"name":"DoodleBob","mine":"Black Concrete","w":36,"a":72},{"level":18,"name":"Squilliam","mine":"Light Gray Concrete","w":36,"a":72},{"level":19,"name":"Flying Dutchman","mine":"Lime Terracotta","w":42,"a":84},{"level":20,"name":"Squidward","mine":"Cyan Terracotta","w":42,"a":84}];document.getElementById('progressRows').innerHTML=progression.map(x=>`<tr><td><span class="level-badge">${x.level}</span></td><td><strong>${x.name}</strong></td><td>${x.mine}<br><small>64 → 1 ${x.name} Block</small></td><td>Previous gear + ${x.w} blocks</td><td>Previous armor + ${x.a} blocks</td></tr>`).join('');
-document.querySelectorAll('.mode-tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode-tab').forEach(x=>x.classList.toggle('active',x===b));let i=b.dataset.mode==='island';document.getElementById('boxPanel').classList.toggle('active',!i);document.getElementById('islandPanel').classList.toggle('active',i)});document.getElementById('wikiSearch').oninput=e=>{let q=e.target.value.trim().toLowerCase();document.querySelectorAll('.searchable').forEach(s=>s.dataset.hidden=q&&!((s.dataset.search+' '+s.innerText).toLowerCase().includes(q))?'true':'false')};
-let swords=[];const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),cash=n=>'$'+Number(n).toLocaleString();function render(q=''){document.getElementById('swordRows').innerHTML=swords.filter(s=>(s.name+' '+s.passive+' '+s.active).toLowerCase().includes(q.toLowerCase())).map(s=>`<tr><td><span class="level-badge">${s.tier}</span></td><td><strong>${esc(s.name)}</strong></td><td>${cash(s.price)}</td><td>${Number(s.kb).toFixed(2)}<br><small>Vertical ${Number(s.vkb).toFixed(2)}</small></td><td><strong>${esc(s.passive)}</strong><br><small>${esc(s.passive_desc)}</small></td><td><strong>${esc(s.active)}</strong><br><small>${esc(s.active_desc)} · ${(s.active_cd/1000).toFixed(1)}s</small></td></tr>`).join('')}fetch('swords.json').then(r=>r.json()).then(d=>{swords=d;render()});document.getElementById('swordSearch').oninput=e=>render(e.target.value);
-const secrets=[['MTgwODIwMjZSRUxFQVNF','NSBNVlAgS2V5cyArICQzMCwwMDA='],['QUJERVJBSE1FTjEyMw==','VG90ZW0gb2YgVW5keWluZyArIFBsZXhpdW0gS2V5'],['UklHSVNCUkFJTlJPVA==','VG90ZW0gb2YgVW5keWluZw=='],['U0hISDIxMw==','MyBQbGV4IEtleXMgKyAzIE1WUCBLZXlz'],['U1VNTUVS','JDUwMCwwMDA='],['VEhJQ1RIRVZFTg==','NSBQYXJ0eSBLZXlzICsgJDEsMDAw']],found=new Set(JSON.parse(localStorage.getItem('plexium-found-codes')||'[]'));function progress(){let p=document.getElementById('secretProgress');if(p)p.textContent=`Website secrets found: ${found.size} / 6`}progress();document.querySelectorAll('.secret-mark').forEach(m=>m.onclick=()=>{let i=+m.dataset.secret,c=atob(secrets[i][0]),r=atob(secrets[i][1]);found.add(i);localStorage.setItem('plexium-found-codes',JSON.stringify([...found]));progress();let t=document.getElementById('secretToast');t.innerHTML=`<b>Secret code found: ${esc(c)}</b><small>Reward: ${esc(r)} · Redeem with /codes in BoxPvP</small>`;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),6500)});
+(()=>{
+'use strict';
+const $=(q,c=document)=>c.querySelector(q);
+const $$=(q,c=document)=>[...c.querySelectorAll(q)];
+const root=document.documentElement;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Liquid selection */
+function ensureLiquid(container){
+  if(!container||container.dataset.plexLiquidReady)return;
+  container.dataset.plexLiquidReady='1';
+  const goo=document.createElement('span');
+  goo.className='plex-liquid-goo';
+  goo.innerHTML='<span class="plex-liquid-bridge"></span><span class="plex-liquid-blob"></span>';
+  const indicator=document.createElement('span');
+  indicator.className='plex-liquid-indicator';
+  container.prepend(indicator);
+  container.prepend(goo);
+}
+function positionLiquid(container,active,animate=true){
+  if(!container||!active)return;
+  ensureLiquid(container);
+  const indicator=$('.plex-liquid-indicator',container);
+  const blob=$('.plex-liquid-blob',container);
+  const bridge=$('.plex-liquid-bridge',container);
+  const cr=container.getBoundingClientRect(),ar=active.getBoundingClientRect();
+  const x=ar.left-cr.left,w=ar.width;
+  const oldX=Number(indicator.dataset.x||x),oldW=Number(indicator.dataset.w||w);
+  const oldCenter=oldX+oldW/2,newCenter=x+w/2,left=Math.min(oldCenter,newCenter),right=Math.max(oldCenter,newCenter);
+  blob.style.left=x+'px';blob.style.width=w+'px';
+  bridge.style.left=(left-8)+'px';bridge.style.width=(right-left+16)+'px';
+  indicator.style.width=w+'px';indicator.style.transform='translateX('+x+'px)';
+  indicator.dataset.x=String(x);indicator.dataset.w=String(w);
+  if(animate&&!reduced&&Math.abs(newCenter-oldCenter)>2){
+    indicator.classList.remove('moving');bridge.classList.remove('animate');void indicator.offsetWidth;
+    indicator.classList.add('moving');bridge.classList.add('animate');
+    clearTimeout(container._plexLiquidTimer);
+    container._plexLiquidTimer=setTimeout(()=>{indicator.classList.remove('moving');bridge.classList.remove('animate')},370);
+  }
+}
+function setLiquidTab(container,item,animate=true){
+  if(!container||!item)return;
+  $$('a,button',container).forEach(el=>el.classList.toggle('active',el===item));
+  positionLiquid(container,item,animate);
+}
+$$('[data-liquid-tabs]').forEach(ensureLiquid);
+function refreshLiquids(){
+  $$('[data-liquid-tabs]').forEach(c=>positionLiquid(c,$('.active',c)||$('a,button',c),false));
+}
+requestAnimationFrame(refreshLiquids);
+addEventListener('resize',refreshLiquids);
+
+/* Theme / settings */
+const settings=$('#plexSettings'),themeTabs=$('#themeTabs');
+const mqDark=matchMedia('(prefers-color-scheme: dark)');
+const resolveTheme=choice=>choice==='system'?(mqDark.matches?'dark':'light'):choice;
+function applyTheme(choice){
+  root.dataset.theme=resolveTheme(choice);
+  localStorage.setItem('plexium-theme',choice);
+  document.querySelector('meta[name="theme-color"]').content=root.dataset.theme==='dark'?'#1b1b18':'#f5f1eb';
+  requestAnimationFrame(refreshLiquids);
+}
+const savedTheme=localStorage.getItem('plexium-theme')||'dark';
+applyTheme(savedTheme);
+const savedButton=$('[data-theme-choice="'+savedTheme+'"]',themeTabs)||$('[data-theme-choice="dark"]',themeTabs);
+setLiquidTab(themeTabs,savedButton,false);
+$$('[data-theme-choice]',themeTabs).forEach(btn=>btn.addEventListener('click',()=>{
+  setLiquidTab(themeTabs,btn,true);
+  const update=()=>applyTheme(btn.dataset.themeChoice);
+  if(!reduced&&document.startViewTransition)document.startViewTransition(update);else update();
+}));
+mqDark.addEventListener?.('change',()=>{if(localStorage.getItem('plexium-theme')==='system')applyTheme('system')});
+$('#settingsOpen').addEventListener('click',()=>{settings.classList.add('open');settings.setAttribute('aria-hidden','false');requestAnimationFrame(refreshLiquids)});
+function closeSettings(){settings.classList.remove('open');settings.setAttribute('aria-hidden','true')}
+$('#settingsClose').addEventListener('click',closeSettings);
+$('#settingsBg').addEventListener('click',closeSettings);
+addEventListener('keydown',e=>{if(e.key==='Escape')closeSettings()});
+
+/* Existing copy actions */
+$$('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(button.dataset.copy)}catch{}
+  const old=button.textContent;button.textContent='Copied';setTimeout(()=>button.textContent=old,1000);
+}));
+
+/* Existing BoxPvP progression data */
+const progression=[{"level":1,"name":"Plankton","mine":"Dark Prismarine","w":6,"a":12},{"level":2,"name":"SpongeBob","mine":"Raw Gold Block","w":6,"a":12},{"level":3,"name":"Mr. Krabs","mine":"Black Glazed Terracotta","w":6,"a":12},{"level":4,"name":"Karen","mine":"Light Blue Glazed Terracotta","w":12,"a":24},{"level":5,"name":"Patrick","mine":"Pink Glazed Terracotta","w":12,"a":24},{"level":6,"name":"Pearl","mine":"Gray Glazed Terracotta","w":12,"a":24},{"level":7,"name":"Sandy","mine":"White Glazed Terracotta","w":18,"a":36},{"level":8,"name":"Mrs. Puff","mine":"Brown Concrete","w":18,"a":36},{"level":9,"name":"Larry","mine":"Blue Terracotta","w":18,"a":36},{"level":10,"name":"Gary","mine":"Light Blue Concrete","w":24,"a":48},{"level":11,"name":"Mermaid Man","mine":"Prismarine","w":24,"a":48},{"level":12,"name":"Barnacle Boy","mine":"Red Terracotta","w":24,"a":48},{"level":13,"name":"Man Ray","mine":"Red Glazed Terracotta","w":30,"a":60},{"level":14,"name":"Dirty Bubble","mine":"Brown Terracotta","w":30,"a":60},{"level":15,"name":"Bubble Bass","mine":"Orange Concrete","w":30,"a":60},{"level":16,"name":"Fred (My Leg!)","mine":"Green Terracotta","w":36,"a":72},{"level":17,"name":"DoodleBob","mine":"Black Concrete","w":36,"a":72},{"level":18,"name":"Squilliam","mine":"Light Gray Concrete","w":36,"a":72},{"level":19,"name":"Flying Dutchman","mine":"Lime Terracotta","w":42,"a":84},{"level":20,"name":"Squidward","mine":"Cyan Terracotta","w":42,"a":84}];
+$('#progressRows').innerHTML=progression.map(x=>'<tr><td><span class="level-badge">'+x.level+'</span></td><td><strong>'+x.name+'</strong></td><td>'+x.mine+'<br><small>64 → 1 '+x.name+' Block</small></td><td>Previous gear + '+x.w+' blocks</td><td>Previous armor + '+x.a+' blocks</td></tr>').join('');
+
+/* Wiki mode switching + liquid movement */
+const modeTabs=$('#modeTabs');
+function setMode(mode,source='desktop'){
+  const island=mode==='island';
+  $('#boxPanel').classList.toggle('active',!island);
+  $('#islandPanel').classList.toggle('active',island);
+  const desktop=$('[data-mode="'+mode+'"]',modeTabs);
+  if(desktop)setLiquidTab(modeTabs,desktop,true);
+  const mobile=$('[data-mobile-mode="'+mode+'"]',$('#mobileTabs'));
+  if(mobile){
+    $$('[data-mobile-mode]',$('#mobileTabs')).forEach(x=>x.classList.toggle('active',x===mobile));
+    positionLiquid($('#mobileTabs'),mobile,true);
+  }
+  if(source==='mobile')window.scrollTo({top:Math.max(0,$('#modeTabs').getBoundingClientRect().top+scrollY-95),behavior:reduced?'auto':'smooth'});
+  requestAnimationFrame(()=>{refreshLiquids();refreshArticleSpy()});
+}
+$$('.mode-tab').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mode)));
+$$('[data-mobile-mode]').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mobileMode,'mobile')));
+$('[data-mobile-search]').addEventListener('click',()=>{
+  const search=$('#wikiSearch');
+  search.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
+  setTimeout(()=>search.focus(),reduced?0:350);
+});
+
+/* Search */
+$('#wikiSearch').addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();
+  $$('.searchable').forEach(section=>{
+    section.dataset.hidden=q&&!((section.dataset.search+' '+section.innerText).toLowerCase().includes(q))?'true':'false';
+  });
+});
+
+/* Island Wars sword database */
+let swords=[];
+const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cash=n=>'$'+Number(n).toLocaleString();
+function renderSwords(q=''){
+  $('#swordRows').innerHTML=swords.filter(sword=>(sword.name+' '+sword.passive+' '+sword.active).toLowerCase().includes(q.toLowerCase())).map(sword=>
+    '<tr><td><span class="level-badge">'+sword.tier+'</span></td><td><strong>'+esc(sword.name)+'</strong></td><td>'+cash(sword.price)+'</td><td>'+Number(sword.kb).toFixed(2)+'<br><small>Vertical '+Number(sword.vkb).toFixed(2)+'</small></td><td><strong>'+esc(sword.passive)+'</strong><br><small>'+esc(sword.passive_desc)+'</small></td><td><strong>'+esc(sword.active)+'</strong><br><small>'+esc(sword.active_desc)+' · '+(sword.active_cd/1000).toFixed(1)+'s</small></td></tr>'
+  ).join('');
+}
+fetch('swords.json').then(r=>r.json()).then(data=>{swords=data;renderSwords()}).catch(()=>{$('#swordRows').innerHTML='<tr><td colspan="6">Could not load sword database.</td></tr>'});
+$('#swordSearch').addEventListener('input',e=>renderSwords(e.target.value));
+
+/* Hidden code hunt */
+const secrets=[['MTgwODIwMjZSRUxFQVNF','NSBNVlAgS2V5cyArICQzMCwwMDA='],['QUJERVJBSE1FTjEyMw==','VG90ZW0gb2YgVW5keWluZyArIFBsZXhpdW0gS2V5'],['UklHSVNCUkFJTlJPVA==','VG90ZW0gb2YgVW5keWluZw=='],['U0hISDIxMw==','MyBQbGV4IEtleXMgKyAzIE1WUCBLZXlz'],['U1VNTUVS','JDUwMCwwMDA='],['VEhJQ1RIRVZFTg==','NSBQYXJ0eSBLZXlzICsgJDEsMDAw']];
+const found=new Set(JSON.parse(localStorage.getItem('plexium-found-codes')||'[]'));
+function updateSecretProgress(){const p=$('#secretProgress');if(p)p.textContent='Website secrets found: '+found.size+' / 6'}
+updateSecretProgress();
+$$('.secret-mark').forEach(mark=>mark.addEventListener('click',()=>{
+  const i=+mark.dataset.secret,code=atob(secrets[i][0]),reward=atob(secrets[i][1]);
+  found.add(i);localStorage.setItem('plexium-found-codes',JSON.stringify([...found]));updateSecretProgress();
+  const toast=$('#secretToast');toast.innerHTML='<b>Secret code found: '+esc(code)+'</b><small>Reward: '+esc(reward)+' · Redeem with /codes in BoxPvP</small>';
+  toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),6500);
+}));
+
+/* Replayable PlexUI reveals */
+const revealTargets=[
+  $('.wiki-brand'),$('.wiki-hero'),$('#wikiSearch'),$('#modeTabs'),
+  ...$$('.article-section'),...$$('.wiki-card'),...$$('.story-step'),...$$('.command'),...$$('.callout'),...$$('.table-wrap')
+].filter(Boolean);
+revealTargets.forEach((el,i)=>{el.classList.add('mc-reveal');if(i%4)el.dataset.mcDelay=String(i%4)});
+if(!reduced&&'IntersectionObserver'in window){
+  const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>entry.target.classList.toggle('is-visible',entry.isIntersecting)),{threshold:.10,rootMargin:'-3% 0px -7%'});
+  revealTargets.forEach(el=>revealObserver.observe(el));
+}else revealTargets.forEach(el=>el.classList.add('is-visible'));
+
+/* Article navigation scroll state */
+let articleSpyRAF=0;
+function refreshArticleSpy(){
+  if(articleSpyRAF)return;
+  articleSpyRAF=requestAnimationFrame(()=>{
+    articleSpyRAF=0;
+    const panel=$('#islandPanel').classList.contains('active')?$('#islandPanel'):$('#boxPanel');
+    const links=$$('.article-nav a',panel),sections=links.map(a=>$(a.getAttribute('href'),panel)).filter(Boolean);
+    const y=innerHeight*.38;
+    let active=sections[0];
+    for(const section of sections){const r=section.getBoundingClientRect();if(r.top<=y&&r.bottom>y){active=section;break}}
+    links.forEach(a=>a.classList.toggle('mc-active',active&&a.getAttribute('href')==='#'+active.id));
+  });
+}
+addEventListener('scroll',refreshArticleSpy,{passive:true});
+requestAnimationFrame(refreshArticleSpy);
+
+/* Subtle hero parallax */
+if(!reduced&&matchMedia('(pointer:fine)').matches){
+  addEventListener('pointermove',e=>{
+    const nx=e.clientX/innerWidth-.5,ny=e.clientY/innerHeight-.5;
+    $('.hero-box')?.style.setProperty('--hero-x',(nx*5).toFixed(2)+'px');
+    $('.hero-box')?.style.setProperty('--hero-y',(ny*4).toFixed(2)+'px');
+  },{passive:true});
+}
+
+/* Exact-position elastic cursor with velocity deformation + subtle motion blur */
+const cursor=$('#plexCursor');
+if(matchMedia('(pointer:fine)').matches&&!reduced){
+  root.classList.add('mc-custom-cursor');
+  let lx=0,ly=0,lt=performance.now(),x=-100,y=-100,angle=0,stretch=0,target=0,speed=0;
+  addEventListener('pointermove',e=>{
+    const now=performance.now(),dt=Math.max(7,now-lt),dx=e.clientX-lx,dy=e.clientY-ly;
+    speed=Math.min(1,(Math.hypot(dx,dy)/dt)/2.15);
+    if(Math.abs(dx)+Math.abs(dy)>.1)angle=Math.atan2(dy,dx)*180/Math.PI;
+    target=speed*.58;x=e.clientX;y=e.clientY;lx=x;ly=y;lt=now;cursor.classList.add('ready');
+  },{passive:true});
+  addEventListener('pointerdown',()=>cursor.classList.add('down'));
+  addEventListener('pointerup',()=>cursor.classList.remove('down'));
+  document.addEventListener('mouseover',e=>cursor.classList.toggle('hover',!!e.target.closest('a,button,input,.wiki-card,.story-step,.command,.server-chip')));
+  document.addEventListener('mouseleave',()=>cursor.classList.remove('ready'));
+  function cursorFrame(){
+    stretch+=(target-stretch)*.26;target*=.84;speed*=.88;
+    cursor.style.setProperty('--trail',(14+speed*23).toFixed(1)+'px');
+    cursor.style.setProperty('--trail-opacity',(speed*.26).toFixed(3));
+    cursor.style.setProperty('--trail-blur',(speed*3.5).toFixed(1)+'px');
+    cursor.style.transform='translate3d('+x+'px,'+y+'px,0) translate(-50%,-50%) rotate('+angle+'deg) scale('+(1+stretch)+','+(1-stretch*.30)+')';
+    requestAnimationFrame(cursorFrame);
+  }
+  cursorFrame();
+}
+
+requestAnimationFrame(refreshLiquids);
+})();
 </script></body></html>
