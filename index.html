@@ -293,158 +293,208 @@ html[data-theme="dark"] .liquid-indicator{
 @keyframes rail{to{transform:translateX(-50%)}}
 .motion-rail:hover .rail-track{animation-play-state:paused}
 
-/* -------- showcase: the homepage's main structure -------- */
-.showcase{background:var(--surface)}
-.showcase-list{display:grid;gap:28px}
-.showcase-card{
-  min-height:600px;
+/* -------- homepage product hub -------- */
+.hub{background:var(--surface)}
+.hub-grid{
   display:grid;
-  grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
-  border-radius:34px;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  grid-template-rows:repeat(2,minmax(260px,1fr));
+  gap:18px;
+}
+.hub-card{
+  position:relative;
   overflow:hidden;
+  border-radius:30px;
   background:var(--bg);
   border:1px solid var(--line);
-  box-shadow:0 18px 55px rgba(0,0,0,.08);
-  transition:transform 320ms var(--ease),box-shadow 320ms ease;
+  box-shadow:0 16px 46px rgba(0,0,0,.08);
+  transition:transform 300ms var(--ease),box-shadow 300ms ease,border-color 180ms ease;
 }
-.showcase-card:hover{transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,.13)}
-.showcase-card:nth-child(even){grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr)}
-.showcase-card:nth-child(even) .showcase-copy{order:2}
-.showcase-card:nth-child(even) .showcase-visual{order:1}
-.showcase-copy{
-  padding:48px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  min-width:0;
+.hub-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 28px 72px rgba(0,0,0,.13);
 }
-.showcase-copy .number{
-  margin-bottom:auto;
+.hub-featured{
+  grid-row:1 / span 2;
+  min-height:600px;
+  display:grid;
+  grid-template-rows:auto 1fr;
+}
+.hub-copy{
+  position:relative;
+  z-index:2;
+  padding:34px;
+}
+.hub-featured .hub-copy{padding:42px 42px 18px}
+.hub-label{
+  margin-bottom:18px;
   color:var(--blue);
-  font-size:.8rem;
+  font-size:.77rem;
   font-weight:760;
-  letter-spacing:.1em;
+  letter-spacing:.095em;
+  text-transform:uppercase;
 }
-.showcase-copy h3{
+.hub-card h3{
   margin:0;
-  font-size:clamp(2.7rem,5vw,4.8rem);
-  line-height:.92;
-  letter-spacing:-.065em;
+  font-size:clamp(2rem,4vw,4.2rem);
+  line-height:.95;
+  letter-spacing:-.06em;
 }
-.showcase-copy p{
-  margin:18px 0 0;
+.hub-small h3{font-size:clamp(2rem,3vw,3rem)}
+.hub-card p{
+  margin:14px 0 0;
+  max-width:550px;
   color:var(--muted);
-  line-height:1.65;
-  max-width:520px;
+  line-height:1.62;
 }
-.showcase-link{
+.hub-small p{max-width:430px;font-size:.94rem}
+.hub-link{
   display:inline-flex;
   align-items:center;
   gap:6px;
-  margin-top:25px;
+  margin-top:22px;
   color:var(--blue);
+  font-size:.9rem;
   font-weight:680;
-  width:max-content;
 }
-.showcase-link span{transition:transform 160ms var(--ease)}
-.showcase-card:hover .showcase-link span{transform:translateX(4px)}
+.hub-link b{font-weight:600;transition:transform 160ms var(--ease)}
+.hub-card:hover .hub-link b{transform:translateX(4px)}
 
-.showcase-visual{
-  min-height:520px;
-  padding:34px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
+.hub-visual{
+  min-height:350px;
+  margin:0 18px 18px;
+  border-radius:24px;
   background:var(--surface-soft);
-  border-left:1px solid var(--line-soft);
-}
-.showcase-card:nth-child(even) .showcase-visual{border-left:0;border-right:1px solid var(--line-soft)}
-.showcase-visual::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(420px 280px at 50% 50%,rgba(0,113,227,.10),transparent 72%);
-}
-.product-stage{
-  width:min(440px,92%);
-  aspect-ratio:1/1;
-  border-radius:36px;
-  background:color-mix(in srgb,var(--surface) 90%,transparent);
-  border:1px solid var(--line);
-  box-shadow:0 30px 90px rgba(0,0,0,.14),inset 0 1px rgba(255,255,255,.4);
   display:grid;
   place-items:center;
   position:relative;
-  z-index:1;
-  transition:transform 700ms var(--ease),box-shadow 300ms ease;
-}
-.showcase-card:hover .product-stage{transform:scale(1.025) rotate(.2deg);box-shadow:0 38px 105px rgba(0,0,0,.17),inset 0 1px rgba(255,255,255,.4)}
-.product-stage::after{
-  content:"";
-  position:absolute;
-  inset:18px;
-  border:1px solid var(--line-soft);
-  border-radius:26px;
-  pointer-events:none;
-}
-.product-mark{width:132px;height:132px;border-radius:30px;display:grid;place-items:center;position:relative;z-index:2}
-.product-mark img{width:100%;height:100%;object-fit:contain;border-radius:28px}
-.product-mark.portfolio{
-  background:var(--text);
-  color:var(--bg);
-  box-shadow:0 16px 40px rgba(0,0,0,.16);
-}
-.product-mark.portfolio svg{width:62px;height:62px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-
-/* -------- closing editorial section -------- */
-.closing{background:var(--bg)}
-.statement{
-  min-height:620px;
-  border-radius:34px;
-  padding:54px;
-  background:var(--surface);
-  border:1px solid var(--line-soft);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
   overflow:hidden;
-  position:relative;
+  border:1px solid var(--line-soft);
 }
-.statement::before{
+.hub-visual::before{
   content:"";
   position:absolute;
-  width:520px;
-  height:520px;
-  right:-190px;
-  bottom:-250px;
-  border-radius:50%;
-  background:rgba(0,113,227,.08);
-  filter:blur(10px);
+  inset:0;
+  background:radial-gradient(420px 300px at 50% 50%,rgba(0,113,227,.11),transparent 72%);
 }
-.statement-top{position:relative;z-index:1}
-.statement-top span{color:var(--blue);font-size:.8rem;font-weight:760}
-.statement h2{
-  margin:0;
-  max-width:920px;
-  font-size:clamp(3.4rem,7.2vw,7rem);
-  line-height:.9;
-  letter-spacing:-.075em;
+.hub-icon{
+  width:150px;
+  height:150px;
   position:relative;
   z-index:1;
+  transition:transform 650ms var(--ease);
 }
-.statement h2 span{color:var(--soft)}
-.statement-bottom{
-  position:relative;
-  z-index:1;
+.hub-card:hover .hub-icon{transform:scale(1.04) translateY(-3px)}
+.hub-icon img{width:100%;height:100%;object-fit:contain;border-radius:32px}
+
+.hub-small{
+  min-height:280px;
   display:flex;
   align-items:flex-end;
-  justify-content:space-between;
-  gap:24px;
 }
-.statement-bottom p{margin:0;max-width:630px;color:var(--muted);line-height:1.65;font-size:1.04rem}
-.statement-bottom a{white-space:nowrap}
+.hub-small .hub-copy{padding-right:120px}
+.hub-corner-icon{
+  position:absolute;
+  right:26px;
+  top:26px;
+  width:72px;
+  height:72px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  padding:8px;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  box-shadow:0 12px 30px rgba(0,0,0,.07);
+  transition:transform 220ms var(--ease);
+}
+.hub-card:hover .hub-corner-icon{transform:scale(1.045) rotate(.4deg)}
+.hub-corner-icon img{width:100%;height:100%;object-fit:contain;border-radius:14px}
+.portfolio-corner{
+  background:var(--text);
+  color:var(--bg);
+}
+.portfolio-corner svg{
+  width:38px;
+  height:38px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.quick-links{
+  margin-top:18px;
+  min-height:68px;
+  padding:8px 10px 8px 18px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border-radius:22px;
+  background:var(--bg);
+  border:1px solid var(--line-soft);
+}
+.quick-title{
+  margin-right:auto;
+  color:var(--muted);
+  font-size:.82rem;
+  font-weight:650;
+}
+.quick-links a{
+  min-height:46px;
+  padding:0 14px;
+  border-radius:14px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:var(--text);
+  font-size:.84rem;
+  font-weight:650;
+  transition:transform 150ms var(--ease),background-color 160ms ease;
+}
+.quick-links a:hover{
+  transform:translateY(-1px);
+  background:var(--surface);
+}
+.quick-links a span{color:var(--blue)}
+
+/* -------- simple homepage context -------- */
+.home-about{background:var(--bg)}
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(340px,.7fr);
+  gap:80px;
+  align-items:start;
+}
+.about-grid .section-head{margin:0}
+.about-panel{
+  border-radius:28px;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  overflow:hidden;
+}
+.about-row{
+  padding:22px 24px;
+  display:grid;
+  grid-template-columns:85px 1fr;
+  gap:18px;
+  align-items:start;
+  border-bottom:1px solid var(--line-soft);
+}
+.about-row:last-child{border-bottom:0}
+.about-row span{
+  color:var(--blue);
+  font-size:.78rem;
+  font-weight:760;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.about-row p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.58;
+}
 
 /* -------- settings -------- */
 .settings{position:fixed;inset:0;z-index:4000;display:grid;place-items:center;padding:18px;pointer-events:none;visibility:hidden}
@@ -572,14 +622,17 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 .mobile-tabs{display:none}
 
 @media(max-width:960px){
-  .showcase-card,
-  .showcase-card:nth-child(even){grid-template-columns:1fr}
-  .showcase-card:nth-child(even) .showcase-copy,
-  .showcase-card:nth-child(even) .showcase-visual{order:initial}
-  .showcase-visual,
-  .showcase-card:nth-child(even) .showcase-visual{border-left:0;border-right:0;border-top:1px solid var(--line-soft)}
-  .showcase-copy{min-height:340px}
-  .statement-bottom{align-items:flex-start;flex-direction:column}
+  .hub-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto auto;
+  }
+  .hub-featured{
+    grid-column:1 / -1;
+    grid-row:auto;
+    min-height:560px;
+  }
+  .hub-small{min-height:300px}
+  .about-grid{grid-template-columns:1fr;gap:34px}
 }
 
 @media(max-width:820px){
@@ -588,12 +641,20 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
   .site-nav{display:none}
   .hero{min-height:auto;padding:144px 0 100px}
   .hero h1{font-size:clamp(4rem,15vw,6.7rem)}
-  .showcase-list{gap:18px}
-  .showcase-card{border-radius:28px;min-height:0}
-  .showcase-copy{padding:30px;min-height:300px}
-  .showcase-visual{min-height:390px;padding:24px}
-  .product-stage{border-radius:30px}
-  .statement{padding:32px;min-height:540px;border-radius:28px}
+  .hub-grid{grid-template-columns:1fr;gap:14px}
+  .hub-featured{grid-column:auto;min-height:520px}
+  .hub-small{min-height:270px}
+  .hub-card{border-radius:26px}
+  .hub-featured .hub-copy,.hub-copy{padding:26px}
+  .hub-visual{min-height:300px;margin:0 14px 14px}
+  .quick-links{
+    padding:10px;
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .quick-title{padding:7px 8px 2px;margin-right:0}
+  .quick-links a{width:100%;justify-content:space-between}
+  .about-row{grid-template-columns:70px 1fr}
   .footer{padding-bottom:116px}
 
   .mobile-tabs{
@@ -632,11 +693,12 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 }
 
 @media(max-width:520px){
-  .showcase-copy{padding:24px}
-  .showcase-visual{min-height:320px;padding:18px}
-  .product-mark{width:106px;height:106px;border-radius:25px}
-  .product-stage{width:96%}
-  .statement{padding:26px}
+  .hub-featured{min-height:470px}
+  .hub-small .hub-copy{padding-right:94px}
+  .hub-corner-icon{right:20px;top:20px;width:60px;height:60px;border-radius:17px}
+  .hub-icon{width:118px;height:118px}
+  .hub-icon img{border-radius:25px}
+  .about-row{grid-template-columns:1fr;gap:7px}
 }
 
 @media(pointer:coarse),(max-width:900px){
@@ -697,9 +759,9 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 <main>
   <section class="hero">
     <div class="wrap hero-copy">
-      <p class="eyebrow reveal">Plexium</p>
-      <h1 class="reveal" data-delay="1">Different things.<br><span>One clean system.</span></h1>
-      <p class="lead reveal" data-delay="2">A browser, a Minecraft network, and the work we build for clients — brought together without making every product feel the same.</p>
+      <p class="eyebrow reveal">Welcome to Plexium</p>
+      <h1 class="reveal" data-delay="1">Everything Plexium.<br><span>One place.</span></h1>
+      <p class="lead reveal" data-delay="2">Jump into Plex Browser, PlexiumMC, or our portfolio. This is the main home for everything we build.</p>
       <div class="hero-actions reveal" data-delay="3">
         <a class="btn btn-primary" href="#showcase">Explore Plexium</a>
         <a class="btn btn-plain" href="portfolio/">See our work</a>
@@ -726,93 +788,92 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
     </div>
   </div>
 
-  <section class="section showcase" id="showcase">
+  <section class="section hub" id="showcase">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Explore</p>
-        <h2>Three parts.<br>Built for different jobs.</h2>
-        <p>No giant dashboard of links. Pick the product you actually came for.</p>
+        <p class="eyebrow">Explore Plexium</p>
+        <h2>Start wherever you want.</h2>
+        <p>Plexium is split into a few different projects. Pick one and jump straight in.</p>
       </div>
 
-      <div class="showcase-list stagger">
+      <div class="hub-grid stagger">
 
-        <article class="showcase-card">
-          <div class="showcase-copy">
-            <span class="number">01 · BROWSER</span>
-            <div>
-              <h3>Plex Browser.</h3>
-              <p>A focused browser project with downloads, customization, privacy controls, performance modes, release notes, and its own product identity.</p>
-              <a class="showcase-link" href="browser/">Open Plex Browser <span>→</span></a>
-            </div>
+        <a class="hub-card hub-featured" href="browser/">
+          <div class="hub-copy">
+            <div class="hub-label">Plex Browser</div>
+            <h3>Browse your way.</h3>
+            <p>Download Plex Browser, explore its features, customization, privacy controls, performance modes, and the current release.</p>
+            <span class="hub-link">Open Browser <b>→</b></span>
           </div>
 
-          <div class="showcase-visual">
-            <div class="product-stage">
-              <div class="product-mark">
-                <img src="assets/Icons/icon-normal.png" alt="Plex Browser icon">
-              </div>
+          <div class="hub-visual browser-visual">
+            <div class="hub-icon browser-icon">
+              <img src="assets/Icons/icon-normal.png" alt="Plex Browser icon">
             </div>
           </div>
-        </article>
+        </a>
 
-        <article class="showcase-card">
-          <div class="showcase-copy">
-            <span class="number">02 · MINECRAFT</span>
-            <div>
-              <h3>PlexiumMC.</h3>
-              <p>The Minecraft side of Plexium: BoxPvP, Island Wars, progression, commands, crates, the player wiki, and everything players need in one place.</p>
-              <a class="showcase-link" href="minecraft/">Open PlexiumMC <span>→</span></a>
-            </div>
+        <a class="hub-card hub-small" href="minecraft/">
+          <div class="hub-copy">
+            <div class="hub-label">PlexiumMC</div>
+            <h3>Play Plexium.</h3>
+            <p>BoxPvP, Island Wars, progression, commands, crates, and the full player wiki.</p>
+            <span class="hub-link">Open Minecraft <b>→</b></span>
           </div>
 
-          <div class="showcase-visual">
-            <div class="product-stage">
-              <div class="product-mark">
-                <img src="assets/server-icon.png" alt="PlexiumMC server icon">
-              </div>
-            </div>
+          <div class="hub-corner-icon">
+            <img src="assets/server-icon.png" alt="PlexiumMC server icon">
           </div>
-        </article>
+        </a>
 
-        <article class="showcase-card">
-          <div class="showcase-copy">
-            <span class="number">03 · WORK</span>
-            <div>
-              <h3>Portfolio.</h3>
-              <p>Real websites and apps, project previews, our process, and pricing — the place to see what we can build outside Plexium itself.</p>
-              <a class="showcase-link" href="portfolio/">View the portfolio <span>→</span></a>
-            </div>
+        <a class="hub-card hub-small" href="portfolio/">
+          <div class="hub-copy">
+            <div class="hub-label">Portfolio</div>
+            <h3>See what we build.</h3>
+            <p>Real websites and apps, project previews, our process, and pricing.</p>
+            <span class="hub-link">View Portfolio <b>→</b></span>
           </div>
 
-          <div class="showcase-visual">
-            <div class="product-stage">
-              <div class="product-mark portfolio">
-                <svg viewBox="0 0 32 32" aria-hidden="true">
-                  <rect x="4.5" y="6.5" width="23" height="19" rx="5"/>
-                  <path d="M10 13h12M10 18h7"/>
-                  <circle cx="23" cy="19" r="2.5"/>
-                </svg>
-              </div>
-            </div>
+          <div class="hub-corner-icon portfolio-corner" aria-hidden="true">
+            <svg viewBox="0 0 32 32">
+              <rect x="4.5" y="6.5" width="23" height="19" rx="5"/>
+              <path d="M10 13h12M10 18h7"/>
+              <circle cx="23" cy="19" r="2.5"/>
+            </svg>
           </div>
-        </article>
+        </a>
 
+      </div>
+
+      <div class="quick-links reveal">
+        <span class="quick-title">Quick access</span>
+        <a href="browser/">Download Browser <span>↗</span></a>
+        <a href="minecraft/">Minecraft Wiki <span>↗</span></a>
+        <a href="portfolio/#pricing">View Pricing <span>↗</span></a>
       </div>
     </div>
   </section>
 
-  <section class="section closing">
-    <div class="wrap">
-      <div class="statement reveal">
-        <div class="statement-top">
-          <span>BUILT AS ONE FAMILY</span>
+  <section class="section home-about">
+    <div class="wrap about-grid">
+      <div class="section-head reveal">
+        <p class="eyebrow">About Plexium</p>
+        <h2>One home for the stuff we make.</h2>
+        <p>Plexium is a collection of projects rather than one single product. Browser, Minecraft, and client work all live here without losing their own identity.</p>
+      </div>
+
+      <div class="about-panel reveal">
+        <div class="about-row">
+          <span>Browse</span>
+          <p>Plex Browser is our standalone browser project.</p>
         </div>
-
-        <h2>Same care.<br><span>Different products.</span></h2>
-
-        <div class="statement-bottom">
-          <p>Plexium is not one giant app. It is a group of projects that share the same standards for motion, hierarchy, responsiveness, and interface quality while keeping their own purpose.</p>
-          <a class="btn btn-primary" href="portfolio/">See what we build</a>
+        <div class="about-row">
+          <span>Play</span>
+          <p>PlexiumMC is our Minecraft network and player wiki.</p>
+        </div>
+        <div class="about-row">
+          <span>Build</span>
+          <p>The portfolio shows the websites and apps we make for clients.</p>
         </div>
       </div>
     </div>
@@ -1135,7 +1196,7 @@ if(matchMedia('(pointer:fine)').matches&&!reduced){
   document.addEventListener('mouseover',event=>{
     const interactive=
       !!event.target.closest(
-        'a,button,input,textarea,select,.showcase-card,.statement'
+        'a,button,input,textarea,select,.hub-card,.about-panel'
       );
 
     cursor.classList.toggle('hover',interactive);
