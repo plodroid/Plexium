@@ -283,6 +283,131 @@ html.mc-custom-cursor,html.mc-custom-cursor body,html.mc-custom-cursor body *{cu
   }
 }
 
+
+/* Minecraft-specific PlexUI identity */
+html[data-theme="dark"]{
+  --bg:#161a16;
+  --bg-surface:#20251f;
+  --bg-surface-hover:#293128;
+  --bg-elevated:#252b24;
+  --text-primary:#ece5da;
+  --text-secondary:#bcb4a8;
+  --text-muted:#837c70;
+  --accent:#cf835e;
+  --accent-glow:#e49a73;
+  --accent-subtle:rgba(207,131,94,.13);
+  --border:rgba(236,229,218,.085);
+  --border-strong:rgba(236,229,218,.18);
+  --mc-moss:#879b78;
+  --mc-moss-soft:rgba(135,155,120,.11);
+}
+html[data-theme="light"]{
+  --bg:#f1ede4;
+  --bg-surface:#fffdf8;
+  --bg-surface-hover:#f6f1e7;
+  --bg-elevated:#faf6ee;
+  --text-primary:#292b25;
+  --text-secondary:#5d5d55;
+  --text-muted:#888178;
+  --accent:#b96f4d;
+  --accent-glow:#ca805c;
+  --accent-subtle:rgba(185,111,77,.09);
+  --border:rgba(41,43,37,.085);
+  --border-strong:rgba(41,43,37,.16);
+  --mc-moss:#6f8564;
+  --mc-moss-soft:rgba(111,133,100,.09);
+}
+
+.navigation.plex-island{gap:6px;padding-left:8px}
+.mc-nav-brand{
+  height:46px;padding:0 11px 0 6px;display:flex;align-items:center;gap:9px;flex:0 0 auto;
+  color:var(--text-primary);font-size:.86rem;font-weight:760;letter-spacing:-.025em;
+}
+.mc-nav-brand img{width:30px;height:30px;border-radius:8px;image-rendering:auto}
+.mc-top-tabs{
+  position:relative;isolation:isolate;height:48px;padding:0 2px;display:flex;align-items:center;border-radius:18px;
+  background:color-mix(in srgb,var(--mc-moss) 7%,transparent);
+}
+.mc-top-tabs button{
+  position:relative;z-index:2;height:44px;min-width:92px;padding:0 14px;border:0;border-radius:15px;background:transparent;color:var(--text-secondary);
+  font:inherit;font-size:.82rem;font-weight:690;cursor:pointer;transition:color 160ms ease,transform 150ms var(--plex-ease),background-color 160ms ease;
+}
+.mc-top-tabs button.active{color:var(--text-primary)}
+.mc-top-tabs button:hover{transform:translateY(-1px) scale(1.015);background:var(--mc-moss-soft)}
+.mc-top-tabs button:active{transform:scale(.975)}
+.mc-top-tabs .plex-liquid-indicator,.mc-top-tabs .plex-liquid-blob,.mc-top-tabs .plex-liquid-bridge{border-radius:15px}
+.mc-search-btn{
+  position:relative;z-index:2;width:44px;height:44px;border:0;border-radius:15px;background:transparent;color:var(--text-secondary);display:grid;place-items:center;cursor:pointer;
+  transition:transform 150ms var(--plex-ease),background-color 160ms ease,color 160ms ease;
+}
+.mc-search-btn svg,.mc-mobile-action svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mc-search-btn:hover{color:var(--text-primary);transform:scale(1.045);background:var(--mc-moss-soft)}
+.mc-search-btn:active{transform:scale(.94)}
+
+/* The Minecraft page uses a subtle block-grid / terrain language rather than the portfolio's pure neutral surfaces. */
+.wiki-top{position:relative;isolation:isolate}
+.wiki-top::before{
+  content:"";position:absolute;z-index:-1;left:0;right:0;top:0;height:650px;pointer-events:none;opacity:.42;
+  background:
+    radial-gradient(650px 360px at 16% 8%,var(--mc-moss-soft),transparent 72%),
+    radial-gradient(600px 340px at 82% 14%,var(--accent-subtle),transparent 72%);
+}
+.hero-box{border-radius:22px;isolation:isolate}
+.hero-box::before{
+  content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.055;
+  background-image:
+    linear-gradient(to right,var(--text-primary) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--text-primary) 1px,transparent 1px);
+  background-size:28px 28px;
+  -webkit-mask-image:linear-gradient(115deg,#000,transparent 76%);
+  mask-image:linear-gradient(115deg,#000,transparent 76%);
+}
+.infobox{border-radius:22px;border-top:2px solid color-mix(in srgb,var(--mc-moss) 48%,transparent)}
+.wiki-brand small{color:var(--mc-moss)}
+.eyebrow2{display:flex;align-items:center;gap:9px;color:var(--accent)}
+.eyebrow2::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--mc-moss);box-shadow:0 0 0 4px var(--mc-moss-soft)}
+.story-step{border-radius:16px}
+.wiki-card{border-radius:18px;overflow:hidden}
+.wiki-card::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,var(--mc-moss),var(--accent),transparent 72%);
+  opacity:.45;
+}
+.command{border-radius:14px}
+.table-wrap{border-radius:18px}
+.article-nav{border-radius:18px}
+.callout{border-left-color:var(--mc-moss);background:linear-gradient(90deg,var(--mc-moss-soft),transparent)}
+.level-badge{border-radius:10px;background:var(--mc-moss-soft);color:var(--mc-moss)}
+.step-num{border-radius:12px;background:linear-gradient(145deg,var(--mc-moss-soft),var(--accent-subtle));color:var(--text-primary)}
+.stat{color:var(--accent)}
+.mode-tabs{border-radius:18px;background:var(--mc-moss-soft)}
+.mode-tab{border-radius:14px}
+.mode-tabs .plex-liquid-indicator,.mode-tabs .plex-liquid-blob,.mode-tabs .plex-liquid-bridge{border-radius:14px}
+.secret-mark:hover{border-color:var(--mc-moss);box-shadow:0 0 0 5px var(--mc-moss-soft)}
+
+/* Minecraft mobile bar: modes + compact actions, no ecosystem navigation */
+.mc-mobile-tabs{gap:6px}
+.mc-mobile-mode-tabs{
+  position:relative;isolation:isolate;display:flex;align-items:center;flex:1;height:56px;padding:0;border-radius:20px;background:var(--mc-moss-soft);
+}
+.mc-mobile-mode-tabs button{
+  position:relative;z-index:2;flex:1;height:56px;border:0;border-radius:18px;background:transparent;color:var(--text-secondary);font:inherit;font-size:.72rem;font-weight:690;
+}
+.mc-mobile-mode-tabs button.active{color:var(--text-primary)}
+.mc-mobile-mode-tabs .plex-liquid-indicator{top:4px;height:48px;border-radius:17px}
+.mc-mobile-mode-tabs .plex-liquid-blob,.mc-mobile-mode-tabs .plex-liquid-bridge{height:44px;border-radius:17px}
+.mc-mobile-action{
+  flex:0 0 48px!important;width:48px;height:48px!important;align-self:center;border-radius:16px!important;
+}
+@media(max-width:580px){
+  .mc-nav-brand strong{display:none}
+  .mc-top-tabs button{min-width:78px;padding:0 10px}
+}
+
+/* Footer ecosystem links */
+.footer a{color:var(--text-secondary);text-decoration:none;transition:color 150ms ease}
+.footer a:hover{color:var(--accent)}
+
 </style>
 </head>
 <body class="page-shell">
@@ -297,7 +422,7 @@ html.mc-custom-cursor,html.mc-custom-cursor body,html.mc-custom-cursor body *{cu
   </section>
 </aside>
 <div class="grain-overlay"></div><div class="site-shell">
-<div class="nav-wrap"><nav class="navigation plex-island" id="mainTabs" data-liquid-tabs aria-label="Main navigation"><a class="nav-item" href="../">Home</a><a class="nav-item" href="../browser/">Browser</a><a class="nav-item active" href="./">Minecraft</a><button class="plex-settings-btn" id="settingsOpen" type="button" aria-label="Appearance settings"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5L9 6.1a7 7 0 0 0-1.7 1l-2.4-1-2 3.4L5 11a7 7 0 0 0 0 2l-2.1 1.5 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.5 3.1h5l.5-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4L18.9 13c.1-.3.1-.7.1-1Z"/></svg></button></nav></div>
+<div class="nav-wrap"><nav class="navigation plex-island" aria-label="Minecraft navigation"><span class="mc-nav-brand"><img src="../assets/server-icon.png" alt=""><strong>PlexiumMC</strong></span><div class="mc-top-tabs" id="mainTabs" data-liquid-tabs><button class="active" type="button" data-top-mode="box">BoxPvP</button><button type="button" data-top-mode="island">Island Wars</button></div><button class="mc-search-btn" id="topSearch" type="button" aria-label="Search wiki"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button><button class="plex-settings-btn" id="settingsOpen" type="button" aria-label="Appearance settings"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5L9 6.1a7 7 0 0 0-1.7 1l-2.4-1-2 3.4L5 11a7 7 0 0 0 0 2l-2.1 1.5 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.5 3.1h5l.5-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4L18.9 13c.1-.3.1-.7.1-1Z"/></svg></button></nav></div>
 <main class="wiki-top"><div class="container">
 <div class="wiki-brand"><img src="../assets/server-icon.png" alt="PlexiumMC"><div><small>Official Wiki</small><strong>PlexiumMC</strong></div></div>
 <div class="wiki-hero"><section class="hero-box"><div class="eyebrow2">BoxPvP · Island Wars</div><h1>Play. Mine. Fight. <em style="color:var(--accent);font-weight:400">Progress.</em></h1><p>This is the player guide to PlexiumMC: where to start, what to mine, what to buy, how progression works, and what you should aim for next.</p><div class="server-chips"><div class="server-chip"><b>Java</b><code>plexium.minecraft.how</code><button class="copy-mini" data-copy="plexium.minecraft.how">Copy</button></div><div class="server-chip"><b>Bedrock</b><code>mauritania-thrust.tun.ply.gg:22451</code><button class="copy-mini" data-copy="mauritania-thrust.tun.ply.gg:22451">Copy</button></div></div><button class="secret-mark" style="right:30px;bottom:25px" data-secret="0" aria-label="A strange mark"></button></section>
@@ -319,12 +444,14 @@ html.mc-custom-cursor,html.mc-custom-cursor body,html.mc-custom-cursor body *{cu
 </article></div></div>
 
 <div class="island-panel" id="islandPanel"><div class="article-layout"><aside class="article-nav"><b>Island Wars</b><a href="#iw-overview">Overview</a><a href="#iw-progress">How to progress</a><a href="#iw-money">Money & voids</a><a href="#iw-abilities">Abilities</a><a href="#iw-swords">45 swords</a><a href="#iw-commands">Commands</a></aside><article class="article"><section class="article-section searchable" id="iw-overview" data-search="island wars knockback void"><div class="eyebrow2">Island Wars</div><h2>Knock them into the void.</h2><p class="lead">Island Wars is a knockback progression game. Fight on islands, earn money by dealing damage, throw opponents into the void for bonus cash, then spend that money on stronger swords.</p></section><section class="article-section searchable" id="iw-progress" data-search="island wars progression rookie tapblade"><div class="eyebrow2">Progression</div><h2>How to progress</h2><div class="story-steps"><div class="story-step"><div class="step-num">1</div><div><strong>Start with Rookie Tapblade</strong><span>Tier 1 is free.</span></div></div><div class="story-step"><div class="step-num">2</div><div><strong>Fight for money</strong><span>Every point of damage pays $1.</span></div></div><div class="story-step"><div class="step-num">3</div><div><strong>Secure void kills</strong><span>Earn a $10 bonus when a qualifying target falls within 15 seconds.</span></div></div><div class="story-step"><div class="step-num">4</div><div><strong>Unlock stronger swords</strong><span>Use <code>/shop</code> and climb all 45 tiers to Titan Mace.</span></div></div></div></section><section class="article-section searchable" id="iw-money" data-search="island money damage void bonus"><div class="eyebrow2">Economy</div><h2>Money & voids</h2><div class="wiki-grid"><div class="wiki-card"><div class="stat">$1</div><strong>Per damage</strong><span>Your main income.</span></div><div class="wiki-card"><div class="stat">+$10</div><strong>Void bonus</strong><span>Bonus for credited void kills.</span></div><div class="wiki-card"><div class="stat">15s</div><strong>Credit window</strong><span>Your qualifying hit stays eligible.</span></div><div class="wiki-card"><div class="stat">$6.3M</div><strong>Endgame</strong><span>Titan Mace costs $6,305,000.</span></div></div></section><section class="article-section searchable" id="iw-abilities" data-search="passive active right click cooldown"><div class="eyebrow2">Combat</div><h2>Passives & right-click abilities</h2><p>Every sword has normal knockback, a chance-based passive, and a separate right-click active ability with a cooldown. Higher tiers add pulls, pushes, dashes, freezes, swaps, domains, meteors, clones and other control tools.</p><div class="callout">The best sword is not only raw knockback. Learn your passive proc and active cooldown.</div></section><section class="article-section searchable" id="iw-swords" data-search="45 swords island wars titan rookie"><div class="eyebrow2">Database</div><h2>All 45 swords</h2><input class="sword-search" id="swordSearch" type="search" placeholder="Search sword or ability…"><div class="table-wrap"><table class="sword-table"><thead><tr><th>Tier</th><th>Sword</th><th>Price</th><th>Knockback</th><th>Passive</th><th>Active</th></tr></thead><tbody id="swordRows"></tbody></table></div></section><section class="article-section searchable" id="iw-commands" data-search="island commands shop balance"><div class="eyebrow2">Reference</div><h2>Island Wars commands</h2><div class="command-grid"><div class="command"><code>/shop</code><span>Open sword shop.</span></div><div class="command"><code>/shop &lt;search&gt;</code><span>Search for a sword.</span></div><div class="command"><code>/balance</code><span>Show your balance.</span></div><div class="command"><code>/bal</code><span>Short balance alias.</span></div></div></section></article></div></div>
-</div></main><footer class="footer"><div class="container">PlexiumMC <span class="accent-dot"></span> Player Wiki · <a href="../UI/">PlexUI</a></div></footer></div>
-<nav class="mc-mobile-tabs" id="mobileTabs" data-liquid-tabs aria-label="Minecraft wiki navigation">
-  <a href="../">Home</a>
-  <button class="active" type="button" data-mobile-mode="box">BoxPvP</button>
-  <button type="button" data-mobile-mode="island">Island Wars</button>
-  <button type="button" data-mobile-search>Search</button>
+</div></main><footer class="footer"><div class="container">© 2026 Plexium. All rights reserved. <span class="accent-dot"></span> <a href="../">Home</a> · <a href="../browser/">Browser</a> · <a href="./">Minecraft</a> · <a href="../portfolio/">Portfolio</a> · <a href="../UI/">PlexUI</a> · <a href="https://github.com/plodroid" target="_blank" rel="noopener">GitHub</a></div></footer></div>
+<nav class="mc-mobile-tabs" id="mobileTabs" aria-label="Minecraft wiki navigation">
+  <div class="mc-mobile-mode-tabs" id="mobileModeTabs" data-liquid-tabs>
+    <button class="active" type="button" data-mobile-mode="box">BoxPvP</button>
+    <button type="button" data-mobile-mode="island">Island Wars</button>
+  </div>
+  <button class="mc-mobile-action" type="button" data-mobile-search aria-label="Search wiki"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+  <button class="mc-mobile-action" type="button" data-mobile-settings aria-label="Appearance settings"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5L9 6.1a7 7 0 0 0-1.7 1l-2.4-1-2 3.4L5 11a7 7 0 0 0 0 2l-2.1 1.5 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.5 3.1h5l.5-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4L18.9 13c.1-.3.1-.7.1-1Z"/></svg></button>
 </nav>
 <div class="secret-toast" id="secretToast"></div>
 <script>
@@ -417,27 +544,41 @@ const progression=[{"level":1,"name":"Plankton","mine":"Dark Prismarine","w":6,"
 $('#progressRows').innerHTML=progression.map(x=>'<tr><td><span class="level-badge">'+x.level+'</span></td><td><strong>'+x.name+'</strong></td><td>'+x.mine+'<br><small>64 → 1 '+x.name+' Block</small></td><td>Previous gear + '+x.w+' blocks</td><td>Previous armor + '+x.a+' blocks</td></tr>').join('');
 
 /* Wiki mode switching + liquid movement */
-const modeTabs=$('#modeTabs');
+const modeTabs=$('#modeTabs'),topTabs=$('#mainTabs'),mobileModeTabs=$('#mobileModeTabs');
 function setMode(mode,source='desktop'){
   const island=mode==='island';
   $('#boxPanel').classList.toggle('active',!island);
   $('#islandPanel').classList.toggle('active',island);
-  const desktop=$('[data-mode="'+mode+'"]',modeTabs);
-  if(desktop)setLiquidTab(modeTabs,desktop,true);
-  const mobile=$('[data-mobile-mode="'+mode+'"]',$('#mobileTabs'));
-  if(mobile){
-    $$('[data-mobile-mode]',$('#mobileTabs')).forEach(x=>x.classList.toggle('active',x===mobile));
-    positionLiquid($('#mobileTabs'),mobile,true);
+
+  const contentButton=$('[data-mode="'+mode+'"]',modeTabs);
+  if(contentButton)setLiquidTab(modeTabs,contentButton,true);
+
+  const topButton=$('[data-top-mode="'+mode+'"]',topTabs);
+  if(topButton)setLiquidTab(topTabs,topButton,true);
+
+  const mobileButton=$('[data-mobile-mode="'+mode+'"]',mobileModeTabs);
+  if(mobileButton)setLiquidTab(mobileModeTabs,mobileButton,true);
+
+  if(source==='mobile'||source==='top'){
+    window.scrollTo({top:Math.max(0,$('#modeTabs').getBoundingClientRect().top+scrollY-95),behavior:reduced?'auto':'smooth'});
   }
-  if(source==='mobile')window.scrollTo({top:Math.max(0,$('#modeTabs').getBoundingClientRect().top+scrollY-95),behavior:reduced?'auto':'smooth'});
   requestAnimationFrame(()=>{refreshLiquids();refreshArticleSpy()});
 }
-$$('.mode-tab').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mode)));
-$$('[data-mobile-mode]').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mobileMode,'mobile')));
-$('[data-mobile-search]').addEventListener('click',()=>{
+$('.mode-tab').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mode)));
+$('[data-top-mode]').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.topMode,'top')));
+$('[data-mobile-mode]').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mobileMode,'mobile')));
+
+function focusWikiSearch(){
   const search=$('#wikiSearch');
   search.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
   setTimeout(()=>search.focus(),reduced?0:350);
+}
+$('#topSearch').addEventListener('click',focusWikiSearch);
+$('[data-mobile-search]').addEventListener('click',focusWikiSearch);
+$('[data-mobile-settings]').addEventListener('click',()=>{
+  settings.classList.add('open');
+  settings.setAttribute('aria-hidden','false');
+  requestAnimationFrame(refreshLiquids);
 });
 
 /* Search */
