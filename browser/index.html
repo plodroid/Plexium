@@ -187,9 +187,177 @@
       .section{padding:66px 0}.section-head.split{display:block}.section-head .btn{margin-top:18px}.download-wrap{padding:17px}.download-top{padding:8px 3px 21px}.feature-grid{grid-template-columns:1fr}.feature-card.big{grid-column:auto}.note-row{grid-template-columns:1fr;gap:7px}.note-tag{margin:0}.final-card{padding:38px 20px;min-height:300px}.footer{align-items:flex-start;flex-direction:column}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.browser-frame{animation:none}.reveal{opacity:1;transform:none;transition:none}.btn,.feature-card,.os-card,.nav-links a{transition:none}.cursor-aura{display:none}}
-  </style>
+  
+/* ==========================================================================
+   PlexUI interaction polish for Plex Browser
+   Scope: navigation + pointer only. Product layout/functions stay unchanged.
+   ========================================================================== */
+:root{
+  --plex-ease:cubic-bezier(.22,1,.36,1);
+  --plex-ease-ios:cubic-bezier(.32,.72,0,1);
+  --plex-glass:rgba(28,22,19,.66);
+  --plex-glass-strong:rgba(255,247,239,.085);
+}
+
+/* exact-position custom cursor */
+html.plex-custom-cursor,
+html.plex-custom-cursor body,
+html.plex-custom-cursor body *{cursor:none!important}
+
+.plex-cursor{
+  position:fixed;left:0;top:0;z-index:10000;width:20px;height:20px;border-radius:50%;
+  pointer-events:none;opacity:0;border:1.4px solid #fff;mix-blend-mode:difference;
+  transform:translate3d(-100px,-100px,0) translate(-50%,-50%);
+  transform-origin:center;will-change:transform,opacity;
+  transition:width 150ms var(--plex-ease),height 150ms var(--plex-ease),opacity 90ms ease;
+}
+.plex-cursor::after{content:"";position:absolute;inset:5px;border-radius:inherit;background:#fff}
+.plex-cursor::before{
+  content:"";position:absolute;right:55%;top:50%;height:12px;width:var(--trail,14px);border-radius:999px;
+  transform:translateY(-50%);background:rgba(255,255,255,.80);opacity:var(--trail-opacity,0);filter:blur(var(--trail-blur,0));
+}
+.plex-cursor.ready{opacity:1}
+.plex-cursor.hover{width:38px;height:38px}
+.plex-cursor.down{width:17px;height:17px}
+
+/* Keep Browser's warm aura, but let the real cursor feel exact. */
+.cursor-aura{
+  width:260px;height:260px;
+  background:radial-gradient(circle,rgba(235,125,84,.095),rgba(235,125,84,.028) 38%,transparent 70%);
+  filter:blur(12px);
+}
+
+/* Dynamic-Island shell, preserving Browser brand + actions */
+.nav-shell{inset:14px 0 auto}
+.nav{
+  width:max-content;
+  max-width:calc(100vw - 28px);
+  height:62px;
+  margin:auto;
+  padding:7px 8px;
+  gap:7px;
+  justify-content:center;
+  border-radius:999px;
+  background:var(--plex-glass);
+  border:1px solid rgba(255,243,233,.13);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,.28),
+    0 2px 8px rgba(0,0,0,.10),
+    inset 0 1px rgba(255,255,255,.055);
+  backdrop-filter:blur(22px) saturate(1.28);
+  -webkit-backdrop-filter:blur(22px) saturate(1.28);
+}
+.brand{
+  min-width:auto;
+  height:48px;
+  padding:0 10px 0 5px;
+  border-radius:999px;
+  flex:0 0 auto;
+  transition:transform 160ms var(--plex-ease),background-color 170ms ease;
+}
+.brand:hover{transform:scale(1.018);background:rgba(255,255,255,.035)}
+.brand:active{transform:scale(.975)}
+.brand img{width:30px;height:30px}
+.brand .version{padding:3px 7px}
+
+/* Liquid selector for the regular section links. Download remains the CTA. */
+.nav-links{
+  position:relative;
+  isolation:isolate;
+  height:48px;
+  display:flex;
+  align-items:center;
+  gap:1px;
+  padding:0 2px;
+}
+.nav-links .plex-liquid-goo{
+  position:absolute;inset:0;z-index:0;pointer-events:none;filter:url(#plexBrowserGoo);overflow:visible;
+}
+.nav-links .plex-liquid-blob,
+.nav-links .plex-liquid-bridge{
+  position:absolute;top:50%;height:40px;border-radius:999px;transform:translateY(-50%);
+  background:rgba(255,247,239,.078);will-change:left,width,opacity,transform;
+}
+.nav-links .plex-liquid-bridge{opacity:0;height:30px}
+.nav-links .plex-liquid-indicator{
+  position:absolute;z-index:1;top:4px;height:40px;border-radius:999px;pointer-events:none;
+  background:rgba(255,247,239,.075);
+  border:1px solid rgba(255,243,233,.12);
+  backdrop-filter:blur(11px) saturate(1.35);
+  -webkit-backdrop-filter:blur(11px) saturate(1.35);
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.095),
+    inset -1px -1px 0 rgba(255,255,255,.025),
+    0 5px 14px rgba(0,0,0,.12);
+  transition:transform 330ms var(--plex-ease-ios),width 330ms var(--plex-ease-ios);
+  will-change:transform,width;
+}
+.nav-links .plex-liquid-indicator.moving{animation:plexBrowserLiquid 330ms var(--plex-ease-ios)}
+.nav-links .plex-liquid-bridge.animate{animation:plexBrowserBridge 330ms var(--plex-ease-ios)}
+@keyframes plexBrowserLiquid{0%{scale:1}44%{scale:1.09 .965}100%{scale:1}}
+@keyframes plexBrowserBridge{0%{opacity:.34;scale:1 .82}55%{opacity:.16;scale:1 1}100%{opacity:0;scale:.9 .78}}
+.nav-links a{position:relative;z-index:2;height:40px;padding:0 12px;display:flex;align-items:center;border-radius:999px}
+.nav-links a:not(.nav-cta){background:transparent!important}
+.nav-links a:not(.nav-cta).active{color:var(--text)}
+.nav-links a:not(.nav-cta):hover{transform:translateY(-1px) scale(1.015);background:rgba(255,255,255,.035)!important}
+.nav-links a:not(.nav-cta):active{transform:scale(.975)}
+.nav-cta{
+  height:42px!important;
+  margin-left:4px;
+  border-radius:999px!important;
+  padding:0 15px!important;
+  transition:transform 160ms var(--plex-ease),filter 170ms ease,box-shadow 170ms ease!important;
+}
+.nav-cta:hover{transform:translateY(-1px) scale(1.018)}
+.nav-cta:active{transform:scale(.965)!important}
+
+/* prevent the liquid layer from sitting under CTA */
+.nav-links .plex-liquid-indicator,
+.nav-links .plex-liquid-goo{transition:opacity 150ms ease}
+
+/* Mobile: keep existing Browser top nav concept, only tighten it. */
+@media(max-width:900px){
+  .nav{
+    width:max-content;
+    max-width:calc(100vw - 20px);
+    height:60px;
+    padding:7px 8px 7px 9px;
+    gap:6px;
+  }
+  .nav-links{padding:0}
+  .nav-links a:not(.nav-cta){display:none!important}
+  .nav-links .plex-liquid-indicator,
+  .nav-links .plex-liquid-goo{display:none!important}
+  .brand{height:46px;padding-right:7px}
+  .nav-cta{height:42px!important;margin:0!important}
+}
+@media(max-width:640px){
+  .nav-shell{top:10px}
+  .nav{height:58px;border-radius:999px}
+  .brand strong{font-size:13px}
+  .brand img{width:28px;height:28px}
+  .brand .version{display:none}
+  .nav-cta{padding:0 13px!important}
+}
+
+/* accessibility */
+@media(pointer:coarse),(max-width:900px){
+  html.plex-custom-cursor,
+  html.plex-custom-cursor body,
+  html.plex-custom-cursor body *{cursor:auto!important}
+  .plex-cursor{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .plex-cursor{display:none!important}
+  .nav-links .plex-liquid-indicator,
+  .nav-links .plex-liquid-bridge{transition:none!important;animation:none!important}
+}
+
+</style>
 </head>
 <body>
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><defs><filter id="plexBrowserGoo"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 16 -8" result="goo"/><feComposite in="SourceGraphic" in2="goo" operator="atop"/></filter></defs></svg>
+  <div class="plex-cursor" id="plexCursor" aria-hidden="true"></div>
   <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
 
   <div class="nav-shell">
@@ -199,7 +367,7 @@
         <strong>Plex Browser</strong>
         <span class="version">2.0.0</span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
+      <nav class="nav-links" id="browserNavLinks" aria-label="Primary navigation">
         <a href="#features">Features</a>
         <a href="#release-notes">Release notes</a>
         <a href="#faq">FAQ</a>
@@ -364,34 +532,171 @@
   </footer>
 
   <script>
+(()=>{
+'use strict';
+const $=(q,c=document)=>c.querySelector(q);
+const $$=(q,c=document)=>[...c.querySelectorAll(q)];
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',e=>{
-      const id=link.getAttribute('href'); const el=document.querySelector(id); if(!el)return;
-      e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'});
-    }));
+/* Existing anchor scrolling */
+$$('a[href^="#"]').forEach(link=>link.addEventListener('click',e=>{
+  const id=link.getAttribute('href');
+  const el=document.querySelector(id);
+  if(!el)return;
+  e.preventDefault();
+  el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+}));
 
-
-    const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(entry.isIntersecting){entry.target.classList.add('in');io.unobserve(entry.target)}
-    }),{threshold:.12,rootMargin:'0px 0px -30px'});
-    document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=Math.min(i%4,3)*55+'ms';io.observe(el)});
-
-
-    const aura=document.getElementById('cursorAura');
-    if(matchMedia('(pointer:fine)').matches){
-      let x=innerWidth/2,y=innerHeight/2,cx=x,cy=y;
-      addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;document.body.classList.add('pointer-on')},{passive:true});
-      addEventListener('mouseleave',()=>document.body.classList.remove('pointer-on'));
-      (function tick(){cx+=(x-cx)*.13;cy+=(y-cy)*.13;aura.style.transform=`translate3d(${cx-160}px,${cy-160}px,0)`;requestAnimationFrame(tick)})();
+/* Existing reveals */
+if(!reduced&&'IntersectionObserver'in window){
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
     }
+  }),{threshold:.12,rootMargin:'0px 0px -30px'});
+  $$('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay=Math.min(i%4,3)*55+'ms';
+    io.observe(el);
+  });
+}else{
+  $$('.reveal').forEach(el=>el.classList.add('in'));
+}
 
-    const ua=navigator.userAgent.toLowerCase();
-    let os='windows';
-    if(ua.includes('mac')) os='macos'; else if(ua.includes('linux')&&!ua.includes('android')) os='linux';
-    const card=document.querySelector(`[data-os="${os}"]`); if(card)card.classList.add('recommended');
-    const smart=document.getElementById('smartDownload');
-    const osLink=card?.querySelector('.os-action');
-    if(osLink){ smart.href=osLink.href; smart.setAttribute('download',''); smart.lastChild && (smart.childNodes[smart.childNodes.length-1].textContent=` Download for ${card.querySelector('.os-name').textContent}`); }
-  </script>
+/* Browser's original warm aura, still deliberately smooth */
+const aura=$('#cursorAura');
+if(matchMedia('(pointer:fine)').matches&&!reduced){
+  let ax=innerWidth/2,ay=innerHeight/2,acx=ax,acy=ay;
+  addEventListener('pointermove',e=>{
+    ax=e.clientX;ay=e.clientY;
+    document.body.classList.add('pointer-on');
+  },{passive:true});
+  addEventListener('mouseleave',()=>document.body.classList.remove('pointer-on'));
+  (function auraFrame(){
+    acx+=(ax-acx)*.13;
+    acy+=(ay-acy)*.13;
+    aura.style.transform='translate3d('+(acx-130)+'px,'+(acy-130)+'px,0)';
+    requestAnimationFrame(auraFrame);
+  })();
+}
+
+/* PlexUI liquid selector for section links only */
+const nav=$('#browserNavLinks');
+const navLinks=$$('a:not(.nav-cta)',nav);
+function ensureLiquid(){
+  if(nav.dataset.liquidReady)return;
+  nav.dataset.liquidReady='1';
+  const goo=document.createElement('span');
+  goo.className='plex-liquid-goo';
+  goo.innerHTML='<span class="plex-liquid-bridge"></span><span class="plex-liquid-blob"></span>';
+  const indicator=document.createElement('span');
+  indicator.className='plex-liquid-indicator';
+  nav.prepend(indicator);
+  nav.prepend(goo);
+}
+function positionLiquid(active,animate=true){
+  if(!active||innerWidth<=900)return;
+  ensureLiquid();
+  const indicator=$('.plex-liquid-indicator',nav);
+  const blob=$('.plex-liquid-blob',nav);
+  const bridge=$('.plex-liquid-bridge',nav);
+  const cr=nav.getBoundingClientRect(),ar=active.getBoundingClientRect();
+  const x=ar.left-cr.left,w=ar.width,oldX=Number(indicator.dataset.x||x),oldW=Number(indicator.dataset.w||w);
+  const oldCenter=oldX+oldW/2,newCenter=x+w/2,left=Math.min(oldCenter,newCenter),right=Math.max(oldCenter,newCenter);
+  blob.style.left=x+'px';blob.style.width=w+'px';
+  bridge.style.left=(left-8)+'px';bridge.style.width=(right-left+16)+'px';
+  indicator.style.width=w+'px';indicator.style.transform='translateX('+x+'px)';
+  indicator.dataset.x=String(x);indicator.dataset.w=String(w);
+  if(animate&&!reduced&&Math.abs(newCenter-oldCenter)>2){
+    indicator.classList.remove('moving');bridge.classList.remove('animate');void indicator.offsetWidth;
+    indicator.classList.add('moving');bridge.classList.add('animate');
+    clearTimeout(nav._liquidTimer);
+    nav._liquidTimer=setTimeout(()=>{indicator.classList.remove('moving');bridge.classList.remove('animate')},360);
+  }
+}
+function selectNav(link,animate=true){
+  navLinks.forEach(a=>a.classList.toggle('active',a===link));
+  positionLiquid(link,animate);
+}
+ensureLiquid();
+selectNav(navLinks[0],false);
+
+/* Deterministic active section; Download CTA remains independent */
+const navSectionLinks=navLinks.map(link=>({link,id:link.getAttribute('href').slice(1)})).filter(x=>document.getElementById(x.id));
+let navLockUntil=0;
+navLinks.forEach(link=>link.addEventListener('click',()=>{
+  navLockUntil=performance.now()+850;
+  selectNav(link,true);
+}));
+let navRAF=0;
+function updateNav(){
+  if(navRAF)return;
+  navRAF=requestAnimationFrame(()=>{
+    navRAF=0;
+    if(performance.now()<navLockUntil)return;
+    const line=innerHeight*.38;
+    let active=navSectionLinks[0];
+    for(const item of navSectionLinks){
+      const r=document.getElementById(item.id).getBoundingClientRect();
+      if(r.top<=line&&r.bottom>line){active=item;break}
+    }
+    if(active)selectNav(active.link,true);
+  });
+}
+addEventListener('scroll',updateNav,{passive:true});
+addEventListener('resize',()=>positionLiquid($('.active',nav),false));
+requestAnimationFrame(updateNav);
+
+/* Exact-position elastic pointer. Position follows the OS pointer 1:1. */
+const cursor=$('#plexCursor');
+if(matchMedia('(pointer:fine)').matches&&!reduced){
+  document.documentElement.classList.add('plex-custom-cursor');
+  let lx=0,ly=0,lt=performance.now(),x=-100,y=-100,angle=0,stretch=0,target=0,speed=0;
+  addEventListener('pointermove',e=>{
+    const now=performance.now(),dt=Math.max(7,now-lt),dx=e.clientX-lx,dy=e.clientY-ly;
+    speed=Math.min(1,(Math.hypot(dx,dy)/dt)/2.15);
+    if(Math.abs(dx)+Math.abs(dy)>.1)angle=Math.atan2(dy,dx)*180/Math.PI;
+    target=speed*.56;
+    x=e.clientX;y=e.clientY;
+    lx=x;ly=y;lt=now;
+    cursor.classList.add('ready');
+  },{passive:true});
+  addEventListener('pointerdown',()=>cursor.classList.add('down'));
+  addEventListener('pointerup',()=>cursor.classList.remove('down'));
+  document.addEventListener('mouseover',e=>cursor.classList.toggle('hover',!!e.target.closest('a,button,.os-card,.feature-card,.faq-row,.browser-frame')));
+  document.addEventListener('mouseleave',()=>cursor.classList.remove('ready'));
+  function cursorFrame(){
+    stretch+=(target-stretch)*.26;
+    target*=.84;
+    speed*=.88;
+    cursor.style.setProperty('--trail',(14+speed*22).toFixed(1)+'px');
+    cursor.style.setProperty('--trail-opacity',(speed*.25).toFixed(3));
+    cursor.style.setProperty('--trail-blur',(speed*3.3).toFixed(1)+'px');
+    cursor.style.transform='translate3d('+x+'px,'+y+'px,0) translate(-50%,-50%) rotate('+angle+'deg) scale('+(1+stretch)+','+(1-stretch*.30)+')';
+    requestAnimationFrame(cursorFrame);
+  }
+  cursorFrame();
+}
+
+/* Existing OS recommendation and smart download behavior — unchanged */
+const ua=navigator.userAgent.toLowerCase();
+let os='windows';
+if(ua.includes('mac'))os='macos';
+else if(ua.includes('linux')&&!ua.includes('android'))os='linux';
+
+const card=document.querySelector('[data-os="'+os+'"]');
+if(card)card.classList.add('recommended');
+
+const smart=$('#smartDownload');
+const osLink=card?.querySelector('.os-action');
+if(osLink){
+  smart.href=osLink.href;
+  smart.setAttribute('download','');
+  const name=card.querySelector('.os-name').textContent;
+  const textNode=[...smart.childNodes].find(node=>node.nodeType===Node.TEXT_NODE);
+  if(textNode)textNode.textContent=' Download for '+name;
+}
+})();
+</script>
 </body>
 </html>
