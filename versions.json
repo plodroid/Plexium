@@ -1,10 +1,11 @@
 {
-  "latest": "2.0.0",
+  "latest": "2.1.0",
   "channel": "stable",
   "public": true,
   "downloads": {
-    "windows": "downloads/v2.0.0/Plex Browser Setup 2.0.0.exe",
-    "macos_arm64": "downloads/v2.0.0/Plex Browser-2.0.0-arm64.dmg",
-    "linux_amd64": "downloads/v2.0.0/plex-browser_2.0.0_amd64.deb"
+    "windows": "https://github.com/plodroid/Plexium/releases/download/browser-v2.1.0/Plex-Browser-2.1.0-windows-x64.exe",
+    "macos_arm64": "https://github.com/plodroid/Plexium/releases/download/browser-v2.1.0/Plex-Browser-2.1.0-macos-arm64.dmg",
+    "macos_x64": "https://github.com/plodroid/Plexium/releases/download/browser-v2.1.0/Plex-Browser-2.1.0-macos-x64.dmg",
+    "linux_amd64": "https://github.com/plodroid/Plexium/releases/download/browser-v2.1.0/Plex-Browser-2.1.0-linux-amd64.deb"
   }
 }
