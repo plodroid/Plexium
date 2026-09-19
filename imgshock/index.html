@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#060808">
+  <meta name="description" content="ImgShock is a free browser image cleaner, converter and organizer by Plexium. Resize, convert, compress, rename, remove duplicates and export organised ZIPs without uploading your images.">
+  <title>ImgShock — Free Image Cleaner, Converter & Organizer | Plexium</title>
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="application-name" content="ImgShock">
+  <link rel="canonical" href="https://plexium.rweb.site/imgshock/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Plexium">
+  <meta property="og:url" content="https://plexium.rweb.site/imgshock/">
+  <meta property="og:title" content="ImgShock — Free Image Cleaner, Converter & Organizer">
+  <meta property="og:description" content="Clean, convert, resize, rename and organise image batches directly in your browser.">
+  <meta property="og:image" content="https://plexium.rweb.site/assets/Icons/dark.png">
+  <meta property="og:image:alt" content="Plexium ImgShock">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ImgShock — Free Image Cleaner & Organizer">
+  <meta name="twitter:description" content="A fast local image workspace by Plexium.">
+  <meta name="twitter:image" content="https://plexium.rweb.site/assets/Icons/dark.png">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "@id":"https://plexium.rweb.site/imgshock/#app",
+    "name":"ImgShock",
+    "url":"https://plexium.rweb.site/imgshock/",
+    "description":"Free browser-based image cleaner, converter and organizer by Plexium.",
+    "applicationCategory":"MultimediaApplication",
+    "operatingSystem":"Any",
+    "browserRequirements":"Requires a modern web browser with JavaScript enabled.",
+    "isAccessibleForFree":true,
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "publisher":{"@type":"Organization","name":"Plexium","url":"https://plexium.rweb.site/"},
+    "featureList":[
+      "Batch image conversion",
+      "Resize and compression",
+      "Clipboard image paste",
+      "Exact duplicate detection",
+      "Batch rename patterns",
+      "Smart export folders",
+      "Local browser processing",
+      "ZIP export"
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css?v=imgshock-1">
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" defer></script>
+  <script src="config.js?v=imgshock-1"></script>
+  <script src="app.js?v=imgshock-1" defer></script>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" focusable="false" class="svg-defs">
+    <defs>
+      <filter id="liquidGoo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 16 -8" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <a class="brand-corner" href="#top" aria-label="ImgShock home">
+    <span class="brand-mark" aria-hidden="true">
+      <i></i><i></i><i></i>
+    </span>
+    <span>ImgShock</span>
+  </a>
+
+  <header class="site-nav">
+    <nav class="nav-shell glass-material" aria-label="Main navigation">
+      <div class="nav-tabs" id="desktopTabs" data-liquid-tabs>
+        <a class="active" href="#workspace" data-nav-target="workspace">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="m7 15 2.8-3 2.2 2.2 1.7-1.8L17 16"/><circle cx="15.8" cy="9" r="1.2"/></svg>
+          <span>Workspace</span>
+        </a>
+        <a href="#organise" data-nav-target="organise">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 7.5h5l1.4 1.7H20v7.3A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 10h16"/></svg>
+          <span>Organise</span>
+        </a>
+        <a href="#export" data-nav-target="export">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m8.5 11.5 3.5 3.5 3.5-3.5"/><path d="M5 19h14"/></svg>
+          <span>Export</span>
+        </a>
+      </div>
+      <button id="settingsOpen" class="icon-btn" type="button" aria-label="Appearance settings" title="Appearance">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 3.7v2.1M12 18.2v2.1M20.3 12h-2.1M5.8 12H3.7M17.9 6.1l-1.5 1.5M7.6 16.4l-1.5 1.5M17.9 17.9l-1.5-1.5M7.6 7.6 6.1 6.1"/><circle cx="12" cy="12" r="3.4"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <nav class="mobile-tabs glass-material" id="mobileTabs" data-liquid-tabs aria-label="Mobile navigation">
+    <a class="active" href="#workspace" data-nav-target="workspace">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="m7 15 2.8-3 2.2 2.2 1.7-1.8L17 16"/></svg>
+      <span>Work</span>
+    </a>
+    <a href="#organise" data-nav-target="organise">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 7.5h5l1.4 1.7H20v7.3A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 10h16"/></svg>
+      <span>Organise</span>
+    </a>
+    <a href="#export" data-nav-target="export">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m8.5 11.5 3.5 3.5 3.5-3.5"/><path d="M5 19h14"/></svg>
+      <span>Export</span>
+    </a>
+    <button id="settingsOpenMobile" type="button" aria-label="Appearance settings">
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19 13.4v-2.8l-1.8-.7a6.6 6.6 0 0 0-.6-1.5l.8-1.8-2-2-1.8.8a6.6 6.6 0 0 0-1.5-.6L11.4 3H8.6l-.7 1.8a6.6 6.6 0 0 0-1.5.6l-1.8-.8-2 2 .8 1.8a6.6 6.6 0 0 0-.6 1.5L1 10.6v2.8l1.8.7c.1.5.3 1 .6 1.5l-.8 1.8 2 2 1.8-.8c.5.3 1 .5 1.5.6l.7 1.8h2.8l.7-1.8c.5-.1 1-.3 1.5-.6l1.8.8 2-2-.8-1.8c.3-.5.5-1 .6-1.5l1.8-.7Z"/></svg>
+    </button>
+  </nav>
+
+  <div class="ad-top-wrap">
+    <div class="ad-slot ad-slot-wide" data-ad-key="top">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder"><b>Ad space</b><span>Responsive leaderboard</span></div>
+    </div>
+  </div>
+
+  <aside class="ad-rail ad-rail-left" aria-label="Advertisement">
+    <div class="ad-slot ad-slot-rail" data-ad-key="left">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder"><b>Ad space</b><span>Desktop rail</span></div>
+    </div>
+  </aside>
+
+  <aside class="ad-rail ad-rail-right" aria-label="Advertisement">
+    <div class="ad-slot ad-slot-rail" data-ad-key="right">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder"><b>Ad space</b><span>Desktop rail</span></div>
+    </div>
+  </aside>
+
+  <main id="top" class="page-shell">
+    <section class="hero reveal">
+      <div class="hero-copy">
+        <span class="eyebrow">Private image workspace</span>
+        <h1>Drop images.<br><span>Keep the good parts.</span></h1>
+        <p class="lead">Resize, convert, polish, rename and organise complete image batches — directly in your browser.</p>
+      </div>
+      <div class="hero-meta" aria-label="Features">
+        <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.3 2.7 8 7 9.9 4.3-1.9 7-5.6 7-9.9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>Local</span>
+        <span><svg class="icon" viewBox="0 0 24 24"><path d="M8 7h8M7 11h10M9 15h6"/><rect x="4" y="4" width="16" height="16" rx="4"/></svg>Batch</span>
+        <span><svg class="icon" viewBox="0 0 24 24"><path d="M5 7.5h5l1.3 1.6H20v7.4A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 10h16"/></svg>Organised</span>
+      </div>
+    </section>
+
+    <section id="workspace" class="workspace-section section reveal">
+      <div class="section-head compact">
+        <span class="eyebrow">Workspace</span>
+        <h2>Start with the files.</h2>
+        <p>No upload queue, no account wall. Drop a batch and start working.</p>
+      </div>
+
+      <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Drop images or choose files">
+        <input id="fileInput" type="file" accept="image/*" multiple hidden>
+        <div class="drop-symbol" aria-hidden="true">
+          <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 15V4"/><path d="m8 8 4-4 4 4"/><path d="M5 14.5v2A2.5 2.5 0 0 0 7.5 19h9a2.5 2.5 0 0 0 2.5-2.5v-2"/></svg>
+        </div>
+        <div class="drop-copy">
+          <h3>Drop, choose, or paste images</h3>
+          <p>Drag files here, choose from your device, or press Ctrl+V</p>
+          <span>PNG · JPG · WebP · GIF · clipboard images · browser-readable images</span>
+        </div>
+        <div class="drop-action">
+          <span>Choose images</span>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+      <div id="workspaceStats" class="workspace-stats hidden">
+        <article class="stat-card">
+          <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="m7.5 15 3-3 2.2 2.2 1.8-1.8L17 15"/></svg></span>
+          <div><span>Images</span><strong id="statCount">0</strong></div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M7 4h8l4 4v11a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M14 4v5h5"/></svg></span>
+          <div><span>Total size</span><strong id="statSize">0 MB</strong></div>
+        </article>
+        <article class="stat-card stat-card-coral">
+          <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="5" y="5" width="10" height="10" rx="2"/><path d="M9 9h8a2 2 0 0 1 2 2v8H11a2 2 0 0 1-2-2V9Z"/></svg></span>
+          <div><span>Duplicates</span><strong id="statDuplicates">0</strong></div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12.5 9.2 17 19 7"/></svg></span>
+          <div><span>Selected</span><strong id="statSelected">0</strong></div>
+        </article>
+      </div>
+
+      <div class="ad-slot ad-slot-inline" data-ad-key="inline1">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-placeholder"><b>Ad space</b><span>Shown between workspace sections</span></div>
+      </div>
+
+      <div id="editorShell" class="editor-shell hidden">
+        <section class="library-panel panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Library</span>
+              <h3>Your images</h3>
+            </div>
+            <div class="head-actions">
+              <button id="selectAllButton" class="text-button" type="button">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M5 12.5 9 16.5 19 6.5"/></svg>
+                Select all
+              </button>
+              <button id="clearButton" class="text-button danger-text" type="button">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13"/></svg>
+                Clear
+              </button>
+            </div>
+          </div>
+
+          <div class="library-toolbar">
+            <label class="search-field">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 4.5 4.5"/></svg>
+              <input id="searchInput" type="search" placeholder="Find an image">
+            </label>
+            <select id="librarySort" class="select-control" aria-label="Sort images">
+              <option value="added">Recently added</option>
+              <option value="name">Name A–Z</option>
+              <option value="size-desc">Largest first</option>
+              <option value="size-asc">Smallest first</option>
+              <option value="pixels-desc">Most pixels</option>
+            </select>
+          </div>
+
+          <div id="imageGrid" class="image-grid" aria-live="polite"></div>
+        </section>
+
+        <aside class="tools-panel">
+          <article class="panel preview-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-kicker">Preview</span>
+                <h3 id="previewName">Choose an image</h3>
+              </div>
+              <span id="previewMeta" class="preview-meta">—</span>
+            </div>
+            <div id="previewStage" class="preview-stage">
+              <div class="preview-empty">
+                <span class="empty-symbol"><svg class="icon icon-lg" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="m7 15 3-3 2.2 2.2 1.8-1.8L17 15"/></svg></span>
+                <p>Select a thumbnail to preview it.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel edit-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-kicker">Transform</span>
+                <h3>Batch settings</h3>
+              </div>
+              <button id="resetEditsButton" class="text-button" type="button">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M5 7V3M5 7h4"/><path d="M5.7 7a7.5 7.5 0 1 1-1 8"/></svg>
+                Reset
+              </button>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>Output format</span>
+                <select id="formatSelect" class="select-control">
+                  <option value="original">Keep original</option>
+                  <option value="image/webp">WebP</option>
+                  <option value="image/jpeg">JPEG</option>
+                  <option value="image/png">PNG</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Quality <b id="qualityValue">88%</b></span>
+                <input id="qualityRange" type="range" min="35" max="100" value="88">
+              </label>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>Max width</span>
+                <input id="maxWidthInput" class="number-input" type="number" min="1" max="12000" placeholder="Original">
+              </label>
+              <label class="field">
+                <span>Max height</span>
+                <input id="maxHeightInput" class="number-input" type="number" min="1" max="12000" placeholder="Original">
+              </label>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>Padding <b id="paddingValue">0px</b></span>
+                <input id="paddingRange" type="range" min="0" max="240" step="4" value="0">
+              </label>
+              <label class="field">
+                <span>Corner radius <b id="radiusValue">0px</b></span>
+                <input id="radiusRange" type="range" min="0" max="120" step="2" value="0">
+              </label>
+            </div>
+
+            <div class="field">
+              <span>Background</span>
+              <div class="background-control">
+                <button class="swatch active" data-bg="transparent" type="button" title="Transparent"><i class="checker"></i></button>
+                <button class="swatch" data-bg="#ffffff" type="button" title="White"><i style="background:#fff"></i></button>
+                <button class="swatch" data-bg="#080a09" type="button" title="Graphite"><i style="background:#080a09"></i></button>
+                <label class="custom-color" title="Custom background">
+                  <input id="customColorInput" type="color" value="#159b89">
+                  <span>Custom</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quick-actions">
+              <button class="tool-button" data-rotate="-90" type="button">
+                <span class="tool-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M7 7H3V3"/><path d="M3.8 7.2A8 8 0 1 1 4 16"/></svg></span>
+                <span><b>Rotate left</b><small>90° counter-clockwise</small></span>
+              </button>
+              <button class="tool-button" data-rotate="90" type="button">
+                <span class="tool-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M17 7h4V3"/><path d="M20.2 7.2A8 8 0 1 0 20 16"/></svg></span>
+                <span><b>Rotate right</b><small>90° clockwise</small></span>
+              </button>
+              <button id="flipXButton" class="tool-button" type="button">
+                <span class="tool-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M9 6H4v12h5M15 6h5v12h-5"/></svg></span>
+                <span><b>Flip horizontal</b><small>Mirror the batch</small></span>
+              </button>
+              <button id="removeDuplicatesButton" class="tool-button" type="button">
+                <span class="tool-icon tool-icon-coral"><svg class="icon" viewBox="0 0 24 24"><rect x="5" y="5" width="10" height="10" rx="2"/><path d="M9 9h8a2 2 0 0 1 2 2v8H11a2 2 0 0 1-2-2V9Z"/></svg></span>
+                <span><b>Remove duplicates</b><small>Exact duplicate files</small></span>
+              </button>
+            </div>
+
+            <div class="privacy-note">
+              <span class="note-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 2.7 8.1 7 10 4.3-1.9 7-5.6 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <div>
+                <b>Processed locally</b>
+                <span>Exported files are redrawn in your browser, stripping common embedded image metadata.</span>
+              </div>
+            </div>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <section id="organise" class="organise-section section reveal">
+      <div class="section-head">
+        <span class="eyebrow">Organisation</span>
+        <h2>Messy in.<br><span>Clean folder out.</span></h2>
+        <p>Give every file a predictable name, group it automatically, then export the batch exactly how you want it.</p>
+      </div>
+
+      <div class="organise-grid">
+        <article class="panel organise-card">
+          <div class="organise-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M5 7h9M5 12h6M5 17h9"/><path d="M17 7v10M14.5 9.5 17 7l2.5 2.5"/></svg></div>
+          <span class="step-number">01</span>
+          <h3>Rename pattern</h3>
+          <p>Use small tokens to create consistent, readable filenames.</p>
+          <label class="field">
+            <span>Pattern</span>
+            <input id="renamePattern" class="text-input" type="text" value="image-{index}">
+          </label>
+          <div class="token-row">
+            <button data-token="{index}" type="button">{index}</button>
+            <button data-token="{name}" type="button">{name}</button>
+            <button data-token="{width}" type="button">{width}</button>
+            <button data-token="{height}" type="button">{height}</button>
+            <button data-token="{type}" type="button">{type}</button>
+          </div>
+          <p id="renameExample" class="example-output">Example: image-001.webp</p>
+        </article>
+
+        <article class="panel organise-card">
+          <div class="organise-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7.5h5l1.4 1.7H20v7.3A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/><path d="M4 10h16"/></svg></div>
+          <span class="step-number">02</span>
+          <h3>Smart folders</h3>
+          <p>Group exported images by orientation, format, or resolution.</p>
+          <label class="field">
+            <span>Group by</span>
+            <select id="groupSelect" class="select-control">
+              <option value="none">No folders</option>
+              <option value="orientation">Orientation</option>
+              <option value="format">File format</option>
+              <option value="resolution">Resolution size</option>
+            </select>
+          </label>
+          <div id="folderPreview" class="folder-preview"></div>
+        </article>
+
+        <article class="panel organise-card">
+          <div class="organise-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M7 5h10M7 12h10M7 19h10"/><path d="m4 7 2-2-2-2M4 14l2-2-2-2M4 21l2-2-2-2"/></svg></div>
+          <span class="step-number">03</span>
+          <h3>Export order</h3>
+          <p>Choose the file order and whether to export the whole library or selection.</p>
+          <label class="field">
+            <span>Sort exported files</span>
+            <select id="exportSort" class="select-control">
+              <option value="library">Use library order</option>
+              <option value="name">Name A–Z</option>
+              <option value="size-desc">Largest first</option>
+              <option value="pixels-desc">Most pixels</option>
+            </select>
+          </label>
+          <label class="checkbox-row">
+            <input id="selectedOnlyCheckbox" type="checkbox">
+            <span><b>Selected images only</b><small>Otherwise every image in the library is exported.</small></span>
+          </label>
+        </article>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-slot-inline ad-slot-large" data-ad-key="inline2">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder"><b>Ad space</b><span>Large responsive in-content unit</span></div>
+    </div>
+
+    <section id="export" class="export-section section reveal">
+      <div class="export-card">
+        <div class="export-copy">
+          <span class="eyebrow">Export</span>
+          <h2>One clean ZIP.</h2>
+          <p id="exportSummary">Add images to start building your export.</p>
+          <div class="export-tags">
+            <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.3 2.7 8 7 9.9 4.3-1.9 7-5.6 7-9.9V6l-7-3Z"/></svg>Local processing</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><path d="M4 8h16v10H4z"/><path d="M7 8V5h4l2 3"/></svg>Organised folders</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><path d="M5 7h9M5 12h6M5 17h9"/><path d="m17 7 2 2-2 2"/></svg>Renamed files</span>
+          </div>
+        </div>
+        <div class="export-actions">
+          <button id="downloadCurrentButton" class="button button-secondary" type="button" disabled>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m8.5 11.5 3.5 3.5 3.5-3.5"/><path d="M5 19h14"/></svg>
+            Download selected
+          </button>
+          <button id="exportZipButton" class="button button-primary button-large" type="button" disabled>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m8.5 11.5 3.5 3.5 3.5-3.5"/><path d="M5 19h14"/></svg>
+            Export ZIP
+          </button>
+          <span id="exportStatus">Nothing to export yet</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-slot-wide ad-slot-footer" data-ad-key="footer">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder"><b>Ad space</b><span>Footer billboard</span></div>
+    </div>
+
+    <footer class="footer">
+      <div>
+        <strong>ImgShock</strong>
+        <span>Images stay local. The cleanup doesn't.</span>
+      </div>
+      <nav>
+        <a href="../">Plexium</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div id="appearanceModal" class="settings hidden" aria-hidden="true">
+    <button class="settings-bg" id="settingsBackdrop" type="button" aria-label="Close appearance settings"></button>
+    <section class="settings-panel glass-material" role="dialog" aria-modal="true" aria-labelledby="appearanceTitle">
+      <div class="settings-head">
+        <div>
+          <span class="panel-kicker">Appearance</span>
+          <h2 id="appearanceTitle">Choose your light.</h2>
+        </div>
+        <button id="settingsClose" class="icon-btn" type="button" aria-label="Close settings">
+          <svg class="icon" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
+        </button>
+      </div>
+
+      <div class="theme-choice segmented" id="themeTabs" data-liquid-tabs>
+        <button data-theme-choice="light" type="button">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4"/><path d="M12 3.5v2M12 18.5v2M20.5 12h-2M5.5 12h-2M18 6l-1.4 1.4M7.4 16.6 6 18M18 18l-1.4-1.4M7.4 7.4 6 6"/></svg>
+          Light
+        </button>
+        <button data-theme-choice="dark" type="button">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M19.2 14.8A7.8 7.8 0 0 1 9.2 4.8 8 8 0 1 0 19.2 14.8Z"/></svg>
+          Dark
+        </button>
+        <button data-theme-choice="system" type="button">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="2.5"/><path d="M9 20h6M12 17v3"/></svg>
+          Auto
+        </button>
+      </div>
+
+      <div class="settings-note">
+        <span class="note-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 10v6M12 7.5v.1"/></svg></span>
+        <p>Your choice is stored only in this browser. Reduced motion and transparency preferences are respected automatically.</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
