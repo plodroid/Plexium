@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff4db"/><stop offset="1" stop-color="#ffd0c8"/></linearGradient>
+  <filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#6b2a1f" flood-opacity=".16"/></filter>
+</defs>
+<rect width="900" height="1125" rx="54" fill="url(#bg)"/>
+<circle cx="650" cy="250" r="145" fill="#f7c94d" opacity=".9"/>
+<g filter="url(#s)" transform="translate(200 210)">
+  <path d="M210 430h300l-83 345c-10 40-45 68-86 68h-45c-41 0-77-28-87-68z" fill="#d88d45"/>
+  <path d="M220 440h280" stroke="#945126" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="275" cy="350" r="120" fill="#f3b7bd"/>
+  <circle cx="405" cy="330" r="136" fill="#dfe9b5"/>
+  <circle cx="365" cy="245" r="105" fill="#fff0d8"/>
+  <path d="M265 570h190M250 645h220M238 720h245" stroke="#a9632f" stroke-width="18" opacity=".55"/>
+  <path d="M300 458l65 320M395 458l-60 320" stroke="#b66f37" stroke-width="16" opacity=".5"/>
+</g>
+<text x="70" y="1030" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#8d3c32" letter-spacing="4">GELATORSO · DESSERT DEMO</text>
+</svg>
