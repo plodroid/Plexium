@@ -85,6 +85,21 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
   transform:translateY(-50%);background:rgba(255,255,255,.85);opacity:var(--trail-opacity);filter:blur(var(--blur));
 }
 .cursor.ready{opacity:1}.cursor.hover{width:38px;height:38px}.cursor.down{width:17px;height:17px}
+
+.cursor.gelator-mode{
+  width:62px !important;
+  height:62px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  mix-blend-mode:normal !important;
+  background:url("https://plodroid.github.io/Gelator/assets/pancake%20nobg.png") center / contain no-repeat !important;
+  filter:drop-shadow(0 6px 8px rgba(70,35,20,.2));
+}
+.cursor.gelator-mode::after,
+.cursor.gelator-mode::before{
+  display:none !important;
+}
+
 @media(pointer:coarse),(max-width:900px){
   html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:auto!important}
   .cursor{display:none!important}
@@ -238,15 +253,31 @@ html[data-theme="dark"] .liquid-indicator{border-color:rgba(255,255,255,.14);box
 
 /* ---------- Real work ---------- */
 .work{background:var(--surface)}
-.work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.work-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  max-width:920px;
+  margin:0 auto;
+  align-items:start;
+}
 .work-card{
-  min-width:0;border-radius:30px;overflow:hidden;background:var(--bg);border:1px solid var(--line);box-shadow:0 16px 46px rgba(0,0,0,.08);
+  min-width:0;
+  height:auto;
+  align-self:start;
+  border-radius:26px;
+  overflow:hidden;
+  background:var(--bg);
+  border:1px solid var(--line);
+  box-shadow:0 14px 38px rgba(0,0,0,.075);
   transition:transform 300ms var(--ease),box-shadow 300ms ease;
 }
 .work-card:hover{transform:translateY(-6px);box-shadow:0 28px 75px rgba(0,0,0,.13)}
 .work-media{
+  width:100%;
+  height:230px;
   min-height:0;
-  padding:8px;
+  padding:7px;
   overflow:hidden;
   background:var(--surface-soft);
   border-bottom:1px solid var(--line-soft);
@@ -256,12 +287,21 @@ html[data-theme="dark"] .liquid-indicator{border-color:rgba(255,255,255,.14);box
 }
 .work-media img{
   width:100%;
-  height:auto;
-  max-height:72vh;
+  height:100%;
+  max-height:none;
+  object-fit:cover;
+  object-position:top center;
+  border-radius:17px;
+  transition:transform 800ms var(--ease),filter 300ms ease;
+}
+.gelator-card .work-media{
+  background:linear-gradient(135deg,#fff0d8 0%,#ffd4cb 55%,#ffe7a7 100%);
+}
+.gelator-card .work-media img{
+  width:88%;
+  height:88%;
   object-fit:contain;
   object-position:center;
-  border-radius:5px;
-  transition:transform 800ms var(--ease),filter 300ms ease;
 }
 .work-card:hover img{transform:scale(1.012)}
 .work-copy{padding:24px}
@@ -493,9 +533,9 @@ html[data-theme=dark] .range-thumb{background:rgba(120,120,128,.48);border-color
 
   .work-media{
     width:100%;
-    aspect-ratio:16 / 10;
+    aspect-ratio:auto;
     min-height:0;
-    height:auto;
+    height:190px;
     padding:6px;
     display:block;
     overflow:hidden;
@@ -508,6 +548,14 @@ html[data-theme=dark] .range-thumb{background:rgba(120,120,128,.48);border-color
     object-fit:cover;
     object-position:top center;
     border-radius:15px;
+  }
+
+  .gelator-card .work-media img{
+    width:86%;
+    height:86%;
+    margin:7% auto 0;
+    object-fit:contain;
+    object-position:center;
   }
 
   .work-card:hover img{
@@ -855,8 +903,8 @@ html[data-theme=dark] .range-thumb{background:rgba(120,120,128,.48);border-color
           <div class="work-media"><img src="../assets/incometrackerapp.png" alt="Income tracker application screenshot" loading="lazy"></div>
           <div class="work-copy"><small>Existing app</small><h3>Income tracker application</h3><p>A desktop business tracker for income, projects and financial progress.</p><a href="../assets/incometrackerapp.png" target="_blank" rel="noopener">Open full preview ↗</a></div>
         </article>
-        <article class="work-card">
-          <div class="work-media"><img src="../assets/gelator-preview.svg" alt="Gelator dessert website concept preview" loading="lazy"></div>
+        <article class="work-card gelator-card">
+          <div class="work-media"><img src="https://plodroid.github.io/Gelator/assets/waffle.svg" alt="Gelator waffle artwork preview" loading="lazy"></div>
           <div class="work-copy"><small>Portfolio website</small><h3>Gelator</h3><p>A fictional dessert-shop website concept with a polished menu, motion, custom cursor interactions and responsive layouts.</p><a href="https://plodroid.github.io/Gelator/" target="_blank" rel="noopener">Open Gelator ↗</a></div>
         </article>
       </div>
@@ -1255,8 +1303,14 @@ if(matchMedia('(pointer:fine)').matches&&!reduced){
   },{passive:true});
   addEventListener('pointerdown',()=>cursor.classList.add('down'));
   addEventListener('pointerup',()=>cursor.classList.remove('down'));
-  document.addEventListener('mouseover',e=>cursor.classList.toggle('hover',!!e.target.closest('a,button,input,textarea,select,.work-card,.process-card')));
-  document.addEventListener('mouseleave',()=>cursor.classList.remove('ready'));
+  document.addEventListener('mouseover',e=>{
+    cursor.classList.toggle('hover',!!e.target.closest('a,button,input,textarea,select,.work-card,.process-card'));
+    cursor.classList.toggle('gelator-mode',!!e.target.closest('.gelator-card'));
+  });
+  document.addEventListener('mouseleave',()=>{
+    cursor.classList.remove('ready');
+    cursor.classList.remove('gelator-mode');
+  });
   function cursorFrame(){
     stretch+=(targetStretch-stretch)*.26;
     targetStretch*=.84;
