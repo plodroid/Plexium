@@ -524,6 +524,8 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
   .c-row small{display:none}
 }
 
+.touch-trail{position:fixed;left:0;top:0;z-index:90;pointer-events:none;mix-blend-mode:normal}
+
 </style>
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.dataset.theme='light';else if(t==='auto')document.documentElement.removeAttribute('data-theme')}catch(e){}</script>
 </head>
@@ -956,6 +958,109 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
     e.preventDefault();
     scrollToEl(document.getElementById(a.dataset.go));
   }));
+  const tilt = { x: 0, y: 0 };
+  (function touchFx() {
+    const coarse = matchMedia("(pointer:coarse)").matches || "ontouchstart" in window;
+    if (!coarse || fine || rm) return;
+    const cv = document.createElement("canvas");
+    cv.className = "touch-trail";
+    cv.setAttribute("aria-hidden", "true");
+    document.body.append(cv);
+    const g = cv.getContext("2d");
+    let W = 0, H = 0, dpr = 1;
+    const size = () => {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      W = innerWidth;
+      H = innerHeight;
+      cv.width = W * dpr;
+      cv.height = H * dpr;
+      cv.style.width = W + "px";
+      cv.style.height = H + "px";
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    size();
+    addEventListener("resize", size);
+    const pts = [];
+    const LIFE = 650;
+    let running = false;
+    const add = (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      pts.push({ x: t.clientX, y: t.clientY, t: performance.now() });
+      if (!running) {
+        running = true;
+        ticks.add(draw);
+      }
+    };
+    addEventListener("touchstart", (e) => {
+      add(e);
+      const t = e.touches[0], el = e.target;
+      if (t && !el.closest("[data-copy],#discordOpen,#footDiscord,input,textarea,select")) popDots(t.clientX, t.clientY, 8);
+    }, { passive: true });
+    addEventListener("touchmove", add, { passive: true });
+    function draw(now) {
+      while (pts.length && now - pts[0].t > LIFE) pts.shift();
+      g.clearRect(0, 0, W, H);
+      if (pts.length < 2) {
+        if (!pts.length) {
+          running = false;
+          ticks.delete(draw);
+        }
+        return;
+      }
+      g.lineCap = "round";
+      g.lineJoin = "round";
+      for (let i = 1; i < pts.length; i++) {
+        const a = pts[i - 1], b = pts[i], k = 1 - (now - b.t) / LIFE;
+        if (k <= 0) continue;
+        if (Math.hypot(b.x - a.x, b.y - a.y) > 140) continue;
+        g.strokeStyle = `rgba(255,134,64,${(k * 0.22).toFixed(3)})`;
+        g.lineWidth = 22 * k + 4;
+        g.beginPath();
+        g.moveTo(a.x, a.y);
+        g.lineTo(b.x, b.y);
+        g.stroke();
+        g.strokeStyle = `rgba(255,190,140,${(k * 0.85).toFixed(3)})`;
+        g.lineWidth = 5 * k + 1;
+        g.beginPath();
+        g.moveTo(a.x, a.y);
+        g.lineTo(b.x, b.y);
+        g.stroke();
+      }
+    }
+    let b0 = null, g0 = 0, tx = 0, ty = 0, on = false;
+    const onOri = (e) => {
+      if (e.beta == null || e.gamma == null) return;
+      if (b0 === null) {
+        b0 = e.beta;
+        g0 = e.gamma;
+      }
+      b0 += (e.beta - b0) * 4e-3;
+      g0 += (e.gamma - g0) * 4e-3;
+      tx = clamp((e.gamma - g0) / 22, -1, 1);
+      ty = clamp(-(e.beta - b0) / 22, -1, 1);
+    };
+    ticks.add(() => {
+      tilt.x = lerp(tilt.x, tx, 0.08);
+      tilt.y = lerp(tilt.y, ty, 0.08);
+    });
+    const start = () => {
+      if (on) return;
+      on = true;
+      addEventListener("deviceorientation", onOri, true);
+    };
+    const DOE = window.DeviceOrientationEvent;
+    if (DOE && typeof DOE.requestPermission === "function") {
+      const ask = () => {
+        removeEventListener("touchend", ask);
+        DOE.requestPermission().then((r) => {
+          if (r === "granted") start();
+        }).catch(() => {
+        });
+      };
+      addEventListener("touchend", ask, { passive: true });
+    } else start();
+  })();
   let introResolve = () => {
   };
   const introReady = new Promise((r) => {
@@ -1549,6 +1654,9 @@ void main(){
         last = t;
         return;
       }
+      cam.position.x = tilt.x * 0.45;
+      cam.position.y = tilt.y * 0.35;
+      cam.lookAt(0, 0, 0);
       simulate(t);
       R.render(scene, cam);
     });
@@ -1778,7 +1886,7 @@ void main(){
       ring.rotation.y = -pos * (Math.PI * 2 / n);
       const idx = clamp(Math.round(pos), 0, n - 1);
       if (idx !== active) show(idx);
-      cam.position.set(pt.x * 0.5, 1.15 + pt.y * 0.25, RAD + camDist);
+      cam.position.set((pt.x + tilt.x * 0.9) * 0.5, 1.15 + (pt.y + tilt.y * 0.9) * 0.25, RAD + camDist);
       cam.lookAt(0, cam.aspect < 1.2 ? -0.25 : -0.5, RAD - 0.8);
       let hit = null;
       if (fine && ndc.x < 5) {
@@ -2344,7 +2452,7 @@ Reply to: ${f2.get("contact")}`);
         idle += dt;
         if (idle > 3 && !rm) ry += dt * 0.06;
       }
-      grp.rotation.set(rx, ry, 0);
+      grp.rotation.set(rx + tilt.y * 0.16, ry + tilt.x * 0.2, 0);
       grp.updateMatrixWorld();
       tmp.set(...ll(ALG.lat, ALG.lon, 1.03)).applyMatrix4(grp.matrixWorld);
       const facing = tmp.clone().normalize().dot(cam.position.clone().sub(tmp).normalize());
