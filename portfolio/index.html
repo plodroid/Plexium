@@ -526,6 +526,8 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 
 .touch-trail{position:fixed;left:0;top:0;z-index:90;pointer-events:none;mix-blend-mode:normal}
 
+@media (max-width:820px){.wheel{height:100svh}.no-gl .wheel,.rm .wheel{height:auto}}
+
 </style>
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.dataset.theme='light';else if(t==='auto')document.documentElement.removeAttribute('data-theme')}catch(e){}</script>
 </head>
@@ -1841,14 +1843,30 @@ void main(){
       active = i;
     }
     show(0);
+    const mq = matchMedia("(max-width:820px)");
+    let stepIdx = 0;
     function go(i) {
       i = clamp(i, 0, n - 1);
+      if (mq.matches) {
+        stepIdx = i;
+        return;
+      }
       const top = wheelSec.getBoundingClientRect().top + scrollY, range2 = wheelSec.offsetHeight - innerHeight;
       scrollTo({ top: top + i / (n - 1) * range2 + 1, behavior: "smooth" });
     }
     wheelGo = (i) => go(i);
     $("#wPrev").addEventListener("click", () => go(active - 1));
     $("#wNext").addEventListener("click", () => go(active + 1));
+    let sx = 0, sy = 0;
+    pin.addEventListener("touchstart", (e) => {
+      sx = e.touches[0].clientX;
+      sy = e.touches[0].clientY;
+    }, { passive: true });
+    pin.addEventListener("touchend", (e) => {
+      if (!mq.matches) return;
+      const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(active + (dx < 0 ? 1 : -1));
+    }, { passive: true });
     const vis = visible(wheelSec);
     addEventListener("keydown", (e) => {
       if (!vis() || sheet.classList.contains("open") || e.target.closest("input,textarea,select")) return;
@@ -1861,7 +1879,7 @@ void main(){
         e.preventDefault();
       }
     });
-    if (HAS_GSAP) ScrollTrigger.create({ trigger: wheelSec, start: "top top", end: "bottom bottom", snap: { snapTo: 1 / (n - 1), duration: { min: 0.25, max: 0.7 }, delay: 0.06, ease: "power2.inOut" } });
+    if (HAS_GSAP) ScrollTrigger.create({ trigger: wheelSec, start: "top top", end: "bottom bottom", snap: { snapTo: (v) => mq.matches ? v : Math.round(v * (n - 1)) / (n - 1), duration: { min: 0.25, max: 0.7 }, delay: 0.06, ease: "power2.inOut" } });
     const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(9, 9), pt = { x: 0, y: 0 };
     pin.addEventListener("pointermove", (e) => {
       const r = cv.getBoundingClientRect();
@@ -1881,7 +1899,7 @@ void main(){
     let overActive = false, pos = 0;
     ticks.add(() => {
       if (!vis()) return;
-      const target = progressOf(wheelSec) * (n - 1);
+      const target = mq.matches ? stepIdx : progressOf(wheelSec) * (n - 1);
       pos = lerp(pos, target, 0.085);
       ring.rotation.y = -pos * (Math.PI * 2 / n);
       const idx = clamp(Math.round(pos), 0, n - 1);
