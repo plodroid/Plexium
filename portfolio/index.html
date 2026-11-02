@@ -137,7 +137,7 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 }
 .settings.open .settings-panel{opacity:1;transform:none}
 .settings-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.settings-top h3{font-size:1.45rem;letter-spacing:-.045em}
+.settings-top h2{font-size:1.45rem;letter-spacing:-.045em}
 .setting-row>span{display:block;margin-bottom:10px;color:var(--muted);font-size:.84rem}
 .setting-note{margin-top:14px;color:var(--muted);font-size:.84rem}
 .theme-fade{position:fixed;inset:0;z-index:3500;pointer-events:none;opacity:0;background:var(--bg);transition:opacity 150ms ease}
@@ -372,10 +372,10 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 .status i{width:9px;height:9px;border-radius:50%;background:#30d158;}
 .poster h2{font-family:var(--display);font-size:clamp(2.6rem,5.2vw,4.8rem);line-height:.93;letter-spacing:-.045em;font-weight:660;margin-top:18px}
 .poster-copy>p{margin-top:18px;color:var(--paper-soft);line-height:1.6;max-width:430px}
-.c-links{display:grid;gap:10px;margin-top:26px;max-width:430px}
-.c-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:54px;padding:0 8px 0 18px;border-radius:999px;background:#fff;border:1px solid rgba(60,60,67,.14);font-weight:620;transition:transform 160ms var(--ease),box-shadow 160ms ease}
+.c-links{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:26px;max-width:430px}
+.c-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:54px;padding:8px 8px 8px 18px;border-radius:999px;background:#fff;border:1px solid rgba(60,60,67,.14);font-weight:620;transition:transform 160ms var(--ease),box-shadow 160ms ease}
 .c-row:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
-.c-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.c-row span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .c-row small{color:var(--paper-soft);font-weight:600;margin-right:6px}
 .c-copy{height:38px;padding:0 15px;border-radius:999px;border:0;background:var(--paper-ink);color:#fff;font-weight:650;font-size:.84rem;transition:transform 140ms var(--ease)}
 .c-copy:active{transform:scale(.95)}
@@ -397,7 +397,14 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 .foot-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.86rem;padding-top:22px}
 .foot-row a{transition:color 160ms ease}
 .foot-row a:hover{color:var(--ink)}
-.foot-links{display:flex;gap:6px 18px;flex-wrap:wrap}
+.foot-links{display:flex;align-items:center;gap:6px 20px;flex-wrap:wrap}
+.foot-socials{display:flex;gap:8px}
+.foot-ico{cursor:pointer;padding:0;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;color:var(--ink);background:var(--glass);border:1px solid var(--glass-border);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform 260ms var(--ease-ios),background-color 200ms ease,color 200ms ease}
+.foot-ico svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.foot-ico svg .fillme{fill:currentColor;stroke:none}
+@media (hover:hover){.foot-ico:hover{transform:translateY(-3px);background:var(--blue);color:var(--on);border-color:transparent}}
+.foot-ico:active{transform:scale(.94)}
+.foot-top{min-height:40px;display:inline-flex;align-items:center}
 
 /* ============ small screens ============ */
 @media (max-width:1000px){
@@ -504,7 +511,17 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
   .wheel-ui{padding:84px 18px 96px}
   .wheel-bottom{flex-direction:column;align-items:flex-start}
   .wheel-info h3{font-size:clamp(2.1rem,10vw,3rem)}
-  .wheel-text{min-height:0}
+  .wheel-text{min-height:6em}
+}
+
+/* short phones: give the 3D scenes more room */
+@media (max-width:820px) and (max-height:720px){
+  .hero-hint{display:none}
+  .wheel-text{display:none}
+}
+@media (max-width:400px){
+  .c-copy{white-space:nowrap;padding:0 12px;font-size:.8rem}
+  .c-row small{display:none}
 }
 
 </style>
@@ -527,7 +544,7 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
 <div class="settings" id="settings" aria-hidden="true">
   <div class="settings-bg" data-close></div>
   <div class="settings-panel" role="dialog" aria-modal="true" aria-label="Settings">
-    <div class="settings-top"><h3>Settings</h3><button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="settings-top"><h2>Settings</h2><button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="setting-row"><span>Theme</span>
       <div class="segmented" data-liquid id="themeTabs"><button type="button" data-theme-set="dark">Dark</button><button type="button" data-theme-set="light">Light</button><button type="button" data-theme-set="auto">Auto</button></div></div>
     <div class="setting-row" id="cursorRow" style="margin-top:18px"><span>Cursor</span>
@@ -692,7 +709,7 @@ html.custom-cursor,html.custom-cursor body,html.custom-cursor body *{cursor:none
   <div class="halftone"><canvas id="halftone" role="img" aria-label="PLEXIUM"></canvas></div>
   <div class="wrap"><div class="foot-row">
     <span>© 2026 Plexium</span>
-    <div class="foot-links"><a href="https://www.instagram.com/plodroid" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/plodroid" target="_blank" rel="noopener">GitHub</a><a href="#top" data-go="top">Back to top</a></div>
+    <div class="foot-links"><div class="foot-socials"><a class="foot-ico" href="https://www.instagram.com/plodroid" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" class="fillme"/></svg></a><a class="foot-ico" href="https://github.com/plodroid" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a><a class="foot-ico" href="https://www.youtube.com/@plodroid" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.4v5.2l4.5-2.6z" class="fillme"/></svg></a><button class="foot-ico" id="footDiscord" type="button" aria-label="Discord: copy username plodroid2" title="Discord: plodroid2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 6.2c1.4-.6 2.8-.9 4.5-.9s3.1.3 4.5.9c1.8 2.7 2.7 5.4 2.8 8.6-1.3 1-2.6 1.6-4 2l-.9-1.5c.5-.2 1-.4 1.4-.7l-.4-.3c-2.2 1-4.7 1-6.9 0l-.4.3c.4.3.9.5 1.4.7l-.9 1.5c-1.4-.4-2.7-1-4-2 .1-3.2 1-5.9 2.8-8.6z"/><circle cx="9.4" cy="12" r=".9" class="fillme"/><circle cx="14.6" cy="12" r=".9" class="fillme"/></svg></button><a class="foot-ico" href="mailto:housikiki@gmail.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="m4.5 8 7.5 5.5L19.5 8"/></svg></a></div><a class="foot-top" href="#top" data-go="top">Back to top</a></div>
   </div></div>
 </footer>
 
@@ -1330,15 +1347,32 @@ void main(){
         bx = hw * (aspect > 1.7 ? 0.6 : 0.56);
         by = -0.05;
       } else {
-        base = clamp(Math.min(hw * 0.8, hh * 0.36) / 1.45, 0.45, 1);
+        base = clamp(Math.min(hw * 0.8, hh * 0.31) / 1.45, 0.42, 1);
         bx = 0;
-        by = -hh * 0.3;
+        by = -hh * 0.26;
+        const hero = document.getElementById("top"), act = document.querySelector(".hero-actions"), hint = document.querySelector(".hero-play");
+        if (hero && act && hint) {
+          const ht = hero.getBoundingClientRect().top, t = act.getBoundingClientRect().bottom - ht + 10, b = hint.getBoundingClientRect().top - ht - 6, rh = b - t;
+          if (rh > 90) {
+            const rpx = Math.min(rh * 0.5, W * 0.4), pxw = H / (2 * hh);
+            base = rpx / pxw / 1.45;
+            by = -(((t + b) / 2 - H / 2) / (H / 2)) * hh;
+          }
+        }
       }
       U.uScale.value = dpr * Math.max(0.7, H / 900) * 7.2 * 3.6;
       U.uSize.value = small ? 1.15 : 1;
     }
     size();
     addEventListener("resize", size);
+    if (document.fonts) document.fonts.ready.then(() => {
+      W = 0;
+      size();
+    });
+    setTimeout(() => {
+      W = 0;
+      size();
+    }, 4200);
     const P = { x: 0, y: 0, sx: 0, sy: 0, on: false, down: false, moved: 0, tx: 0, ty: 0, id: -1, amt: 0 };
     const ndc = (e) => {
       P.x = e.clientX / innerWidth * 2 - 1;
@@ -1658,7 +1692,14 @@ void main(){
       R.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.5 : 2));
       R.setSize(W, H, false);
       cam.aspect = W / H;
-      camDist = Math.max(6.5, 4.3 / (2 * Math.tan(19 * Math.PI / 180) * cam.aspect));
+      const T19 = Math.tan(19 * Math.PI / 180);
+      camDist = Math.max(6.5, 4.3 / (2 * T19 * cam.aspect));
+      if (cam.aspect < 1.2) {
+        const pr = pin.getBoundingClientRect(), bt = $(".wheel-bottom").getBoundingClientRect();
+        const top = Math.min(100, H * 0.14), bot = Math.max(top + 140, bt.top - pr.top - 12), rh = bot - top;
+        camDist = Math.max(6.5, PH * 1.3 * H / (rh * 0.7 * 2 * T19), PW / (0.84 * 2 * T19 * cam.aspect));
+        cam.setViewOffset(W, H, 0, Math.round(H / 2 - (top + bot) / 2), W, H);
+      } else cam.clearViewOffset();
       cam.updateProjectionMatrix();
     }
     size();
@@ -1738,7 +1779,7 @@ void main(){
       const idx = clamp(Math.round(pos), 0, n - 1);
       if (idx !== active) show(idx);
       cam.position.set(pt.x * 0.5, 1.15 + pt.y * 0.25, RAD + camDist);
-      cam.lookAt(0, cam.aspect < 1 ? -1.2 : -0.5, RAD - 0.8);
+      cam.lookAt(0, cam.aspect < 1.2 ? -0.25 : -0.5, RAD - 0.8);
       let hit = null;
       if (fine && ndc.x < 5) {
         ray.setFromCamera(ndc, cam);
@@ -1909,6 +1950,12 @@ void main(){
       copyText(b.dataset.copy, b.dataset.msg || "Copied");
       popDots(e.clientX, e.clientY);
     }));
+    const fd = document.getElementById("footDiscord");
+    if (fd) fd.addEventListener("click", (e) => {
+      popDots(e.clientX, e.clientY);
+      copyText("plodroid2", "Discord name copied: plodroid2");
+      setTimeout(() => window.open("https://discord.com/app", "_blank", "noopener"), 350);
+    });
     $("#discordOpen").addEventListener("click", (e) => {
       popDots(e.clientX, e.clientY);
       copyText("plodroid2", "Discord name copied: plodroid2");
